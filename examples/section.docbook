@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article lang="sk">
+  <title>Example section</title>
+
+  <subtitle>DocBook example with sections</subtitle>
+
+  <articleinfo>
+    <pubdate>YYYY-MM-DD</pubdate>
+
+    <revhistory>
+      <revision>
+        <revnumber>1</revnumber>
+
+        <date>YYYY-MM-DD</date>
+
+        <author>
+          <firstname>Meno</firstname>
+
+          <surname>Priezvisko</surname>
+        </author>
+
+        <revdescription>
+          <para>First document</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+
+    <authorgroup>
+      <corpauthor>WebCom, s.r.o.</corpauthor>
+
+      <author>
+        <firstname>Roman</firstname>
+
+        <surname>Fordinal</surname>
+
+        <email>fordinal@webcom.sk</email>
+      </author>
+    </authorgroup>
+
+    <legalnotice>
+      <para>This document is...</para>
+    </legalnotice>
+
+    <abstract>
+      <para>This is a subtitle of example to converting DocBook to
+      OpenDocument</para>
+    </abstract>
+  </articleinfo>
+
+  <section>
+    <title>First section (1)</title>
+
+    <para>Paragraph Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    Proin mauris ante, aliquam ut, pharetra eget, sagittis sed, lectus. In
+    accumsan commodo libero. Mauris eget nisi eu magna sodales placerat. Sed
+    in orci vel tellus mattis ullamcorper. Morbi augue ligula, eleifend non,
+    congue eget, consequat vel, ante. Aenean at odio. Integer fringilla
+    ultrices diam. Quisque est dolor, pharetra id, condimentum aliquet, luctus
+    nec, lectus. Vestibulum cursus bibendum metus. Vestibulum ante ipsum
+    primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent
+    fringilla nunc et sem. Curabitur mattis scelerisque est. Aliquam eu libero
+    eget quam dapibus adipiscing. Nunc aliquet nonummy sem. Suspendisse
+    viverra convallis sapien. Maecenas varius tempor eros. Curabitur mattis
+    sodales nibh. Curabitur a libero. Vestibulum a mauris nec risus viverra
+    condimentum. Nam interdum molestie massa.</para>
+
+    <section>
+      <title>First subsection (1.1)</title>
+
+      <para>Nulla mattis, eros ut tempus dignissim, enim dolor ultricies enim,
+      vitae cursus erat est non leo. Sed pharetra diam luctus velit. Nam
+      fringilla libero sit amet diam. Nulla ut augue in est blandit ornare.
+      Curabitur nonummy luctus felis. Maecenas in orci sed magna placerat
+      auctor. Curabitur vel lectus ac erat iaculis pretium. Nulla molestie
+      scelerisque lacus. In sit amet orci ut eros placerat convallis. Duis
+      bibendum, nisl a auctor tincidunt, libero velit feugiat tellus, ut
+      pellentesque neque justo nec erat. Integer turpis eros, accumsan
+      placerat, sodales vel, malesuada eget, lectus. Nunc luctus rhoncus
+      ipsum. Integer vel pede ac lacus interdum viverra. Suspendisse urna
+      nulla, lobortis quis, blandit sed, pharetra ac, velit. Sed id nunc ac
+      dui dictum facilisis. Donec vel tellus in dolor rhoncus tincidunt.
+      Mauris aliquet lacus eget pede. Cras elementum justo sed libero.
+      Maecenas pretium placerat urna. Quisque accumsan.</para>
+    </section>
+
+    <section>
+      <title>Second subsection (1.2)</title>
+
+      <para>Donec nulla ipsum, rutrum ultrices, semper sit amet, aliquam eget,
+      tellus. Quisque posuere convallis libero. Duis tellus. Class aptent
+      taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+      hymenaeos. Nulla auctor dui ac nulla. Cras nibh lacus, hendrerit sed,
+      fringilla blandit, consectetuer in, ante. Nunc sapien elit, convallis
+      eget, aliquet eu, feugiat ut, sem. Etiam scelerisque nibh eu pede. Sed
+      tellus elit, adipiscing ac, pharetra quis, condimentum nec, libero.
+      Donec dapibus libero et nisi. Quisque elementum, nisl id sodales
+      consectetuer, tortor turpis ornare arcu, vitae laoreet leo arcu at
+      elit.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>Second section (2)</title>
+
+    <para>Suspendisse dolor orci, iaculis id, suscipit eget, aliquam ut,
+    sapien. Mauris nibh diam, luctus eget, fringilla sed, viverra vel, mi.
+    Fusce vel neque quis arcu vulputate pulvinar. Morbi sollicitudin ipsum vel
+    lectus. Donec elementum augue vitae libero. Nunc blandit interdum erat.
+    Praesent a ipsum. Cras elit risus, pretium non, porttitor in, blandit in,
+    elit. Phasellus hendrerit sapien a ipsum. Nullam nulla quam, suscipit eu,
+    rutrum nec, viverra sit amet, eros. Aliquam congue lacinia odio. Praesent
+    a turpis.</para>
+
+    <section>
+      <title>subsection (2.1)</title>
+
+      <para>subsection para</para>
+
+      <section>
+        <title>subsection (2.1.1)</title>
+
+        <para>subsection para</para>
+
+        <section>
+          <title>subsection (2.1.1.1)</title>
+
+          <para>subsection para</para>
+
+          <section>
+            <title>subsection (2.1.1.1.*)</title>
+
+            <para>subsection para</para>
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+</article>

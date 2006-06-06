@@ -1,0 +1,317 @@
+#!/usr/bin/perl
+=head1 NAME
+	
+	docbook2odf - DocBook to OpenDocument XSL Transformation utils
+	Copyright (C) 2006 Roman Fordinal
+	http://open.comsultia.com/docbook2odf/
+	
+=cut
+
+=head1 LICENSE
+	
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+=cut
+
+use strict;
+use utf8;
+use encoding 'utf-8';
+use open ':utf8', ':std';
+
+# depends on
+use Cwd;
+use File::Copy;
+use File::Path;
+use Image::Magick;
+use XML::Sablotron;
+use Getopt::Long;
+use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+
+
+##################################################################################
+# INITIALIZATION
+##################################################################################
+
+
+
+# initial variables
+our $PATH=Cwd::abs_path();
+our $PATH_INSTALL="/usr/local/share/docbook2odf/xsl"; # not final
+our $PATH_XSL = do
+{
+	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl/docbook.xsl' :
+	$PATH_INSTALL.'/docbook.xsl'
+};
+my $input;
+my $output;
+my $help;
+my $quiet;
+my $debug;
+my $params;
+my $program_name="docbook2odf";
+my $program_revision="9"; # number of last revision
+my $program_version="0.".$program_revision;
+my $program_description="a non-interactive docbook to opendocument convertor";
+my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile] [--params]";
+
+my $result = GetOptions
+	(
+		"input-file=s"   => \$input,
+		"output-file=s"  => \$output,
+		"params=s"       => \$params,
+		"xsl-file=s"     => \$PATH_XSL,
+		"debug"          => \$debug,
+		"quiet"          => \$quiet,
+		"help"           => \$help,
+	);
+
+
+if ($help)
+{
+	print "$program_name $program_version, $program_description\n";
+	print "Usage: docbook2odf $program_usage\n";
+	print "\n";
+	print <<"HELP";
+Arguments:
+  -V                  display the version of docbok2odf and exit.
+  --input-file        specify input docbook filename.
+  --output-file       specify output opendocument filename.
+  --params            list of params.
+  --xsl-file          use this xsl stylesheet instead.
+  --debug             show debug messages.
+  --quiet             quiet (no output).
+  --help              print this help.
+HELP
+	exit;
+}
+
+if (!$input)
+{
+	print "Usage: docbook2odf $program_usage\n";
+	print "Try `docbook2odf --help` for more information\n";
+	exit;
+}
+
+if (!$output)
+{
+	$output=$input;
+	$output=~s|^.*/||;
+	$output=~s/\.(docbook|db|xml)$//;
+	$output.=".od";
+}
+
+# program information
+if (!$quiet)
+{
+	print "$program_name $program_version, $program_description\n";
+}
+
+# input / output files
+if (!$quiet)
+{
+	print "\n";
+	print "input file:   \"$input\"\n";
+	print "output file:  \"$output?\"\n";
+	print "stylesheets:  \"$PATH_XSL\"\n";
+}
+
+#print "\n";
+#print "params:       \"$params\"\n";
+#my %param;
+#foreach my $pair(split(''))
+
+
+
+##################################################################################
+# TRANSFORMATION
+##################################################################################
+
+
+
+# transformation
+print "\n" unless $quiet;
+
+print "Sablotron transformation\n" if $debug;
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->process($situa, $PATH_XSL, $input, 'arg:/output');
+my $results_string = $sab->getResultArg('arg:/output');
+
+=head1 old way, works not very well
+use XML::LibXSLT;
+use XML::LibXML;
+
+my $parser = XML::LibXML->new();
+my $xslt = XML::LibXSLT->new();
+
+print "parsing stylesheet\n" if $debug;
+my $stylesheet = $xslt->parse_stylesheet_file($PATH_XSL)
+	or die "Failed to parse the template.\n";
+print "parsing docbook\n" if $debug;
+my $docbook_source = $parser->parse_file($input);
+print "transforming\n" if $debug;
+my $results = $stylesheet->transform($docbook_source);
+my $results_string = $stylesheet->output_string($results);
+=cut
+
+# create a working directory
+my $TEMP=$output.'.temp';
+rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
+unlink $output if -e $output; # delete output file if exists
+my @files; # listing of files (to zipping)
+mkpath $TEMP;
+mkpath $TEMP.'/Pictures';
+push @files, 'Pictures';
+mkpath $TEMP.'/META-INF';
+push @files, 'META-INF';
+
+# MIMETYPE
+open (HND, '>'.$TEMP.'/mimetype');
+print HND 'application/vnd.oasis.opendocument.text';
+close HND;
+push @files, 'mimetype';
+
+# META
+my $meta;
+if ($results_string=~s/(<office:document-meta.*?<\/office:document-meta>)//s){$meta=$1};
+open (HND, '>'.$TEMP.'/meta.xml');
+print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+print HND $meta;
+push @files, 'meta.xml';
+
+# STYLES
+my $styles;
+if ($results_string=~s/(<office:document-styles.*?<\/office:document-styles>)//s){$styles.=$1};
+open (HND, '>'.$TEMP.'/styles.xml');
+print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+print HND $styles;
+push @files, 'styles.xml';
+
+# CONTENT
+my $content;
+if ($results_string=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
+# post processing
+open (HND, '>'.$TEMP.'/content.xml');
+print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+print HND $content;
+push @files, 'content.xml';
+
+# manifest
+my $manifest;
+if ($results_string=~s/(<manifest:manifest.*?<\/manifest:manifest>)//s){$manifest.=$1};
+open (HND, '>'.$TEMP.'/META-INF/manifest.xml') || die "$!";
+print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+print HND '<!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">';print HND "\n";
+print HND $manifest;
+push @files, 'META-INF/manifest.xml';
+
+=head1
+	# CONTENT
+	my $content;
+	if ($file=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
+	
+	
+	# copy pictures into work directory
+	my @hrefs;
+	my $i=1;
+	while ($content=~s|xlink:href="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
+	{
+		my $href=$1;
+		print "processing xlink:href [$i] '$href'\n";
+		
+		my $ext=$href;$ext=~s|^.*\.||;
+		
+		my $filename=sprintf("%07d",$i);
+		$hrefs[$i]=$filename.".".$ext;
+		
+		copy($href,$WD."/work/Pictures/$filename.$ext");
+		#$content=~s|<!TMPHREF!>|$href|;
+		$i++;
+	}
+	$content=~s|<!TMPHREF-(\d+)!>|"Pictures/$hrefs[$1]"|g;
+	
+	
+	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
+	{
+		my $function=$1;
+		my $data=$2;
+		if ($function eq "getimage-width")
+		{
+			my $p = new Image::Magick;
+			$p->Read($data);
+			my $width=($p->Get('columns')*0.02644)."cm";
+			$content=~s|<!TMP!>|$width|;
+			next;
+		}
+		if ($function eq "getimage-height")
+		{
+			my $p = new Image::Magick;
+			$p->Read($data);
+			my $height=($p->Get('height')*0.02644)."cm";
+			$content=~s|<!TMP!>|$height|;
+			next;
+		}
+		
+		#751mm=284px*2.644 196mm=74px
+		
+		$content=~s|<!TMP!>||;
+	}
+	
+	
+	open(HND,">$WD/work/content.xml");
+	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+	print HND $content;	
+	
+	if ($content=~/<office:text/)
+	{
+		system("zip -r ../document.odt *");
+		print "saved into $WD/document.odt\n";
+	}
+	elsif ($content=~/<office:presentation/)
+	{
+		system("zip -r ../document.odp *");
+		print "saved into $WD/document.odp\n";
+	}
+=cut
+
+# now only without automatic detection of output document type
+$output.='t';
+
+# zipping directory
+chdir $TEMP;
+=head1 this method is buggy
+my $zip = Archive::Zip->new();
+
+foreach (@files)
+{
+	if (-d $_)
+	{
+		print "zip: add directory named '$_'\n" if $debug;
+		$zip->addDirectory( $_ );
+	}
+	else
+	{
+		print "zip: add file named '$_'\n" if $debug;
+		$zip->addFile( $_ );
+	}
+	#$member->desiredCompressionMethod( COMPRESSION_DEFLATED );
+}
+print "saving to file $output\n" if $debug;
+$zip->writeToFileNamed( '../'.$output ) == AZ_OK;
+=cut
+system("zip -r ../$output *");
+
+# delete temporary directory
+print "delete temporary directory\n" if $debug;
+chdir '..';
+rmtree $TEMP;
+
+1;
