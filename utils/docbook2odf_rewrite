@@ -105,8 +105,9 @@ my $output_file=$output;
 if (!$output)
 {
 	$output_file=$input;
-	# if I run from console
+	# if I run this script from commandline
 	# the output filename is in current workdir
+	# otherwise in directory of input filename (docbook)
 	if ($ENV{'PWD'})
 	{
 		$output_file=~s|^.*/||;
@@ -236,11 +237,6 @@ print HND $manifest;
 push @files, 'META-INF/manifest.xml';
 
 =head1
-	# CONTENT
-	my $content;
-	if ($file=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
-	
-	
 	# copy pictures into work directory
 	my @hrefs;
 	my $i=1;
@@ -286,27 +282,18 @@ push @files, 'META-INF/manifest.xml';
 		
 		$content=~s|<!TMP!>||;
 	}
-	
-	
-	open(HND,">$WD/work/content.xml");
-	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
-	print HND $content;	
-	
-	if ($content=~/<office:text/)
-	{
-		system("zip -r ../document.odt *");
-		print "saved into $WD/document.odt\n";
-	}
-	elsif ($content=~/<office:presentation/)
-	{
-		system("zip -r ../document.odp *");
-		print "saved into $WD/document.odp\n";
-	}
 =cut
 
-# now only without automatic detection of output document type
-# but only when is the $output file from console not defined
-$output_file.='t' unless $output;
+# when --output-file is not defined
+# then I run autodetection of document type
+$output_file.=do
+{
+	($content=~/<office:text/) ? 't' :
+	($content=~/<office:presentation/) ? 'p' :
+	($content=~/<office:spread/) ? 's' :
+	'f'
+} unless $output;
+
 if (-e $output_dir.'/'.$output_file)
 {
 	rmtree $TEMP;
@@ -315,7 +302,7 @@ if (-e $output_dir.'/'.$output_file)
 
 # zipping directory
 chdir $TEMP;
-=head1 this method is buggy
+=head1 this method is buggy - output zip is corrupted
 my $zip = Archive::Zip->new();
 
 foreach (@files)
