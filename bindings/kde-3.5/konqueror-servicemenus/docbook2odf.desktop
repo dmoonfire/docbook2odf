@@ -1,0 +1,11 @@
+[Desktop Entry]
+ServiceTypes=text/docbook
+Actions=docbook2odf
+
+[Desktop Action docbook2odf]
+Name=Convert to OpenDocument
+Name[en]=Convert to OpenDocument
+Name[sk]=Zkonvertovat do OpenDocument-u
+Icon=pdf
+Exec=docbook2odf --input-file %U
+
