@@ -30,10 +30,10 @@ use open ':utf8', ':std';
 use Cwd;
 use File::Copy;
 use File::Path;
-use Image::Magick;
+#use Image::Magick;
 use XML::Sablotron;
 use Getopt::Long;
-use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+#use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
 
 ##################################################################################
@@ -57,10 +57,10 @@ my $quiet;
 my $debug;
 my $params;
 my $program_name="docbook2odf";
-my $program_revision="9"; # number of last revision
+my $program_revision="15"; # number of last revision in that has been this utility changed
 my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
-my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile] [--params]";
+my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
 my $result = GetOptions
 	(
@@ -100,13 +100,36 @@ if (!$input)
 	exit;
 }
 
+
+my $output_file=$output;
 if (!$output)
 {
-	$output=$input;
-	$output=~s|^.*/||;
-	$output=~s/\.(docbook|db|xml)$//;
-	$output.=".od";
+	$output_file=$input;
+	# if I run from console
+	# the output filename is in current workdir
+	if ($ENV{'PWD'})
+	{
+		$output_file=~s|^.*/||;
+		$output_file='./'.$output_file;
+	}
+	else
+	{
+		# output directory is in input file directory
+	}
+	$output_file=~s/\.(docbook|db|xml)$//;
+	$output_file.=".od";
 }
+my $output_dir;
+if ($output_file=~s|^(.*/)||)
+{
+	$output_dir=$1;
+	$output_dir=~s|/$||;
+}
+else
+{
+	$output_dir='.';
+}
+
 
 # program information
 if (!$quiet)
@@ -119,7 +142,7 @@ if (!$quiet)
 {
 	print "\n";
 	print "input file:   \"$input\"\n";
-	print "output file:  \"$output?\"\n";
+	print "output file:  \"$output_dir/$output_file?\"\n";
 	print "stylesheets:  \"$PATH_XSL\"\n";
 }
 
@@ -163,9 +186,8 @@ my $results_string = $stylesheet->output_string($results);
 =cut
 
 # create a working directory
-my $TEMP=$output.'.temp';
+my $TEMP=$output_dir.'/'.$output_file.'.temp';
 rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
-unlink $output if -e $output; # delete output file if exists
 my @files; # listing of files (to zipping)
 mkpath $TEMP;
 mkpath $TEMP.'/Pictures';
@@ -283,7 +305,13 @@ push @files, 'META-INF/manifest.xml';
 =cut
 
 # now only without automatic detection of output document type
-$output.='t';
+# but only when is the $output file from console not defined
+$output_file.='t' unless $output;
+if (-e $output_dir.'/'.$output_file)
+{
+	rmtree $TEMP;
+	die "file $output_dir/$output_file exists\n";
+}
 
 # zipping directory
 chdir $TEMP;
@@ -307,7 +335,7 @@ foreach (@files)
 print "saving to file $output\n" if $debug;
 $zip->writeToFileNamed( '../'.$output ) == AZ_OK;
 =cut
-system("zip -r ../$output *");
+system("zip -r ../$output_file *");
 
 # delete temporary directory
 print "delete temporary directory\n" if $debug;
