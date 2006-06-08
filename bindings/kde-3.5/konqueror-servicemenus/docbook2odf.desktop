@@ -6,6 +6,6 @@ Actions=docbook2odf
 Name=Convert to OpenDocument
 Name[en]=Convert to OpenDocument
 Name[sk]=Zkonvertovat do OpenDocument-u
-Icon=pdf
-Exec=docbook2odf --input-file %U
+Icon=odf
+Exec=docbook2odf --input-file %U --debug > $HOME/docbook2odf.debug
 

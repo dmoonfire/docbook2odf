@@ -44,7 +44,7 @@ use Getopt::Long;
 
 # initial variables
 our $PATH=Cwd::abs_path();
-our $PATH_INSTALL="/usr/local/share/docbook2odf/xsl"; # not final
+our $PATH_INSTALL="/usr/share/docbook2odf/xsl"; # not final
 our $PATH_XSL = do
 {
 	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl/docbook.xsl' :
@@ -57,7 +57,7 @@ my $quiet;
 my $debug;
 my $params;
 my $program_name="docbook2odf";
-my $program_revision="15"; # number of last revision in that has been this utility changed
+my $program_revision="19"; # number of last revision in that has been this utility changed
 my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
@@ -84,7 +84,7 @@ Arguments:
   -V                  display the version of docbok2odf and exit.
   --input-file        specify input docbook filename.
   --output-file       specify output opendocument filename.
-  --params            list of params.
+  --params            list of params (disabled).
   --xsl-file          use this xsl stylesheet instead.
   --debug             show debug messages.
   --quiet             quiet (no output).
@@ -108,7 +108,7 @@ if (!$output)
 	# if I run this script from commandline
 	# the output filename is in current workdir
 	# otherwise in directory of input filename (docbook)
-	if ($ENV{'PWD'})
+	if ($ENV{'TERM'})
 	{
 		$output_file=~s|^.*/||;
 		$output_file='./'.$output_file;
