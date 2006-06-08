@@ -256,7 +256,7 @@
 		<xsl:attribute name="svg:height">1.96cm</xsl:attribute>
 		<xsl:attribute name="draw:z-index">1</xsl:attribute>
 		<xsl:element name="draw:image">
-			<xsl:attribute name="xlink:href">/usr/local/share/docbook2odf/oasis-logo.gif</xsl:attribute>
+			<xsl:attribute name="xlink:href">/usr/share/docbook2odf/xsl/oasis-logo.gif</xsl:attribute>
 			<xsl:attribute name="xlink:type">simple</xsl:attribute>
 			<xsl:attribute name="xlink:type">embed</xsl:attribute>
 			<xsl:attribute name="xlink:actuate">onLoad</xsl:attribute>
@@ -278,7 +278,7 @@
 		<xsl:attribute name="svg:width">7.51cm</xsl:attribute>
 		<xsl:attribute name="svg:height">1.96cm</xsl:attribute>
 		<xsl:element name="draw:image">
-			<xsl:attribute name="xlink:href">/usr/local/share/docbook2odf/oasis-logo.gif</xsl:attribute>
+			<xsl:attribute name="xlink:href">/usr/share/docbook2odf/xsl/oasis-logo.gif</xsl:attribute>
 			<xsl:attribute name="xlink:type">simple</xsl:attribute>
 			<xsl:attribute name="xlink:type">embed</xsl:attribute>
 			<xsl:attribute name="xlink:actuate">onLoad</xsl:attribute>
