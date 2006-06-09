@@ -26,7 +26,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="left"
-                     fileref="../../usr/local/share/docbook2odf/oasis-logo.gif" />
+                     fileref="oasis-logo.gif" />
         </imageobject>
       </inlinemediaobject>Paragraph Lorem ipsum dolor sit amet, consectetuer
     adipiscing elit. Proin mauris ante, aliquam ut, pharetra eget, sagittis

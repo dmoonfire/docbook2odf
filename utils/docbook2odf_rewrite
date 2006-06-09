@@ -33,7 +33,7 @@ use File::Path;
 #use Image::Magick;
 use XML::Sablotron;
 use Getopt::Long;
-#use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
 
 ##################################################################################
@@ -57,7 +57,7 @@ my $quiet;
 my $debug;
 my $params;
 my $program_name="docbook2odf";
-my $program_revision="19"; # number of last revision in that has been this utility changed
+my $program_revision="21"; # number of last revision in that has been this utility changed
 my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
@@ -189,18 +189,14 @@ my $results_string = $stylesheet->output_string($results);
 # create a working directory
 my $TEMP=$output_dir.'/'.$output_file.'.temp';
 rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
-my @files; # listing of files (to zipping)
 mkpath $TEMP;
 mkpath $TEMP.'/Pictures';
-push @files, 'Pictures';
 mkpath $TEMP.'/META-INF';
-push @files, 'META-INF';
 
 # MIMETYPE
 open (HND, '>'.$TEMP.'/mimetype');
 print HND 'application/vnd.oasis.opendocument.text';
 close HND;
-push @files, 'mimetype';
 
 # META
 my $meta;
@@ -208,7 +204,6 @@ if ($results_string=~s/(<office:document-meta.*?<\/office:document-meta>)//s){$m
 open (HND, '>'.$TEMP.'/meta.xml');
 print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
 print HND $meta;
-push @files, 'meta.xml';
 
 # STYLES
 my $styles;
@@ -216,16 +211,33 @@ if ($results_string=~s/(<office:document-styles.*?<\/office:document-styles>)//s
 open (HND, '>'.$TEMP.'/styles.xml');
 print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
 print HND $styles;
-push @files, 'styles.xml';
 
 # CONTENT
 my $content;
 if ($results_string=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
-# post processing
+do # post processing of content
+{
+	# copy pictures into TEMP directory
+	my @uris;
+	my $i=1;
+	while ($content=~s|(xlink:href)="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
+	{
+		my $href=$1;
+		my $uri=$2;
+		print "postprocessing $href\[$i]='$uri'\n" if $debug;
+		my $ext=$uri;$ext=~s|^.*\.||;
+		my $filename=sprintf("%07d",$i);
+		$uris[$i]=$filename.".".$ext;
+		my $dest=$TEMP.'/Pictures/'.$filename.'.'.$ext;
+		print "copy from:'$uri' dest:'$dest'\n" if $debug;
+		copy($uri,$dest);
+		$i++;
+	}
+	$content=~s|<!TMPHREF-(\d+)!>|"Pictures/$uris[$1]"|g;
+};
 open (HND, '>'.$TEMP.'/content.xml');
 print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
 print HND $content;
-push @files, 'content.xml';
 
 # manifest
 my $manifest;
@@ -234,29 +246,12 @@ open (HND, '>'.$TEMP.'/META-INF/manifest.xml') || die "$!";
 print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
 print HND '<!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">';print HND "\n";
 print HND $manifest;
-push @files, 'META-INF/manifest.xml';
+
+
+
+
 
 =head1
-	# copy pictures into work directory
-	my @hrefs;
-	my $i=1;
-	while ($content=~s|xlink:href="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
-	{
-		my $href=$1;
-		print "processing xlink:href [$i] '$href'\n";
-		
-		my $ext=$href;$ext=~s|^.*\.||;
-		
-		my $filename=sprintf("%07d",$i);
-		$hrefs[$i]=$filename.".".$ext;
-		
-		copy($href,$WD."/work/Pictures/$filename.$ext");
-		#$content=~s|<!TMPHREF!>|$href|;
-		$i++;
-	}
-	$content=~s|<!TMPHREF-(\d+)!>|"Pictures/$hrefs[$1]"|g;
-	
-	
 	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
 	{
 		my $function=$1;
@@ -291,7 +286,7 @@ $output_file.=do
 	($content=~/<office:text/) ? 't' :
 	($content=~/<office:presentation/) ? 'p' :
 	($content=~/<office:spread/) ? 's' :
-	'f'
+	'm'
 } unless $output;
 
 if (-e $output_dir.'/'.$output_file)
@@ -302,30 +297,15 @@ if (-e $output_dir.'/'.$output_file)
 
 # zipping directory
 chdir $TEMP;
-=head1 this method is buggy - output zip is corrupted
-my $zip = Archive::Zip->new();
 
-foreach (@files)
-{
-	if (-d $_)
-	{
-		print "zip: add directory named '$_'\n" if $debug;
-		$zip->addDirectory( $_ );
-	}
-	else
-	{
-		print "zip: add file named '$_'\n" if $debug;
-		$zip->addFile( $_ );
-	}
-	#$member->desiredCompressionMethod( COMPRESSION_DEFLATED );
-}
-print "saving to file $output\n" if $debug;
-$zip->writeToFileNamed( '../'.$output ) == AZ_OK;
-=cut
-system("zip -r ../$output_file *");
+print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
+my $zip = Archive::Zip->new();
+$zip->addTree('.');
+print "saving zipped content into file '../$output_file'\n" if $debug;
+$zip->writeToFileNamed( '../'.$output_file );
 
 # delete temporary directory
-print "delete temporary directory\n" if $debug;
+print "delete temporary directory='$TEMP' (PWD='$PATH')\n" if $debug;
 chdir '..';
 rmtree $TEMP;
 

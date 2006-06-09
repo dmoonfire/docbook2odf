@@ -42,7 +42,8 @@
 <!--<xsl:include href="book.xsl"/>-->
 <xsl:include href="slides.xsl"/>
 
-<xsl:include href="CI-oasis.xsl"/> <!-- CORPORATE IDENTITY -->
+<!-- OVERLAY WITH CORPORATE IDENTITY OR ANYTHING ELSE -->
+<xsl:include href="overlay/default.xsl"/>
 
 <xsl:template match="/">
 	

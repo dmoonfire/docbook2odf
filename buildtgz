@@ -1,0 +1,6 @@
+#!/bin/sh
+rm docbook2odf.tar 2> /dev/null
+rm docbook2odf.tgz 2> /dev/null
+tar -cvf docbook2odf.tar * --exclude .svn
+gzip docbook2odf.tar
+mv docbook2odf.tar.gz docbook2odf.tgz
