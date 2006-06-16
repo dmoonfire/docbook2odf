@@ -25,16 +25,16 @@
 	
 	
 <!-- CORPORATE IDENTITY -->
-	
-<!-- PARAMS -->
+
+<!-- PARAMS OVERLAY -->
 <xsl:param name="CI.style.color">#323298</xsl:param>
 <xsl:param name="CI.style.color.bg">#F5F5F5</xsl:param>
 <xsl:param name="CI.style.color2">#FFFFFF</xsl:param> <!-- presentation background -->
 <xsl:param name="CI.style.color-presentation_abstract">#808080</xsl:param>
 <xsl:param name="CI.style.color-presentation_para">#8080E0</xsl:param>
-	
-	
-	
+
+<xsl:param name="CI.text.copyright"></xsl:param>
+
 <!-- OBJECTS -->
 
 <xsl:template name="CI.document-styles.automatic-styles">
@@ -63,6 +63,7 @@
 		<style:text-properties
 			fo:font-size="7pt"/>
 	</style:style>
+	
 	<style:style
 		style:name="CI.footer-end"
 		style:family="paragraph"
@@ -140,7 +141,7 @@
 				<xsl:attribute name="svg:height">1.0cm</xsl:attribute>
 				<xsl:attribute name="svg:x">1.0cm</xsl:attribute>
 				<xsl:attribute name="svg:y">0.0cm</xsl:attribute>
-				<text:p text:style-name="CI.para-line"><text:span text:style-name="CI.text-line">Copyright © OASIS Open 2002 - 2005. All Rights Reserved.</text:span></text:p>
+				<text:p text:style-name="CI.para-line"><text:span text:style-name="CI.text-line"><xsl:value-of select="$CI.text.copyright"/></text:span></text:p>
 			</xsl:element>
 		</text:p>
 	</style:header>
@@ -149,7 +150,7 @@
 
 <xsl:template name="CI.pagedefault.footer">
 	<style:footer>
-		<text:p text:style-name="CI.para-legal">This document... blah blah blah...</text:p>
+		<text:p text:style-name="CI.para-legal"></text:p>
 	</style:footer>
 </xsl:template>
 
@@ -170,7 +171,7 @@
 				table:number-columns-repeated="2"/>
 			<table:table-row>
 				<table:table-cell office:value-type="string">
-					<text:p text:style-name="CI.footer-start">Copyright © OASIS Open 2002 - 2005. All Rights Reserved.</text:p>
+					<text:p text:style-name="CI.footer-start"><xsl:value-of select="$CI.text.copyright"/></text:p>
 					<text:p text:style-name="CI.footer-start">
 						<xsl:if test="/article">
 							<xsl:value-of select="/article/title"/>
@@ -178,7 +179,7 @@
 					</text:p>
 				</table:table-cell>
 				<table:table-cell office:value-type="string">
-					<text:p text:style-name="CI.footer-end">YYYY-MM-DD</text:p>
+					<!--<text:p text:style-name="CI.footer-end">YYYY-MM-DD</text:p>-->
 					<text:p text:style-name="CI.footer-end">
 						Page <text:page-number text:select-page="current"/> of <text:page-count/>
 					</text:p>
@@ -246,6 +247,7 @@
 <xsl:template name="CI.office-text">
 
 	<!--LOGO-->
+	<!--
 	<xsl:element name="draw:frame">
 		<xsl:attribute name="draw:style-name">CI.logo</xsl:attribute>
 		<xsl:attribute name="draw:name">logo</xsl:attribute>
@@ -262,13 +264,15 @@
 			<xsl:attribute name="xlink:actuate">onLoad</xsl:attribute>
 		</xsl:element>
 	</xsl:element>
+	-->
 	
 </xsl:template>
 
 	
 	
 <xsl:template name="CI.presentation.titlepage">
-
+	
+	<!--
 	<xsl:element name="draw:frame">
 		<xsl:attribute name="presentation:style-name">CI.logo</xsl:attribute>
 		<xsl:attribute name="draw:layer">backgroundobjects</xsl:attribute>
@@ -284,6 +288,7 @@
 			<xsl:attribute name="xlink:actuate">onLoad</xsl:attribute>
 		</xsl:element>
 	</xsl:element>
+	-->
 	
 </xsl:template>
 
@@ -296,6 +301,8 @@
 <xsl:template name="CI.presentation.foil">
 	<xsl:call-template name="CI.presentation.titlepage"/>
 </xsl:template>
+
+
 
 </xsl:stylesheet>
 
