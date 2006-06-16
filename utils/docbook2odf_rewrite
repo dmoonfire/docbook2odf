@@ -30,7 +30,7 @@ use open ':utf8', ':std';
 use Cwd;
 use File::Copy;
 use File::Path;
-#use Image::Magick;
+use Image::Magick;
 use XML::Sablotron;
 use Getopt::Long;
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
@@ -56,8 +56,9 @@ my $help;
 my $quiet;
 my $debug;
 my $params;
+my $force;
 my $program_name="docbook2odf";
-my $program_revision="21"; # number of last revision in that has been this utility changed
+my $program_revision="27"; # number of last revision in that has been this utility changed
 my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
@@ -71,6 +72,7 @@ my $result = GetOptions
 		"debug"          => \$debug,
 		"quiet"          => \$quiet,
 		"help"           => \$help,
+		"force"          => \$force,
 	);
 
 
@@ -89,6 +91,7 @@ Arguments:
   --debug             show debug messages.
   --quiet             quiet (no output).
   --help              print this help.
+  --force             overwrite existing output filename.
 HELP
 	exit;
 }
@@ -129,6 +132,18 @@ if ($output_file=~s|^(.*/)||)
 else
 {
 	$output_dir='.';
+}
+
+my $input_file=$input;
+my $input_dir;
+if ($input_file=~s|^(.*/)||)
+{
+	$input_dir=$1;
+	$input_dir=~s|/$||;
+}
+else
+{
+	$input_dir='';
 }
 
 
@@ -215,8 +230,17 @@ print HND $styles;
 # CONTENT
 my $content;
 if ($results_string=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
+
+if ($debug)
+{
+	open (HND, '>'.$TEMP.'/content-preprocess.xml');
+	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+	print HND $content;
+}
+
 do # post processing of content
 {
+	print "content postprocess\n" if $debug;
 	# copy pictures into TEMP directory
 	my @uris;
 	my $i=1;
@@ -226,6 +250,15 @@ do # post processing of content
 		my $uri=$2;
 		print "postprocessing $href\[$i]='$uri'\n" if $debug;
 		my $ext=$uri;$ext=~s|^.*\.||;
+		if ($uri=~/^\//)
+		{
+			# uri processing
+		}
+		else
+		{
+			# uri processing
+			$uri=$input_dir."/".$uri;
+		}
 		my $filename=sprintf("%07d",$i);
 		$uris[$i]=$filename.".".$ext;
 		my $dest=$TEMP.'/Pictures/'.$filename.'.'.$ext;
@@ -234,6 +267,38 @@ do # post processing of content
 		$i++;
 	}
 	$content=~s|<!TMPHREF-(\d+)!>|"Pictures/$uris[$1]"|g;
+	
+	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
+	{
+		my $function=$1;
+		my $data=$2;
+		print "function='$function' data='$data'\n" if $debug;
+		if ($function eq "getimage-width")
+		{
+			my $p = new Image::Magick;
+			$data=$input_dir."/".$data unless $data=~/^\//;
+			$p->Read($data);
+			my $width=($p->Get('columns')*0.02644)."cm";
+			print "output='$width'\n" if $debug;
+			$content=~s|<!TMP!>|$width|;
+			next;
+		}
+		if ($function eq "getimage-height")
+		{
+			my $p = new Image::Magick;
+			$data=$input_dir."/".$data unless $data=~/^\//;
+			$p->Read($data);
+			my $height=($p->Get('height')*0.02644)."cm";
+			print "output='$height'\n" if $debug;
+			$content=~s|<!TMP!>|$height|;
+			next;
+		}
+		#751mm=284px*2.644 196mm=74px
+		$content=~s|<!TMP!>||;
+	}
+	
+	
+	
 };
 open (HND, '>'.$TEMP.'/content.xml');
 print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
@@ -252,31 +317,7 @@ print HND $manifest;
 
 
 =head1
-	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
-	{
-		my $function=$1;
-		my $data=$2;
-		if ($function eq "getimage-width")
-		{
-			my $p = new Image::Magick;
-			$p->Read($data);
-			my $width=($p->Get('columns')*0.02644)."cm";
-			$content=~s|<!TMP!>|$width|;
-			next;
-		}
-		if ($function eq "getimage-height")
-		{
-			my $p = new Image::Magick;
-			$p->Read($data);
-			my $height=($p->Get('height')*0.02644)."cm";
-			$content=~s|<!TMP!>|$height|;
-			next;
-		}
-		
-		#751mm=284px*2.644 196mm=74px
-		
-		$content=~s|<!TMP!>||;
-	}
+
 =cut
 
 # when --output-file is not defined
@@ -289,7 +330,7 @@ $output_file.=do
 	'm'
 } unless $output;
 
-if (-e $output_dir.'/'.$output_file)
+if (-e $output_dir.'/'.$output_file && !$force)
 {
 	rmtree $TEMP;
 	die "file $output_dir/$output_file exists\n";
@@ -304,9 +345,12 @@ $zip->addTree('.');
 print "saving zipped content into file '../$output_file'\n" if $debug;
 $zip->writeToFileNamed( '../'.$output_file );
 
-# delete temporary directory
-print "delete temporary directory='$TEMP' (PWD='$PATH')\n" if $debug;
-chdir '..';
-rmtree $TEMP;
+if (!$debug)
+{
+	# delete temporary directory
+	print "delete temporary directory='$TEMP' (PWD='$PATH')\n" if $debug;
+	chdir '..';
+	rmtree $TEMP;
+}
 
 1;
