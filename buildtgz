@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="0.28"
+VERSION="0.XY"
 TEMP="/var/tmp"
 CUR=${PWD};
 
