@@ -58,8 +58,8 @@ my $debug;
 my $params;
 my $force;
 my $program_name="docbook2odf";
-my $program_revision="27"; # number of last revision in that has been this utility changed
-my $program_version="0.".$program_revision;
+#my $program_revision="27"; # number of last revision in that has been this utility changed
+#my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
@@ -78,12 +78,11 @@ my $result = GetOptions
 
 if ($help)
 {
-	print "$program_name $program_version, $program_description\n";
+	print "$program_name, $program_description\n";
 	print "Usage: docbook2odf $program_usage\n";
 	print "\n";
 	print <<"HELP";
 Arguments:
-  -V                  display the version of docbok2odf and exit.
   --input-file        specify input docbook filename.
   --output-file       specify output opendocument filename.
   --params            list of params (disabled).
@@ -150,7 +149,7 @@ else
 # program information
 if (!$quiet)
 {
-	print "$program_name $program_version, $program_description\n";
+	print "$program_name, $program_description\n";
 }
 
 # input / output files
@@ -184,6 +183,7 @@ my $situa = new XML::Sablotron::Situation();
 $sab->process($situa, $PATH_XSL, $input, 'arg:/output');
 my $results_string = $sab->getResultArg('arg:/output');
 
+
 =head1 old way, works not very well
 use XML::LibXSLT;
 use XML::LibXML;
@@ -207,6 +207,15 @@ rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
 mkpath $TEMP;
 mkpath $TEMP.'/Pictures';
 mkpath $TEMP.'/META-INF';
+
+
+if ($debug)
+{
+	open (HND, '>'.$TEMP.'/preprocess.xml');
+	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+	print HND $results_string;
+}
+
 
 # MIMETYPE
 open (HND, '>'.$TEMP.'/mimetype');
@@ -342,7 +351,7 @@ chdir $TEMP;
 print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
 my $zip = Archive::Zip->new();
 $zip->addTree('.');
-print "saving zipped content into file '../$output_file'\n" if $debug;
+print "saving zipped content into file '$output_dir/$output_file'\n";
 $zip->writeToFileNamed( '../'.$output_file );
 
 if (!$debug)

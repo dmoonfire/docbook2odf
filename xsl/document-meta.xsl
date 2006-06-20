@@ -34,7 +34,7 @@
 		<dc:date><xsl:value-of select="article/articleinfo/pubdate"/></dc:date>
 		<dc:language><xsl:value-of select="article/@lang"/></dc:language>
 		
-		<meta:generator>WebCom Docbook2OpenDocument generator</meta:generator>
+		<meta:generator>docbook2odf generator (http://open.comsultia.com/docbook2odf/)</meta:generator>
 		<meta:creation-date>2002-07-15T12:38:53</meta:creation-date>
 		<!-- ??? --><meta:editing-cycles>21</meta:editing-cycles>
 		<!-- ??? --><meta:editing-duration>P1DT0H11M54S</meta:editing-duration>
