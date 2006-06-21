@@ -24,22 +24,63 @@
 	
 <xsl:template name="manifest">
 	
-	<manifest:manifest
-		xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
-		<!--xsl:attribute name="xmlns:manifest" value="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"/-->
-		<manifest:file-entry manifest:media-type="application/vnd.oasis.opendocument.text" manifest:full-path="/"/>
-		<manifest:file-entry manifest:media-type="application/vnd.sun.xml.ui.configuration" manifest:full-path="Configurations2/"/>
-		<!--<manifest:file-entry manifest:media-type="image/png" manifest:full-path="Pictures/10000201000002400000011FD512DF00.png"/>-->
-		<!--<manifest:file-entry manifest:media-type="image/png" manifest:full-path="Pictures/1000000000000106000001F6CF9AC99E.png"/>-->
-		<!--<manifest:file-entry manifest:media-type="image/png" manifest:full-path="Pictures/10000201000000D400000028B4A7B34C.png"/>-->
-		<!--<manifest:file-entry manifest:media-type="image/png" manifest:full-path="Pictures/100002010000024000000078B1928324.png"/>-->
-		<!--<manifest:file-entry manifest:media-type="image/png" manifest:full-path="Pictures/100000000000029E000003474B092315.png"/>-->
-		<manifest:file-entry manifest:media-type="" manifest:full-path="Pictures/"/>
-		<manifest:file-entry manifest:media-type="text/xml" manifest:full-path="content.xml"/>
-		<manifest:file-entry manifest:media-type="text/xml" manifest:full-path="styles.xml"/>
-		<manifest:file-entry manifest:media-type="text/xml" manifest:full-path="meta.xml"/>
-		<!--<manifest:file-entry manifest:media-type="text/xml" manifest:full-path="settings.xml"/>-->
-	</manifest:manifest>
+	<xsl:element name="manifest:manifest">
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text>application/vnd.oasis.opendocument.text</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>/</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text>application/vnd.sun.xml.ui.configuration</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>Configurations2/</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text></xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>Pictures/</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text>text/xml</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>content.xml</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text>text/xml</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>styles.xml</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+		<xsl:element name="manifest:file-entry">
+			<xsl:attribute name="manifest:media-type">
+				<xsl:text>text/xml</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="manifest:full-path">
+				<xsl:text>meta.xml</xsl:text>
+			</xsl:attribute>
+		</xsl:element>
+		
+	</xsl:element>
 	
 </xsl:template>
 	
