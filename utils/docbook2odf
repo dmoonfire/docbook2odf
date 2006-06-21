@@ -47,8 +47,8 @@ our $PATH=Cwd::abs_path();
 our $PATH_INSTALL="/usr/share/docbook2odf/xsl"; # not final
 our $PATH_XSL = do
 {
-	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl/docbook.xsl' :
-	$PATH_INSTALL.'/docbook.xsl'
+	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl' :
+	$PATH_INSTALL
 };
 my $input;
 my $output;
@@ -58,8 +58,6 @@ my $debug;
 my $params;
 my $force;
 my $program_name="docbook2odf";
-#my $program_revision="27"; # number of last revision in that has been this utility changed
-#my $program_version="0.".$program_revision;
 my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
@@ -177,44 +175,20 @@ if (!$quiet)
 # transformation
 print "\n" unless $quiet;
 
-print "Sablotron transformation\n" if $debug;
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->process($situa, $PATH_XSL, $input, 'arg:/output');
-my $results_string = $sab->getResultArg('arg:/output');
 
-
-=head1 old way, works not very well
-use XML::LibXSLT;
-use XML::LibXML;
-
-my $parser = XML::LibXML->new();
-my $xslt = XML::LibXSLT->new();
-
-print "parsing stylesheet\n" if $debug;
-my $stylesheet = $xslt->parse_stylesheet_file($PATH_XSL)
-	or die "Failed to parse the template.\n";
-print "parsing docbook\n" if $debug;
-my $docbook_source = $parser->parse_file($input);
-print "transforming\n" if $debug;
-my $results = $stylesheet->transform($docbook_source);
-my $results_string = $stylesheet->output_string($results);
-=cut
-
-# create a working directory
+# create a temporary directory
 my $TEMP=$output_dir.'/'.$output_file.'.temp';
 rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
 mkpath $TEMP;
 mkpath $TEMP.'/Pictures';
 mkpath $TEMP.'/META-INF';
+mkpath $TEMP.'/process';
 
 
-if ($debug)
-{
-	open (HND, '>'.$TEMP.'/preprocess.xml');
-	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
-	print HND $results_string;
-}
+print "Sablotron transformation\n" if $debug;
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->process($situa, $PATH_XSL.'/docbook.xsl', $input, $TEMP.'/process/full.xml');
 
 
 # MIMETYPE
@@ -222,28 +196,36 @@ open (HND, '>'.$TEMP.'/mimetype');
 print HND 'application/vnd.oasis.opendocument.text';
 close HND;
 
+
 # META
-my $meta;
-if ($results_string=~s/(<office:document-meta.*?<\/office:document-meta>)//s){$meta=$1};
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->addParam($situa, 'part', 'meta');
+$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
 open (HND, '>'.$TEMP.'/meta.xml');
-print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
-print HND $meta;
+print HND $sab->getResultArg('arg:/output');
+
 
 # STYLES
-my $styles;
-if ($results_string=~s/(<office:document-styles.*?<\/office:document-styles>)//s){$styles.=$1};
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->addParam($situa, 'part', 'styles');
+$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
 open (HND, '>'.$TEMP.'/styles.xml');
-print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
-print HND $styles;
+print HND $sab->getResultArg('arg:/output');
+
 
 # CONTENT
-my $content;
-if ($results_string=~s/(<office:document-content.*?<\/office:document-content>)//s){$content.=$1};
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->addParam($situa, 'part', 'content');
+$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
+my $content=$sab->getResultArg('arg:/output');
+
 
 if ($debug)
 {
-	open (HND, '>'.$TEMP.'/content-preprocess.xml');
-	print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
+	open (HND, '>'.$TEMP.'/process/content.xml');
 	print HND $content;
 }
 
@@ -306,28 +288,17 @@ do # post processing of content
 		$content=~s|<!TMP!>||;
 	}
 	
-	
-	
 };
 open (HND, '>'.$TEMP.'/content.xml');
-print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
 print HND $content;
 
-# manifest
-my $manifest;
-if ($results_string=~s/(<manifest:manifest.*?<\/manifest:manifest>)//s){$manifest.=$1};
-open (HND, '>'.$TEMP.'/META-INF/manifest.xml') || die "$!";
-print HND '<?xml version="1.0" encoding="UTF-8"?>';print HND "\n";
-print HND '<!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">';print HND "\n";
-print HND $manifest;
+# MANIFEST
+my $sab = new XML::Sablotron();
+my $situa = new XML::Sablotron::Situation();
+$sab->addParam($situa, 'part', 'manifest');
+$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', $TEMP.'/META-INF/manifest.xml');
 
 
-
-
-
-=head1
-
-=cut
 
 # when --output-file is not defined
 # then I run autodetection of document type
@@ -343,6 +314,11 @@ if (-e $output_dir.'/'.$output_file && !$force)
 {
 	rmtree $TEMP;
 	die "file $output_dir/$output_file exists\n";
+}
+
+if (!$debug)
+{
+	rmtree $TEMP.'/process';
 }
 
 # zipping directory
