@@ -28,29 +28,30 @@
 	
 	<xsl:element name="office:meta">
 		
-		<dc:title><xsl:value-of select="/article/articleinfo/title"/></dc:title>
-		<dc:subject><xsl:value-of select="/article/articleinfo/subtitle"/></dc:subject>
-		<dc:description><xsl:value-of select="/article/articleinfo/description"/></dc:description>
-		<dc:date><xsl:value-of select="article/articleinfo/pubdate"/></dc:date>
-		<dc:language><xsl:value-of select="article/@lang"/></dc:language>
+		<xsl:element name="dc:title">
+			<xsl:value-of select="/article/articleinfo/title"/>
+		</xsl:element>
 		
-		<meta:generator>docbook2odf generator (http://open.comsultia.com/docbook2odf/)</meta:generator>
-		<meta:creation-date>2002-07-15T12:38:53</meta:creation-date>
-		<!-- ??? --><meta:editing-cycles>21</meta:editing-cycles>
-		<!-- ??? --><meta:editing-duration>P1DT0H11M54S</meta:editing-duration>
-		<!-- ??? --><meta:user-defined meta:name="Info 1"/>
-		<!-- ??? --><meta:user-defined meta:name="Info 2"/>
-		<!-- ??? --><meta:user-defined meta:name="Info 3"/>
-		<!-- ??? --><meta:user-defined meta:name="Info 4"/>
-		<!-- ??? --><meta:document-statistic
-							meta:table-count="1"
-							meta:image-count="0"
-							meta:object-count="0"
-							meta:page-count="1"
-							meta:paragraph-count="42"
-							meta:word-count="144"
-							meta:character-count="820"/>
-			
+		<xsl:element name="dc:subject">
+			<xsl:value-of select="/article/articleinfo/subtitle"/>
+		</xsl:element>
+		
+		<xsl:element name="dc:description">
+			<xsl:value-of select="/article/articleinfo/description"/>
+		</xsl:element>
+		
+		<xsl:element name="dc:date">
+			<xsl:value-of select="article/articleinfo/pubdate"/>
+		</xsl:element>
+		
+		<xsl:element name="dc:language">
+			<xsl:value-of select="article/@lang"/>
+		</xsl:element>
+		
+		<xsl:element name="meta:generator">
+			<xsl:text>docbook2odf generator (http://open.comsultia.com/docbook2odf/)</xsl:text>
+		</xsl:element>
+		
 	</xsl:element>
 	
 </xsl:template>
