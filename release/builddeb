@@ -1,0 +1,47 @@
+#!/bin/bash
+# Help script to provide simple .deb package building
+
+VERSION=$1
+TEMP="/tmp"
+DIR=${TEMP}/docbook2odf_${VERSION}
+cd ..
+CUR=${PWD};
+
+# CLEANUP
+rm -rf ${TEMP}/docbook2odf_* 2> /dev/null
+rm docbook2odf*.deb 2> /dev/null
+
+# Debian control file
+mkdir -vp ${DIR}/DEBIAN
+echo "Package: docbook2odf
+Version: ${VERSION}
+Section: text
+Priority: optional
+Architecture: i386
+Depends: perl, perlmagick, libarchive-zip-perl, libxml-sablot-perl
+Installed-Size: 400
+Maintainer: Roman Fordinal <fordinal@webcom.sk>
+Description: XSLT based conversions from docbook to Oasis Open Document." > ${DIR}/DEBIAN/control
+
+# Manual page
+mkdir -vp ${DIR}/usr/share/man/man1
+cp docs/docbook2odf.1. ${DIR}/usr/share/man/man1/docbook2odf.1
+gzip ${DIR}/usr/share/man/man1/docbook2odf.1
+
+# Share Directory
+mkdir -vp ${DIR}/usr/share/docbook2odf
+cp -r xsl examples docs ${DIR}/usr/share/docbook2odf
+
+# Desktop Integration
+mkdir -vp ${DIR}/usr/share/applications
+cp bindings/desktop/* ${DIR}/usr/share/applications
+
+# Convert script
+mkdir -vp ${DIR}/usr/bin
+cp utils/docbook2odf ${DIR}/usr/bin
+
+# Make Package
+dpkg-deb -b ${DIR} docbook2odf_${VERSION}.deb
+
+# CLEANUP
+rm -rf ${DIR} 2> /dev/null
