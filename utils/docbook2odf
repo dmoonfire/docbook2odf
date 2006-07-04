@@ -140,7 +140,7 @@ if ($input_file=~s|^(.*/)||)
 }
 else
 {
-	$input_dir='';
+	$input_dir='.';
 }
 
 
