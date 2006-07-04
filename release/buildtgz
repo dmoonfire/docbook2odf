@@ -13,7 +13,7 @@ rm docbook2odf-*.tar.gz 2> /dev/null
 mkdir ${TEMP}/docbook2odf-${VERSION}
 cp -r . ${TEMP}/docbook2odf-${VERSION}/
 cd ${TEMP};
-tar -cvf ${CUR}/docbook2odf-${VERSION}.tar docbook2odf-${VERSION} --exclude .svn -C ${TEMP}
+tar -cvf ${CUR}/docbook2odf-${VERSION}.tar docbook2odf-${VERSION} --exclude .svn --exclude release -C ${TEMP}
 cd ${CUR};
 
 # gzip
