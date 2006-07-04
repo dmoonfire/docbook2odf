@@ -1,6 +1,6 @@
 #!/bin/bash
 VERSION="0.XY"
-TEMP="/var/tmp"
+TEMP="/tmp"
 CUR=${PWD};
 
 # cleaning
