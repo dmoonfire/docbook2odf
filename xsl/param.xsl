@@ -58,6 +58,11 @@
 	<xsl:attribute name="style:list-style-name">listH</xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:attribute-set name="heading-small.style-properties">
+	<xsl:attribute name="style:family">paragraph</xsl:attribute>
+	<xsl:attribute name="style:class">text</xsl:attribute>
+</xsl:attribute-set>
+
 <xsl:attribute-set name="heading.paragraph-properties">
 	<xsl:attribute name="style:shadow">none</xsl:attribute>
 	<xsl:attribute name="text:number-lines">true</xsl:attribute>

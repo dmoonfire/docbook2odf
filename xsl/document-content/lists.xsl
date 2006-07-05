@@ -42,6 +42,14 @@
 
 
 <xsl:template match="itemizedlist">
+	
+	<xsl:if test="title">
+		<xsl:element name="text:h">
+			<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
+			<xsl:value-of select="title"/>
+		</xsl:element>
+	</xsl:if>
+	
 	<xsl:element name="text:list">
 		<xsl:attribute name="text:style-name">list-default</xsl:attribute>
 		<xsl:apply-templates/>
@@ -50,6 +58,14 @@
 
 
 <xsl:template match="orderedlist">
+	
+	<xsl:if test="title">
+		<xsl:element name="text:h">
+			<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
+			<xsl:value-of select="title"/>
+		</xsl:element>
+	</xsl:if>
+	
 	<xsl:element name="text:list">
 		<xsl:attribute name="text:style-name">
 			<xsl:text>list-</xsl:text>

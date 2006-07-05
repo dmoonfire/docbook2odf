@@ -243,7 +243,15 @@
 				use-attribute-sets="heading.text-properties heading.level-s.text-properties"/>
 		</xsl:element>
 		
-		
+		<xsl:element name="style:style"
+			use-attribute-sets="heading-small.style-properties">
+			<xsl:attribute name="style:name">Headings-small</xsl:attribute>
+			<xsl:attribute name="style:display-name">Small Headings</xsl:attribute>
+			<xsl:element name="style:paragraph-properties"
+				use-attribute-sets="heading.paragraph-properties heading.level-s.paragraph-properties"/>
+			<xsl:element name="style:text-properties"
+				use-attribute-sets="heading.text-properties heading.level-s.text-properties"/>
+		</xsl:element>
 		
 		
 		<text:list-style style:name="listH">
