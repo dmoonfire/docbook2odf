@@ -24,7 +24,7 @@
 use strict;
 use utf8;
 use encoding 'utf-8';
-use open ':utf8', ':std';
+#use open ':utf8', ':std';
 
 # depends on
 use Cwd;
