@@ -9,6 +9,7 @@ Exec=docbook2odf
 Path=.
 Terminal=false
 MimeType=text/docbook
+ServiceTypes=text/docbook
 Actions=docbook2odf
 
 [Desktop Action docbook2odf]
