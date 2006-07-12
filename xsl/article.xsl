@@ -49,6 +49,7 @@
 	<!-- TODO: suport for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	<xsl:element name="office:text">
 		
+		<!--
 		<office:forms form:automatic-focus="false" form:apply-design-mode="false"/>
 		<text:sequence-decls>
 			<text:sequence-decl
@@ -64,6 +65,7 @@
 				text:display-outline-level="0"
 				text:name="Drawing"/>
 		</text:sequence-decls>
+		-->
 		
 		<xsl:call-template name="CI.office-text"/>
 		
