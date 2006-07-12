@@ -374,26 +374,6 @@
 </xsl:template>
 
 
-
-
-<xsl:template name="document-content.automatic-styles.section">
-	<style:style
-		style:name="sect-TOC"
-		style:family="section">
-		<style:section-properties
-			fo:background-color="transparent"
-			style:editable="false">
-			<style:columns
-				fo:column-count="0" 
-				fo:column-gap="0cm"/>
-			<style:background-image/>
-		</style:section-properties>
-	</style:style>
-</xsl:template>
-
-
-
-
 <xsl:template name="document-content.automatic-styles.list">
 	<!-- lists -->
 	
@@ -945,6 +925,42 @@
 	
 	
 </xsl:template>
+
+
+<xsl:template name="document-content.automatic-styles.section">
+
+	<xsl:element name="style:style">
+		<xsl:attribute name="style:name">sect-TOC</xsl:attribute>
+		<xsl:attribute name="style:family">section</xsl:attribute>
+		<xsl:element name="style:section-properties">
+			<xsl:attribute name="fo:background-color">red</xsl:attribute>
+			<xsl:attribute name="text:dont-balance-text-columns">false</xsl:attribute>
+			<xsl:attribute name="style:editable">false</xsl:attribute>
+			<xsl:element name="style:columns">
+				<xsl:attribute name="fo:column-count">0</xsl:attribute>
+				<xsl:attribute name="fo:column-gap">0cm</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:background-image"/>
+		</xsl:element>
+	</xsl:element>
+	
+	<xsl:element name="style:style">
+		<xsl:attribute name="style:name">sect-articleinfo</xsl:attribute>
+		<xsl:attribute name="style:family">section</xsl:attribute>
+		<xsl:element name="style:section-properties">
+			<xsl:attribute name="fo:background-color">transparent</xsl:attribute>
+			<xsl:attribute name="text:dont-balance-text-columns">false</xsl:attribute>
+			<xsl:attribute name="style:editable">false</xsl:attribute>
+			<xsl:element name="style:columns">
+				<xsl:attribute name="fo:column-count">0</xsl:attribute>
+				<xsl:attribute name="fo:column-gap">0cm</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:background-image"/>
+		</xsl:element>
+	</xsl:element>
+
+</xsl:template>
+
 
 
 </xsl:stylesheet>

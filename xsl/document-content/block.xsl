@@ -48,5 +48,13 @@
 	
 </xsl:template>
 
+<xsl:template match="abstract" mode="articleinfo">
+	<xsl:call-template name="abstract" />
+</xsl:template>
+
+<xsl:template match="abstract" name="abstract">
+	<xsl:apply-templates/>
+</xsl:template>
+
 
 </xsl:stylesheet>

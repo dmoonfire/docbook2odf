@@ -82,6 +82,12 @@
 	</xsl:element>
 </xsl:template>
 
+<xsl:template match="title" mode="articleinfo">
+	<xsl:element name="text:p">
+		<xsl:attribute name="text:style-name">para-title1</xsl:attribute>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
 
 <xsl:template match="/article/subtitle">
 	<xsl:element name="text:p"/>
@@ -91,9 +97,21 @@
 	</xsl:element>
 </xsl:template>
 
+<xsl:template match="subtitle" mode="articleinfo">
+	<xsl:element name="text:p"/>
+	<xsl:element name="text:p">
+		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
+
 
 <xsl:template match="articleinfo">
-	<text:p text:style-name="para-element">[articleinfo]</text:p>
+	<xsl:element name="text:section">
+		<xsl:attribute name="text:style-name">sect-articleinfo</xsl:attribute>
+		<xsl:attribute name="text:name">articleinfo</xsl:attribute>
+		<xsl:apply-templates mode="articleinfo" />
+	</xsl:element>
 </xsl:template>
 
 <!-- others -->
