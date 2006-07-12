@@ -34,9 +34,6 @@
 		xmlns:math="http://www.w3.org/1998/Math/MathML"
 		xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0"
 		xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0"
-		xmlns:ooo="http://openoffice.org/2004/office"
-		xmlns:ooow="http://openoffice.org/2004/writer"
-		xmlns:oooc="http://openoffice.org/2004/calc"
 		xmlns:dom="http://www.w3.org/2001/xml-events"
 		xmlns:xforms="http://www.w3.org/2002/xforms"
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -44,6 +41,11 @@
 		xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 		version="1.0">
 	
+<!--
+		xmlns:ooo="http://openoffice.org/2004/office"
+		xmlns:ooow="http://openoffice.org/2004/writer"
+		xmlns:oooc="http://openoffice.org/2004/calc"
+-->
 	
 	
 <!-- SETTINGS -->
