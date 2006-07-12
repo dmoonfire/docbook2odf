@@ -327,24 +327,28 @@
 
 <xsl:template name="document-content.automatic-styles.text">
 	
-	<style:style
-		style:name="text-bold"
-		style:family="text">
-		<style:text-properties
-			fo:font-weight="bold"
-			style:font-weight-asian="bold"
-			style:font-weight-complex="bold"/>
-	</style:style>
+	
+<!-- bold -->
+	<xsl:element name="style:style">
+		<xsl:attribute name="style:name">text-bold</xsl:attribute>
+		<xsl:attribute name="style:family">text</xsl:attribute>
+		<xsl:element name="style:text-properties">
+			<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+		</xsl:element>
+	</xsl:element>
+	
+<!-- monospace -->
+	<xsl:element name="style:style">
+		<xsl:attribute name="style:name">text-monospace</xsl:attribute>
+		<xsl:attribute name="style:family">text</xsl:attribute>
+		<xsl:element name="style:text-properties">
+			<xsl:attribute name="fo:font-family">Courier</xsl:attribute>
+			<!--<xsl:attribute name="fo:background-color">#FFFF00</xsl:attribute>-->
+		</xsl:element>
+	</xsl:element>
 	
 	<style:style
 		style:name="text-highlight"
-		style:family="text">
-		<style:text-properties
-			fo:background-color="#ffff00"/>
-	</style:style>
-	
-	<style:style
-		style:name="text-varname"
 		style:family="text">
 		<style:text-properties
 			fo:background-color="#ffff00"/>

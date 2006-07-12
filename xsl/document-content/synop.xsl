@@ -41,31 +41,27 @@
 
 
 <xsl:template match="varname">
-	
 	<xsl:element name="text:span">
-		<xsl:attribute name="text:style-name">text-varname</xsl:attribute>
+		<xsl:attribute name="text:style-name">text-monospace</xsl:attribute>
 		<xsl:apply-templates/>
 	</xsl:element>
-	
 </xsl:template>
 
 
-<!--
+<xsl:template match="filename">
+	<xsl:element name="text:span">
+		<xsl:attribute name="text:style-name">text-monospace</xsl:attribute>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
+
+
 <xsl:template match="email">
-	
 	<xsl:element name="text:span">
-		<xsl:attribute name="text:style-name">text-email</xsl:attribute>
+		<xsl:attribute name="text:style-name">text-monospace</xsl:attribute>
 		<xsl:apply-templates/>
 	</xsl:element>
-	
 </xsl:template>
--->
-
-
-
-
-
-
 
 
 </xsl:stylesheet>
