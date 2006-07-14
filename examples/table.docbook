@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article lang="sk">
+  <title>Example tables</title>
+
+  <subtitle>DocBook example with tables</subtitle>
+
+  <section>
+    <title>Simple tables</title>
+
+    <para>After this paragraph is table</para>
+
+    <table>
+      <title>Title of table</title>
+
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry>row 2 entry 1</entry>
+
+            <entry>row 2 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para>Before this paragraph is table</para>
+
+    <table>
+      <title>Table with 2 <constant>tgroup</constant>s</title>
+
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry>row 2 entry 1</entry>
+
+            <entry>row 2 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry>row 2 entry 1</entry>
+
+            <entry>row 2 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <table>
+      <title>Table with header and footer</title>
+
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>Head entry1</entry>
+
+            <entry>Head entry2</entry>
+          </row>
+        </thead>
+
+        <tfoot>
+          <row>
+            <entry>Foot entry1</entry>
+
+            <entry>Foot entry2</entry>
+          </row>
+        </tfoot>
+
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry>row 2 entry 1</entry>
+
+            <entry>row 2 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <table>
+      <title>Table with morerows</title>
+
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry morerows="1">row 2/3 entry 1</entry>
+
+            <entry>row 2 entry 2</entry>
+          </row>
+
+          <row>
+            <entry>row 3 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <table>
+      <title>Table with spanned entries</title>
+
+      <tgroup cols="3">
+        <colspec colname="Col1" colnum="1" />
+
+        <colspec colname="Col2" colnum="2" />
+
+        <colspec colname="Col3" colnum="3" />
+
+        <tbody>
+          <row>
+            <entry>row 1 entry 1</entry>
+
+            <entry></entry>
+
+            <entry>row 1 entry 2</entry>
+          </row>
+
+          <row>
+            <entry nameend="Col2" namest="Col1">row 2 entry 1/2</entry>
+
+            <entry></entry>
+          </row>
+
+          <row>
+            <entry>row 3 entry 2</entry>
+
+            <entry></entry>
+
+            <entry>row 3 entry 2</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <table border="1">
+      <caption>HTML table</caption>
+
+      <tr>
+        <th>Head1</th>
+
+        <th></th>
+
+        <th></th>
+      </tr>
+
+      <tr>
+        <td colspan="2"></td>
+
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>sdsdfsdf</td>
+
+        <td></td>
+
+        <td></td>
+      </tr>
+    </table>
+  </section>
+</article>

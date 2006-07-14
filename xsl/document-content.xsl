@@ -55,6 +55,6 @@
 <xsl:include href="document-content/verbatim.xsl"/>
 <xsl:include href="document-content/media.xsl"/>
 <xsl:include href="document-content/notes.xsl"/>
-
+<xsl:include href="document-content/tables.xsl"/>
 
 </xsl:stylesheet>
