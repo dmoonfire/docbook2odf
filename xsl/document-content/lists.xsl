@@ -90,11 +90,9 @@
 
 
 <xsl:template match="listitem">
-	<!--<xsl:if test="*">-->
-		<xsl:element name="text:list-item">
-			<xsl:apply-templates/>
-		</xsl:element>
-	<!--</xsl:if>-->
+	<xsl:element name="text:list-item">
+		<xsl:apply-templates/>
+	</xsl:element>
 </xsl:template>
 
 
