@@ -186,6 +186,8 @@
         in faucibus orci luctus et ultrices posuere cubilia Curae;</para>
 
         <orderedlist>
+          <title>Title of orderedlist</title>
+
           <listitem>
             <para>listitem1</para>
           </listitem>
@@ -260,6 +262,8 @@
     in orci vel tellus mattis ullamcorper.</para>
 
     <itemizedlist>
+      <title>Title of itemized list</title>
+
       <listitem>
         <para>listitem1</para>
 
@@ -300,6 +304,30 @@
             <para>listitem2</para>
           </listitem>
         </orderedlist>
+      </listitem>
+    </itemizedlist>
+
+    <itemizedlist>
+      <title>Itemizedlist with few empty listitems</title>
+
+      <listitem>
+        <para>listitem1</para>
+      </listitem>
+
+      <listitem>
+        <para>listitem2</para>
+      </listitem>
+
+      <listitem>
+        <para></para>
+      </listitem>
+
+      <listitem>
+        <para>listitem3</para>
+      </listitem>
+
+      <listitem>
+        <para></para>
       </listitem>
     </itemizedlist>
   </section>
