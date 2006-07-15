@@ -118,6 +118,12 @@
 </xsl:attribute-set>
 
 
+<xsl:attribute-set name="heading.para.paragraph-properties">
+	<xsl:attribute name="fo:margin-top">0.2cm</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="heading.para.text-properties">
+	<xsl:attribute name="fo:font-size">100%</xsl:attribute>
+</xsl:attribute-set>
 
 
 

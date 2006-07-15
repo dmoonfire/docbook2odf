@@ -83,6 +83,14 @@
 		</xsl:element>
 	</xsl:element>
 	
+<!-- default table styles -->
+	<style:default-style style:family="table">
+		<style:table-properties table:border-model="separating"/>
+	</style:default-style>
+	
+	<style:default-style style:family="table-row">
+		<style:table-row-properties fo:keep-together="auto"/>
+	</style:default-style>
 	
 	<!-- The element <style:presentation-page-layout> is a container for -->
 	<!-- placeholders, which define a set of empty presentation objects, -->
@@ -254,6 +262,16 @@
 				use-attribute-sets="heading.paragraph-properties heading.level-s.paragraph-properties"/>
 			<xsl:element name="style:text-properties"
 				use-attribute-sets="heading.text-properties heading.level-s.text-properties"/>
+		</xsl:element>
+		
+		<xsl:element name="style:style"
+			use-attribute-sets="heading-small.style-properties">
+			<xsl:attribute name="style:name">Headings-para</xsl:attribute>
+			<xsl:attribute name="style:display-name">Small Headings</xsl:attribute>
+			<xsl:element name="style:paragraph-properties"
+				use-attribute-sets="heading.paragraph-properties heading.para.paragraph-properties"/>
+			<xsl:element name="style:text-properties"
+				use-attribute-sets="heading.text-properties heading.para.text-properties"/>
 		</xsl:element>
 		
 		

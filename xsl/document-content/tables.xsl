@@ -84,7 +84,7 @@
 	<!-- tgroup is the real table -->
 	<xsl:element name="table:table">
 		<!--<xsl:attribute name="table:name"></xsl:attribute>-->
-		<!--<xsl:attribute name="table:style-name"></xsl:attribute>-->
+		<xsl:attribute name="table:style-name">table-default</xsl:attribute>
 		
 		<xsl:element name="table:table-column">
 			<xsl:attribute name="table:number-columns-repeated">
@@ -150,11 +150,12 @@
 
 <xsl:template match="entry">
 	<xsl:element name="table:table-cell">
+		<xsl:attribute name="office:value-type">string</xsl:attribute>
+		<xsl:attribute name="table:style-name">table-default.cell-A</xsl:attribute>
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
 			<!-- find collumn number from <docbook:colspec> -->
 		</xsl:if>
-		<xsl:attribute name="office:value-type">string</xsl:attribute>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
 			<xsl:when test="*">

@@ -96,6 +96,10 @@
 		
 	</xsl:if>
 	
+	<!--
+	<style:style style:name="tablefooter" style:family="table"><style:table-properties table:align="margins"/></style:style><style:style style:name="tablefooter.A" style:family="table-column"><style:table-column-properties style:rel-column-width="32767*"/></style:style><style:style style:name="tablefooter.B" style:family="table-column"><style:table-column-properties style:rel-column-width="32768*"/></style:style>
+	-->
+	
 </xsl:template>
 
 

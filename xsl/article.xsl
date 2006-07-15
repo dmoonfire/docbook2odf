@@ -43,10 +43,10 @@
 	office:class="text"
 	office:version="1.0">
 
-
+<xsl:include href="document-content/article-articleinfo.xsl"/>
 
 <xsl:template match="article">
-	<!-- TODO: suport for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
+	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	<xsl:element name="office:text">
 		
 		<!--
@@ -76,9 +76,8 @@
 </xsl:template>
 
 
-
 <xsl:template match="/article/title">
-	<xsl:element name="text:p"/>
+	<!--<xsl:element name="text:p"/>-->
 	<xsl:element name="text:p">
 		<xsl:attribute name="text:style-name">line</xsl:attribute>
 	</xsl:element>
@@ -88,44 +87,14 @@
 	</xsl:element>
 </xsl:template>
 
-<xsl:template match="title" mode="articleinfo">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title1</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
-</xsl:template>
 
 <xsl:template match="/article/subtitle">
-	<xsl:element name="text:p"/>
+	<!--<xsl:element name="text:p"/>-->
 	<xsl:element name="text:p">
 		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
 		<xsl:apply-templates/>
 	</xsl:element>
 </xsl:template>
-
-<xsl:template match="subtitle" mode="articleinfo">
-	<xsl:element name="text:p"/>
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
-</xsl:template>
-
-
-<xsl:template match="articleinfo">
-	<xsl:element name="text:section">
-		<xsl:attribute name="text:style-name">sect-articleinfo</xsl:attribute>
-		<xsl:attribute name="text:name">articleinfo</xsl:attribute>
-		<xsl:apply-templates mode="articleinfo" />
-	</xsl:element>
-</xsl:template>
-
-<!-- others -->
-<!--
-<xsl:template match="*">
-	<text:p text:style-name="para-element"><xsl:value-of select="node()"/></text:p>
-</xsl:template>
--->
 
 
 </xsl:stylesheet>
