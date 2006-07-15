@@ -46,8 +46,8 @@
 
 <xsl:template match="para">
 	<xsl:choose>
-		<!-- all child elements that can contain para -->
-		<!-- to be continued... :) -->
+		<!-- all docbook elements that would be transformed as a odf:paragraph -->
+		<!-- opendocument can't cointain text:p in text:p                      -->
 		<xsl:when test="
 			child::itemizedlist|
 			child::orderedlist|
@@ -66,8 +66,6 @@
 
 <xsl:template match="para" mode="notes">
 	<xsl:choose>
-		<!-- all child elements that can contain para -->
-		<!-- to be continued... :) -->
 		<xsl:when test="
 			child::itemizedlist|
 			child::orderedlist|
