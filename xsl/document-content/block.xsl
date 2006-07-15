@@ -46,17 +46,7 @@
 
 
 <xsl:template match="blockquote">
-	
 	<!-- special formatting is defined in paragraph -->
-	<xsl:apply-templates/>
-	
-</xsl:template>
-
-<xsl:template match="abstract" mode="articleinfo">
-	<xsl:call-template name="abstract" />
-</xsl:template>
-
-<xsl:template match="abstract" name="abstract">
 	<xsl:apply-templates/>
 </xsl:template>
 
