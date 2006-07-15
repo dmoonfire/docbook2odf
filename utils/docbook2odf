@@ -235,10 +235,11 @@ do # post processing of content
 	# copy pictures into TEMP directory
 	my @uris;
 	my $i=1;
-	while ($content=~s|(xlink:href)="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
+	while ($content=~s|(xlink:href)="((^mailto).*?)"|xlink:href=<!TMPHREF-$i!>|)
 	{
 		my $href=$1;
 		my $uri=$2;
+		
 		print "postprocessing $href\[$i]='$uri'\n" if $debug;
 		my $ext=$uri;$ext=~s|^.*\.||;
 		if ($uri=~/^\//)
