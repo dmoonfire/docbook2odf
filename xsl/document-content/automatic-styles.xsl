@@ -124,7 +124,6 @@
 		</xsl:element>
 	</xsl:element>
 	
-	
 <!-- para-element (for not supported elements) -->
 	<xsl:element name="style:style">
 		<xsl:attribute name="style:name">para-element</xsl:attribute>
@@ -965,10 +964,73 @@
 			<xsl:element name="style:background-image"/>
 		</xsl:element>
 	</xsl:element>
-
+	
 </xsl:template>
 
 
+<xsl:template name="document-content.automatic-styles.table">
+	<style:style style:name="table-default" style:family="table">
+		<style:table-properties
+			table:align="margins"
+			style:shadow="none"/>
+	</style:style>
+		
+	<style:style style:name="Tabuľka1.A" style:family="table-column">
+		<style:table-column-properties
+			style:column-width="8.625cm"
+			style:rel-column-width="32767*"/>
+	</style:style>
+	
+	<style:style style:name="table-default.cell-A" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border="0.002cm solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<style:style style:name="Tabuľka1.B1" style:family="table-cell">
+		<style:table-cell-properties
+			fo:background-color="#000080"
+			fo:padding="0.097cm"
+			fo:border="0.002cm solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
+	
+	<style:style style:name="table-info" style:family="table">
+		<style:table-properties
+			fo:margin-top="1.5cm"
+			table:align="margins"
+			style:shadow="none"/>
+	</style:style>
+	
+	<style:style style:name="table-info.column-A" style:family="table-column">
+		<style:table-column-properties
+			style:column-width="3cm"
+			style:rel-column-width="100*"/>
+	</style:style>
+	
+	<style:style style:name="table-info.column-B" style:family="table-column">
+		<style:table-column-properties
+			style:rel-column-width="900*"/>
+	</style:style>
+	
+	<style:style style:name="table-info.cell-H" style:family="table-cell">
+		<style:table-cell-properties>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<style:style style:name="table-info.cell-A" style:family="table-cell">
+		<style:table-cell-properties>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+</xsl:template>
 
 </xsl:stylesheet>
 

@@ -115,6 +115,7 @@
 				<xsl:call-template name="document-content.automatic-styles.list"/>
 				<xsl:call-template name="document-content.automatic-styles.graphic"/>
 				<xsl:call-template name="document-content.automatic-styles.date"/>
+				<xsl:call-template name="document-content.automatic-styles.table"/>
 				<xsl:if test="/slides">
 					<xsl:call-template name="document-content.automatic-styles.drawing-page"/>
 					<xsl:call-template name="document-content.automatic-styles.presentation"/>
