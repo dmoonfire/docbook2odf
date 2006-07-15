@@ -54,7 +54,13 @@
 </xsl:template>
 
 
-
+<xsl:template match="email">
+	<xsl:element name="text:a">
+		<xsl:attribute name="xlink:type">simple</xsl:attribute>
+		<xsl:attribute name="xlink:href"><xsl:text>mailto:</xsl:text><xsl:value-of select="."/></xsl:attribute>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
 
 
 

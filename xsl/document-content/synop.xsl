@@ -68,12 +68,4 @@
 </xsl:template>
 
 
-<xsl:template match="email">
-	<xsl:element name="text:span">
-		<xsl:attribute name="text:style-name">text-monospace</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
-</xsl:template>
-
-
 </xsl:stylesheet>
