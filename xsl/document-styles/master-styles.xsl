@@ -46,26 +46,7 @@
 
 <xsl:template name="document-styles.master-styles">
 	<xsl:choose>
-		<xsl:when test="/article">
-			<xsl:element name="style:master-page">
-				<xsl:attribute name="style:name">Standard</xsl:attribute>
-				<xsl:attribute name="style:page-layout-name">A4</xsl:attribute>
-				<xsl:attribute name="style:next-style-name">Others</xsl:attribute>
-					<!-- corporate identity -->
-					<xsl:call-template name="CI.pagedefault.header"/>
-					<xsl:call-template name="CI.pagedefault.footer"/>
-			</xsl:element>
-			<xsl:element name="style:master-page">
-				<xsl:attribute name="style:name">Others</xsl:attribute>
-				<xsl:attribute name="style:page-layout-name">A4</xsl:attribute>
-				<xsl:attribute name="style:next-style-name">Others</xsl:attribute>
-					<!-- corporate identity -->
-					<xsl:call-template name="CI.pagenext.header"/>
-					<xsl:call-template name="CI.pagenext.footer"/>
-			</xsl:element>
-		</xsl:when>
-		
-		<xsl:when test="/book">
+		<xsl:when test="/article|/book">
 			<xsl:element name="style:master-page">
 				<xsl:attribute name="style:name">Standard</xsl:attribute>
 				<xsl:attribute name="style:page-layout-name">A4</xsl:attribute>

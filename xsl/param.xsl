@@ -61,7 +61,6 @@
 	<xsl:attribute name="style:class">text</xsl:attribute>
 	<xsl:attribute name="style:list-style-name">listH</xsl:attribute>
 </xsl:attribute-set>
-
 <xsl:attribute-set name="heading-small.style-properties">
 	<xsl:attribute name="style:family">paragraph</xsl:attribute>
 	<xsl:attribute name="style:class">text</xsl:attribute>
@@ -80,58 +79,14 @@
 </xsl:attribute-set>
 
 
-<xsl:attribute-set name="heading.level-1.paragraph-properties">
+<xsl:attribute-set name="heading.chapter.paragraph-properties">
 	<xsl:attribute name="fo:break-before">page</xsl:attribute>
 	<xsl:attribute name="fo:padding-top">0.2cm</xsl:attribute>
 	<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
 </xsl:attribute-set>
-<xsl:attribute-set name="heading.level-1.text-properties">
+<xsl:attribute-set name="heading.chapter.text-properties">
 	<xsl:attribute name="fo:font-size">200%</xsl:attribute>
 </xsl:attribute-set>
-
-<xsl:attribute-set name="heading.level-2.paragraph-properties">
-	<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.level-2.text-properties">
-	<xsl:attribute name="fo:font-size">175%</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="heading.level-3.paragraph-properties">
-	<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.level-3.text-properties">
-	<xsl:attribute name="fo:font-size">150%</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="heading.level-4.paragraph-properties">
-	<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.level-4.text-properties">
-	<xsl:attribute name="fo:font-size">125%</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="heading.level-s.paragraph-properties">
-	<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.level-s.text-properties">
-	<xsl:attribute name="fo:font-size">100%</xsl:attribute>
-</xsl:attribute-set>
-
-
-<xsl:attribute-set name="heading.para.paragraph-properties">
-	<xsl:attribute name="fo:margin-top">0.2cm</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.para.text-properties">
-	<xsl:attribute name="fo:font-size">100%</xsl:attribute>
-</xsl:attribute-set>
-
-
-
-
-
-
-
-
 
 
 </xsl:stylesheet>

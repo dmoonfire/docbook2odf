@@ -202,77 +202,158 @@
 		</style:style>
 -->
 		
-<!-- SECTION HEADINGS -->
+<!-- SECTION AND CHAPTER HEADINGS -->
+		<xsl:element name="style:style"
+			use-attribute-sets="heading.style-properties">
+			<xsl:attribute name="style:name">HeadingCH</xsl:attribute>
+			<xsl:attribute name="style:display-name">Heading Chapter</xsl:attribute>
+			<xsl:attribute name="style:default-outline-level">1</xsl:attribute>
+			<xsl:element name="style:paragraph-properties"
+				use-attribute-sets="heading.paragraph-properties heading.chapter.paragraph-properties"/>
+			<xsl:element name="style:text-properties"
+				use-attribute-sets="heading.text-properties heading.chapter.text-properties"/>
+		</xsl:element>
+		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Heading1</xsl:attribute>
 			<xsl:attribute name="style:display-name">Heading 1</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">1</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-1.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-1.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">110%</xsl:when>
+						<xsl:otherwise>200%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Heading2</xsl:attribute>
 			<xsl:attribute name="style:display-name">Heading 2</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">2</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-2.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-2.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>175%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Heading3</xsl:attribute>
 			<xsl:attribute name="style:display-name">Heading 3</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">3</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-3.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-3.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>150%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Heading4</xsl:attribute>
 			<xsl:attribute name="style:display-name">Heading 4</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">4</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-4.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-4.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>125%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Headings</xsl:attribute>
 			<xsl:attribute name="style:display-name">Headings</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">5</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-s.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-s.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>100%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
+<!-- OTHER HEADINGS -->
 		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading-small.style-properties">
 			<xsl:attribute name="style:name">Headings-small</xsl:attribute>
 			<xsl:attribute name="style:display-name">Small Headings</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.level-s.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.level-s.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>100%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
 		
 		<xsl:element name="style:style"
 			use-attribute-sets="heading-small.style-properties">
 			<xsl:attribute name="style:name">Headings-para</xsl:attribute>
-			<xsl:attribute name="style:display-name">Small Headings</xsl:attribute>
+			<xsl:attribute name="style:display-name">Paragraph Headings</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.para.paragraph-properties"/>
+				use-attribute-sets="heading.paragraph-properties">
+				<xsl:attribute name="fo:margin-top"><xsl:value-of select="$para.padding"/></xsl:attribute>
+			</xsl:element>
 			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.para.text-properties"/>
+				use-attribute-sets="heading.text-properties">
+				<xsl:attribute name="fo:font-size">
+					<xsl:choose>
+						<xsl:when test="/article">100%</xsl:when>
+						<xsl:otherwise>100%</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>	
 		</xsl:element>
+		
 		
 		
 		<text:list-style style:name="listH">

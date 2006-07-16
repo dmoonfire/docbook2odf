@@ -44,52 +44,11 @@
 	office:version="1.0">
 
 
-<xsl:template name="section.level">
-	<!-- compute level of section -->
-	<xsl:choose>
-		<xsl:when test="/book">
-			<xsl:value-of select="
-				count(ancestor-or-self::section)+
-				count(ancestor-or-self::sect1)+
-				count(ancestor-or-self::sect2)+
-				count(ancestor-or-self::sect3)+
-				count(ancestor-or-self::sect4)+
-				count(ancestor-or-self::sect5)+
-				1"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:value-of select="
-				count(ancestor-or-self::section)+
-				count(ancestor-or-self::sect1)+
-				count(ancestor-or-self::sect2)+
-				count(ancestor-or-self::sect3)+
-				count(ancestor-or-self::sect4)+
-				count(ancestor-or-self::sect5)"/>
-		</xsl:otherwise>
-	</xsl:choose>
-</xsl:template>
-
-
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5">
-	
-	<xsl:variable name="level">
-		<xsl:call-template name="section.level"/>
-	</xsl:variable>
-	
-	<xsl:comment>
-		<xsl:text>section level </xsl:text><xsl:value-of select="$level"/>
-	</xsl:comment>
+<xsl:template match="chapter">
 	
 	<xsl:element name="text:h">
-		<xsl:attribute name="text:outline-level">
-			<xsl:value-of select="$level"/>
-		</xsl:attribute>
-		<xsl:attribute name="text:style-name"><xsl:text>Heading</xsl:text>
-			<xsl:if test="$level &lt; 5">
-				<xsl:value-of select="$level"/>
-			</xsl:if>
-			<xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
-		</xsl:attribute>
+		<xsl:attribute name="text:outline-level">1</xsl:attribute>
+		<xsl:attribute name="text:style-name"><xsl:text>HeadingCH</xsl:text></xsl:attribute>
 		<xsl:value-of select="child::title"/>
 	</xsl:element>
 	
@@ -98,7 +57,7 @@
 </xsl:template>
 
 
-<xsl:template match="section/title"/>
+<xsl:template match="chapter/title"/>
 
 
 </xsl:stylesheet>

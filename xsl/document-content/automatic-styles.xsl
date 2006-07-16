@@ -141,9 +141,9 @@
 		</xsl:element>
 	</xsl:element>
 	
-	<xsl:if test="/article">
+	<xsl:if test="/article|/book">
 	
-	<!-- para-title1 (for /article/title) -->
+	<!-- para-title1 -->
 		<xsl:element name="style:style">
 			<xsl:attribute name="style:name">para-title1</xsl:attribute>
 			<xsl:attribute name="style:family">paragraph</xsl:attribute>
@@ -160,7 +160,7 @@
 			</xsl:element>
 		</xsl:element>
 		
-	<!-- para-title2 (for /article/subtitle) -->
+	<!-- para-title2 -->
 		<xsl:element name="style:style">
 			<xsl:attribute name="style:name">para-title2</xsl:attribute>
 			<xsl:attribute name="style:family">paragraph</xsl:attribute>
@@ -176,7 +176,59 @@
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
 			</xsl:element>
 		</xsl:element>
-	
+		
+	<!-- para-title3 -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-title3</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size">14pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+		
+	<!-- para-title4 -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-title4</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size">12pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+		
+	<!-- para-title -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-title</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.2cm</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size">11pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+		
+		
 	</xsl:if>
 	<xsl:if test="/slides">
 	
@@ -987,7 +1039,7 @@
 	
 	<style:style style:name="table-info" style:family="table">
 		<style:table-properties
-			fo:margin-top="1.5cm"
+			fo:margin-top="0.5cm"
 			table:align="margins"
 			style:shadow="none"/>
 	</style:style>

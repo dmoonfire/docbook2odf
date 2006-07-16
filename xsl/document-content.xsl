@@ -45,6 +45,7 @@
 	
 <xsl:include href="document-content/automatic-styles.xsl"/>
 	
+<xsl:include href="document-content/info.xsl"/>
 <xsl:include href="document-content/paragraph.xsl"/>
 <xsl:include href="document-content/block.xsl"/>
 <xsl:include href="document-content/formal.xsl"/>

@@ -43,55 +43,41 @@
 	office:class="text"
 	office:version="1.0">
 
+
 <xsl:include href="document-content/article-articleinfo.xsl"/>
+
+
+<xsl:template match="/article">
+	<xsl:element name="office:text">
+		<xsl:call-template name="CI.office-text"/>
+		<xsl:apply-templates select="."/>
+	</xsl:element>
+</xsl:template>
+
 
 <xsl:template match="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
-	<xsl:element name="office:text">
 		
-		<!--
-		<office:forms form:automatic-focus="false" form:apply-design-mode="false"/>
-		<text:sequence-decls>
-			<text:sequence-decl
-				text:display-outline-level="0"
-				text:name="Illustration"/>
-			<text:sequence-decl
-				text:display-outline-level="0"
-				text:name="Table"/>
-			<text:sequence-decl
-				text:display-outline-level="0"
-				text:name="Text"/>
-			<text:sequence-decl
-				text:display-outline-level="0"
-				text:name="Drawing"/>
-		</text:sequence-decls>
-		-->
-		
-		<xsl:call-template name="CI.office-text"/>
-		
-		<xsl:apply-templates/>
-		
+	<xsl:element name="text:p">
+		<xsl:attribute name="text:style-name">line</xsl:attribute>
 	</xsl:element>
+	
+	<xsl:apply-templates/>
 	
 </xsl:template>
 
 
-<xsl:template match="/article/title">
-	<!--<xsl:element name="text:p"/>-->
+<xsl:template match="article/title">
 	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">line</xsl:attribute>
-	</xsl:element>
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title1</xsl:attribute>
+		<xsl:attribute name="text:style-name">para-title3</xsl:attribute>
 		<xsl:apply-templates/>
 	</xsl:element>
 </xsl:template>
 
 
-<xsl:template match="/article/subtitle">
-	<!--<xsl:element name="text:p"/>-->
+<xsl:template match="article/subtitle">
 	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
+		<xsl:attribute name="text:style-name">para-title</xsl:attribute>
 		<xsl:apply-templates/>
 	</xsl:element>
 </xsl:template>
