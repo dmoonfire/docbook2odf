@@ -175,9 +175,12 @@
 			<table:table-row>
 				<table:table-cell office:value-type="string">
 					<text:p text:style-name="CI.footer-start">
-						<xsl:if test="/article">
-							<xsl:value-of select="/article/title"/>
-						</xsl:if>
+						<xsl:value-of select="
+							/book/title |
+							/book/bookinfo/title |
+							/article/title |
+							/article/articleinfo/title
+						"/>
 					</text:p>
 					<text:p text:style-name="CI.footer-start"><xsl:value-of select="$CI.text.copyright"/></text:p>
 				</table:table-cell>
