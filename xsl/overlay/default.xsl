@@ -152,9 +152,12 @@
 
 
 <xsl:template name="CI.pagedefault.footer">
+	<!--
 	<style:footer>
 		<text:p text:style-name="CI.para-legal"></text:p>
 	</style:footer>
+	-->
+	<xsl:call-template name="CI.pagenext.footer"/>
 </xsl:template>
 
 

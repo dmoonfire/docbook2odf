@@ -143,6 +143,45 @@
 	
 	<xsl:if test="/article|/book">
 	
+	<!-- para-booktitle -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-booktitle</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:padding-top">0.6cm</xsl:attribute>
+				<!--<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>-->
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+	
+	<!-- para-chapter -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-chapter</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:break-before">page</xsl:attribute>
+				<xsl:attribute name="fo:padding-top">0.6cm</xsl:attribute>
+				<!--<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>-->
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			</xsl:element>
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">
 			<xsl:attribute name="style:name">para-title1</xsl:attribute>

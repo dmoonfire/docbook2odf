@@ -46,6 +46,10 @@
 
 <xsl:template match="chapter">
 	
+	<xsl:element name="text:p">
+		<xsl:attribute name="text:style-name">para-chapter</xsl:attribute>
+		Chapter
+	</xsl:element>
 	<xsl:element name="text:h">
 		<xsl:attribute name="text:outline-level">1</xsl:attribute>
 		<xsl:attribute name="text:style-name"><xsl:text>HeadingCH</xsl:text></xsl:attribute>

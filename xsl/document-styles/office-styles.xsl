@@ -241,7 +241,11 @@
 			<xsl:attribute name="style:default-outline-level">2</xsl:attribute>
 			<xsl:element name="style:paragraph-properties"
 				use-attribute-sets="heading.paragraph-properties">
-				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
+				<xsl:attribute name="fo:padding-top">0.5cm</xsl:attribute>
+				<xsl:if test="/book">
+					<xsl:attribute name="fo:break-before">page</xsl:attribute>
+					<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				</xsl:if>
 			</xsl:element>
 			<xsl:element name="style:text-properties"
 				use-attribute-sets="heading.text-properties">
