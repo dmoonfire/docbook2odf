@@ -78,43 +78,35 @@
 		</xsl:element>
 	</xsl:element>
 	
-	<xsl:element name="table:table-row">
-		<xsl:element name="table:table-cell">
-			<xsl:attribute name="office:value-type">string</xsl:attribute>
-			<xsl:attribute name="table:style-name">table-info.cell-A</xsl:attribute>
-			<xsl:element name="text:p"/>
-		</xsl:element>
-		<xsl:element name="table:table-cell">
-			<xsl:attribute name="office:value-type">string</xsl:attribute>
-			<xsl:attribute name="table:style-name">table-info.cell-A</xsl:attribute>
-			
+	<table:table-row>
+		<xsl:comment>empty cell (only used for padding content)</xsl:comment>
+		<table:table-cell
+			office:value-type="sting"
+			table:style-name="table-info.cell-A">
+			<text:p/>
+		</table:table-cell>
+		<table:table-cell
+			office:value-type="sting"
+			table:style-name="table-info.cell-A">
 			<xsl:choose>
 				<!-- when element has no childs -->
 				<xsl:when test="count(*)=0">
-					<xsl:element name="text:p">
-						<xsl:attribute name="text:style-name">para-padding</xsl:attribute>
+					<text:p text:style-name="para-padding">
 						<!-- can be continue formatted as inline element -->
 						<xsl:apply-templates/>
-					</xsl:element>
+					</text:p>
 				</xsl:when>
 				<!-- when element can be formatted by default (contains paragraphs, etc...) -->
-				<xsl:when test="name()='abstract'">
+				<xsl:when test="$name='abstract' or $name='legalnotice' or $name='authorblurb'">
 					<xsl:apply-templates/>
 				</xsl:when>
-				<xsl:when test="name()='legalnotice'">
-					<xsl:apply-templates/>
-				</xsl:when>
-				<xsl:when test="name()='authorblurb'">
-					<xsl:apply-templates/>
-				</xsl:when>
-					<!-- when element must be formatted special -->
+				<!-- when element must be formatted special -->
 				<xsl:otherwise>
 					<xsl:apply-templates select="." mode="info"/>
 				</xsl:otherwise>
 			</xsl:choose>
-			
-		</xsl:element>
-	</xsl:element>
+		</table:table-cell>
+	</table:table-row>
 </xsl:template>
 
 
@@ -124,20 +116,17 @@
 
 
 <xsl:template match="corpauthor" mode="info">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-padding</xsl:attribute>
-		<xsl:element name="text:span">
-			<xsl:attribute name="text:style-name">text-bold</xsl:attribute>
+	<text:p text:style-name="para-padding">
+		<text:span text:style-name="text-bold">
 			<xsl:apply-templates/>
-		</xsl:element>
-	</xsl:element>
+		</text:span>
+	</text:p>
 </xsl:template>
 
 
 <xsl:template match="author" mode="info">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-padding</xsl:attribute>
-		
+	<text:p text:style-name="para-padding">
+	
 		<!-- name of author -->
 		<xsl:if test="firstname">
 			<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
@@ -147,13 +136,14 @@
 		</xsl:if>
 		<xsl:value-of select="surname"/>
 		
+		<!-- email contact -->
 		<xsl:if test="email">
 			<xsl:text> (</xsl:text>
 				<xsl:apply-templates select="email"/>
 			<xsl:text>)</xsl:text>
 		</xsl:if>
 		
-	</xsl:element>
+	</text:p>
 </xsl:template>
 
 
