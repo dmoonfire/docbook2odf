@@ -44,7 +44,7 @@
 	office:version="1.0">
 
 
-<xsl:include href="document-content/article-articleinfo.xsl"/>
+<xsl:include href="document-content/articleinfo.xsl"/>
 
 
 <xsl:template match="/article">

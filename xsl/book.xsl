@@ -45,7 +45,7 @@
 
 
 <xsl:include href="document-content/chapter.xsl"/>
-<xsl:include href="document-content/book-bookinfo.xsl"/>
+<xsl:include href="document-content/bookinfo.xsl"/>
 
 
 <xsl:template match="book">
