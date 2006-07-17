@@ -205,17 +205,6 @@
 <!-- SECTION AND CHAPTER HEADINGS -->
 		<xsl:element name="style:style"
 			use-attribute-sets="heading.style-properties">
-			<xsl:attribute name="style:name">HeadingCH</xsl:attribute>
-			<xsl:attribute name="style:display-name">Heading Chapter</xsl:attribute>
-			<xsl:attribute name="style:default-outline-level">1</xsl:attribute>
-			<xsl:element name="style:paragraph-properties"
-				use-attribute-sets="heading.paragraph-properties heading.chapter.paragraph-properties"/>
-			<xsl:element name="style:text-properties"
-				use-attribute-sets="heading.text-properties heading.chapter.text-properties"/>
-		</xsl:element>
-		
-		<xsl:element name="style:style"
-			use-attribute-sets="heading.style-properties">
 			<xsl:attribute name="style:name">Heading1</xsl:attribute>
 			<xsl:attribute name="style:display-name">Heading 1</xsl:attribute>
 			<xsl:attribute name="style:default-outline-level">1</xsl:attribute>
