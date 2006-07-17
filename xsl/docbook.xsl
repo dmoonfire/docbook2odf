@@ -60,6 +60,7 @@
 <xsl:include href="document-styles.xsl"/>
 <xsl:include href="document-content.xsl"/>
 <xsl:include href="manifest.xsl"/>
+<xsl:include href="common/common.xsl"/>
 
 <!-- http://www.docbook.org/tdg/en/html-ng/ -->
 <xsl:include href="article.xsl"/>
