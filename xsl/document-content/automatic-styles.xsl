@@ -420,40 +420,24 @@
 
 <xsl:template name="document-content.automatic-styles.text">
 	
+<!-- strong -->
+	<style:style
+		style:name="text-strong"
+		style:family="text">
+		<style:text-properties
+			fo:font-weight="bold"
+			fo:font-style="italic"/>
+	</style:style>
 	
 <!-- bold -->
-	<xsl:element name="style:style">
-		<xsl:attribute name="style:name">text-bold</xsl:attribute>
-		<xsl:attribute name="style:family">text</xsl:attribute>
-		<xsl:element name="style:text-properties">
-			<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-		</xsl:element>
-	</xsl:element>
-	
-<!-- monospace -->
-	<xsl:element name="style:style">
-		<xsl:attribute name="style:name">text-monospace</xsl:attribute>
-		<xsl:attribute name="style:family">text</xsl:attribute>
-		<xsl:element name="style:text-properties">
-			<xsl:attribute name="fo:font-family">Courier</xsl:attribute>
-			<!--<xsl:attribute name="fo:background-color">#FFFF00</xsl:attribute>-->
-		</xsl:element>
-	</xsl:element>
-	
 	<style:style
-		style:name="text-highlight"
+		style:name="text-bold"
 		style:family="text">
 		<style:text-properties
-			fo:background-color="#ffff00"/>
+			fo:font-weight="bold"/>
 	</style:style>
 	
-	<style:style
-		style:name="text-email"
-		style:family="text">
-		<style:text-properties
-			fo:color="#0000ff"/>
-	</style:style>
-	
+<!-- italic -->
 	<style:style
 		style:name="text-italic"
 		style:family="text">
@@ -461,12 +445,44 @@
 			fo:font-style="italic"/>
 	</style:style>
 	
+<!-- underline -->
+	<style:style
+		style:name="text-underline"
+		style:family="text">
+		<style:text-properties
+			style:text-underline-color="#000000"
+			style:text-underline-mode="continuous"
+			style:text-underline-type="single"/>
+	</style:style>
+	
+<!-- strikethrough -->
+	<style:style
+		style:name="text-strikethrough"
+		style:family="text">
+		<style:text-properties
+			style:text-line-through-style="solid"/>
+	</style:style>
+	
+<!-- highlight -->
+	<style:style
+		style:name="text-highlight"
+		style:family="text">
+		<style:text-properties
+			fo:background-color="#ffff00"/>
+	</style:style>
+	
+	
+<!-- monospace -->
+	<style:style
+		style:name="text-monospace"
+		style:family="text">
+		<style:text-properties
+			fo:font-family="Courier"/>
+	</style:style>
+	
 <!-- SLIDES -->
 	<xsl:if test="/slides">
-	
-	
 	</xsl:if>
-	
 	
 </xsl:template>
 
@@ -813,9 +829,6 @@
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
-	
-	
-	
 	
 </xsl:template>
 

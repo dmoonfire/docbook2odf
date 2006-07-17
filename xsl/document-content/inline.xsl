@@ -45,35 +45,45 @@
 
 
 <xsl:template match="quote">
-	
-	<xsl:element name="text:span">
+	<text:span>
 		<xsl:attribute name="text:style-name">text-italic</xsl:attribute>
 		<xsl:text>"</xsl:text><xsl:apply-templates/><xsl:text>"</xsl:text>
-	</xsl:element>
-	
+	</text:span>
 </xsl:template>
 
 
 <xsl:template match="email">
-	<xsl:element name="text:a">
-		<xsl:attribute name="xlink:type">simple</xsl:attribute>
-		<xsl:attribute name="xlink:href"><xsl:text>mailto:</xsl:text><xsl:value-of select="."/></xsl:attribute>
+	<text:a xlink:type="simple">
+		<xsl:attribute name="xlink:href">
+			<xsl:text>mailto:</xsl:text><xsl:value-of select="."/>
+		</xsl:attribute>
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:a>
 </xsl:template>
+
 
 <xsl:template match="uri">
-	<xsl:element name="text:a">
-		<xsl:attribute name="xlink:type">simple</xsl:attribute>
+	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="."/></xsl:attribute>
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:a>
 </xsl:template>
 
 
-
-
-
+<xsl:template match="emphasis">
+	<text:span>
+		<xsl:attribute name="text:style-name">
+			<xsl:choose>
+				<xsl:when test="@role='strong'">text-strong</xsl:when>
+				<xsl:when test="@role='bold'">text-bold</xsl:when>
+				<xsl:when test="@role='underline'">text-underline</xsl:when>
+				<xsl:when test="@role='strikethrough'">text-strikethrough</xsl:when>
+				<xsl:otherwise>text-italic</xsl:otherwise>
+			</xsl:choose>
+		</xsl:attribute>
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
 
 
 </xsl:stylesheet>
