@@ -54,12 +54,6 @@
 		
 		<xsl:call-template name="CI.office-text"/>
 		
-		<!--
-		<xsl:element name="text:p">
-			<xsl:attribute name="text:style-name">line</xsl:attribute>
-		</xsl:element>
-		-->
-		
 		<xsl:apply-templates/>
 		
 	</xsl:element>

@@ -48,14 +48,24 @@
 
 
 <xsl:template match="/article">
+	
 	<xsl:element name="office:text">
+		
 		<xsl:call-template name="CI.office-text"/>
-		<xsl:apply-templates select="."/>
+		
+		<xsl:apply-templates select="." mode="article"/>
+		
 	</xsl:element>
+	
 </xsl:template>
 
 
 <xsl:template match="article">
+	<xsl:apply-templates select="." mode="article"/>
+</xsl:template>
+
+
+<xsl:template match="article" mode="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 		
 	<xsl:element name="text:p">
