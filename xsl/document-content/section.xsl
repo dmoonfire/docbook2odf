@@ -46,6 +46,7 @@
 
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5">
 	
+	<!-- compute level of section -->
 	<xsl:variable name="level">
 		<xsl:call-template name="section.level"/>
 	</xsl:variable>
@@ -54,7 +55,7 @@
 		<xsl:text>section level </xsl:text><xsl:value-of select="$level"/>
 	</xsl:comment>
 	
-	<xsl:element name="text:h">
+	<text:h>
 		<xsl:attribute name="text:outline-level">
 			<xsl:value-of select="$level"/>
 		</xsl:attribute>
@@ -65,14 +66,20 @@
 			<xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
 		</xsl:attribute>
 		<xsl:value-of select="child::title"/>
-	</xsl:element>
+	</text:h>
 	
 	<xsl:apply-templates/>
 	
 </xsl:template>
 
 
-<xsl:template match="section/title"/>
+<xsl:template match="
+	section/title |
+	sect1/title |
+	sect2/title |
+	sect3/title |
+	sect4/title |
+	sect5/title"/>
 
 
 </xsl:stylesheet>
