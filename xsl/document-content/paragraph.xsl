@@ -44,17 +44,32 @@
 	office:version="1.0">
 
 
-<xsl:template match="para">
+<xsl:template match="formalpara">
+	<text:h
+		text:style-name="Headings-para">
+		<xsl:value-of select="title"/>
+	</text:h>
+	<xsl:apply-templates/>
+</xsl:template>
+
+
+<!-- earlier rendered -->
+<xsl:template match="formalpara/title"/>
+
+
+<xsl:template match="para|simpara">
 	<xsl:choose>
 		<!-- all docbook elements that would be transformed as a odf:paragraph -->
 		<!-- opendocument can't cointain text:p in text:p                      -->
+		<!-- also all block elements by                                        -->
+		<!-- http://www.docbook.org/tdg/en/html/para.html                      -->
+		<!-- abbrev, acronym, action, address, anchor, application, author, authorinitials, beginpage, bibliolist, biblioref, blockquote, calloutlist, caution, citation, citebiblioid, citerefentry, citetitle, classname, classsynopsis, cmdsynopsis, code, command, computeroutput, constant, constructorsynopsis, corpauthor, corpcredit, database, destructorsynopsis, email, emphasis, envar, equation, errorcode, errorname, errortext, errortype, example, exceptionname, fieldsynopsis, figure, filename, firstterm, footnote, footnoteref, foreignphrase, funcsynopsis, function, glosslist, glossterm, graphic, graphicco, guibutton, guiicon, guilabel, guimenu, guimenuitem, guisubmenu, hardware, important, indexterm, informalequation, informalexample, informalfigure, informaltable, inlineequation, inlinegraphic, inlinemediaobject, interface, interfacename, itemizedlist, keycap, keycode, keycombo, keysym, link, literal, literallayout, markup, medialabel, mediaobject, mediaobjectco, menuchoice, methodname, methodsynopsis, modespec, mousebutton, nonterminal, note, olink, ooclass, ooexception, oointerface, option, optional, orderedlist, orgname, othercredit, package, parameter, personname, phrase, productname, productnumber, programlisting, programlistingco, prompt, property, quote, remark, replaceable, returnvalue, revhistory, screen, screenco, screenshot, segmentedlist, sgmltag, simplelist, structfield, structname, subscript, superscript, symbol, synopsis, systemitem, table, termdef, tip, token, trademark, type, ulink, uri, userinput, variablelist, varname, warning, wordasword, xref -->
 		<xsl:when test="
 			child::itemizedlist|
 			child::orderedlist|
-			child::abstract|
-			child::simpara
+			child::abstract
 			">
-			<!-- continue without text:p creation -->
+			<!-- continue without text:p creation to child element -->
 			<xsl:apply-templates/>
 		</xsl:when>
 		<xsl:otherwise>

@@ -43,6 +43,14 @@
 
       <para>paragraph</para>
 
+      <simpara>simpara</simpara>
+
+      <formalpara>
+        <title>Title of formalpara</title>
+
+        <para>para in formalpara</para>
+      </formalpara>
+
       <section>
         <title>Section 1.1</title>
 
