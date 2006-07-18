@@ -110,6 +110,11 @@
 		
 		<xsl:element name="office:document-content">
 			
+			<!-- same font declarations as in document-styles -->
+			<xsl:element name="office:font-face-decls">
+				<xsl:call-template name="document.font-face-decls"/>
+			</xsl:element>
+			
 			<xsl:element name="office:automatic-styles">
 				<xsl:call-template name="document-content.automatic-styles.paragraph"/>
 				<xsl:call-template name="document-content.automatic-styles.text"/>
@@ -129,11 +134,6 @@
 				</xsl:if>
 				<!-- corporate identity -->
 				<xsl:call-template name="CI.document-content.automatic-styles"/>
-			</xsl:element>
-			
-			<!-- same font declarations as in document-styles -->
-			<xsl:element name="office:font-face-decls">
-				<xsl:call-template name="document.font-face-decls"/>
 			</xsl:element>
 			
 			<xsl:element name="office:body">

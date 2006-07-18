@@ -67,10 +67,21 @@
 		<xsl:when test="
 			child::itemizedlist|
 			child::orderedlist|
-			child::abstract
+			child::abstract|
+			child::screen
 			">
 			<!-- continue without text:p creation to child element -->
-			<xsl:apply-templates/>
+			
+			<!-- when in this block is some text, display it in paragraph -->
+			<!-- this is not functional
+			<text:p>
+				<xsl:value-of select="string(.)"/>
+			</text:p>
+			-->
+			<!-- call template for each found element -->
+			<xsl:for-each select="*">
+				<xsl:apply-templates select="."/>
+			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:call-template name="paragraph"/>
@@ -103,7 +114,7 @@
 
 
 <xsl:template name="paragraph">
-
+	
 	<xsl:element name="text:p">
 		
 		<xsl:attribute name="text:style-name">
@@ -145,7 +156,7 @@
 		<xsl:apply-templates/>
 		
 	</xsl:element>
-
+	
 </xsl:template>
 
 

@@ -67,10 +67,6 @@
 
 <xsl:template match="article" mode="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
-		
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">line</xsl:attribute>
-	</xsl:element>
 	
 	<xsl:apply-templates/>
 	
@@ -78,18 +74,18 @@
 
 
 <xsl:template match="article/title">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title3</xsl:attribute>
+	<text:p
+		text:style-name="title-article">
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:p>
 </xsl:template>
 
 
 <xsl:template match="article/subtitle">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title</xsl:attribute>
+	<text:p
+		text:style-name="para-title">
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:p>
 </xsl:template>
 
 

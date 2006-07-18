@@ -62,10 +62,10 @@
 
 
 <xsl:template match="/book/title">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-booktitle</xsl:attribute>
+	<text:p
+		text:style-name="title-book">
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:p>
 </xsl:template>
 
 

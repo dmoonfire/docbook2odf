@@ -47,24 +47,6 @@
 
 <xsl:template name="document-content.automatic-styles.paragraph">
 	
-<!-- para-padding -->
-	<xsl:element name="style:style">
-		<xsl:attribute name="style:name">para-padding</xsl:attribute>
-		<xsl:attribute name="style:family">paragraph</xsl:attribute>
-		<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
-		<xsl:element name="style:paragraph-properties">
-			<!--<xsl:attribute name="fo:text-align">justify</xsl:attribute>-->
-			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$para.padding"/></xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="style:text-properties">
-			<xsl:if test="/slides">
-				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color-presentation_para"/></xsl:attribute>
-				<xsl:attribute name="fo:font-size"><xsl:value-of select="$style.font-size.presentation.para"/></xsl:attribute>
-			</xsl:if>
-		</xsl:element>
-	</xsl:element>
-	
 <!-- para-list-padding -->
 	<xsl:element name="style:style">
 		<xsl:attribute name="style:name">para-list-padding</xsl:attribute>
@@ -124,63 +106,7 @@
 		</xsl:element>
 	</xsl:element>
 	
-<!-- para-element (for not supported elements) -->
-	<xsl:element name="style:style">
-		<xsl:attribute name="style:name">para-element</xsl:attribute>
-		<xsl:attribute name="style:family">paragraph</xsl:attribute>
-		<xsl:element name="style:paragraph-properties">
-			<xsl:attribute name="fo:margin-top">0.0cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="style:text-properties">
-			<xsl:attribute name="fo:color">#FFFFFF</xsl:attribute>
-			<xsl:attribute name="fo:background-color">#AEAEAE</xsl:attribute>
-			<xsl:attribute name="fo:font-size">10pt</xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-			<xsl:attribute name="fo:font-weight">normal</xsl:attribute>
-		</xsl:element>
-	</xsl:element>
-	
 	<xsl:if test="/article|/book">
-	
-	<!-- para-booktitle -->
-		<xsl:element name="style:style">
-			<xsl:attribute name="style:name">para-booktitle</xsl:attribute>
-			<xsl:attribute name="style:family">paragraph</xsl:attribute>
-			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
-			<xsl:element name="style:paragraph-properties">
-				<xsl:attribute name="fo:padding-top">0.6cm</xsl:attribute>
-				<!--<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>-->
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
-	
-	<!-- para-chapter -->
-		<xsl:element name="style:style">
-			<xsl:attribute name="style:name">para-chapter</xsl:attribute>
-			<xsl:attribute name="style:family">paragraph</xsl:attribute>
-			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
-			<xsl:element name="style:paragraph-properties">
-				<xsl:attribute name="fo:break-before">page</xsl:attribute>
-				<xsl:attribute name="fo:padding-top">0.6cm</xsl:attribute>
-				<!--<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>-->
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
 	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">
@@ -356,63 +282,6 @@
 		
 	</xsl:if>
 	
-	<style:style
-		style:name="para-justify"
-		style:family="paragraph"
-		style:parent-style-name="Standard">
-		<style:paragraph-properties
-			fo:text-align="justify"
-			style:text-autospace="ideograph-alpha"
-			style:punctuation-wrap="hanging"
-			style:line-break="strict"
-			style:writing-mode="page"/>
-	</style:style>
-		
-	<style:style
-		style:name="para-blockquote"
-		style:family="paragraph"
-		style:parent-style-name="Standard">
-		<style:paragraph-properties
-			fo:margin-left="1.2cm"
-			fo:margin-right="0cm"
-			fo:text-indent="0cm"
-			style:auto-text-indent="false"
-			fo:padding-left="0.15cm"
-			fo:padding-right="0.049cm"
-			fo:padding-top="0.049cm"
-			fo:padding-bottom="0.049cm"
-			fo:border-left="0.176cm solid #999999"
-			fo:border-right="none"
-			fo:border-top="none"
-			fo:border-bottom="none"
-			style:shadow="none"
-			fo:margin-bottom="0.3cm"/>
-		<style:text-properties
-			fo:font-style="italic"/>
-	</style:style>
-	
-	<!-- problem with whitespaces :( -->
-	<style:style
-		style:name="para-verbatim"
-		style:family="paragraph"
-		style:parent-style-name="Standard">
-		<style:paragraph-properties
-			fo:background-color="#E0E0E0"
-			fo:margin-top="0.1cm"
-			fo:margin-bottom="0.2cm"
-			fo:padding-left="0.1cm"
-			fo:padding-top="0.1cm"
-			fo:padding-bottom="0.1cm"
-			fo:border-left="none"
-			fo:border-right="none"
-			fo:border-top="0.02cm solid #999999"
-			fo:border-bottom="0.02cm solid #999999"
-			/>
-		<style:text-properties
-			fo:font-size="10pt"
-			style:font-name="Lucidasans"/>
-	</style:style>
-	
 </xsl:template>
 
 
@@ -420,69 +289,7 @@
 
 <xsl:template name="document-content.automatic-styles.text">
 	
-<!-- strong -->
-	<style:style
-		style:name="text-strong"
-		style:family="text">
-		<style:text-properties
-			fo:font-weight="bold"
-			fo:font-style="italic"/>
-	</style:style>
 	
-<!-- bold -->
-	<style:style
-		style:name="text-bold"
-		style:family="text">
-		<style:text-properties
-			fo:font-weight="bold"/>
-	</style:style>
-	
-<!-- italic -->
-	<style:style
-		style:name="text-italic"
-		style:family="text">
-		<style:text-properties
-			fo:font-style="italic"/>
-	</style:style>
-	
-<!-- underline -->
-	<style:style
-		style:name="text-underline"
-		style:family="text">
-		<style:text-properties
-			style:text-underline-color="#000000"
-			style:text-underline-mode="continuous"
-			style:text-underline-type="single"/>
-	</style:style>
-	
-<!-- strikethrough -->
-	<style:style
-		style:name="text-strikethrough"
-		style:family="text">
-		<style:text-properties
-			style:text-line-through-style="solid"/>
-	</style:style>
-	
-<!-- highlight -->
-	<style:style
-		style:name="text-highlight"
-		style:family="text">
-		<style:text-properties
-			fo:background-color="#ffff00"/>
-	</style:style>
-	
-	
-<!-- monospace -->
-	<style:style
-		style:name="text-monospace"
-		style:family="text">
-		<style:text-properties
-			fo:font-family="Courier"/>
-	</style:style>
-	
-<!-- SLIDES -->
-	<xsl:if test="/slides">
-	</xsl:if>
 	
 </xsl:template>
 

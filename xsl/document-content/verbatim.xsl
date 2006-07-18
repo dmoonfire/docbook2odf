@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY RE "&#10;">
+<!ENTITY nbsp "&#160;">
+<!ENTITY nbsp2 "&#130;">
+]>
 <!--
 	
 	docbook2odf - DocBook to OpenDocument XSL Transformation
@@ -44,50 +49,49 @@
 	office:version="1.0">
 
 
-<xsl:template match="screen">
+<xsl:template match="screen|programlisting|synopsis">
 	
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-verbatim</xsl:attribute>
-		<!--<fo:block white-space-collapse="false" white-space-treatment="preserve">
-			<xsl:apply-templates/>
-		</fo:block>-->
-		
-		<xsl:apply-templates/>
-		
-<!--		
-		<draw:rect
-			text:anchor-type="paragraph"
-			draw:z-index="0"
-			draw:style-name="box-verbatim"
-			draw:text-style-name="para-verbatim"
-			svg:width="15cm"
-			svg:height="5cm">
-			<text:p text:style-name="Standard"><xsl:apply-templates/></text:p>
-		</draw:rect>
--->
-		<!--
-		<draw:text-box>
-			<text:p text:style-name="Standard"><xsl:apply-templates/></text:p>
-		</draw:text-box>
-		-->
-		
-	</xsl:element>
-<!--
-	<fo:block wrap-option='no-wrap'
-			text-align="start"
-			white-space-collapse='false'
-			white-space-treatment='preserve'
-			linefeed-treatment='preserve'
-			xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style"
-  			space-before="0.5cm">
-		<xsl:apply-templates/>
-	</fo:block>
--->
+	<xsl:variable name="lines">
+		<xsl:call-template name="verbatim.line">
+			<xsl:with-param name="content" select="string(.)"/>
+			<xsl:with-param name="style" select="local-name()"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<text:p/>
+	<xsl:copy-of select="$lines"/>
+	
 </xsl:template>
 
 
-
-
+<xsl:template name="verbatim.line">
+	<xsl:param name="content"/>
+	<xsl:param name="style"/>
+	<xsl:param name="count" select="1"/>
+	
+		<xsl:choose>
+			<xsl:when test="contains($content, '&#10;')">
+				<text:p>
+					<xsl:attribute name="text:style-name">
+						<xsl:text>para-</xsl:text><xsl:value-of select="$style"/>
+					</xsl:attribute>
+					<xsl:value-of select="substring-before($content, '&#10;')"/>
+				</text:p>
+				<xsl:call-template name="verbatim.line">
+					<xsl:with-param name="content" select="translate(substring-after($content, '&#10;'),' ','&nbsp2;')"/>
+					<xsl:with-param name="style" select="$style"/>
+					<xsl:with-param name="count" select="$count + 1"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<text:p>
+					<xsl:attribute name="text:style-name">para-<xsl:value-of select="$style"/></xsl:attribute>
+					<xsl:value-of select="translate(string($content),' ','&nbsp2;')"/>
+				</text:p>
+			</xsl:otherwise>
+		</xsl:choose>
+	
+</xsl:template>
 
 
 

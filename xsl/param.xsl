@@ -53,43 +53,6 @@
 	
 <xsl:param name="para.padding">0.20cm</xsl:param>
 
-
-<!-- Headings -->
-
-<xsl:attribute-set name="heading.style-properties">
-	<xsl:attribute name="style:family">paragraph</xsl:attribute>
-	<xsl:attribute name="style:class">text</xsl:attribute>
-	<xsl:attribute name="style:list-style-name">listH</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading-small.style-properties">
-	<xsl:attribute name="style:family">paragraph</xsl:attribute>
-	<xsl:attribute name="style:class">text</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="heading.paragraph-properties">
-	<xsl:attribute name="style:shadow">none</xsl:attribute>
-	<xsl:attribute name="text:number-lines">true</xsl:attribute>
-	<xsl:attribute name="text:line-number">1</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="heading.text-properties">
-	<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-	<xsl:attribute name="style:font-name"><xsl:value-of select="$style.font-name.bold"/></xsl:attribute>
-	<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-</xsl:attribute-set>
-
-
-<xsl:attribute-set name="heading.chapter.paragraph-properties">
-	<!--<xsl:attribute name="fo:break-before">page</xsl:attribute>-->
-	<xsl:attribute name="fo:padding-top">0.2cm</xsl:attribute>
-	<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
-	<xsl:attribute name="text:number-lines">false</xsl:attribute>
-</xsl:attribute-set>
-<xsl:attribute-set name="heading.chapter.text-properties">
-	<xsl:attribute name="fo:font-size">200%</xsl:attribute>
-</xsl:attribute-set>
-
-
 </xsl:stylesheet>
 
 

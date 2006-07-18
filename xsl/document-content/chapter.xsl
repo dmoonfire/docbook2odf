@@ -46,13 +46,13 @@
 
 <xsl:template match="chapter">
 	
-	<text:p text:style-name="para-chapter">
+	<text:p text:style-name="title-chapter">
 		<xsl:text>Chapter</xsl:text>
 	</text:p>
 	<text:h
 		text:outline-level="1"
 		text:style-name="Heading1">
-		<xsl:value-of select="title"/>
+		<xsl:value-of select="title|chapterinfo/title"/>
 	</text:h>
 	
 	<xsl:apply-templates/>

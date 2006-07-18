@@ -47,6 +47,11 @@
 <!-- automatically called from document-styles and document-content -->
 <xsl:template name="document.font-face-decls">
 	<style:font-face
+		style:name="Courier"
+		svg:font-family="Courier"
+		style:font-family-generic="modern"
+		style:font-pitch="fixed"/>
+	<style:font-face
 		style:name="Courier New"
 		svg:font-family="&apos;Courier New&apos;"
 		style:font-family-generic="modern"
@@ -72,6 +77,10 @@
 		style:name="Lucidasans"
 		svg:font-family="Lucidasans"
 		style:font-pitch="variable"/>
+	<style:font-face
+		style:name="Lucida Console"
+		svg:font-family="&apos;Lucida Console&apos;"
+		style:font-pitch="fixed"/>
 	<style:font-face
 		style:name="Luxi Sans"
 		svg:font-family="&apos;Luxi Sans&apos;"
