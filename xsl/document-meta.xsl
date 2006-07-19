@@ -67,7 +67,7 @@
 		</xsl:element>
 		
 		<xsl:element name="meta:generator">
-			<xsl:text>docbook2odf generator (http://open.comsultia.com/docbook2odf/)</xsl:text>
+			<xsl:text>docbook2odf [$Rev$] generator (http://open.comsultia.com/docbook2odf/)</xsl:text>
 		</xsl:element>
 		
 	</xsl:element>
