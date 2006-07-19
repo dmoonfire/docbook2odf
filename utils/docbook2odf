@@ -62,7 +62,7 @@ my $program_description="a non-interactive docbook to opendocument convertor";
 my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
 our $program_Date='$Date$';
-our $program_rev='$rev$';
+our $program_Rev='$Rev$';
 our $program_Author='$Author$';
 our $program_Id='$Id$';
 
