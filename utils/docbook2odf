@@ -23,7 +23,7 @@
 
 use strict;
 use utf8;
-use encoding 'utf-8';
+#use encoding 'utf-8';
 #use open ':utf8', ':std';
 
 # depends on
@@ -244,7 +244,7 @@ do # post processing of content
 	# copy pictures into TEMP directory
 	my @uris;
 	my $i=1;
-	while ($content=~s|(xlink:href)="((^mailto).*?)"|xlink:href=<!TMPHREF-$i!>|)
+	while ($content=~s|(xlink:href)="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
 	{
 		my $href=$1;
 		my $uri=$2;
@@ -300,6 +300,7 @@ do # post processing of content
 	
 };
 open (HND, '>'.$TEMP.'/content.xml');
+binmode(HND);
 print HND $content;
 
 # MANIFEST
