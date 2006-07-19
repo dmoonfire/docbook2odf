@@ -57,14 +57,17 @@ my $quiet;
 my $debug;
 my $params;
 my $force;
-my $program_name="docbook2odf";
-my $program_description="a non-interactive docbook to opendocument convertor";
-my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
 our $program_Date='$Date$';
 our $program_Rev='$Rev$';
 our $program_Author='$Author$';
 our $program_Id='$Id$';
+
+	$program_Rev=~/(\d+)/;
+my $program_version="0.".$1;
+my $program_name="docbook2odf ".$program_version;
+my $program_description="a non-interactive docbook to opendocument convertor";
+my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
 
 my $result = GetOptions
 	(
@@ -100,6 +103,7 @@ HELP
 
 if (!$input)
 {
+	print "$program_name, $program_description\n";
 	print "Usage: docbook2odf $program_usage\n";
 	print "Try `docbook2odf --help` for more information\n";
 	exit;
