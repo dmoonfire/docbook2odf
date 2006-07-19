@@ -49,7 +49,7 @@
 	
 	<xsl:if test="title">
 		<xsl:element name="text:h">
-			<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
+			<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
 			<xsl:value-of select="title"/>
 		</xsl:element>
 	</xsl:if>
@@ -65,7 +65,7 @@
 	
 	<xsl:if test="title">
 		<xsl:element name="text:h">
-			<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
+			<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
 			<xsl:value-of select="title"/>
 		</xsl:element>
 	</xsl:if>

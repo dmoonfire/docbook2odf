@@ -53,27 +53,31 @@
 			<!-- this is HTML table -->
 			
 			<xsl:if test="caption">
-				<xsl:element name="text:h">
-					<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
-					<xsl:value-of select="caption"/>
-				</xsl:element>
+				<xsl:variable name="number">
+					<xsl:call-template name="table.number"/>
+				</xsl:variable>
+				<text:h text:style-name="Heading-small">
+					<xsl:text>Table </xsl:text><xsl:value-of select="$number"/><xsl:text>. </xsl:text><xsl:value-of select="caption"/>
+				</text:h>
 			</xsl:if>
-			
-			<xsl:element name="table:table">
+			<table:table
+				table:style-name="table-default">
 				<!--<xsl:attribute name="table:name"></xsl:attribute>-->
-				<!--<xsl:attribute name="table:style-name"></xsl:attribute>-->
 				<xsl:apply-templates/>
-			</xsl:element>
+			</table:table>
+			
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
 
 <xsl:template match="table/title">
-	<xsl:element name="text:h">
-		<xsl:attribute name="text:style-name">Headings-small</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
+	<xsl:variable name="number">
+		<xsl:call-template name="table.number"/>
+	</xsl:variable>
+	<text:h text:style-name="Heading-small">
+		<xsl:text>Table </xsl:text><xsl:value-of select="$number"/><xsl:text>. </xsl:text><xsl:apply-templates/>
+	</text:h>
 </xsl:template>
 
 
@@ -82,38 +86,38 @@
 
 <xsl:template match="tgroup">
 	<!-- tgroup is the real table -->
-	<xsl:element name="table:table">
+	<table:table
+		table:style-name="table-default">
 		<!--<xsl:attribute name="table:name"></xsl:attribute>-->
-		<xsl:attribute name="table:style-name">table-default</xsl:attribute>
 		
-		<xsl:element name="table:table-column">
+		<table:table-column>
 			<xsl:attribute name="table:number-columns-repeated">
 				<xsl:value-of select="@cols"/>
 			</xsl:attribute>
-		</xsl:element>
+		</table:table-column>
 		
 		<xsl:apply-templates/>
 		
 		<xsl:if test="tfoot">
-			<xsl:call-template name="tfoot"/>
+			<xsl:apply-templates select="tfoot" mode="tfoot" />
 		</xsl:if>
 		
-	</xsl:element>
+	</table:table>
 </xsl:template>
 
 
 <xsl:template match="thead">
-	<xsl:element name="table:table-header-rows">
+	<table:table-header-rows>
 		<xsl:apply-templates/>
-	</xsl:element>
+	</table:table-header-rows>
 </xsl:template>
 
 
 <xsl:template match="tfoot"/>
 
 
-<xsl:template name="tfoot">
-	
+<xsl:template match="tfoot" mode="tfoot">
+	<xsl:apply-templates/>
 </xsl:template>
 
 
@@ -123,9 +127,9 @@
 
 
 <xsl:template match="row">
-	<xsl:element name="table:table-row">
+	<table:table-row>
 		<xsl:apply-templates/>
-	</xsl:element>
+	</table:table-row>
 </xsl:template>
 
 
@@ -133,25 +137,26 @@
 	<xsl:choose>
 		<!-- this is header -->
 		<xsl:when test="th">
-			<xsl:element name="table:table-header-rows">
-				<xsl:element name="table:table-row">
+			<table:table-header-rows>
+				<table:table-row>
 					<xsl:apply-templates/>
-				</xsl:element>
-			</xsl:element>
+				</table:table-row>
+			</table:table-header-rows>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:element name="table:table-row">
+			<table:table-row>
 				<xsl:apply-templates/>
-			</xsl:element>
+			</table:table-row>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
+<!-- entries -->
 
 <xsl:template match="entry">
-	<xsl:element name="table:table-cell">
-		<xsl:attribute name="office:value-type">string</xsl:attribute>
-		<xsl:attribute name="table:style-name">table-default.cell-A</xsl:attribute>
+	<table:table-cell
+		office:value-type="string"
+		table:style-name="table-default.cell-A">
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
 			<!-- find collumn number from <docbook:colspec> -->
@@ -162,34 +167,37 @@
 				<xsl:apply-templates/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:element name="text:p">
+				<text:p
+					text:style-name="Standard">
 					<xsl:value-of select="."/>
-				</xsl:element>
+				</text:p>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:element>
+	</table:table-cell>
 </xsl:template>
 
 
 <xsl:template match="td">
-	<xsl:element name="table:table-cell">
+	<table:table-cell
+		office:value-type="string"
+		table:style-name="table-default.cell-A">
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@colspan>1">
 			
 		</xsl:if>
-		<xsl:attribute name="office:value-type">string</xsl:attribute>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
 			<xsl:when test="*">
 				<xsl:apply-templates/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:element name="text:p">
+				<text:p
+					text:style-name="Standard">
 					<xsl:value-of select="."/>
-				</xsl:element>
+				</text:p>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:element>
+	</table:table-cell>
 </xsl:template>
 
 

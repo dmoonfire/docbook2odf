@@ -72,7 +72,7 @@
 			<xsl:attribute name="table:style-name">table-info.cell-H</xsl:attribute>
 			<xsl:attribute name="table:number-columns-spanned">2</xsl:attribute>
 			<xsl:element name="text:h">
-				<xsl:attribute name="text:style-name">Headings-para</xsl:attribute>
+				<xsl:attribute name="text:style-name">Heading-para</xsl:attribute>
 				<xsl:value-of select="name()"/>:
 			</xsl:element>
 		</xsl:element>

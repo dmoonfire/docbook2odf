@@ -71,4 +71,10 @@
 </xsl:template>
 
 
+<xsl:template name="table.number">
+	<!-- compute number of section -->
+	<xsl:value-of select="count(preceding::informaltable)+count(preceding::table)+1"/>
+</xsl:template>
+
+
 </xsl:stylesheet>
