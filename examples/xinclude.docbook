@@ -19,6 +19,10 @@
 
     <para>paragraph with <emphasis role="strikethrough">emphasis</emphasis>
     and <quote>quote</quote>.</para>
+
+    <xi:include href="media.docbook"
+                xmlns:xi="http://www.w3.org/2001/XInclude"
+                xpointer="element(/1/3/3)" />
   </section>
 
   <xi:include href="lists.docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
