@@ -32,6 +32,8 @@ use File::Copy;
 use File::Path;
 use Image::Magick;
 use XML::Sablotron;
+#use XML::XPath;
+#use XML::XPath::XMLParser;
 use Getopt::Long;
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
@@ -174,24 +176,43 @@ if (!$quiet)
 #foreach my $pair(split(''))
 
 
-
 ##################################################################################
-# TRANSFORMATION
+# TEMPORARY DIRECTORY
 ##################################################################################
 
-
-
-# transformation
 print "\n" unless $quiet;
-
 
 # create a temporary directory
 my $TEMP=$output_dir.'/'.$output_file.'.temp';
+print "Creating TEMP directory ($TEMP)\n" if $debug;
 rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
 mkpath $TEMP;
 mkpath $TEMP.'/Pictures';
 mkpath $TEMP.'/META-INF';
 mkpath $TEMP.'/process';
+
+##################################################################################
+# PREPROCESSING
+##################################################################################
+
+# works not with xinclude :(
+=head1
+print "\n" unless $quiet;
+
+my $xp = XML::XPath->new(filename => $input);
+my $nodeset = $xp->find('//imagedata/@fileref');
+foreach my $node ($nodeset->get_nodelist)
+{
+	print "FOUND\n";
+}
+=cut
+
+##################################################################################
+# TRANSFORMATION
+##################################################################################
+
+# transformation
+print "\n" unless $quiet;
 
 
 print "Sablotron transformation\n" if $debug;
@@ -242,6 +263,7 @@ do # post processing of content
 {
 	print "content postprocess\n" if $debug;
 	# copy pictures into TEMP directory
+	
 	my @uris;
 	my $i=1;
 	while ($content=~s|(xlink:href)="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
