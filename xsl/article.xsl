@@ -53,19 +53,14 @@
 		
 		<xsl:call-template name="CI.office-text"/>
 		
-		<xsl:apply-templates select="." mode="article"/>
+		<xsl:call-template name="article"/>
 		
 	</xsl:element>
 	
 </xsl:template>
 
 
-<xsl:template match="article">
-	<xsl:apply-templates select="." mode="article"/>
-</xsl:template>
-
-
-<xsl:template match="article" mode="article">
+<xsl:template name="article" match="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	
 	<xsl:apply-templates/>
@@ -73,7 +68,7 @@
 </xsl:template>
 
 
-<xsl:template match="article/title">
+<xsl:template name="article.title" match="article/title">
 	<text:p
 		text:style-name="title-article">
 		<xsl:apply-templates/>
@@ -81,7 +76,7 @@
 </xsl:template>
 
 
-<xsl:template match="article/subtitle">
+<xsl:template name="article.subtitle" match="article/subtitle">
 	<text:p
 		text:style-name="para-title">
 		<xsl:apply-templates/>

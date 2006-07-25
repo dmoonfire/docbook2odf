@@ -60,6 +60,7 @@
 	</xsl:element>
 </xsl:template>
 
+<xsl:template match="itemizedlist/title|orderedlist/title"/>
 
 <xsl:template match="orderedlist">
 	

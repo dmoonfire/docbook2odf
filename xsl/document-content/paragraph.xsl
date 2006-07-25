@@ -115,33 +115,53 @@
 
 <xsl:template name="paragraph">
 	
-	<xsl:element name="text:p">
+	<xsl:variable name="position" select="position()"/>
+	<xsl:variable name="position_div" select="position() div 2"/>
+	<xsl:variable name="parent-previous" select="count(../preceding-sibling::node())"/>
+	<xsl:variable name="nodes-in-previous" select="count(../preceding-sibling::listitem[$position_div]/*)"/>
+	
+	<text:p>
 		
 		<xsl:attribute name="text:style-name">
 			<xsl:choose>
 				
-				<!-- deep magic -->
+				<!-- deep magic part -->
 				<xsl:when test="parent::listitem">
 					<xsl:choose>
-						<!-- all next paragraph in listitem -->
-						<xsl:when test="not(position()=1)">para-padding</xsl:when>
-						<!-- if paragraph is first in listitem -->
-						<xsl:otherwise>
+						
+						<!-- if paragraph is first in listitem                                 -->
+						<!-- this paragraph is as title of listitem                            -->
+						<xsl:when test="$position=2">
 							<xsl:choose>
-								<!-- if listitem is first in itemizedlist                        -->
 								<!-- very very very ugly hack :) but works very good :))))       -->
 								<!-- http://blogs.msdn.com/asanto/archive/2004/09/08/226663.aspx -->
-								
-								<xsl:when test="count(../preceding-sibling::node()) = 0">para-list-begin</xsl:when>
+								<xsl:when test="$parent-previous = 1">para-list-begin</xsl:when>
 								
 								<!-- my very nice hack                                           -->
-								<xsl:when test="../preceding-sibling::listitem[position()=1]/*[2]">para-list-padding</xsl:when>
+								
+								<!-- when previous listitem has more than one element            -->
+								
+								<xsl:when test="$nodes-in-previous>2">para-list-padding</xsl:when>
+								
+								
 								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
 								<xsl:when test="parent::orderedlist/@spacing='compact'">para-list-compact</xsl:when>
 								<xsl:when test="parent::itemizedlist/@spacing='compact'">para-list-compact</xsl:when>
 								<xsl:otherwise>para-list-padding</xsl:otherwise>
 							</xsl:choose>
+						</xsl:when>
+						
+						<!-- all next paragraph in listitem -->
+						<xsl:otherwise>
+							<xsl:text>para-padding</xsl:text>
+							<!--
+							<xsl:choose>
+								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
+								<xsl:otherwise>para-padding</xsl:otherwise>
+							</xsl:choose>
+							-->
 						</xsl:otherwise>
+						
 					</xsl:choose>
 				</xsl:when>
 				
@@ -155,7 +175,7 @@
 		
 		<xsl:apply-templates/>
 		
-	</xsl:element>
+	</text:p>
 	
 </xsl:template>
 
