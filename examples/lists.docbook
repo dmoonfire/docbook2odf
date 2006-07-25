@@ -76,6 +76,8 @@
         <para>Vestibulum cursus bibendum metus. Vestibulum ante ipsum primis
         in faucibus orci luctus et ultrices posuere cubilia Curae;</para>
 
+        <para>Continue with itemizedlist with compact spacing</para>
+
         <itemizedlist>
           <listitem>
             <para>listitem1</para>
@@ -201,6 +203,8 @@
         in faucibus orci luctus et ultrices posuere cubilia Curae;</para>
 
         <orderedlist spacing="compact">
+          <title>Title of compact orderedlist</title>
+
           <listitem>
             <para>listitem1 compact</para>
           </listitem>
