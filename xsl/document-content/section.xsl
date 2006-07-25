@@ -44,7 +44,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="section|sect1|sect2|sect3|sect4|sect5">
+<xsl:template name="section" match="section|sect1|sect2|sect3|sect4|sect5">
 	
 	<!-- compute level of section -->
 	<xsl:variable name="level">
