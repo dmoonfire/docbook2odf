@@ -141,7 +141,7 @@
 								
 								<!-- when previous listitem has more than one element            -->
 								
-								<xsl:when test="$nodes-in-previous>2">para-list-padding</xsl:when>
+								<xsl:when test="$nodes-in-previous>1">para-list-padding</xsl:when>
 								
 								
 								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
