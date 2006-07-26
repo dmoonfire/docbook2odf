@@ -44,7 +44,20 @@
 	office:version="1.0">
 
 
-<xsl:template match="chapter">
+<xsl:template match="/chapter">
+	
+	<xsl:element name="office:text">
+		
+		<xsl:call-template name="CI.office-text"/>
+		
+		<xsl:call-template name="chapter"/>
+		
+	</xsl:element>
+	
+</xsl:template>
+
+
+<xsl:template name="chapter" match="chapter">
 	
 	<text:p text:style-name="title-chapter">
 		<xsl:text>Chapter</xsl:text>
