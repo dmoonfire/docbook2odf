@@ -25,7 +25,7 @@ Description: XSLT based conversions from docbook to Oasis Open Document." > ${DI
 
 # Manual page
 mkdir -vp ${DIR}/usr/share/man/man1
-cp docs/docbook2odf.1. ${DIR}/usr/share/man/man1/docbook2odf.1
+cp docs/docbook2odf.1 ${DIR}/usr/share/man/man1/docbook2odf.1
 gzip ${DIR}/usr/share/man/man1/docbook2odf.1
 
 # Share Directory

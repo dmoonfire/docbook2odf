@@ -26,6 +26,11 @@ src_install() {
 	DEST="/usr/share/docbook2odf"
 	EXEDESTTREE="/usr/bin"
 
+	if use kde; then
+                insinto /usr/kde/3.5/share/apps/konqueror/servicemenus/
+                doins ${WORKDIR}/bindings/desktop/*.desktop
+        fi
+
 	if use examples; then
 		insinto ${DEST}/examples/
 		doins ${WORKDIR}/examples/*
