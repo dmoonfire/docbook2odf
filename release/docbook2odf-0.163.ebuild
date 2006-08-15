@@ -13,13 +13,12 @@ IUSE="kde examples"
 
 DEPEND="
 	( ||
-		(	>=app-text/docbook2odf-xsl-stylesheets-svn-0.124
-			>=app-text/docbook2odf-xsl-stylesheets-0.124 ) )
+		(	>=app-text/docbook2odf-xsl-stylesheets-svn-0.134
+			>=app-text/docbook2odf-xsl-stylesheets-0.163 ) )
 	>=dev-lang/perl-5.8
 	>=dev-perl/XML-Sablot-1.01
 	>=media-gfx/imagemagick-6.2
 	>=dev-perl/Archive-Zip-1.1
-	kde? ( >=kde-base/konqueror-3.5 )
 "
 
 src_install() {
@@ -27,15 +26,13 @@ src_install() {
 	DEST="/usr/share/docbook2odf"
 	EXEDESTTREE="/usr/bin"
 
-	if use kde; then
-		insinto /usr/kde/3.5/share/apps/konqueror/servicemenus/
-		doins ${WORKDIR}/bindings/desktop/*.desktop
-	fi
-
 	if use examples; then
 		insinto ${DEST}/examples/
 		doins ${WORKDIR}/examples/*
 	fi
+
+	insinto /usr/share/applications
+	doins ${WORKDIR}/bindings/desktop/*.desktop
 
 	insinto /usr/share/man/man1/
 	doins ${WORKDIR}/docs/docbook2odf.1
