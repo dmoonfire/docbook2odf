@@ -1,20 +1,19 @@
 [Desktop Entry]
-Version=0.35
-Type=Application
+Encoding=UTF-8
 Name=docbook2odf
-GenericName=Docbook to OpenDocument convertor
-Comment=Docbook to OpenDocument convertor
-Icon=odf
-Exec=docbook2odf
-Path=.
+MimeType=application/docbook+xml;
+Exec=docbook2odf --input-file  %f
+Type=Application
 Terminal=false
-MimeType=text/docbook
+NoDisplay=true
 ServiceTypes=text/docbook
 Actions=docbook2odf
 
 [Desktop Action docbook2odf]
-Exec=docbook2odf --input-file %U
 Name=Convert to OpenDocument
 Name[en]=Convert to OpenDocument
 Name[sk]=Zkonvertovat do OpenDocument-u
 Name[cs]=Skonvertovat do OpenDocument-u
+Icon=odf
+Exec=docbook2odf --input-file %U
+
