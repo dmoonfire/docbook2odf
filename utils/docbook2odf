@@ -23,8 +23,8 @@
 
 use strict;
 use utf8;
-#use encoding 'utf-8';
-#use open ':utf8', ':std';
+use encoding 'utf-8';
+use open ':utf8', ':std';
 
 # depends on
 use Cwd;
@@ -253,6 +253,7 @@ $sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/out
 my $content=$sab->getResultArg('arg:/output');
 
 
+utf8::decode($content);
 if ($debug)
 {
 	open (HND, '>'.$TEMP.'/process/content.xml');
@@ -320,6 +321,8 @@ do # post processing of content
 		$content=~s|<!TMP!>||;
 	}
 	
+	# convert alternative nbsp character to ODF spaces
+	$content=~s|([\xC2\x82]+)|'<text:s text:c="'.length($1).'"/>'|eg;
 };
 open (HND, '>'.$TEMP.'/content.xml');
 binmode(HND);
