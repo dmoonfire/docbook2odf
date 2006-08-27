@@ -72,34 +72,50 @@
     <table>
       <title>Table with header and footer</title>
 
-      <tgroup cols="2">
+      <tgroup cols="3">
         <thead>
           <row>
-            <entry>Head entry1</entry>
+            <entry>H-A3</entry>
 
-            <entry>Head entry2</entry>
+            <entry>H-B3</entry>
+
+            <entry>H-C3</entry>
           </row>
         </thead>
 
         <tfoot>
           <row>
-            <entry>Foot entry1</entry>
+            <entry>F-A3</entry>
 
-            <entry>Foot entry2</entry>
+            <entry>F-B3</entry>
+
+            <entry>F-C3</entry>
           </row>
         </tfoot>
 
         <tbody>
           <row>
-            <entry>row 1 entry 1</entry>
+            <entry>A1</entry>
 
-            <entry>row 1 entry 2</entry>
+            <entry>B1</entry>
+
+            <entry>C1</entry>
           </row>
 
           <row>
-            <entry>row 2 entry 1</entry>
+            <entry>A2</entry>
 
-            <entry>row 2 entry 2</entry>
+            <entry>B2</entry>
+
+            <entry>C2</entry>
+          </row>
+
+          <row>
+            <entry>A3</entry>
+
+            <entry>B3</entry>
+
+            <entry>C3</entry>
           </row>
         </tbody>
       </tgroup>

@@ -154,9 +154,83 @@
 <!-- entries -->
 
 <xsl:template match="entry">
+	
+	<xsl:variable name="position" select="position() div 2"/>
+	<xsl:variable name="last" select="(last()-1) div 2"/>
+	<xsl:variable name="parent-position" select="((count(../preceding-sibling::node())-1) div 2) + 1"/>
+	<xsl:variable name="parent-last" select="count(../../*)"/>
+	
+	<xsl:comment>position=<xsl:value-of select="$position"/></xsl:comment>
+	<xsl:comment>last=<xsl:value-of select="$last"/></xsl:comment>
+	<xsl:comment>parent-position=<xsl:value-of select="$parent-position"/></xsl:comment>
+	<xsl:comment>parent-last=<xsl:value-of select="$parent-last"/></xsl:comment>
+	
 	<table:table-cell
-		office:value-type="string"
-		table:style-name="table-default.cell-A">
+		office:value-type="string">
+		
+		<xsl:attribute name="table:style-name">
+			<xsl:text>table-default.cell-</xsl:text>
+			<!-- prefix -->
+			<xsl:if test="parent::row/parent::thead">
+				<xsl:text>H-</xsl:text>
+			</xsl:if>
+			<xsl:if test="parent::row/parent::tfoot">
+				<xsl:text>F-</xsl:text>
+			</xsl:if>
+			<!-- postfix defined by cell position -->
+			<!--
+				________
+				|A1|B1|C1|
+				|A2|B2|C2|
+				|A3|B3|C3|
+				^^^^^^^^
+			-->
+			<xsl:choose>
+			
+				<!-- A3 -->
+				<xsl:when test="$position = 1 and $parent-position = $parent-last">
+					<xsl:text>A3</xsl:text>
+				</xsl:when>
+				<!-- C3 -->
+				<xsl:when test="$position=$last and $parent-position = $parent-last">
+					<xsl:text>C3</xsl:text>
+				</xsl:when>
+				<!-- B3 -->
+				<xsl:when test="$parent-position = $parent-last">
+					<xsl:text>B3</xsl:text>
+				</xsl:when>
+			
+				<!-- A1 -->
+				<xsl:when test="$position = 1 and $parent-position = 1">
+					<xsl:text>A1</xsl:text>
+				</xsl:when>
+				<!-- C1 -->
+				<xsl:when test="$position=$last and $parent-position = 1">
+					<xsl:text>C1</xsl:text>
+				</xsl:when>
+				<!-- B1 -->
+				<xsl:when test="$parent-position = 1">
+					<xsl:text>B1</xsl:text>
+				</xsl:when>
+				
+				<!-- A2 -->
+				<xsl:when test="$position = 1">
+					<xsl:text>A2</xsl:text>
+				</xsl:when>
+				<!-- C2 -->
+				<xsl:when test="$position=$last">
+					<xsl:text>C2</xsl:text>
+				</xsl:when>
+				
+				<!-- all other cells -->
+				<xsl:otherwise>
+					<xsl:text>B2</xsl:text>
+				</xsl:otherwise>
+				
+			</xsl:choose>
+			
+		</xsl:attribute>
+		
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
 			<!-- find collumn number from <docbook:colspec> -->
@@ -180,7 +254,7 @@
 <xsl:template match="td">
 	<table:table-cell
 		office:value-type="string"
-		table:style-name="table-default.cell-A">
+		table:style-name="table-default.cell-B2">
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@colspan>1">
 			

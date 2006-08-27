@@ -865,35 +865,213 @@
 
 
 <xsl:template name="document-content.automatic-styles.table">
+	
+	
 	<style:style style:name="table-default" style:family="table">
 		<style:table-properties
 			table:align="margins"
 			style:shadow="none"/>
 	</style:style>
-		
-	<style:style style:name="Tabuľka1.A" style:family="table-column">
-		<style:table-column-properties
-			style:column-width="8.625cm"
-			style:rel-column-width="32767*"/>
-	</style:style>
 	
-	<style:style style:name="table-default.cell-A" style:family="table-cell">
+<!--
+	 ________
+	|A1|B1|C1|
+	|A2|B2|C2|
+	|A3|B3|C3|
+	 ^^^^^^^^
+-->
+	
+	<!-- 1 -->
+	
+	<!-- A1 -->
+	<style:style style:name="table-default.cell-A1" style:family="table-cell">
 		<style:table-cell-properties
 			fo:padding="0.097cm"
-			fo:border="0.002cm solid #000000">
+			fo:border-left="1pt solid #000000"
+			fo:border-top="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
 	
-	<style:style style:name="Tabuľka1.B1" style:family="table-cell">
+	<!-- B1 -->
+	<style:style style:name="table-default.cell-B1" style:family="table-cell">
 		<style:table-cell-properties
-			fo:background-color="#000080"
 			fo:padding="0.097cm"
-			fo:border="0.002cm solid #000000">
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
 	
+	<!-- C1 -->
+	<style:style style:name="table-default.cell-C1" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="1pt solid #000000"
+			fo:border-right="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- 2 -->
+	
+	<!-- A2 -->
+	<style:style style:name="table-default.cell-A2" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="1pt solid #000000"
+			fo:border-top="0.5pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- B2 -->
+	<style:style style:name="table-default.cell-B2" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0.5pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- C2 -->
+	<style:style style:name="table-default.cell-C2" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-right="1pt solid #000000"
+			fo:border-top="0.5pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
+	<!-- 3 -->
+	
+	<!-- A3 -->
+	<style:style style:name="table-default.cell-A3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="1pt solid #000000"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- B3 -->
+	<style:style style:name="table-default.cell-B3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- C3 -->
+	<style:style style:name="table-default.cell-C3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-right="1pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<!--<xsl:attribute name="fo:background-color">#500000</xsl:attribute>-->
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
+	<!-- H -->
+	
+	<!-- H-A3 -->
+	<style:style style:name="table-default.cell-H-A3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="1pt solid #000000"
+			fo:border-top="1pt solid #000000"
+			fo:border-bottom="0pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- H-B3 -->
+	<style:style style:name="table-default.cell-H-B3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="1pt solid #000000"
+			fo:border-bottom="0pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- H-C3 -->
+	<style:style style:name="table-default.cell-H-C3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="1pt solid #000000"
+			fo:border-right="1pt solid #000000"
+			fo:border-bottom="0pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
+	<!-- F -->
+	
+	<!-- F-A3 -->
+	<style:style style:name="table-default.cell-F-A3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="1pt solid #000000"
+			fo:border-top="0pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- F-B3 -->
+	<style:style style:name="table-default.cell-F-B3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- F-C3 -->
+	<style:style style:name="table-default.cell-F-C3" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0pt solid #000000"
+			fo:border-right="1pt solid #000000"
+			fo:border-bottom="1pt solid #000000">
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
 	
 	
 	<style:style style:name="table-info" style:family="table">
