@@ -242,6 +242,7 @@ my $situa = new XML::Sablotron::Situation();
 $sab->addParam($situa, 'part', 'styles');
 $sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
 open (HND, '>'.$TEMP.'/styles.xml');
+binmode(HND);
 print HND $sab->getResultArg('arg:/output');
 
 
