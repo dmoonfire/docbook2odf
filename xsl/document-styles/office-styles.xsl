@@ -49,10 +49,12 @@
 
 <xsl:template name="document-styles.office-styles">
 	
+	<xsl:call-template name="document-styles.office-styles.graphic"/>
 	<xsl:call-template name="document-styles.office-styles.paragraph"/>
 	<xsl:call-template name="document-styles.office-styles.heading"/>
 	<xsl:call-template name="document-styles.office-styles.title"/>
 	<xsl:call-template name="document-styles.office-styles.text"/>
+	
 	
 <!-- default table styles -->
 	<style:default-style style:family="table">
@@ -240,6 +242,59 @@
 		
 		</xsl:if>
 	
+</xsl:template>
+
+
+<xsl:template name="document-styles.office-styles.graphic">
+
+	<style:default-style
+		style:family="graphic">
+		<style:graphic-properties
+			draw:shadow-offset-x="0.3cm"
+			draw:shadow-offset-y="0.3cm"
+			draw:start-line-spacing-horizontal="0.283cm"
+			draw:start-line-spacing-vertical="0.283cm"
+			draw:end-line-spacing-horizontal="0.283cm"
+			draw:end-line-spacing-vertical="0.283cm"
+			style:flow-with-text="true"/>
+		<style:paragraph-properties
+			style:text-autospace="ideograph-alpha"
+			style:line-break="strict"
+			style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
+			<style:tab-stops/>
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:color="#000000"
+			style:font-name="F"
+			fo:font-size="11pt"
+			fo:language="sk"
+			fo:country="SK"
+			style:font-name-asian="F"
+			style:font-size-asian="12pt"
+			style:language-asian="en"
+			style:country-asian="US"
+			style:font-name-complex="F"
+			style:font-size-complex="12pt"
+			style:language-complex="en"
+			style:country-complex="US"/>
+	</style:default-style>
+	
+	<style:style
+		style:name="Graphics"
+		style:family="graphic">
+		<style:graphic-properties
+			text:anchor-type="paragraph"
+			svg:x="0cm"
+			svg:y="0cm"
+			style:wrap="dynamic"
+			style:number-wrapped-paragraphs="no-limit"
+			style:wrap-contour="false"
+			style:vertical-pos="top"
+			style:vertical-rel="paragraph"
+			style:horizontal-pos="center"
+			style:horizontal-rel="paragraph"/>
+	</style:style>
+
 </xsl:template>
 
 
