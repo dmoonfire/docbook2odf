@@ -63,17 +63,25 @@
 <xsl:template name="article" match="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	
+	<text:p
+		text:style-name="title-article">
+		<xsl:choose>
+			<xsl:when test="title">
+				<xsl:value-of select="title" />
+			</xsl:when>
+			<xsl:when test="articleinfo/title">
+				<xsl:value-of select="articleinfo/title" />
+			</xsl:when>
+			<xsl:otherwise/>
+		</xsl:choose>
+	</text:p>
+	
 	<xsl:apply-templates/>
 	
 </xsl:template>
 
 
-<xsl:template name="article.title" match="article/title">
-	<text:p
-		text:style-name="title-article">
-		<xsl:apply-templates/>
-	</text:p>
-</xsl:template>
+<xsl:template match="article/title" />
 
 
 <xsl:template name="article.subtitle" match="article/subtitle">
