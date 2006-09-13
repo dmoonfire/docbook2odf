@@ -1,0 +1,50 @@
+#!/usr/bin/perl
+=head1 NAME
+	
+	docbook2odf - DocBook to OpenDocument XSL Transformation utils
+	Copyright (C) 2006 Roman Fordinal
+	http://open.comsultia.com/docbook2odf/
+	
+=cut
+
+=head1 LICENSE
+	
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+=cut
+
+use strict;
+use File::Find;
+
+sub wanted_files
+{
+	my $file=$_;
+	my $dir=$File::Find::dir;
+	
+	return undef if $dir=~/\.svn/;
+	return undef unless $file=~/\.xml$/;
+	
+	print "$file\n";
+	
+	system("./docbook2odf --input-file $file --quiet --force --output-dir tests");
+	
+}
+
+
+my %options=
+(
+	'wanted'=>\&wanted_files,
+	'no_chdir'=>1
+);
+
+mkdir 'tests';
+
+find(\%options,'../tests/tests/');
