@@ -54,6 +54,7 @@ our $PATH_XSL = do
 };
 my $input;
 my $output;
+my $output_dir;
 my $help;
 my $quiet;
 my $debug;
@@ -75,6 +76,7 @@ my $result = GetOptions
 	(
 		"input-file=s"   => \$input,
 		"output-file=s"  => \$output,
+		"output-dir=s"   => \$output_dir,
 		"params=s"       => \$params,
 		"xsl-file=s"     => \$PATH_XSL,
 		"debug"          => \$debug,
@@ -93,6 +95,7 @@ if ($help)
 Arguments:
   --input-file        specify input docbook filename.
   --output-file       specify output opendocument filename.
+  --output-dir        specify output directory.
   --params            list of params (disabled).
   --xsl-file          use this xsl stylesheet instead.
   --debug             show debug messages.
@@ -119,10 +122,14 @@ if (!$output)
 	# if I run this script from commandline
 	# the output filename is in current workdir
 	# otherwise in directory of input filename (docbook)
-	if ($ENV{'TERM'})
+	if ($ENV{'TERM'} && !$output_dir)
 	{
 		$output_file=~s|^.*/||;
 		$output_file='./'.$output_file;
+	}
+	elsif ($output_dir)
+	{
+		$output_file=~s|^.*/||;
 	}
 	else
 	{
@@ -131,8 +138,11 @@ if (!$output)
 	$output_file=~s/\.(docbook|db|xml)$//;
 	$output_file.=".od";
 }
-my $output_dir;
-if ($output_file=~s|^(.*/)||)
+if ($output_dir)
+{
+	$output_dir=~s|/$||;
+}
+elsif ($output_file=~s|^(.*/)||)
 {
 	$output_dir=$1;
 	$output_dir=~s|/$||;
@@ -183,7 +193,8 @@ if (!$quiet)
 print "\n" unless $quiet;
 
 # create a temporary directory
-my $TEMP=$output_dir.'/'.$output_file.'.temp';
+#my $TEMP=$output_dir.'/'.$output_file.'.temp';
+my $TEMP='/tmp/docbook2odf-'.$$.'-'.$output_file.'.tmp';
 print "Creating TEMP directory ($TEMP)\n" if $debug;
 rmtree $TEMP if -e $TEMP; # delete TEMP directory if exists
 mkpath $TEMP;
@@ -326,7 +337,7 @@ do # post processing of content
 	$content=~s|([\xC2\x82]+)|'<text:s text:c="'.length($1).'"/>'|eg;
 };
 open (HND, '>'.$TEMP.'/content.xml');
-binmode(HND);
+#binmode(HND);
 print HND $content;
 
 # MANIFEST
@@ -359,13 +370,11 @@ if (!$debug)
 }
 
 # zipping directory
-chdir $TEMP;
-
 print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
 my $zip = Archive::Zip->new();
-$zip->addTree('.');
-print "saving zipped content into file '$output_dir/$output_file'\n";
-$zip->writeToFileNamed( '../'.$output_file );
+$zip->addTree($TEMP);
+print "saving zipped content into file '$output_dir/$output_file'\n" unless $quiet;
+$zip->writeToFileNamed( $output_dir.'/'.$output_file );
 
 if (!$debug)
 {
