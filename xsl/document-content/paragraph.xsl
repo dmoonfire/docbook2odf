@@ -153,13 +153,12 @@
 						
 						<!-- all next paragraph in listitem -->
 						<xsl:otherwise>
-							<xsl:text>para-padding</xsl:text>
-							<!--
+							<!--<xsl:text>para-padding</xsl:text>-->
 							<xsl:choose>
 								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
 								<xsl:otherwise>para-padding</xsl:otherwise>
 							</xsl:choose>
-							-->
+							
 						</xsl:otherwise>
 						
 					</xsl:choose>
