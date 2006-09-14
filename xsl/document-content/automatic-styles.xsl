@@ -307,11 +307,11 @@
 			<style:list-level-properties
 				text:space-before="0.5cm"
 				text:min-label-width="0.5cm"/>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="style:font-name">StarSymbol</xsl:attribute>
-				<xsl:attribute name="fo:font-size">200%</xsl:attribute>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
+			</style:text-properties>
 		</text:list-level-style-bullet>
 		<text:list-level-style-bullet
 			text:level="2"
@@ -321,11 +321,11 @@
 			<style:list-level-properties
 				text:space-before="1.0cm"
 				text:min-label-width="0.5cm"/>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="style:font-name">StarSymbol</xsl:attribute>
-				<xsl:attribute name="fo:font-size">200%</xsl:attribute>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
+			</style:text-properties>
 		</text:list-level-style-bullet>
 		<text:list-level-style-bullet
 			text:level="3"
@@ -335,11 +335,11 @@
 			<style:list-level-properties
 				text:space-before="1.5cm"
 				text:min-label-width="0.5cm"/>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="style:font-name">StarSymbol</xsl:attribute>
-				<xsl:attribute name="fo:font-size">200%</xsl:attribute>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
+			</style:text-properties>
 		</text:list-level-style-bullet>
 		<text:list-level-style-bullet
 			text:level="4"
@@ -349,11 +349,11 @@
 			<style:list-level-properties
 				text:space-before="2.0cm"
 				text:min-label-width="0.5cm"/>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="style:font-name">StarSymbol</xsl:attribute>
-				<xsl:attribute name="fo:font-size">200%</xsl:attribute>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
+			</style:text-properties>
 		</text:list-level-style-bullet>
 		<text:list-level-style-bullet
 			text:level="5"
@@ -363,11 +363,25 @@
 			<style:list-level-properties
 				text:space-before="2.5cm"
 				text:min-label-width="0.5cm"/>
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="style:font-name">StarSymbol</xsl:attribute>
-				<xsl:attribute name="fo:font-size">200%</xsl:attribute>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
-			</xsl:element>
+			</style:text-properties>
+		</text:list-level-style-bullet>
+		<text:list-level-style-bullet
+			text:level=""
+			text:style-name="bullet1"
+			style:num-suffix=" "
+			text:bullet-char="•">
+			<style:list-level-properties
+				text:space-before="3.cm"
+				text:min-label-width="0.5cm"/>
+			<style:text-properties
+				style:font-name="StarSymbol"
+				fo:font-size="200%">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			</style:text-properties>
 		</text:list-level-style-bullet>
 	</text:list-style>
 	
@@ -425,6 +439,16 @@
 				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
+		<text:list-level-style-number
+			text:level="6"
+			text:style-name="numbering1"
+			style:num-suffix="."
+			style:num-format="1"
+			text:display-levels="1">
+			<style:list-level-properties 
+				text:space-before="3.0cm"
+				text:min-label-distance="0.3cm"/>
+		</text:list-level-style-number>
 	</text:list-style>
 	
 	<text:list-style style:name="list-loweralpha">
@@ -475,6 +499,16 @@
 			text:display-levels="1">
 			<style:list-level-properties 
 				text:space-before="2.5cm"
+				text:min-label-distance="0.3cm"/>
+		</text:list-level-style-number>
+		<text:list-level-style-number
+			text:level="6"
+			text:style-name="numbering1"
+			style:num-suffix=")"
+			style:num-format="a"
+			text:display-levels="1">
+			<style:list-level-properties 
+				text:space-before="3.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
@@ -530,6 +564,16 @@
 				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
+		<text:list-level-style-number
+			text:level="6"
+			text:style-name="numbering1"
+			style:num-suffix="."
+			style:num-format="i"
+			text:display-levels="1">
+			<style:list-level-properties 
+				text:space-before="3.0cm"
+				text:min-label-distance="0.3cm"/>
+		</text:list-level-style-number>
 	</text:list-style>
 	
 	
@@ -583,6 +627,16 @@
 				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
+		<text:list-level-style-number
+			text:level="6"
+			text:style-name="numbering1"
+			style:num-suffix="."
+			style:num-format="A"
+			text:display-levels="1">
+			<style:list-level-properties 
+				text:space-before="3.0cm"
+				text:min-label-distance="0.3cm"/>
+		</text:list-level-style-number>
 	</text:list-style>
 	
 	<text:list-style style:name="list-upperroman">
@@ -633,6 +687,16 @@
 			text:display-levels="1">
 			<style:list-level-properties 
 				text:space-before="2.5cm"
+				text:min-label-distance="0.3cm"/>
+		</text:list-level-style-number>
+		<text:list-level-style-number
+			text:level="6"
+			text:style-name="numbering1"
+			style:num-suffix="."
+			style:num-format="I"
+			text:display-levels="1">
+			<style:list-level-properties 
+				text:space-before="3.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
