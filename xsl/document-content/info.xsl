@@ -71,7 +71,7 @@
 			<xsl:attribute name="office:value-type">string</xsl:attribute>
 			<xsl:attribute name="table:style-name">table-info.cell-H</xsl:attribute>
 			<xsl:attribute name="table:number-columns-spanned">2</xsl:attribute>
-			<xsl:element name="text:h">
+			<xsl:element name="text:p">
 				<xsl:attribute name="text:style-name">Heading-para</xsl:attribute>
 				<xsl:value-of select="name()"/>:
 			</xsl:element>
