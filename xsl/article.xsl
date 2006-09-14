@@ -63,18 +63,26 @@
 <xsl:template name="article" match="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	
-	<text:p
-		text:style-name="title-article">
-		<xsl:choose>
-			<xsl:when test="title">
-				<xsl:value-of select="title" />
-			</xsl:when>
-			<xsl:when test="articleinfo/title">
-				<xsl:value-of select="articleinfo/title" />
-			</xsl:when>
-			<xsl:otherwise/>
-		</xsl:choose>
-	</text:p>
+	<!-- when this document is only article, render article title as title of document         -->
+	<!-- when article is only part of document, render article as only one chapter of document -->
+	<xsl:choose>
+		<xsl:when test="/article">
+			<text:p
+				text:style-name="title-article">
+				<xsl:value-of select="title|articleinfo/title"/>
+			</text:p>
+		</xsl:when>
+		<xsl:otherwise>
+			<text:p text:style-name="title-chapter">
+				<xsl:text>Article</xsl:text>
+			</text:p>
+			<text:h
+				text:outline-level="1"
+				text:style-name="Heading1">
+				<xsl:value-of select="title|articleinfo/title"/>
+			</text:h>
+		</xsl:otherwise>
+	</xsl:choose>
 	
 	<xsl:apply-templates/>
 	
