@@ -370,7 +370,7 @@
 			</style:text-properties>
 		</text:list-level-style-bullet>
 		<text:list-level-style-bullet
-			text:level=""
+			text:level="6"
 			text:style-name="bullet1"
 			style:num-suffix=" "
 			text:bullet-char="•">
