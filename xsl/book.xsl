@@ -54,6 +54,11 @@
 		
 		<xsl:call-template name="CI.office-text"/>
 		
+		<text:p
+			text:style-name="title-book">
+			<xsl:value-of select="title|bookinfo/title"/>
+		</text:p>
+		
 		<xsl:apply-templates/>
 		
 	</xsl:element>
@@ -61,12 +66,7 @@
 </xsl:template>
 
 
-<xsl:template match="/book/title">
-	<text:p
-		text:style-name="title-book">
-		<xsl:apply-templates/>
-	</text:p>
-</xsl:template>
+<xsl:template match="/book/title" />
 
 
 <xsl:template match="/book/subtitle">
