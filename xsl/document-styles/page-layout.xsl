@@ -48,54 +48,58 @@
 	<!-- ISO STANDARDIZED A4,A3,...B4,... -->
 	
 <!-- A4 -->
-	<xsl:element name="style:page-layout">
-		<xsl:attribute name="style:name">A4</xsl:attribute>
-		<xsl:element name="style:page-layout-properties">
-			<xsl:attribute name="fo:page-width">21cm</xsl:attribute>
-			<xsl:attribute name="fo:page-height">29.7cm</xsl:attribute>
+	<style:page-layout
+		style:name="A4">
+		<style:page-layout-properties>
+			<xsl:attribute name="fo:page-width"><xsl:value-of select="$layout.A4.width"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			<xsl:attribute name="fo:page-height"><xsl:value-of select="$layout.A4.height"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$layout.A4.margin-top"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom"><xsl:value-of select="$layout.A4.margin-bottom"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-left"><xsl:value-of select="$layout.A4.margin-left"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-right"><xsl:value-of select="$layout.A4.margin-right"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
 			<xsl:attribute name="style:num-format">1</xsl:attribute>
 			<xsl:attribute name="style:print-orientation">portrait</xsl:attribute>
-			<xsl:attribute name="fo:margin-top">0.97cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.61cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-left">1.75cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-right">2.00cm</xsl:attribute>
 			<xsl:attribute name="style:writing-mode">lr-tb</xsl:attribute>
 			<xsl:attribute name="style:footnote-max-height">0cm</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="style:footer-style">
-			<xsl:element name="style:header-footer-properties">
-				<xsl:attribute name="fo:min-height">1.5cm</xsl:attribute>
-				<xsl:attribute name="fo:margin-left">0cm</xsl:attribute>
-				<xsl:attribute name="fo:margin-right">0cm</xsl:attribute>
-				<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>
-				<xsl:attribute name="fo:border-top">0.002cm solid #000000</xsl:attribute>
-				<xsl:attribute name="fo:border-bottom">none</xsl:attribute>
-				<xsl:attribute name="fo:border-left">none</xsl:attribute>
-				<xsl:attribute name="fo:border-right">none</xsl:attribute>
-				<xsl:attribute name="fo:padding">0cm</xsl:attribute>
-				<xsl:attribute name="style:shadow">none</xsl:attribute>
-				<xsl:attribute name="style:dynamic-spacing">false</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
-	</xsl:element>
+		</style:page-layout-properties>
+		<style:header-style>
+			<style:header-footer-properties>
+				<xsl:attribute name="fo:min-height"><xsl:value-of select="$layout.A4.header.min-height"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-top"><xsl:value-of select="$layout.A4.header.margin-top"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom"><xsl:value-of select="$layout.A4.header.margin-bottom"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-left"><xsl:value-of select="$layout.A4.header.margin-left"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-right"><xsl:value-of select="$layout.A4.header.margin-right"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+			</style:header-footer-properties>
+		</style:header-style>
+		<style:footer-style>
+			<style:header-footer-properties>
+				<xsl:attribute name="fo:min-height"><xsl:value-of select="$layout.A4.footer.min-height"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-top"><xsl:value-of select="$layout.A4.footer.margin-top"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom"><xsl:value-of select="$layout.A4.footer.margin-bottom"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-left"><xsl:value-of select="$layout.A4.footer.margin-left"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:margin-right"><xsl:value-of select="$layout.A4.footer.margin-right"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
+				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			</style:header-footer-properties>
+		</style:footer-style>
+	</style:page-layout>
 	
 <!-- A5 -->
-	<xsl:element name="style:page-layout">
-		<xsl:attribute name="style:name">A5</xsl:attribute>
-		<xsl:element name="style:page-layout-properties">
-			<xsl:attribute name="fo:page-width">14.8cm</xsl:attribute>
-			<xsl:attribute name="fo:page-height">21.0cm</xsl:attribute>
+	<style:page-layout
+		style:name="A5">
+		<style:page-layout-properties>
+			<xsl:attribute name="fo:page-width"><xsl:value-of select="$layout.A5.width"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
+			<xsl:attribute name="fo:page-height"><xsl:value-of select="$layout.A5.height"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$layout.A5.margin-top"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom"><xsl:value-of select="$layout.A5.margin-bottom"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-left"><xsl:value-of select="$layout.A5.margin-left"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-right"><xsl:value-of select="$layout.A5.margin-right"/><xsl:value-of select="$layout.A5.units"/></xsl:attribute>
 			<xsl:attribute name="style:num-format">1</xsl:attribute>
 			<xsl:attribute name="style:print-orientation">portrait</xsl:attribute>
-			<xsl:attribute name="fo:margin-top">0.97cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.61cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-left">1.75cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-right">2.00cm</xsl:attribute>
 			<xsl:attribute name="style:writing-mode">lr-tb</xsl:attribute>
 			<xsl:attribute name="style:footnote-max-height">0cm</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="style:footer-style">
-			<xsl:element name="style:header-footer-properties">
+		</style:page-layout-properties>
+		<style:footer-style>
+			<style:header-footer-properties>
 				<xsl:attribute name="fo:min-height">1.5cm</xsl:attribute>
 				<xsl:attribute name="fo:margin-left">0cm</xsl:attribute>
 				<xsl:attribute name="fo:margin-right">0cm</xsl:attribute>
@@ -107,9 +111,9 @@
 				<xsl:attribute name="fo:padding">0cm</xsl:attribute>
 				<xsl:attribute name="style:shadow">none</xsl:attribute>
 				<xsl:attribute name="style:dynamic-spacing">false</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
-	</xsl:element>
+			</style:header-footer-properties>
+		</style:footer-style>
+	</style:page-layout>
 	
 <!-- presentation - Screen -->
 	

@@ -505,7 +505,7 @@
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
 			<xsl:if test="/book">
 				<xsl:attribute name="fo:break-before">page</xsl:attribute>
-				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 			</xsl:if>
 		</style:paragraph-properties>
 		<style:text-properties>
@@ -650,7 +650,7 @@
 		style:display-name="Title Book">
 		<style:paragraph-properties
 			fo:padding-top="0.6cm">
-			<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="300%">
@@ -667,7 +667,7 @@
 		<style:paragraph-properties
 			fo:padding-top="0.6cm"
 			fo:break-before="page">
-			<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="300%">
@@ -683,7 +683,7 @@
 		style:display-name="Title Article">
 		<style:paragraph-properties
 			fo:padding-top="0.6cm">
-			<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="150%">
