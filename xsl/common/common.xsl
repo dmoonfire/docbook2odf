@@ -44,6 +44,28 @@
 	office:version="1.0">
 
 
+<xsl:template name="document.title">
+	<!-- get title of document -->
+	<xsl:value-of select="
+		/book/title |
+		/book/bookinfo/title |
+		/article/title |
+		/article/articleinfo/title |
+		/chapter/title |
+		/chapter/chapterinfo/title |
+		/appendix/title |
+		/appendix/appendixinfo/title |
+		/part/title |
+		/part/partinfo/title |
+		/glossary/title |
+		/glossary/glossaryinfo/title |
+		/refentry/refentryinfo/title |
+		/section/title |
+		/section/sectioninfo/title
+	"/>
+</xsl:template>
+
+
 <xsl:template name="section.level">
 	<!-- compute level of section -->
 	<xsl:choose>

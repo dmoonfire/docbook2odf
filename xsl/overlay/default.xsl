@@ -178,12 +178,7 @@
 			<table:table-row>
 				<table:table-cell office:value-type="string">
 					<text:p text:style-name="CI.footer-start">
-						<xsl:value-of select="
-							/book/title |
-							/book/bookinfo/title |
-							/article/title |
-							/article/articleinfo/title
-						"/>
+						<xsl:call-template name="document.title"/>
 					</text:p>
 					<text:p text:style-name="CI.footer-start"><xsl:value-of select="$CI.text.copyright"/></text:p>
 				</table:table-cell>
@@ -311,7 +306,7 @@
 	<xsl:call-template name="CI.presentation.titlepage"/>
 </xsl:template>
 
-
+<xsl:template name="CI.document-styles.office-styles" />
 
 </xsl:stylesheet>
 

@@ -55,7 +55,6 @@
 	<xsl:call-template name="document-styles.office-styles.title"/>
 	<xsl:call-template name="document-styles.office-styles.text"/>
 	
-	
 <!-- default table styles -->
 	<style:default-style style:family="table">
 		<style:table-properties table:border-model="separating"/>
@@ -241,6 +240,8 @@
 		<xsl:if test="/slides">
 		
 		</xsl:if>
+		
+	<xsl:call-template name="CI.document-styles.office-styles"/>
 	
 </xsl:template>
 
