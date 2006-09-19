@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=docbook2odf
 MimeType=application/docbook+xml;
-Exec=docbook2odf --input-file  %f
+Exec=docbook2odf --force --input-file  %f
 Type=Application
 Terminal=false
 NoDisplay=true
@@ -15,5 +15,5 @@ Name[en]=Convert to OpenDocument
 Name[sk]=Zkonvertovat do OpenDocument-u
 Name[cs]=Skonvertovat do OpenDocument-u
 Icon=odf
-Exec=docbook2odf --input-file %U
+Exec=docbook2odf --force --input-file %U
 
