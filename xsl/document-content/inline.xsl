@@ -70,6 +70,14 @@
 </xsl:template>
 
 
+<xsl:template match="ulink">
+	<text:a xlink:type="simple">
+		<xsl:attribute name="xlink:href"><xsl:value-of select="@url"/></xsl:attribute>
+		<xsl:apply-templates/>
+	</text:a>
+</xsl:template>
+
+
 <xsl:template match="emphasis">
 	<text:span>
 		<xsl:attribute name="text:style-name">
