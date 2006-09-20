@@ -1157,13 +1157,16 @@
 	</style:style>
 	
 	<style:style style:name="table-info.cell-H" style:family="table-cell">
-		<style:table-cell-properties>
+		<style:table-cell-properties
+			fo:padding-left="0.3cm">
+			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color.bg2"/></xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
 	
 	<style:style style:name="table-info.cell-A" style:family="table-cell">
 		<style:table-cell-properties>
+			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color.bg2"/></xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
