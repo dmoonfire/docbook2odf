@@ -44,39 +44,45 @@
 	office:version="1.0">
 
 
-<xsl:template match="bookinfo|chapterinfo">
+<xsl:template match="bookinfo|chapterinfo|articleinfo">
 	
-	<xsl:element name="table:table">
-		<xsl:attribute name="table:style-name">table-info</xsl:attribute>
-		<xsl:element name="table:table-column">
-			<xsl:attribute name="table:style-name">table-info.column-A</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="table:table-column">
-			<xsl:attribute name="table:style-name">table-info.column-B</xsl:attribute>
-		</xsl:element>
+	<table:table
+		table:style-name="table-info">
+		<table:table-column
+			table:style-name="table-info.column-A"/>
+		<table:table-column
+			table:style-name="table-info.column-B"/>
 		
 		<xsl:apply-templates/>
 		
-	</xsl:element>
+		<table:table-row>
+			<table:table-cell
+				office:value-type="string"
+				table:style-name="table-info.cell-H"
+				table:number-columns-spanned="2">
+			</table:table-cell>
+		</table:table-row>
+		
+	</table:table>
 	
 </xsl:template>
 
 
-<xsl:template match="bookinfo/*|chapterinfo/*">
+<xsl:template match="bookinfo/*|chapterinfo/*|articleinfo/*">
 	
 	<xsl:variable name="name" select="name()"/>
 	
-	<xsl:element name="table:table-row">
-		<xsl:element name="table:table-cell">
-			<xsl:attribute name="office:value-type">string</xsl:attribute>
-			<xsl:attribute name="table:style-name">table-info.cell-H</xsl:attribute>
-			<xsl:attribute name="table:number-columns-spanned">2</xsl:attribute>
-			<xsl:element name="text:p">
-				<xsl:attribute name="text:style-name">Heading-para</xsl:attribute>
-				<xsl:value-of select="name()"/>:
-			</xsl:element>
-		</xsl:element>
-	</xsl:element>
+	<table:table-row>
+		<table:table-cell
+			office:value-type="string"
+			table:style-name="table-info.cell-H"
+			table:number-columns-spanned="2">
+			<text:p
+				text:style-name="Heading-para">
+				<xsl:value-of select="name()"/><xsl:text>:</xsl:text>
+			</text:p>
+		</table:table-cell>
+	</table:table-row>
 	
 	<table:table-row>
 		<xsl:comment>empty cell (only used for padding content)</xsl:comment>

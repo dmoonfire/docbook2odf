@@ -44,8 +44,6 @@
 	office:version="1.0">
 
 
-<!-- disabled -->
-<xsl:template match="articleinfo"/>
 
 
 </xsl:stylesheet>
