@@ -483,11 +483,12 @@
 		<style:paragraph-properties
 			text:line-number="1">
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
 		</style:paragraph-properties>
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">110%</xsl:when>
+					<xsl:when test="/article">140%</xsl:when>
 					<xsl:otherwise>200%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -505,6 +506,7 @@
 		<style:paragraph-properties
 			text:line-number="2">
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom">0.2cm</xsl:attribute>
 			<xsl:if test="/book">
 				<xsl:attribute name="fo:break-before">page</xsl:attribute>
 				<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
@@ -513,7 +515,7 @@
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">100%</xsl:when>
+					<xsl:when test="/article">120%</xsl:when>
 					<xsl:otherwise>175%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -535,7 +537,7 @@
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">100%</xsl:when>
+					<xsl:when test="/article">110%</xsl:when>
 					<xsl:otherwise>150%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -609,7 +611,7 @@
 		style:name="Heading-para"
 		style:display-name="Paragraph Heading">
 		<style:paragraph-properties>
-			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$para.padding"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-top">0.35cm</xsl:attribute>
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="100%">
@@ -652,7 +654,6 @@
 		style:display-name="Title Book">
 		<style:paragraph-properties
 			fo:padding-top="0.6cm">
-			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="300%">
@@ -669,14 +670,13 @@
 		<style:paragraph-properties
 			fo:padding-top="0.6cm"
 			fo:break-before="page">
-			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="300%">
 		</style:text-properties>
 	</style:style>
 		
-	<!-- title-book -->
+	<!-- title-article -->
 	<style:style
 		style:name="title-article"
 		style:family="paragraph"
@@ -685,10 +685,9 @@
 		style:display-name="Title Article">
 		<style:paragraph-properties
 			fo:padding-top="0.6cm">
-			<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 		</style:paragraph-properties>
 		<style:text-properties
-			fo:font-size="150%">
+			fo:font-size="160%">
 		</style:text-properties>
 	</style:style>
 	
