@@ -305,11 +305,12 @@
 	<style:default-style
 		style:family="paragraph">
 		<style:paragraph-properties
-			fo:text-align="left"
 			style:text-autospace="ideograph-alpha"
 			style:punctuation-wrap="hanging"
 			style:line-break="strict"
-			style:writing-mode="page"/>
+			style:writing-mode="page">
+			<xsl:attribute name="fo:text-align"><xsl:value-of select="$para.text-align"/></xsl:attribute>
+		</style:paragraph-properties>
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size"><xsl:value-of select="$style.font-size.default"/></xsl:attribute>
 			<xsl:attribute name="fo:color"><xsl:value-of select="$style.font-color"/></xsl:attribute>
