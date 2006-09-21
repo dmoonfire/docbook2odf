@@ -458,6 +458,7 @@
 		style:display-name="Heading Default">
 		<style:paragraph-properties
 			style:shadow="none"
+			fo:keep-with-next="always"
 			text:number-lines="true"/>
 		<style:text-properties
 			fo:font-weight="bold">
