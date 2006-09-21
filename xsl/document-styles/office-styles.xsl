@@ -345,6 +345,20 @@
 	
 <!-- END-USER STYLES -->
 	
+	<style:style
+		style:name="para"
+		style:display-name="Paragraph"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties/>
+		<style:text-properties>
+			<xsl:if test="/slides">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color-presentation_para"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size"><xsl:value-of select="$style.font-size.presentation.para"/></xsl:attribute>
+			</xsl:if>
+		</style:text-properties>
+	</style:style>
+	
 <!-- para-padding -->
 	<style:style
 		style:name="para-padding"
@@ -507,7 +521,7 @@
 		<style:paragraph-properties
 			text:line-number="2">
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
-			<xsl:attribute name="fo:margin-bottom">0.2cm</xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
 			<xsl:if test="/book">
 				<xsl:attribute name="fo:break-before">page</xsl:attribute>
 				<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
@@ -615,7 +629,35 @@
 			<xsl:attribute name="fo:margin-top">0.35cm</xsl:attribute>
 		</style:paragraph-properties>
 		<style:text-properties
+			fo:font-weight="bold"
 			fo:font-size="100%">
+			<xsl:attribute name="fo:color">
+				<xsl:value-of select="$CI.style.color"/>
+			</xsl:attribute>
+			<xsl:attribute name="style:font-name">
+				<xsl:value-of select="$style.font-name.bold"/>
+			</xsl:attribute>
+		</style:text-properties>
+	</style:style>
+	
+	<style:style
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text"
+		style:name="para-title"
+		style:display-name="Paragraph Title">
+		<style:paragraph-properties>
+			<xsl:attribute name="fo:margin-top">0.35cm</xsl:attribute>
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:font-weight="bold"
+			fo:font-size="100%">
+			<xsl:attribute name="fo:color">
+				<xsl:value-of select="$CI.style.color"/>
+			</xsl:attribute>
+			<xsl:attribute name="style:font-name">
+				<xsl:value-of select="$style.font-name.bold"/>
+			</xsl:attribute>
 		</style:text-properties>
 	</style:style>
 	

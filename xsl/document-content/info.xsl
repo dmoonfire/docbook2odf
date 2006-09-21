@@ -78,7 +78,7 @@
 			table:style-name="table-info.cell-H"
 			table:number-columns-spanned="2">
 			<text:p
-				text:style-name="Heading-para">
+				text:style-name="para-title">
 				<xsl:value-of select="name()"/><xsl:text>:</xsl:text>
 			</text:p>
 		</table:table-cell>
@@ -97,7 +97,7 @@
 			<xsl:choose>
 				<!-- when element has no childs -->
 				<xsl:when test="count(*)=0">
-					<text:p text:style-name="para-padding">
+					<text:p text:style-name="para">
 						<!-- can be continue formatted as inline element -->
 						<xsl:apply-templates/>
 					</text:p>
@@ -122,7 +122,7 @@
 
 
 <xsl:template match="corpauthor" mode="info">
-	<text:p text:style-name="para-padding">
+	<text:p text:style-name="para">
 		<text:span text:style-name="text-bold">
 			<xsl:apply-templates/>
 		</text:span>
@@ -131,7 +131,7 @@
 
 
 <xsl:template match="author" mode="info">
-	<text:p text:style-name="para-padding">
+	<text:p text:style-name="para">
 	
 		<!-- name of author -->
 		<xsl:if test="firstname">
