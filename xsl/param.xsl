@@ -78,6 +78,7 @@
 	<xsl:param name="layout.A4.footer.margin-right">0</xsl:param>
 	<xsl:param name="layout.A4.footer.margin-top">0.5</xsl:param>
 	<xsl:param name="layout.A4.footer.margin-bottom">0</xsl:param>
+	<xsl:param name="layout.A4.footer.border-top">0.002cm solid #000000</xsl:param>
 	<!--A5-->
 	<xsl:param name="layout.A5.units">cm</xsl:param>
 	<xsl:param name="layout.A5.width">14.8</xsl:param>
@@ -96,6 +97,7 @@
 	<xsl:param name="layout.A5.footer.margin-right">0</xsl:param>
 	<xsl:param name="layout.A5.footer.margin-top">0.5</xsl:param>
 	<xsl:param name="layout.A5.footer.margin-bottom">0</xsl:param>
+	<xsl:param name="layout.A5.footer.border-top">0.002cm solid #000000</xsl:param>
 	<!--screen-->
 	<!--...-->
 	

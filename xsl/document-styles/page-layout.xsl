@@ -78,7 +78,7 @@
 				<xsl:attribute name="fo:margin-bottom"><xsl:value-of select="$layout.A4.footer.margin-bottom"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
 				<xsl:attribute name="fo:margin-left"><xsl:value-of select="$layout.A4.footer.margin-left"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
 				<xsl:attribute name="fo:margin-right"><xsl:value-of select="$layout.A4.footer.margin-right"/><xsl:value-of select="$layout.A4.units"/></xsl:attribute>
-				<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:border-top"><xsl:value-of select="$layout.A4.footer.border-top"/></xsl:attribute>
 			</style:header-footer-properties>
 		</style:footer-style>
 	</style:page-layout>
