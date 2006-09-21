@@ -63,9 +63,6 @@
 <xsl:include href="common/common.xsl"/>
 
 <!-- http://www.docbook.org/tdg/en/html-ng/ -->
-<xsl:include href="article.xsl"/>
-<xsl:include href="book.xsl"/>
-<xsl:include href="slides.xsl"/>
 
 <!-- OVERLAY WITH CORPORATE IDENTITY OR ANYTHING ELSE -->
 <xsl:include href="overlay/default.xsl"/>

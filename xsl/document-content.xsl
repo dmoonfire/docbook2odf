@@ -43,9 +43,19 @@
 	office:class="text"
 	office:version="1.0">
 	
+<!-- document types -->
+<xsl:include href="document-content/book.xsl"/>
+<xsl:include href="document-content/article.xsl"/>
+<xsl:include href="document-content/chapter.xsl"/>
+<xsl:include href="document-content/slides.xsl"/>
+
+<!-- automatic styles in content.xsl -->
 <xsl:include href="document-content/automatic-styles.xsl"/>
-	
+
+<!-- info blocks bookinfo, articleinfo, blockinfo,... -->
 <xsl:include href="document-content/info.xsl"/>
+
+<!-- other tags -->
 <xsl:include href="document-content/paragraph.xsl"/>
 <xsl:include href="document-content/block.xsl"/>
 <xsl:include href="document-content/formal.xsl"/>

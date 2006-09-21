@@ -44,10 +44,6 @@
 	office:version="1.0">
 
 
-<xsl:include href="document-content/chapter.xsl"/>
-<xsl:include href="document-content/bookinfo.xsl"/>
-
-
 <xsl:template match="book">
 	
 	<xsl:element name="office:text">
