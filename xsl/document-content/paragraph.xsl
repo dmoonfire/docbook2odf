@@ -126,7 +126,7 @@
 			<xsl:choose>
 				
 				<!-- deep magic part -->
-				<xsl:when test="parent::listitem">
+				<xsl:when test="parent::listitem|parent::step">
 					<xsl:choose>
 						
 						<!-- if paragraph is first in listitem                                 -->

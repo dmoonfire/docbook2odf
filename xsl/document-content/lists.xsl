@@ -44,6 +44,26 @@
 	office:version="1.0">
 
 
+<xsl:template match="task">
+	<xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="procedure">
+	<xsl:element name="text:list">
+		<xsl:attribute name="text:style-name">list-arabic</xsl:attribute>
+		<xsl:apply-templates/>
+	</xsl:element>
+</xsl:template>
+
+
+<xsl:template match="task/title">
+	<xsl:element name="text:h">
+		<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
+		<xsl:value-of select="."/>
+	</xsl:element>
+</xsl:template>
+
 
 <xsl:template match="itemizedlist">
 	
@@ -60,7 +80,9 @@
 	</xsl:element>
 </xsl:template>
 
+
 <xsl:template match="itemizedlist/title|orderedlist/title"/>
+
 
 <xsl:template match="orderedlist">
 	
@@ -90,7 +112,7 @@
 </xsl:template>
 
 
-<xsl:template match="listitem">
+<xsl:template match="listitem|step">
 	<xsl:element name="text:list-item">
 		<xsl:apply-templates/>
 	</xsl:element>
