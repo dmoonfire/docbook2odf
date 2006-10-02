@@ -522,7 +522,7 @@
 			text:line-number="2">
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
 			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-			<xsl:if test="/book">
+			<xsl:if test="/book|/chapter">
 				<xsl:attribute name="fo:break-before">page</xsl:attribute>
 				<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 			</xsl:if>
