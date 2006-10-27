@@ -272,6 +272,8 @@ if ($debug)
 	print HND $content;
 }
 
+print "\n" if $debug;
+
 do # post processing of content
 {
 	print "content postprocess\n" if $debug;
@@ -279,12 +281,22 @@ do # post processing of content
 	
 	my @uris;
 	my $i=1;
-	while ($content=~s|(xlink:href)="(.*?)"|xlink:href=<!TMPHREF-$i!>|)
+	while ($content=~s|<([\w:]+)([^<]*?)(xlink:href)="(.*?)"|<$1$2xlink:href=<!TMPHREF-$i!>|)
 	{
-		my $href=$1;
-		my $uri=$2;
+		my $tag=$1;
+		my $oth=$2;
+		my $href=$3;
+		my $uri=$4;
 		
-		print "postprocessing $href\[$i]='$uri'\n" if $debug;
+		print "-postprocessing $href\[$i]='$uri' in tag '$tag'\n" if $debug;
+		
+		if ($tag ne "draw:image")
+		{
+			$uris[$i]=$4;
+			$i++;
+			next;
+		}
+		
 		my $ext=$uri;$ext=~s|^.*\.||;
 		if ($uri=~/^\//)
 		{
@@ -295,14 +307,15 @@ do # post processing of content
 			# uri processing
 			$uri=$input_dir."/".$uri;
 		}
+		
 		my $filename=sprintf("%07d",$i);
-		$uris[$i]=$filename.".".$ext;
+		$uris[$i]='Pictures/'.$filename.".".$ext;
 		my $dest=$TEMP.'/Pictures/'.$filename.'.'.$ext;
-		print "copy from:'$uri' dest:'$dest'\n" if $debug;
+		print "-copy '$uri'->'$dest'\n" if $debug;
 		copy($uri,$dest);
 		$i++;
 	}
-	$content=~s|<!TMPHREF-(\d+)!>|"Pictures/$uris[$1]"|g;
+	$content=~s|<!TMPHREF-(\d+)!>|"$uris[$1]"|g;
 	
 	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
 	{
@@ -336,6 +349,8 @@ do # post processing of content
 	# convert alternative nbsp character to ODF spaces
 	$content=~s|([\xC2\x82]+)|'<text:s text:c="'.length($1).'"/>'|eg;
 };
+print "\n" if $debug;
+
 open (HND, '>'.$TEMP.'/content.xml');
 #binmode(HND);
 print HND $content;
@@ -373,6 +388,9 @@ if (!$debug)
 print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
 my $zip = Archive::Zip->new();
 $zip->addTree($TEMP);
+
+print "\n" if $debug;
+
 print "saving zipped content into file '$output_dir/$output_file'\n" unless $quiet;
 $zip->writeToFileNamed( $output_dir.'/'.$output_file );
 
