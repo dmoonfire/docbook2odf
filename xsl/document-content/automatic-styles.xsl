@@ -106,7 +106,7 @@
 		</xsl:element>
 	</xsl:element>
 	
-	<xsl:if test="/article|/book">
+	<xsl:if test="/article|/book|/chapter">
 	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">
@@ -305,7 +305,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
@@ -319,7 +319,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
@@ -333,7 +333,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
@@ -347,7 +347,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
@@ -361,7 +361,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
@@ -375,7 +375,7 @@
 			style:num-suffix=" "
 			text:bullet-char="•">
 			<style:list-level-properties
-				text:space-before="3.cm"
+				text:space-before="2.5cm"
 				text:min-label-width="0.5cm"/>
 			<style:text-properties
 				style:font-name="StarSymbol"
