@@ -22,6 +22,7 @@ Depends: perl, perlmagick, libarchive-zip-perl, libxml-sablot-perl
 Installed-Size: 400
 Maintainer: Roman Fordinal <fordinal@webcom.sk>
 Description: XSLT based conversions from docbook to Oasis Open Document." > ${DIR}/DEBIAN/control
+chmod -R 755 ${DIR}/DEBIAN
 
 # Manual page
 mkdir -vp ${DIR}/usr/share/man/man1
@@ -44,4 +45,4 @@ cp utils/docbook2odf ${DIR}/usr/bin
 dpkg-deb -b ${DIR} docbook2odf_${VERSION}.deb
 
 # CLEANUP
-rm -rf ${DIR} 2> /dev/null
+#rm -rf ${DIR} 2> /dev/null
