@@ -45,10 +45,10 @@
 
 
 <xsl:template match="formalpara">
-	<text:h
+	<text:p
 		text:style-name="Heading-para">
 		<xsl:value-of select="title"/>
-	</text:h>
+	</text:p>
 	<xsl:apply-templates/>
 </xsl:template>
 
