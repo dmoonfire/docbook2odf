@@ -43,57 +43,68 @@
 	office:class="text"
 	office:version="1.0">
 
+<!-- ako je to so stylmi a headingmi (sorry for only slovak text)
+
+Takze, automaticky obsah (napr. v OpenOffice.org pri ukladani do PDF) sa generuje z <text:h>,
+takze vsetko co chcem mat v obsahu defaultne, ako section alebo chapter, musi mat <text:h>.
+
+Ostatne veci ako tabulky a zoznamy musia mat title v <text:p>. Pokial tieto veci chcem do obsahu,
+musim generovat obsah do dokumentu na zaklade stylov, mozem teda ziskat automaticky obsah ako zoznam
+vsetkych tabuliek, alebo taskov, ci zoznamov.
+
+Aby som bol schopny vygenerovat tieto specializovane zoznamy, potrebujem pre kazdy typ zoznamu specialny
+styl headingu. Napr. pre tabulku potrebujem Heading-table, pre task potrebujem Heading-task
+
+Taktiez je mozne pouzit znacky pre indexovanie TOC
+
+The <text:toc-mark-start> element marks the start of a table of content index entry. The
+ID specified by the text:id attribute must be unique except for the matching index mark end
+element. There must be an end element to match the start element located in the same
+paragraph, with the start element appearing first.
+
+
+-->
 
 <xsl:template match="task">
 	<xsl:apply-templates/>
 </xsl:template>
 
-
-<xsl:template match="procedure">
-	<xsl:element name="text:list">
-		<xsl:attribute name="text:style-name">list-arabic</xsl:attribute>
+<xsl:template match="task/title">
+	<text:p
+		text:style-name="Heading-small">
 		<xsl:apply-templates/>
-	</xsl:element>
+	</text:p>
 </xsl:template>
 
+<xsl:template match="taskprerequisites">
+	<xsl:apply-templates/>
+</xsl:template>
 
-<xsl:template match="task/title">
-	<xsl:element name="text:h">
-		<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
-		<xsl:value-of select="."/>
-	</xsl:element>
+<xsl:template match="procedure">
+	<!-- apply all, only not step -->
+	<xsl:apply-templates/>
+	<text:list
+		text:style-name="list-arabic">
+		<xsl:apply-templates mode="list"/>
+	</text:list>
 </xsl:template>
 
 
 <xsl:template match="itemizedlist">
-	
-	<xsl:if test="title">
-		<xsl:element name="text:h">
-			<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
-			<xsl:value-of select="title"/>
-		</xsl:element>
-	</xsl:if>
-	
-	<xsl:element name="text:list">
-		<xsl:attribute name="text:style-name">list-default</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
+	<!-- apply all, only not listitem -->
+	<xsl:apply-templates/>
+	<text:list
+		text:style-name="list-default">
+		<!-- apply only listitem -->
+		<xsl:apply-templates mode="list"/>
+	</text:list>
 </xsl:template>
 
 
-<xsl:template match="itemizedlist/title|orderedlist/title"/>
-
-
 <xsl:template match="orderedlist">
-	
-	<xsl:if test="title">
-		<xsl:element name="text:h">
-			<xsl:attribute name="text:style-name">Heading-small</xsl:attribute>
-			<xsl:value-of select="title"/>
-		</xsl:element>
-	</xsl:if>
-	
-	<xsl:element name="text:list">
+	<!-- apply all, only not listitem -->
+	<xsl:apply-templates/>
+	<text:list>
 		<xsl:attribute name="text:style-name">
 			<xsl:text>list-</xsl:text>
 			<xsl:choose>
@@ -107,16 +118,32 @@
 				<xsl:otherwise>false</xsl:otherwise>
 			</xsl:choose>
 		</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
+		<!-- apply only listitem -->
+		<xsl:apply-templates mode="list" />
+	</text:list>
 </xsl:template>
 
 
-<xsl:template match="listitem|step">
-	<xsl:element name="text:list-item">
-		<xsl:apply-templates/>
-	</xsl:element>
+<xsl:template match="itemizedlist/title|orderedlist/title">
+	<text:p
+		text:style-name="Heading-small">
+		<xsl:value-of select="."/>
+	</text:p>
 </xsl:template>
+
+
+<!-- listitem | step -->
+
+<xsl:template match="listitem|step"/>
+<xsl:template match="listitem|step" mode="list">
+	<text:list-item>
+		<xsl:apply-templates/>
+	</text:list-item>
+</xsl:template>
+<!-- all other content in list -->
+<xsl:template match="*" mode="list"/>
+
+
 
 
 </xsl:stylesheet>
