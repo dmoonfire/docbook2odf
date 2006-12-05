@@ -74,6 +74,22 @@
 
 
 <xsl:template match="
+	section/subtitle |
+	sect1/subtitle |
+	sect2/subtitle |
+	sect3/subtitle |
+	sect4/subtitle |
+	sect5/subtitle">
+	
+	<text:p
+		text:style-name="Heading-para">
+		<xsl:apply-templates/>
+	</text:p>
+	
+</xsl:template>
+
+
+<xsl:template match="
 	section/title |
 	sect1/title |
 	sect2/title |
