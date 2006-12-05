@@ -393,7 +393,7 @@
 			style:num-suffix="."
 			style:num-format="1">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-distance="0.3cm"/>
 			<style:text-properties
 				style:use-window-font-color="true"
@@ -406,7 +406,7 @@
 			style:num-format="1"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -416,7 +416,7 @@
 			style:num-format="1"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -426,7 +426,7 @@
 			style:num-format="1"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -436,7 +436,7 @@
 			style:num-format="1"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -446,7 +446,7 @@
 			style:num-format="1"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="3.0cm"
+				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
@@ -458,7 +458,7 @@
 			style:num-suffix=")"
 			style:num-format="a">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -468,7 +468,7 @@
 			style:num-format="a"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -478,7 +478,7 @@
 			style:num-format="a"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -488,7 +488,7 @@
 			style:num-format="a"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -498,7 +498,7 @@
 			style:num-format="a"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -508,7 +508,7 @@
 			style:num-format="a"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="3.0cm"
+				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
@@ -521,7 +521,7 @@
 			style:num-suffix="."
 			style:num-format="i">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -531,7 +531,7 @@
 			style:num-format="i"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -541,7 +541,7 @@
 			style:num-format="i"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -551,7 +551,7 @@
 			style:num-format="i"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -561,7 +561,7 @@
 			style:num-format="i"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -571,7 +571,7 @@
 			style:num-format="i"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="3.0cm"
+				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
@@ -584,7 +584,7 @@
 			style:num-suffix="."
 			style:num-format="A">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -594,7 +594,7 @@
 			style:num-format="A"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -604,7 +604,7 @@
 			style:num-format="A"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -614,7 +614,7 @@
 			style:num-format="A"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -624,7 +624,7 @@
 			style:num-format="A"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -634,7 +634,7 @@
 			style:num-format="A"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="3.0cm"
+				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
@@ -646,7 +646,7 @@
 			style:num-suffix="."
 			style:num-format="I">
 			<style:list-level-properties
-				text:space-before="0.5cm"
+				text:space-before="0.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -656,7 +656,7 @@
 			style:num-format="I"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.0cm"
+				text:space-before="0.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -666,7 +666,7 @@
 			style:num-format="I"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="1.5cm"
+				text:space-before="1.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -676,7 +676,7 @@
 			style:num-format="I"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.0cm"
+				text:space-before="1.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -686,7 +686,7 @@
 			style:num-format="I"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="2.5cm"
+				text:space-before="2.0cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 		<text:list-level-style-number
@@ -696,7 +696,7 @@
 			style:num-format="I"
 			text:display-levels="1">
 			<style:list-level-properties 
-				text:space-before="3.0cm"
+				text:space-before="2.5cm"
 				text:min-label-distance="0.3cm"/>
 		</text:list-level-style-number>
 	</text:list-style>
