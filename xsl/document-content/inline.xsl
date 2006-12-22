@@ -93,5 +93,19 @@
 	</text:span>
 </xsl:template>
 
+<xsl:template match="superscript">
+	<text:span>
+		<xsl:attribute name="text:style-name">text-super</xsl:attribute>
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
+<xsl:template match="subscript">
+	<text:span>
+		<xsl:attribute name="text:style-name">text-sub</xsl:attribute>
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
 
 </xsl:stylesheet>

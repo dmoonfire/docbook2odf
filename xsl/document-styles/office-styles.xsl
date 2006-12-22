@@ -808,7 +808,22 @@
 			fo:font-family="Courier"/>
 	</style:style>
 	
+<!-- superscript -->
+	<style:style
+		style:name="text-super"
+		style:display-name="Text Superscript"
+		style:family="text">
+		<style:text-properties style:text-position="super 58%" />
+	</style:style>
+	
+<!-- subscript -->
+	<style:style
+		style:name="text-sub"
+		style:display-name="Text Subscript"
+		style:family="text">
+		<style:text-properties style:text-position="sub 58%" />
+	</style:style>
+	
 </xsl:template>
-
 
 </xsl:stylesheet>
