@@ -30,21 +30,22 @@ use File::Copy;
 use File::Path;
 use Getopt::Long;
 
+# variable depends
 my $USE_IMAGE_MAGICK = 0;
-if (eval "require Image::Magick") {
-	Image::Magick->import;
+if (eval "require Image::Magick")
+{
 	$USE_IMAGE_MAGICK = 1;
 }
 
 my $USE_SABLOTRON = 0;
-if (eval "require XML::Sablotron") {
-	XML::Sablotron->import;
+if (eval "require XML::Sablotron")
+{
 	$USE_SABLOTRON = 1;
 }
 
 my $USE_ZIP = 0;
-if (eval "require Archive::Zip qw( :ERROR_CODES :CONSTANTS )") {
-	Archive::Zip->import;
+if (eval "require Archive::Zip qw( :ERROR_CODES :CONSTANTS )")
+{
 	$USE_ZIP = 1;
 }
 
@@ -55,7 +56,12 @@ if (eval "require Archive::Zip qw( :ERROR_CODES :CONSTANTS )") {
 
 # initial variables
 our $PATH=Cwd::abs_path();
-our $PATH_XSL = "{prefix}/share/{package}/docbook2odf/xsl";
+our $PATH_INSTALL="/usr/share/docbook2odf/xsl"; # not final
+our $PATH_XSL = do
+{
+	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl' :
+	$PATH_INSTALL
+};
 my ($input, $output, $output_dir);
 my ($help, $quiet, $verbose, $debug);
 my ($params, $force);
@@ -113,6 +119,11 @@ if (!$input)
 	exit;
 }
 
+
+
+##################################################################################
+# START
+##################################################################################
 
 my $output_file=$output;
 if (!$output)
@@ -179,6 +190,8 @@ if ($verbose)
 	print "stylesheets:  \"$PATH_XSL\"\n";
 }
 
+
+
 ##################################################################################
 # TEMPORARY DIRECTORY
 ##################################################################################
@@ -193,40 +206,49 @@ mkpath $TEMP.'/Pictures';
 mkpath $TEMP.'/META-INF';
 mkpath $TEMP.'/process';
 
+
+
 ##################################################################################
 # TRANSFORMATION
 ##################################################################################
 print "XSL transformation\n" if $debug;
 
+# DOCBOOK -> ODF (one big xml)
+
 my $XML_DOC = $input;
 my $XSL = $PATH_XSL.'/docbook.xsl';
 open (HND, '>'.$TEMP.'/process/full.xml');
-print HND xml_process($XSL, $XML_DOC, 'part', 'manifest');
+print HND xml_process($XSL, $XML_DOC);
 
 # MIMETYPE
 open (HND, '>'.$TEMP.'/mimetype');
 print HND 'application/vnd.oasis.opendocument.text';
 close HND;
 
-###
+
+
+##################################################################################
+# SPLIT
+##################################################################################
+
 $XML_DOC = $TEMP.'/process/full.xml';
 $XSL = $PATH_XSL.'/odf.xsl';
+
 # MANIFEST
 open (HND, '>'.$TEMP.'/META-INF/manifest.xml');
-print HND xml_process($XSL, $XML_DOC, 'part', 'manifest');
+print HND xml_process($XSL, $XML_DOC, 'part'=>'manifest');
 
 # META
 open (HND, '>'.$TEMP.'/meta.xml');
-print HND xml_process($XSL, $XML_DOC, 'part', 'meta');
+print HND xml_process($XSL, $XML_DOC, 'part'=>'meta');
 
 # STYLES
 open (HND, '>'.$TEMP.'/styles.xml');
 binmode(HND);
-print HND xml_process($XSL, $XML_DOC, 'part', 'styles');
+print HND xml_process($XSL, $XML_DOC, 'part'=>'styles');
 
 # CONTENT
-my $content = xml_process($XSL, $XML_DOC, 'part', 'content');
-
+my $content = xml_process($XSL, $XML_DOC, 'part'=>'content');
 utf8::decode($content);
 if ($debug)
 {
@@ -236,11 +258,17 @@ if ($debug)
 
 print "\n" if $debug;
 
+
+
+##################################################################################
+# POSTPROCESSING
+##################################################################################
+
 do # post processing of content
 {
 	print "content postprocess\n" if $debug;
 	# copy pictures into TEMP directory
-
+	
 	my @uris;
 	my $i=1;
 	while ($content=~s|<([\w:]+)([^<]*?)(xlink:href)="(.*?)"|<$1$2xlink:href=<!TMPHREF-$i!>|)
@@ -249,16 +277,16 @@ do # post processing of content
 		my $oth=$2;
 		my $href=$3;
 		my $uri=$4;
-
+		
 		print "-postprocessing $href\[$i]='$uri' in tag '$tag'\n" if $debug;
-
+		
 		if ($tag ne "draw:image")
 		{
 			$uris[$i]=$4;
 			$i++;
 			next;
 		}
-
+		
 		my $ext=$uri;$ext=~s|^.*\.||;
 		if ($uri=~/^\//)
 		{
@@ -269,7 +297,7 @@ do # post processing of content
 			# uri processing
 			$uri=$input_dir."/".$uri;
 		}
-
+		
 		my $filename=sprintf("%07d",$i);
 		$uris[$i]='Pictures/'.$filename.".".$ext;
 		my $dest=$TEMP.'/Pictures/'.$filename.'.'.$ext;
@@ -278,33 +306,36 @@ do # post processing of content
 		$i++;
 	}
 	$content=~s|<!TMPHREF-(\d+)!>|"$uris[$1]"|g;
-
+	
 	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
 	{
 		my $function=$1;
 		my $data=$2;
 		print "function='$function' data='$data'\n" if $debug;
-		if ($function eq "getimage-width" and $USE_IMAGE_MAGICK)
+		if ($USE_IMAGE_MAGICK)
 		{
-			my $p = new Image::Magick;
-			$data=$input_dir."/".$data unless $data=~/^\//;
-			$p->Read($data);
-			my $width=($p->Get('columns')*0.02644)."cm";
-			print "output='$width'\n" if $debug;
-			$content=~s|<!TMP!>|$width|;
-			next;
+			if ($function eq "getimage-width")
+			{
+				my $p = new Image::Magick;
+				$data=$input_dir."/".$data unless $data=~/^\//;
+				$p->Read($data);
+				my $width=($p->Get('columns')*0.02644)."cm";
+				print "output='$width'\n" if $debug;
+				$content=~s|<!TMP!>|$width|;
+				next;
+			}
+			if ($function eq "getimage-height")
+			{
+				my $p = new Image::Magick;
+				$data=$input_dir."/".$data unless $data=~/^\//;
+				$p->Read($data);
+				my $height=($p->Get('height')*0.02644)."cm";
+				print "output='$height'\n" if $debug;
+				$content=~s|<!TMP!>|$height|;
+				next;
+			}
 		}
-		if ($function eq "getimage-height" and $USE_IMAGE_MAGICK)
-		{
-			my $p = new Image::Magick;
-			$data=$input_dir."/".$data unless $data=~/^\//;
-			$p->Read($data);
-			my $height=($p->Get('height')*0.02644)."cm";
-			print "output='$height'\n" if $debug;
-			$content=~s|<!TMP!>|$height|;
-			next;
-		}
-		if ($function eq "getimage-width" || $function eq "getimage-height")
+		elsif ($function eq "getimage-width" || $function eq "getimage-height")
 		{
 			$data=$input_dir."/".$data unless $data=~/^\//;
 			my ($width, $height) = img_dimmensions($data);
@@ -326,6 +357,12 @@ print "\n" if $debug;
 open (HND, '>'.$TEMP.'/content.xml');
 #binmode(HND);
 print HND $content;
+
+
+
+##################################################################################
+# ZIPPING
+##################################################################################
 
 # when --output-file is not defined
 # then I run autodetection of document type
@@ -351,21 +388,27 @@ if (!$debug)
 # zipping directory
 print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
 my $zip;
-if ($USE_ZIP) {
+if ($USE_ZIP)
+{
 	$zip = Archive::Zip->new();
 	$zip->addTree($TEMP);
-} else {
-	chdir($TEMP);
-	`zip -rq output.zip *`;
+	$zip->writeToFileNamed($output_dir.'/'.$output_file);
 }
+else
+{
+	chdir($TEMP);
+	my $out=`zip -rq $output_dir/$output_file *`;
+}
+
 print "\n" if $debug;
 
-if ($USE_ZIP) {
-	$zip->writeToFileNamed($output_dir.'/'.$output_file);
-} else {
-	rename("output.zip", $output_dir.'/'.$output_file);
-}
 print "Saved $output_file\n" unless $quiet;
+
+
+
+##################################################################################
+# CLEANING
+##################################################################################
 
 if (!$debug)
 {
@@ -375,50 +418,72 @@ if (!$debug)
 	rmtree $TEMP;
 }
 
-sub img_dimmensions {
+
+
+
+
+##################################################################################
+# FUNCTIONS
+##################################################################################
+
+
+sub img_dimmensions
+{
 	my $imgfile = shift;
 	my $tmpdir = "/tmp/docbook2odf-$$-".int(100*rand());
 	my $ext = '';
 	mkdir($tmpdir);
 	($imgfile =~ /\.(\w+)$/) and $ext = $1;
-
+	
 	# Copy to make sure the file name is reasonable.
 	copy($imgfile,"$tmpdir/img-file.$ext");
 	$imgfile = "img-file.$ext";
-
+	
 	# Convert to PNG.
 	chdir($tmpdir);
-	if ($ext eq "gif") {
+	if ($ext eq "gif")
+	{
 		`gif2png -O $imgfile`;
-	} elsif ($ext ne "png") {
+	}
+	elsif ($ext ne "png")
+	{
 		`anytopnm $imgfile 2> /dev/null| pnmtopng > img-file.png`;
 	}
 	$imgfile = "img-file.png";
-
+	
 	# Get the image dimmensions.
 	my $data = `file $imgfile`;
-	($data =~ /PNG image data, (\d+) x (\d+)/)
-		 and return (($1*0.02644)."cm", ($2*0.02644)."cm");
+	
+	rmtree($tmpdir);
+	
+	($data =~ /PNG image data, (\d+) x (\d+)/) and return (($1*0.02644)."cm", ($2*0.02644)."cm");
 	return ("3cm","3cm");
 }
 
-sub xml_process {
+
+
+sub xml_process
+{
 	my $XSL = shift;
 	my $XML_DOC = shift;
-	my @params = @_;
-	if ($USE_SABLOTRON) {
+	if ($USE_SABLOTRON)
+	{
 		my $sab = new XML::Sablotron();
 		my $situa = new XML::Sablotron::Situation();
-		while (@_) {
+		while (@_)
+		{
 			my $name = shift;
 			my $val  = shift;
 			$sab->addParam($situa, $name, $val);
 		}
 		$sab->process($situa, $XSL, $XML_DOC, 'arg:/output');
 		return $sab->getResultArg('arg:/output');
-	} else {
+	}
+	else
+	{
 		my $PARAM = '';
-		while (@_) {
+		while (@_)
+		{
 			my $name = shift;
 			my $val  = shift;
 			$PARAM .= " --stringparam $name $val ";
@@ -426,5 +491,6 @@ sub xml_process {
 		return `xsltproc $PARAM $XSL $XML_DOC`;
 	}
 }
+
 
 1;
