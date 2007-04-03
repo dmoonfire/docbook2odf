@@ -1,24 +1,22 @@
 #!/usr/bin/perl
 =head1 NAME
-	
+
 	docbook2odf - DocBook to OpenDocument XSL Transformation utils
 	Copyright (C) 2006 Roman Fordinal
 	http://open.comsultia.com/docbook2odf/
-	
-=cut
 
 =head1 LICENSE
-	
+
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
 	as published by the Free Software Foundation; either version 2
 	of the License, or (at your option) any later version.
-	
+
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 =cut
 
 use strict;
@@ -30,61 +28,62 @@ use open ':utf8', ':std';
 use Cwd;
 use File::Copy;
 use File::Path;
-use Image::Magick;
-use XML::Sablotron;
-#use XML::XPath;
-#use XML::XPath::XMLParser;
 use Getopt::Long;
-use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
+my $USE_IMAGE_MAGICK = 0;
+if (eval "require Image::Magick") {
+	Image::Magick->import;
+	$USE_IMAGE_MAGICK = 1;
+}
 
-##################################################################################
+my $USE_SABLOTRON = 0;
+if (eval "require XML::Sablotron") {
+	XML::Sablotron->import;
+	$USE_SABLOTRON = 1;
+}
+
+my $USE_ZIP = 0;
+if (eval "require Archive::Zip qw( :ERROR_CODES :CONSTANTS )") {
+	Archive::Zip->import;
+	$USE_ZIP = 1;
+}
+
+################################################################
 # INITIALIZATION
-##################################################################################
-
+################################################################
 
 
 # initial variables
 our $PATH=Cwd::abs_path();
-our $PATH_INSTALL="/usr/share/docbook2odf/xsl"; # not final
-our $PATH_XSL = do
-{
-	(-e $PATH.'/../xsl/docbook.xsl') ? $PATH.'/../xsl' :
-	$PATH_INSTALL
-};
-my $input;
-my $output;
-my $output_dir;
-my $help;
-my $quiet;
-my $debug;
-my $params;
-my $force;
+our $PATH_XSL = "{prefix}/share/{package}/docbook2odf/xsl";
+my ($input, $output, $output_dir);
+my ($help, $quiet, $verbose, $debug);
+my ($params, $force);
 
 our $program_Date='$Date$';
 our $program_Rev='$Rev$';
 our $program_Author='$Author$';
 our $program_Id='$Id$';
 
-	$program_Rev=~/(\d+)/;
+$program_Rev=~/(\d+)/;
 my $program_version="0.".$1;
 my $program_name="docbook2odf ".$program_version;
 my $program_description="a non-interactive docbook to opendocument convertor";
-my $program_usage="[--input-file docbookfile] [--output-file opendocumentfile]";# [--params]";
+my $program_usage="docbookfile [-o opendocumentfile]";# [--params]";
 
 my $result = GetOptions
 	(
-		"input-file=s"   => \$input,
-		"output-file=s"  => \$output,
+		"o|output-file=s"  => \$output,
 		"output-dir=s"   => \$output_dir,
 		"params=s"       => \$params,
 		"xsl-file=s"     => \$PATH_XSL,
 		"debug"          => \$debug,
 		"quiet"          => \$quiet,
+		"verbose"        => \$verbose,
 		"help"           => \$help,
-		"force"          => \$force,
+		"f|force"        => \$force,
 	);
-
+my $input = $ARGV[0];
 
 if ($help)
 {
@@ -93,15 +92,15 @@ if ($help)
 	print "\n";
 	print <<"HELP";
 Arguments:
-  --input-file        specify input docbook filename.
-  --output-file       specify output opendocument filename.
+  -o|--output-file    specify output opendocument filename.
   --output-dir        specify output directory.
   --params            list of params (disabled).
   --xsl-file          use this xsl stylesheet instead.
   --debug             show debug messages.
-  --quiet             quiet (no output).
-  --help              print this help.
-  --force             overwrite existing output filename.
+  -q|--quiet             quiet (no output).
+  -v|--verbose           verbose (extra output).
+  -h|--help              print this help.
+  -f|--force          overwrite existing output filename.
 HELP
 	exit;
 }
@@ -125,7 +124,7 @@ if (!$output)
 	if ($ENV{'TERM'} && !$output_dir)
 	{
 		$output_file=~s|^.*/||;
-		$output_file='./'.$output_file;
+		$output_file=$PATH.'/'.$output_file;
 	}
 	elsif ($output_dir)
 	{
@@ -149,7 +148,7 @@ elsif ($output_file=~s|^(.*/)||)
 }
 else
 {
-	$output_dir='.';
+	$output_dir=$PATH;
 }
 
 my $input_file=$input;
@@ -166,13 +165,13 @@ else
 
 
 # program information
-if (!$quiet)
+if ($verbose)
 {
 	print "$program_name, $program_description\n";
 }
 
 # input / output files
-if (!$quiet)
+if ($verbose)
 {
 	print "\n";
 	print "input file:   \"$input\"\n";
@@ -180,17 +179,9 @@ if (!$quiet)
 	print "stylesheets:  \"$PATH_XSL\"\n";
 }
 
-#print "\n";
-#print "params:       \"$params\"\n";
-#my %param;
-#foreach my $pair(split(''))
-
-
 ##################################################################################
 # TEMPORARY DIRECTORY
 ##################################################################################
-
-print "\n" unless $quiet;
 
 # create a temporary directory
 #my $TEMP=$output_dir.'/'.$output_file.'.temp';
@@ -203,67 +194,38 @@ mkpath $TEMP.'/META-INF';
 mkpath $TEMP.'/process';
 
 ##################################################################################
-# PREPROCESSING
-##################################################################################
-
-# works not with xinclude :(
-=head1
-print "\n" unless $quiet;
-
-my $xp = XML::XPath->new(filename => $input);
-my $nodeset = $xp->find('//imagedata/@fileref');
-foreach my $node ($nodeset->get_nodelist)
-{
-	print "FOUND\n";
-}
-=cut
-
-##################################################################################
 # TRANSFORMATION
 ##################################################################################
+print "XSL transformation\n" if $debug;
 
-# transformation
-print "\n" unless $quiet;
-
-
-print "Sablotron transformation\n" if $debug;
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->process($situa, $PATH_XSL.'/docbook.xsl', $input, $TEMP.'/process/full.xml');
-
+my $XML_DOC = $input;
+my $XSL = $PATH_XSL.'/docbook.xsl';
+open (HND, '>'.$TEMP.'/process/full.xml');
+print HND xml_process($XSL, $XML_DOC, 'part', 'manifest');
 
 # MIMETYPE
 open (HND, '>'.$TEMP.'/mimetype');
 print HND 'application/vnd.oasis.opendocument.text';
 close HND;
 
+###
+$XML_DOC = $TEMP.'/process/full.xml';
+$XSL = $PATH_XSL.'/odf.xsl';
+# MANIFEST
+open (HND, '>'.$TEMP.'/META-INF/manifest.xml');
+print HND xml_process($XSL, $XML_DOC, 'part', 'manifest');
 
 # META
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->addParam($situa, 'part', 'meta');
-$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
 open (HND, '>'.$TEMP.'/meta.xml');
-print HND $sab->getResultArg('arg:/output');
-
+print HND xml_process($XSL, $XML_DOC, 'part', 'meta');
 
 # STYLES
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->addParam($situa, 'part', 'styles');
-$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
 open (HND, '>'.$TEMP.'/styles.xml');
 binmode(HND);
-print HND $sab->getResultArg('arg:/output');
-
+print HND xml_process($XSL, $XML_DOC, 'part', 'styles');
 
 # CONTENT
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->addParam($situa, 'part', 'content');
-$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', 'arg:/output');
-my $content=$sab->getResultArg('arg:/output');
-
+my $content = xml_process($XSL, $XML_DOC, 'part', 'content');
 
 utf8::decode($content);
 if ($debug)
@@ -278,7 +240,7 @@ do # post processing of content
 {
 	print "content postprocess\n" if $debug;
 	# copy pictures into TEMP directory
-	
+
 	my @uris;
 	my $i=1;
 	while ($content=~s|<([\w:]+)([^<]*?)(xlink:href)="(.*?)"|<$1$2xlink:href=<!TMPHREF-$i!>|)
@@ -287,16 +249,16 @@ do # post processing of content
 		my $oth=$2;
 		my $href=$3;
 		my $uri=$4;
-		
+
 		print "-postprocessing $href\[$i]='$uri' in tag '$tag'\n" if $debug;
-		
+
 		if ($tag ne "draw:image")
 		{
 			$uris[$i]=$4;
 			$i++;
 			next;
 		}
-		
+
 		my $ext=$uri;$ext=~s|^.*\.||;
 		if ($uri=~/^\//)
 		{
@@ -307,7 +269,7 @@ do # post processing of content
 			# uri processing
 			$uri=$input_dir."/".$uri;
 		}
-		
+
 		my $filename=sprintf("%07d",$i);
 		$uris[$i]='Pictures/'.$filename.".".$ext;
 		my $dest=$TEMP.'/Pictures/'.$filename.'.'.$ext;
@@ -316,13 +278,13 @@ do # post processing of content
 		$i++;
 	}
 	$content=~s|<!TMPHREF-(\d+)!>|"$uris[$1]"|g;
-	
+
 	while($content=~s|function:([\w:\-]+):\((.*?)\)|<!TMP!>|)
 	{
 		my $function=$1;
 		my $data=$2;
 		print "function='$function' data='$data'\n" if $debug;
-		if ($function eq "getimage-width")
+		if ($function eq "getimage-width" and $USE_IMAGE_MAGICK)
 		{
 			my $p = new Image::Magick;
 			$data=$input_dir."/".$data unless $data=~/^\//;
@@ -332,7 +294,7 @@ do # post processing of content
 			$content=~s|<!TMP!>|$width|;
 			next;
 		}
-		if ($function eq "getimage-height")
+		if ($function eq "getimage-height" and $USE_IMAGE_MAGICK)
 		{
 			my $p = new Image::Magick;
 			$data=$input_dir."/".$data unless $data=~/^\//;
@@ -342,10 +304,20 @@ do # post processing of content
 			$content=~s|<!TMP!>|$height|;
 			next;
 		}
+		if ($function eq "getimage-width" || $function eq "getimage-height")
+		{
+			$data=$input_dir."/".$data unless $data=~/^\//;
+			my ($width, $height) = img_dimmensions($data);
+			print "output='$width'\n" if $debug;
+			print "output='$height'\n" if $debug;
+			($function=~/width/) and $content=~s|<!TMP!>|$width|;
+			($function=~/height/) and $content=~s|<!TMP!>|$height|;
+			next;
+		}
 		#751mm=284px*2.644 196mm=74px
 		$content=~s|<!TMP!>||;
 	}
-	
+
 	# convert alternative nbsp character to ODF spaces
 	$content=~s|([\xC2\x82]+)|'<text:s text:c="'.length($1).'"/>'|eg;
 };
@@ -354,14 +326,6 @@ print "\n" if $debug;
 open (HND, '>'.$TEMP.'/content.xml');
 #binmode(HND);
 print HND $content;
-
-# MANIFEST
-my $sab = new XML::Sablotron();
-my $situa = new XML::Sablotron::Situation();
-$sab->addParam($situa, 'part', 'manifest');
-$sab->process($situa, $PATH_XSL.'/odf.xsl', $TEMP.'/process/full.xml', $TEMP.'/META-INF/manifest.xml');
-
-
 
 # when --output-file is not defined
 # then I run autodetection of document type
@@ -386,13 +350,22 @@ if (!$debug)
 
 # zipping directory
 print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
-my $zip = Archive::Zip->new();
-$zip->addTree($TEMP);
-
+my $zip;
+if ($USE_ZIP) {
+	$zip = Archive::Zip->new();
+	$zip->addTree($TEMP);
+} else {
+	chdir($TEMP);
+	`zip -rq output.zip *`;
+}
 print "\n" if $debug;
 
-print "saving zipped content into file '$output_dir/$output_file'\n" unless $quiet;
-$zip->writeToFileNamed( $output_dir.'/'.$output_file );
+if ($USE_ZIP) {
+	$zip->writeToFileNamed($output_dir.'/'.$output_file);
+} else {
+	rename("output.zip", $output_dir.'/'.$output_file);
+}
+print "Saved $output_file\n" unless $quiet;
 
 if (!$debug)
 {
@@ -400,6 +373,58 @@ if (!$debug)
 	print "delete temporary directory='$TEMP' (PWD='$PATH')\n" if $debug;
 	chdir '..';
 	rmtree $TEMP;
+}
+
+sub img_dimmensions {
+	my $imgfile = shift;
+	my $tmpdir = "/tmp/docbook2odf-$$-".int(100*rand());
+	my $ext = '';
+	mkdir($tmpdir);
+	($imgfile =~ /\.(\w+)$/) and $ext = $1;
+
+	# Copy to make sure the file name is reasonable.
+	copy($imgfile,"$tmpdir/img-file.$ext");
+	$imgfile = "img-file.$ext";
+
+	# Convert to PNG.
+	chdir($tmpdir);
+	if ($ext eq "gif") {
+		`gif2png -O $imgfile`;
+	} elsif ($ext ne "png") {
+		`anytopnm $imgfile 2> /dev/null| pnmtopng > img-file.png`;
+	}
+	$imgfile = "img-file.png";
+
+	# Get the image dimmensions.
+	my $data = `file $imgfile`;
+	($data =~ /PNG image data, (\d+) x (\d+)/)
+		 and return (($1*0.02644)."cm", ($2*0.02644)."cm");
+	return ("3cm","3cm");
+}
+
+sub xml_process {
+	my $XSL = shift;
+	my $XML_DOC = shift;
+	my @params = @_;
+	if ($USE_SABLOTRON) {
+		my $sab = new XML::Sablotron();
+		my $situa = new XML::Sablotron::Situation();
+		while (@_) {
+			my $name = shift;
+			my $val  = shift;
+			$sab->addParam($situa, $name, $val);
+		}
+		$sab->process($situa, $XSL, $XML_DOC, 'arg:/output');
+		return $sab->getResultArg('arg:/output');
+	} else {
+		my $PARAM = '';
+		while (@_) {
+			my $name = shift;
+			my $val  = shift;
+			$PARAM .= " --stringparam $name $val ";
+		}
+		return `xsltproc $PARAM $XSL $XML_DOC`;
+	}
 }
 
 1;
