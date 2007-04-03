@@ -38,9 +38,14 @@ if (eval "require Image::Magick")
 }
 
 my $USE_SABLOTRON = 0;
+my $USE_LIBXSLT = 0;
 if (eval "require XML::Sablotron")
 {
 	$USE_SABLOTRON = 1;
+}
+elsif (eval "require XML::LibXSLT;")
+{
+	$USE_LIBXSLT = 1;
 }
 
 my $USE_ZIP = 0;
@@ -479,6 +484,22 @@ sub xml_process
 		$sab->process($situa, $XSL, $XML_DOC, 'arg:/output');
 		return $sab->getResultArg('arg:/output');
 	}
+ 	elsif ($USE_LIBXSLT)
+ 	{
+		my $xslt = XML::LibXSLT->new();
+		my $stylesheet = $xslt->parse_stylesheet_file($XSL);
+		my @params;
+ 		while (@_)
+ 		{
+ 			my $name = shift;
+ 			my $val  = shift;
+			push @params, $name;
+			push @params, $val;
+ 		}
+		my $results = $stylesheet->transform_file($XML_DOC,
+			XML::LibXSLT::xpath_to_string(@params));
+		return $stylesheet->output_string($results);
+ 	}
 	else
 	{
 		my $PARAM = '';
