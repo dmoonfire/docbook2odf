@@ -81,6 +81,10 @@
 	
 </xsl:template>
 
+<xsl:template match="keycap">
+	<xsl:apply-templates/>
+</xsl:template>
+
 
 <xsl:template name="verbatim.line">
 	<xsl:param name="content"/>

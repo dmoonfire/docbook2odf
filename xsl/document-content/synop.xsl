@@ -68,4 +68,27 @@
 </xsl:template>
 
 
+<xsl:template match="guilabel">
+	<text:span text:style-name="text-bold">
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
+<xsl:template match="guibutton">
+	<text:span text:style-name="text-bold">
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
+<xsl:template match="guimenu">
+	<text:span text:style-name="text-bold">
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
+<xsl:template match="accel">
+	<xsl:apply-templates/>
+</xsl:template>
+
+
 </xsl:stylesheet>
