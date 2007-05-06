@@ -20,9 +20,9 @@
 =cut
 
 use strict;
-use utf8;
-use encoding 'utf-8';
-use open ':utf8', ':std';
+#use utf8;
+#use encoding 'utf-8';
+#use open ':utf8', ':std';
 
 # depends on
 use Cwd;
@@ -39,7 +39,7 @@ if (eval "require Image::Magick")
 
 my $USE_SABLOTRON = 0;
 my $USE_LIBXSLT = 0;
-if (eval "require XML::Sablotron")
+if (eval "require XML::Sablotron;")
 {
 	$USE_SABLOTRON = 1;
 }
@@ -254,10 +254,11 @@ print HND xml_process($XSL, $XML_DOC, 'part'=>'styles');
 
 # CONTENT
 my $content = xml_process($XSL, $XML_DOC, 'part'=>'content');
-utf8::decode($content);
+#utf8::encode($content);
 if ($debug)
 {
 	open (HND, '>'.$TEMP.'/process/content.xml');
+	binmode(HND);
 	print HND $content;
 }
 
@@ -360,7 +361,7 @@ do # post processing of content
 print "\n" if $debug;
 
 open (HND, '>'.$TEMP.'/content.xml');
-#binmode(HND);
+binmode(HND);
 print HND $content;
 
 
@@ -473,6 +474,7 @@ sub xml_process
 	my $XML_DOC = shift;
 	if ($USE_SABLOTRON)
 	{
+		print "xslt by sablotron\n" if $debug;
 		my $sab = new XML::Sablotron();
 		my $situa = new XML::Sablotron::Situation();
 		while (@_)
@@ -486,6 +488,7 @@ sub xml_process
 	}
  	elsif ($USE_LIBXSLT)
  	{
+ 		print "xslt by libxslt\n" if $debug;
 		my $xslt = XML::LibXSLT->new();
 		my $stylesheet = $xslt->parse_stylesheet_file($XSL);
 		my @params;
@@ -502,6 +505,7 @@ sub xml_process
  	}
 	else
 	{
+		print "xslt by xsltproc\n" if $debug;
 		my $PARAM = '';
 		while (@_)
 		{
