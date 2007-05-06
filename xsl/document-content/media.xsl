@@ -46,10 +46,17 @@
 
 
 <xsl:template match="mediaobject">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-default</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
+	<xsl:choose>
+		<xsl:when test="parent::para or parent::node()/parent::para">
+			<xsl:apply-templates/>
+		</xsl:when>
+		<xsl:otherwise>
+			<text:p>
+				<xsl:attribute name="text:style-name">para-default</xsl:attribute>
+				<xsl:apply-templates/>
+			</text:p>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 
@@ -106,6 +113,10 @@
 	
 </xsl:template>
 
+
+<xsl:template match="screenshot">
+	<xsl:apply-templates/>
+</xsl:template>
 
 
 </xsl:stylesheet>
