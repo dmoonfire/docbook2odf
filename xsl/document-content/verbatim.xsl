@@ -64,6 +64,24 @@
 </xsl:template>
 
 
+<xsl:template match="command">
+	
+	<xsl:choose>
+		<xsl:when test="parent::para">
+			<text:span text:style-name="text-command">
+				<xsl:apply-templates/>
+			</text:span>
+		</xsl:when>
+		<xsl:otherwise>
+			<text:para>
+				<xsl:apply-templates/>
+			</text:para>
+		</xsl:otherwise>
+	</xsl:choose>
+	
+</xsl:template>
+
+
 <xsl:template name="verbatim.line">
 	<xsl:param name="content"/>
 	<xsl:param name="style"/>

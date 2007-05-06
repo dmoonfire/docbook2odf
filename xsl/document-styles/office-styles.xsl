@@ -824,6 +824,17 @@
 		<style:text-properties style:text-position="sub 58%" />
 	</style:style>
 	
+<!-- command -->
+	<style:style
+		style:name="text-command"
+		style:display-name="Text Command"
+		style:family="text">
+		<style:text-properties
+			fo:font-family="Courier"
+			fo:font-weight="bold"
+			fo:background-color="#f0f0f0"/>
+	</style:style>
+	
 </xsl:template>
 
 </xsl:stylesheet>
