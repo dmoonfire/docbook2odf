@@ -1,3 +1,13 @@
 Stylesheets & utils to transform DocBook XML to OpenDocument format, with support for Corporate Identity templates.
 
-All informations available at http://open.comsultia.com/docbook2odf
+# Building deb package
+cd release
+./builddeb 
+cd ..
+
+# Building tar.gz
+cd release
+./buildtgz
+cd ..
+
+All information available at http://open.comsultia.com/docbook2odf
