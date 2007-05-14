@@ -17,7 +17,7 @@ echo "Package: docbook2odf
 Version: ${VERSION}
 Section: text
 Priority: optional
-Architecture: i386
+Architecture: all
 Depends: perl, perlmagick, libarchive-zip-perl, libxml-sablot-perl
 Installed-Size: 400
 Maintainer: Roman Fordinal <fordinal@webcom.sk>
