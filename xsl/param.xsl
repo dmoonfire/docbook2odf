@@ -52,7 +52,7 @@
 	
 	<!-- FORMATTING -->
 	<xsl:param name="para.padding">0.20cm</xsl:param>
-	<xsl:param name="para.text-align">justify</xsl:param>
+	<xsl:param name="para.text-align">left</xsl:param>
 	
 	<!-- TOC -->
 	<xsl:param name="generate.toc">0</xsl:param> <!-- generating TOC -->

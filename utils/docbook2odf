@@ -396,14 +396,16 @@ print "zipping directory '$TEMP' (PWD='$PATH')\n" if $debug;
 my $zip;
 if ($USE_ZIP)
 {
+	print "using Archive::Zip\n" if $debug;
 	$zip = Archive::Zip->new();
 	$zip->addTree($TEMP);
 	$zip->writeToFileNamed($output_dir.'/'.$output_file);
 }
 else
 {
+	print "using zip command\n" if $debug;
 	chdir($TEMP);
-	my $out=`zip -rq $output_dir/$output_file *`;
+	my $out=`zip -rq "$output_dir/$output_file" *`;
 }
 
 print "\n" if $debug;

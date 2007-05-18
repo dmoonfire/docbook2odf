@@ -127,6 +127,7 @@
 				
 				<!-- deep magic part -->
 				<xsl:when test="parent::listitem|parent::step">
+					
 					<xsl:choose>
 						
 						<!-- if paragraph is first in listitem                                 -->
@@ -171,6 +172,10 @@
 				
 			</xsl:choose>
 		</xsl:attribute>
+		
+		<xsl:if test="ancestor::varlistentry">
+			<text:s text:c="7"/>
+		</xsl:if>
 		
 		<xsl:apply-templates/>
 		

@@ -124,7 +124,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="itemizedlist/title|orderedlist/title">
+<xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
 	<text:p
 		text:style-name="Heading-small">
 		<xsl:value-of select="."/>
@@ -144,6 +144,28 @@ paragraph, with the start element appearing first.
 <xsl:template match="*" mode="list"/>
 
 
+<xsl:template match="variablelist">
+	<xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="varlistentry">
+	<xsl:apply-templates/>
+</xsl:template>
+
+
+<xsl:template match="varlistentry/term">
+	<text:p text:style-name="para-padding">
+		<text:span text:style-name="text-bold">
+			<xsl:apply-templates/>
+		</text:span>
+	</text:p>
+</xsl:template>
+
+
+<xsl:template match="varlistentry/listitem">
+	<xsl:apply-templates/>
+</xsl:template>
 
 
 </xsl:stylesheet>

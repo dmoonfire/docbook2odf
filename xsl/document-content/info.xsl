@@ -153,5 +153,22 @@
 </xsl:template>
 
 
+<!-- another info content -->
+
+
+<xsl:template match="sidebar">
+	<draw:frame
+		draw:style-name="fr1"
+		draw:name="Rámec1"
+		text:anchor-type="paragraph"
+		svg:width="5.175cm"
+		style:rel-width="30%"
+		draw:z-index="5">
+		<draw:text-box fo:min-height="9.029cm">
+			<xsl:apply-templates/>
+		</draw:text:box>
+	</draw:frame>
+</xsl:template>
+
 
 </xsl:stylesheet>
