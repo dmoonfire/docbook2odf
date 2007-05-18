@@ -155,20 +155,19 @@
 
 <!-- another info content -->
 
-<!--
+
 <xsl:template match="sidebar">
-	<draw:frame
-		draw:style-name="fr1"
-		draw:name="Rámec1"
-		text:anchor-type="paragraph"
-		svg:width="5.175cm"
-		style:rel-width="30%"
-		draw:z-index="5">
-		<draw:text-box fo:min-height="9.029cm">
-			<xsl:apply-templates/>
-		</draw:text:box>
-	</draw:frame>
+	<text:p>
+		<draw:frame
+			draw:style-name="frame-sidebar"
+			text:anchor-type="paragraph"
+			style:rel-width="40%">
+			<draw:text-box>
+				<xsl:apply-templates/>
+			</draw:text-box>
+		</draw:frame>
+	</text:p>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>

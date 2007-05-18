@@ -770,6 +770,18 @@
 		</xsl:element>
 	</xsl:element>
 	
+<!-- graphic frame-sidebar -->
+	<style:style
+		style:name="frame-sidebar"
+		style:family="graphic"
+		style:parent-style-name="Frame">
+		<style:graphic-properties
+			style:vertical-pos="top"
+			style:vertical-rel="paragraph-content"
+			style:horizontal-pos="right"
+			style:horizontal-rel="paragraph"
+			style:shadow="none"/>
+	</style:style>
 	
 	<xsl:if test="/slides">
 
