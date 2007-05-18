@@ -155,7 +155,7 @@
 
 <!-- another info content -->
 
-
+<!--
 <xsl:template match="sidebar">
 	<draw:frame
 		draw:style-name="fr1"
@@ -169,6 +169,6 @@
 		</draw:text:box>
 	</draw:frame>
 </xsl:template>
-
+-->
 
 </xsl:stylesheet>
