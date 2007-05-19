@@ -57,6 +57,9 @@
 	<!-- TOC -->
 	<xsl:param name="generate.toc">0</xsl:param> <!-- generating TOC -->
 	
+	<!-- META -->
+	<xsl:param name="generate.meta">1</xsl:param> <!-- generating metadata -->
+	
 	<!-- LAYOUT -->
 	<xsl:param name="page.layout">A4</xsl:param>
 	<xsl:param name="page.text-layout"><xsl:value-of select="$page.layout"/></xsl:param>

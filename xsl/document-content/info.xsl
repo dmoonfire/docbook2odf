@@ -46,24 +46,28 @@
 
 <xsl:template match="bookinfo|chapterinfo|articleinfo">
 	
-	<table:table
-		table:style-name="table-info">
-		<table:table-column
-			table:style-name="table-info.column-A"/>
-		<table:table-column
-			table:style-name="table-info.column-B"/>
+	<xsl:if test="$generate.meta=1">
+	
+		<table:table
+			table:style-name="table-info">
+			<table:table-column
+				table:style-name="table-info.column-A"/>
+			<table:table-column
+				table:style-name="table-info.column-B"/>
+			
+			<xsl:apply-templates/>
+			
+			<table:table-row>
+				<table:table-cell
+					office:value-type="string"
+					table:style-name="table-info.cell-H"
+					table:number-columns-spanned="2">
+				</table:table-cell>
+			</table:table-row>
+			
+		</table:table>
 		
-		<xsl:apply-templates/>
-		
-		<table:table-row>
-			<table:table-cell
-				office:value-type="string"
-				table:style-name="table-info.cell-H"
-				table:number-columns-spanned="2">
-			</table:table-cell>
-		</table:table-row>
-		
-	</table:table>
+	</xsl:if>
 	
 </xsl:template>
 

@@ -105,7 +105,7 @@ if ($help)
 Arguments:
   -o|--output-file    specify output opendocument filename.
   --output-dir        specify output directory.
-  --params            list of params (disabled).
+  --params            list of params (generate.meta=1).
   --xsl-file          use this xsl stylesheet instead.
   --debug             show debug messages.
   -q|--quiet             quiet (no output).
@@ -220,10 +220,20 @@ print "XSL transformation\n" if $debug;
 
 # DOCBOOK -> ODF (one big xml)
 
+# parse params;
+my @params_arr;
+foreach my $param(split(' ',$params))
+{
+	foreach (split('=',$param))
+	{
+		push @params_arr,$_;
+	}
+}
+
 my $XML_DOC = $input;
 my $XSL = $PATH_XSL.'/docbook.xsl';
 open (HND, '>'.$TEMP.'/process/full.xml');
-print HND xml_process($XSL, $XML_DOC);
+print HND xml_process($XSL, $XML_DOC,@params_arr);
 
 # MIMETYPE
 open (HND, '>'.$TEMP.'/mimetype');
@@ -474,6 +484,9 @@ sub xml_process
 {
 	my $XSL = shift;
 	my $XML_DOC = shift;
+	
+	print "param = @_\n" if $debug;
+	
 	if ($USE_SABLOTRON)
 	{
 		print "xslt by sablotron\n" if $debug;
