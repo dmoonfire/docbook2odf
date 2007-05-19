@@ -155,10 +155,8 @@ paragraph, with the start element appearing first.
 
 
 <xsl:template match="varlistentry/term">
-	<text:p text:style-name="para-padding">
-		<text:span text:style-name="text-bold">
-			<xsl:apply-templates/>
-		</text:span>
+	<text:p text:style-name="para-term">
+		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 

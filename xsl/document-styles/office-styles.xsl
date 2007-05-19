@@ -477,6 +477,20 @@
 			fo:font-style="italic"/>
 	</style:style>
 	
+<!-- para-term -->
+	<style:style
+		style:name="para-term"
+		style:display-name="Paragraph Term"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties
+			fo:keep-with-next="always">
+			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$para.padding"/></xsl:attribute>
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:font-weight="bold"/>
+	</style:style>
+	
 </xsl:template>
 
 

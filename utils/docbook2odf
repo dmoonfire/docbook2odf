@@ -105,7 +105,7 @@ if ($help)
 Arguments:
   -o|--output-file    specify output opendocument filename.
   --output-dir        specify output directory.
-  --params            list of params (generate.meta=1).
+  --params            list of params ( var=value,var2=value2 ).
   --xsl-file          use this xsl stylesheet instead.
   --debug             show debug messages.
   -q|--quiet             quiet (no output).
@@ -222,7 +222,7 @@ print "XSL transformation\n" if $debug;
 
 # parse params;
 my @params_arr;
-foreach my $param(split(' ',$params))
+foreach my $param(split(',',$params))
 {
 	foreach (split('=',$param))
 	{
