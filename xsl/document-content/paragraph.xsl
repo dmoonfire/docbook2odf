@@ -130,6 +130,8 @@
 					
 					<xsl:choose>
 						
+						<xsl:when test="ancestor::varlistentry">para-padding-odd</xsl:when>
+						
 						<!-- if paragraph is first in listitem                                 -->
 						<!-- this paragraph is as title of listitem                            -->
 						<xsl:when test="$position=2">
@@ -172,10 +174,6 @@
 				
 			</xsl:choose>
 		</xsl:attribute>
-		
-		<xsl:if test="ancestor::varlistentry">
-			<text:s text:c="7"/>
-		</xsl:if>
 		
 		<xsl:apply-templates/>
 		

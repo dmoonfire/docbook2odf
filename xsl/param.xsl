@@ -52,6 +52,7 @@
 	
 	<!-- FORMATTING -->
 	<xsl:param name="para.padding">0.20cm</xsl:param>
+	<xsl:param name="para.padding.odd.left">1cm</xsl:param>
 	<xsl:param name="para.text-align">left</xsl:param>
 	
 	<!-- TOC -->

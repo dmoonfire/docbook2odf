@@ -376,6 +376,24 @@
 		</style:text-properties>
 	</style:style>
 	
+<!-- para-padding-odd -->
+	<style:style
+		style:name="para-padding-odd"
+		style:display-name="Paragraph Padding Odd"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties>
+			<xsl:attribute name="fo:margin-top"><xsl:value-of select="$para.padding"/></xsl:attribute>
+			<xsl:attribute name="fo:margin-left"><xsl:value-of select="$para.padding.odd.left"/></xsl:attribute>
+		</style:paragraph-properties>
+		<style:text-properties>
+			<xsl:if test="/slides">
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color-presentation_para"/></xsl:attribute>
+				<xsl:attribute name="fo:font-size"><xsl:value-of select="$style.font-size.presentation.para"/></xsl:attribute>
+			</xsl:if>
+		</style:text-properties>
+	</style:style>
+	
 <!-- <docbook:screen> -->
 	<style:style
 		style:name="para-screen"
