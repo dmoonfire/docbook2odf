@@ -161,7 +161,7 @@
 
 
 <xsl:template match="sidebar">
-	<text:p>
+	<text:p text:style-name="para-sidebar">
 		<draw:frame
 			draw:style-name="frame-sidebar"
 			text:anchor-type="paragraph"
@@ -170,6 +170,21 @@
 				<xsl:apply-templates/>
 			</draw:text-box>
 		</draw:frame>
+	</text:p>
+</xsl:template>
+
+
+<xsl:template match="sidebar/title">
+	<text:p
+		text:style-name="para-title">
+		<xsl:apply-templates/>
+	</text:p>
+</xsl:template>
+
+<xsl:template match="sidebar/subtitle">
+	<text:p
+		text:style-name="para-padding">
+		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 

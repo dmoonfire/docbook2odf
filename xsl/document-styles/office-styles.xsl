@@ -491,6 +491,17 @@
 			fo:font-weight="bold"/>
 	</style:style>
 	
+<!-- para-sidebar -->
+	<style:style
+		style:name="para-sidebar"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties
+			
+		/>
+		<style:text-properties/>
+	</style:style>
+	
 </xsl:template>
 
 
