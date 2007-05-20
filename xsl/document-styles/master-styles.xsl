@@ -46,7 +46,7 @@
 
 <xsl:template name="document-styles.master-styles">
 	<xsl:choose>
-		<xsl:when test="/book|/article|/chapter|/part|/section">
+		<xsl:when test="/book|/article|/chapter|/part|/section|/bibliography">
 			<xsl:element name="style:master-page">
 				<xsl:attribute name="style:name">Standard</xsl:attribute>
 				<xsl:attribute name="style:page-layout-name"><xsl:value-of select="$page.text-layout"/></xsl:attribute>

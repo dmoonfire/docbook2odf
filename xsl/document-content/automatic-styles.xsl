@@ -106,7 +106,7 @@
 		</xsl:element>
 	</xsl:element>
 	
-	<xsl:if test="/article|/book|/chapter">
+	<xsl:if test="/article|/book|/chapter|/bibliography">
 	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">

@@ -47,6 +47,7 @@
 <xsl:include href="document-content/book.xsl"/>
 <xsl:include href="document-content/article.xsl"/>
 <xsl:include href="document-content/chapter.xsl"/>
+<xsl:include href="document-content/bibliography.xsl"/>
 <xsl:include href="document-content/slides.xsl"/>
 
 <!-- automatic styles in content.xsl -->

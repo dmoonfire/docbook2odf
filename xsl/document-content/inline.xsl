@@ -93,12 +93,14 @@
 	</text:span>
 </xsl:template>
 
+
 <xsl:template match="superscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-super</xsl:attribute>
 		<xsl:apply-templates/>
 	</text:span>
 </xsl:template>
+
 
 <xsl:template match="subscript">
 	<text:span>
@@ -107,5 +109,56 @@
 	</text:span>
 </xsl:template>
 
+
+
+<xsl:template name="credit" match="author|editor|othercredit">
+	<!-- name of author/editor -->
+	
+	<xsl:comment>credit</xsl:comment>
+	
+	<xsl:if test="firstname">
+		<xsl:comment>firstname</xsl:comment>
+		<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
+	</xsl:if>
+	<xsl:if test="othername">
+		<xsl:comment>othername</xsl:comment>
+		<xsl:value-of select="othername"/><xsl:text> </xsl:text>
+	</xsl:if>
+	<xsl:comment>surname</xsl:comment>
+	<xsl:value-of select="surname"/>
+	
+	<!-- email contact -->
+	<xsl:if test="email">
+		<xsl:text> (</xsl:text>
+			<xsl:comment>email</xsl:comment>
+			<xsl:apply-templates select="email"/>
+		<xsl:text>)</xsl:text>
+	</xsl:if>
+</xsl:template>
+
+
+
+<xsl:template name="copyright" match="copyright">
+	<!-- name of author/editor -->
+	<xsl:comment>copyright</xsl:comment>
+		<xsl:text>(C)</xsl:text>
+		<xsl:apply-templates/>
+	<xsl:comment>/copyright</xsl:comment>
+</xsl:template>
+
+
+
+<!-- Don't style -->
+
+
+<xsl:template match="
+	year|
+	holder|
+	publishername
+	">
+	<xsl:comment><xsl:value-of select="local-name()"/></xsl:comment>
+	<text:span><xsl:apply-templates/></text:span>
+	<xsl:comment>/<xsl:value-of select="local-name()"/></xsl:comment>
+</xsl:template>
 
 </xsl:stylesheet>

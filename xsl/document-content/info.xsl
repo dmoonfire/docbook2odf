@@ -44,7 +44,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="bookinfo|chapterinfo|articleinfo">
+<xsl:template match="bookinfo|chapterinfo|articleinfo|bibliographyinfo">
 	
 	<xsl:if test="$generate.meta=1">
 	
@@ -72,7 +72,13 @@
 </xsl:template>
 
 
-<xsl:template match="bookinfo/*|chapterinfo/*|articleinfo/*">
+
+<xsl:template match="
+	bookinfo/*|
+	chapterinfo/*|
+	articleinfo/*|
+	bibliographyinfo/*|
+	biblioentry/*">
 	
 	<xsl:variable name="name" select="name()"/>
 	
@@ -106,8 +112,15 @@
 						<xsl:apply-templates/>
 					</text:p>
 				</xsl:when>
-				<!-- when element can be formatted by default (contains paragraphs, etc...) -->
-				<xsl:when test="$name='abstract' or $name='legalnotice' or $name='authorblurb'">
+				<!--
+					when element can be formatted by default, because all childs
+					is creating paragraph elements
+				-->
+				<xsl:when test="
+					$name='abstract' or
+					$name='legalnotice' or
+					$name='authorblurb' or
+					$name='printhistory'">
 					<xsl:apply-templates/>
 				</xsl:when>
 				<!-- when element must be formatted special -->
@@ -118,6 +131,17 @@
 		</table:table-cell>
 	</table:table-row>
 </xsl:template>
+
+<!-- Don't render -->
+<xsl:template match="
+	biblioentry/title|
+	biblioentry/abbrev|
+	bookinfo/title|
+	chapterinfo/title|
+	articleinfo/title|
+	bibliographyinfo/title
+	"/>
+
 
 
 <xsl:template match="authorgroup" mode="info">
@@ -134,27 +158,27 @@
 </xsl:template>
 
 
-<xsl:template match="author" mode="info">
+<xsl:template match="author|editor|othercredit" mode="info">
 	<text:p text:style-name="para">
-	
-		<!-- name of author -->
-		<xsl:if test="firstname">
-			<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
-		</xsl:if>
-		<xsl:if test="othername">
-			<xsl:value-of select="othername"/><xsl:text> </xsl:text>
-		</xsl:if>
-		<xsl:value-of select="surname"/>
-		
-		<!-- email contact -->
-		<xsl:if test="email">
-			<xsl:text> (</xsl:text>
-				<xsl:apply-templates select="email"/>
-			<xsl:text>)</xsl:text>
-		</xsl:if>
-		
+		<!-- format author/editor by inline style -->
+		<xsl:call-template name="credit"/>
 	</text:p>
 </xsl:template>
+
+
+<xsl:template match="copyright" mode="info">
+	<text:p text:style-name="para">
+		<xsl:call-template name="copyright"/>
+	</text:p>
+</xsl:template>
+
+
+<xsl:template match="publisher" mode="info">
+	<text:p text:style-name="para">
+		<xsl:apply-templates/>
+	</text:p>
+</xsl:template>
+
 
 
 <!-- another info content -->

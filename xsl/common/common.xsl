@@ -51,6 +51,8 @@
 		/book/bookinfo/title |
 		/article/title |
 		/article/articleinfo/title |
+		/bibliography/title |
+		/bibliography/bibliographyinfo/title |
 		/chapter/title |
 		/chapter/chapterinfo/title |
 		/appendix/title |
@@ -73,6 +75,8 @@
 			<xsl:value-of select="
 				count(ancestor-or-self::chapter)+
 				count(ancestor-or-self::article)+
+				count(ancestor-or-self::bibliography)+
+				count(ancestor-or-self::bibliodiv)+
 				count(ancestor-or-self::section)+
 				count(ancestor-or-self::sect1)+
 				count(ancestor-or-self::sect2)+
@@ -84,6 +88,8 @@
 		<xsl:otherwise>
 			<xsl:value-of select="
 				count(ancestor-or-self::chapter)+
+				count(ancestor-or-self::bibliography)+
+				count(ancestor-or-self::bibliodiv)+
 				count(ancestor-or-self::section)+
 				count(ancestor-or-self::sect1)+
 				count(ancestor-or-self::sect2)+

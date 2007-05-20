@@ -777,6 +777,21 @@
 		</style:text-properties>
 	</style:style>
 	
+	<!-- title-bibliography -->
+	<style:style
+		style:name="title-bibliography"
+		style:family="paragraph"
+		style:parent-style-name="title"
+		style:next-style-name="para-padding"
+		style:display-name="Title Bibliography">
+		<style:paragraph-properties
+			fo:padding-top="0.6cm">
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:font-size="300%">
+		</style:text-properties>
+	</style:style>
+	
 </xsl:template>
 
 
