@@ -952,8 +952,15 @@
 <!--
 	 ________
 	|A1|B1|C1|
+	~~~~~~~~~~
 	|A2|B2|C2|
+	~~~~~~~~~~
 	|A3|B3|C3|
+	 ^^^^^^^^
+	 ________
+	|A4 B4 C4|
+	|A5 B5 C5|
+	|A6 B6 C6|
 	 ^^^^^^^^
 -->
 	
@@ -1070,6 +1077,67 @@
 	</style:style>
 	
 	
+	<!-- 4 -->
+	
+	<!-- A4 -->
+	<style:style style:name="table-default.cell-A4" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-left="0.5pt solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- B4 -->
+	<style:style style:name="table-default.cell-B4" style:family="table-cell">
+		<style:table-cell-properties
+			fo:border-top="0.5pt solid #000000"
+			fo:padding="0.097cm">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- C4 -->
+	<style:style style:name="table-default.cell-C4" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-right="0.5pt solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
+	<!-- 5 -->
+	
+	<!-- A5 -->
+	<style:style style:name="table-default.cell-A5" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- B5 -->
+	<style:style style:name="table-default.cell-B5" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- C5 -->
+	<style:style style:name="table-default.cell-C5" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-right="0.5pt solid #000000">
+			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	
 	<!-- H -->
 	
 	<!-- H-A3 -->
@@ -1106,6 +1174,16 @@
 			fo:border-bottom="0pt solid #000000">
 			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
 			<style:background-image/>
+		</style:table-cell-properties>
+	</style:style>
+	
+	<!-- H4 -->
+	<style:style style:name="table-default.cell-H4" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-top="0.5pt solid #000000"
+			fo:border-right="0.5pt solid #000000">
 		</style:table-cell-properties>
 	</style:style>
 	
@@ -1149,6 +1227,16 @@
 		</style:table-cell-properties>
 	</style:style>
 	
+	<!-- F6 -->
+	<style:style style:name="table-default.cell-F6" style:family="table-cell">
+		<style:table-cell-properties
+			fo:padding="0.097cm"
+			fo:border-left="0.5pt solid #000000"
+			fo:border-right="0.5pt solid #000000"
+			fo:border-bottom="0.5pt solid #000000">
+		</style:table-cell-properties>
+	</style:style>
+	
 	
 	<style:style style:name="table-info" style:family="table">
 		<style:table-properties
@@ -1182,6 +1270,19 @@
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
+	
+	
+	<style:style style:name="table-biblio.column-A" style:family="table-column">
+		<style:table-column-properties
+			style:column-width="3cm"
+			style:rel-column-width="200*"/>
+	</style:style>
+	
+	<style:style style:name="table-biblio.column-B" style:family="table-column">
+		<style:table-column-properties
+			style:rel-column-width="800*"/>
+	</style:style>
+	
 	
 </xsl:template>
 

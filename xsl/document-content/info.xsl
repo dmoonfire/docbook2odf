@@ -77,8 +77,8 @@
 	bookinfo/*|
 	chapterinfo/*|
 	articleinfo/*|
-	bibliographyinfo/*|
-	biblioentry/*">
+	bibliographyinfo/*
+	">
 	
 	<xsl:variable name="name" select="name()"/>
 	

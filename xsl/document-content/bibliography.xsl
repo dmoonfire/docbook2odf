@@ -135,14 +135,14 @@
 	<table:table
 		table:style-name="table-info">
 		<table:table-column
-			table:style-name="table-info.column-A"/>
+			table:style-name="table-biblio.column-A"/>
 		<table:table-column
-			table:style-name="table-info.column-B"/>
+			table:style-name="table-biblio.column-B"/>
 		
 		<table:table-row>
 			<table:table-cell
 				office:value-type="string"
-				table:style-name="table-info.cell-H"
+				table:style-name="table-default.cell-H4"
 				table:number-columns-spanned="2">
 				<text:p
 					text:style-name="para-title">
@@ -153,8 +153,65 @@
 		
 		<xsl:apply-templates/>
 		
+		<table:table-row>
+			<table:table-cell
+				office:value-type="string"
+				table:style-name="table-default.cell-F6"
+				table:number-columns-spanned="2">
+				<text:p/>
+			</table:table-cell>
+		</table:table-row>
+		
 	</table:table>
 	
+</xsl:template>
+
+
+
+<xsl:template match="biblioentry/*">
+	
+	<xsl:variable name="name" select="name()"/>
+	
+	<table:table-row>
+		<xsl:comment>empty cell (only used for padding content)</xsl:comment>
+		<table:table-cell
+			office:value-type="string"
+			table:style-name="table-default.cell-A5">
+			<text:p text:style-name="para">
+				<text:span text:style-name="text-bold">
+					<xsl:value-of select="name()"/><xsl:text>:</xsl:text>
+				</text:span>
+			</text:p>
+		</table:table-cell>
+		<table:table-cell
+			office:value-type="sting"
+			table:style-name="table-default.cell-C5">
+			<xsl:choose>
+				<!-- when element has no childs -->
+				<xsl:when test="count(*)=0">
+					<text:p text:style-name="para">
+						<!-- can be continue formatted as inline element -->
+						<xsl:apply-templates/>
+					</text:p>
+				</xsl:when>
+				<!--
+					when element can be formatted by default, because all childs
+					is creating paragraph elements
+				-->
+				<xsl:when test="
+					$name='abstract' or
+					$name='legalnotice' or
+					$name='authorblurb' or
+					$name='printhistory'">
+					<xsl:apply-templates/>
+				</xsl:when>
+				<!-- when element must be formatted special -->
+				<xsl:otherwise>
+					<xsl:apply-templates select="." mode="info"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</table:table-cell>
+	</table:table-row>
 </xsl:template>
 
 
