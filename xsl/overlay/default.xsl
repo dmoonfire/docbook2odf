@@ -31,6 +31,7 @@
 
 <!-- PARAMS OVERLAY -->
 <xsl:param name="CI.style.color">#323298</xsl:param>
+<xsl:param name="CI.style.color.sub">#323298</xsl:param>
 <xsl:param name="CI.style.color.bg">#F5F5F5</xsl:param>
 <xsl:param name="CI.style.color.bg2">#F0F0F0</xsl:param>
 <xsl:param name="CI.style.color2">#FFFFFF</xsl:param> <!-- presentation background -->
