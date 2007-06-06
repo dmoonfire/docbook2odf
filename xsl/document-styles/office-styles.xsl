@@ -542,11 +542,15 @@
 			text:line-number="1">
 			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
 			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			<xsl:if test="/chapter">
+				<xsl:attribute name="fo:break-before">page</xsl:attribute>
+			</xsl:if>
 		</style:paragraph-properties>
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
 					<xsl:when test="/article">140%</xsl:when>
+					<xsl:when test="/chapter">175%</xsl:when>
 					<xsl:otherwise>200%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -563,17 +567,24 @@
 		style:default-outline-level="2">
 		<style:paragraph-properties
 			text:line-number="2">
-			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+			<xsl:attribute name="fo:margin-top">
+				<xsl:choose>
+					<xsl:when test="/article">1.3cm</xsl:when>
+					<xsl:when test="/chapter">1.1cm</xsl:when>
+					<xsl:otherwise>0.6cm</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			
 			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-			<xsl:if test="/book|/chapter">
+			<xsl:if test="/book">
 				<xsl:attribute name="fo:break-before">page</xsl:attribute>
-				<!--<xsl:attribute name="fo:border-top">0.002cm solid <xsl:value-of select="$CI.style.color"/></xsl:attribute>-->
 			</xsl:if>
 		</style:paragraph-properties>
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
 					<xsl:when test="/article">120%</xsl:when>
+					<xsl:when test="/chapter">140%</xsl:when>
 					<xsl:otherwise>175%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -590,12 +601,19 @@
 		style:default-outline-level="3">
 		<style:paragraph-properties
 			text:line-number="3">
-			<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+			<xsl:choose>
+				<xsl:when test="/book">
+					<xsl:attribute name="fo:margin-top">1.2cm</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="fo:margin-top">0.6cm</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
 		</style:paragraph-properties>
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">110%</xsl:when>
+					<xsl:when test="/article|/chapter">110%</xsl:when>
 					<xsl:otherwise>150%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -617,7 +635,7 @@
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">100%</xsl:when>
+					<xsl:when test="/article|/chapter">100%</xsl:when>
 					<xsl:otherwise>125%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -638,7 +656,7 @@
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
-					<xsl:when test="/article">100%</xsl:when>
+					<xsl:when test="/article|/chapter">100%</xsl:when>
 					<xsl:otherwise>100%</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>
@@ -659,6 +677,9 @@
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="100%">
+			<xsl:attribute name="fo:color">
+				<xsl:value-of select="$CI.style.color.sub"/>
+			</xsl:attribute>
 		</style:text-properties>
 	</style:style>
 	
@@ -675,7 +696,7 @@
 			fo:font-weight="bold"
 			fo:font-size="100%">
 			<xsl:attribute name="fo:color">
-				<xsl:value-of select="$CI.style.color"/>
+				<xsl:value-of select="$CI.style.color.sub"/>
 			</xsl:attribute>
 			<xsl:attribute name="style:font-name">
 				<xsl:value-of select="$style.font-name.bold"/>

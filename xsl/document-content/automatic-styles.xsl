@@ -135,7 +135,7 @@
 				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
 			</xsl:element>
 			<xsl:element name="style:text-properties">
-				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color.sub"/></xsl:attribute>
 				<xsl:attribute name="fo:font-size">20pt</xsl:attribute>
 				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>

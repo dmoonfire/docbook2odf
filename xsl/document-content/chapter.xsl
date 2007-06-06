@@ -59,6 +59,29 @@
 
 <xsl:template name="chapter" match="chapter">
 	
+	
+	<xsl:choose>
+		<!-- chapter as document -->
+		<xsl:when test="/chapter">
+			<text:p
+				text:style-name="title-chapter">
+				<xsl:value-of select="title|chapterinfo/title"/>
+			</text:p>
+		</xsl:when>
+		<!-- chapter in book -->
+		<xsl:otherwise>
+			<text:p text:style-name="title-chapter">
+				<xsl:text>Chapter</xsl:text>
+			</text:p>
+			<text:h
+				text:outline-level="1"
+				text:style-name="Heading1">
+				<xsl:value-of select="title|chapterinfo/title"/>
+			</text:h>
+		</xsl:otherwise>
+	</xsl:choose>
+	
+	<!--
 	<text:p text:style-name="title-chapter">
 		<xsl:text>Chapter</xsl:text>
 	</text:p>
@@ -67,6 +90,7 @@
 		text:style-name="Heading1">
 		<xsl:value-of select="title|chapterinfo/title"/>
 	</text:h>
+	-->
 	
 	<xsl:apply-templates/>
 	
@@ -74,6 +98,14 @@
 
 
 <xsl:template match="chapter/title"/>
+
+
+<xsl:template name="chapter.subtitle" match="chapter/subtitle">
+	<text:p
+		text:style-name="para-title2">
+		<xsl:apply-templates/>
+	</text:p>
+</xsl:template>
 
 
 </xsl:stylesheet>

@@ -102,12 +102,11 @@
 		<xsl:attribute name="svg:y"><xsl:value-of select="$para.padding"/></xsl:attribute>
 		
 		<xsl:attribute name="draw:z-index">1</xsl:attribute>
-		<xsl:element name="draw:image">
+		<draw:image
+			xlink:type="embed"
+			xlink:actuate="onLoad">
 			<xsl:attribute name="xlink:href"><xsl:value-of select="imagedata/@fileref"/></xsl:attribute>
-			<xsl:attribute name="xlink:type">simple</xsl:attribute>
-			<xsl:attribute name="xlink:type">embed</xsl:attribute>
-			<xsl:attribute name="xlink:actuate">onLoad</xsl:attribute>
-		</xsl:element>
+		</draw:image>
 		
 	</xsl:element>
 	
