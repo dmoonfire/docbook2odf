@@ -237,10 +237,19 @@
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
-			<xsl:when test="*">
+			<xsl:when test="child::para">
+				<xsl:comment>child::paragraph</xsl:comment>
 				<xsl:apply-templates/>
 			</xsl:when>
+			<xsl:when test="*">
+				<xsl:comment>child::*</xsl:comment>
+				<text:p
+					text:style-name="Standard">
+					<xsl:apply-templates/>
+				</text:p>
+			</xsl:when>
 			<xsl:otherwise>
+				<xsl:comment>child::otherwise</xsl:comment>
 				<text:p
 					text:style-name="Standard">
 					<xsl:value-of select="."/>
