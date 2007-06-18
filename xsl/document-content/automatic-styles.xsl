@@ -1147,7 +1147,7 @@
 			fo:border-left="1pt solid #000000"
 			fo:border-top="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
@@ -1159,7 +1159,7 @@
 			fo:border-left="0.5pt solid #000000"
 			fo:border-top="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
@@ -1172,7 +1172,7 @@
 			fo:border-top="1pt solid #000000"
 			fo:border-right="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
+			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
