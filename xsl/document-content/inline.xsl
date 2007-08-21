@@ -94,6 +94,22 @@
 </xsl:template>
 
 
+<xsl:template match="literal">
+	<text:span>
+		<xsl:attribute name="text:style-name">
+			<xsl:choose>
+				<xsl:when test="@role='strong'">text-strong</xsl:when>
+				<xsl:when test="@role='bold'">text-bold</xsl:when>
+				<xsl:when test="@role='underline'">text-underline</xsl:when>
+				<xsl:when test="@role='strikethrough'">text-strikethrough</xsl:when>
+				<xsl:otherwise>text-monospace</xsl:otherwise>
+			</xsl:choose>
+		</xsl:attribute>
+		<xsl:apply-templates/>
+	</text:span>
+</xsl:template>
+
+
 <xsl:template match="superscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-super</xsl:attribute>

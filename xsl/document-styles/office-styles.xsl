@@ -424,6 +424,20 @@
 		<style:text-properties/>
 	</style:style>
 	
+<!-- <docbook:literallayout> -->
+	<style:style
+		style:name="para-literallayout"
+		style:display-name="Paragraph Literallayout"
+		style:family="paragraph"
+		style:parent-style-name="Verbatim"
+		style:next-style-name="para-literallayout">
+		<style:paragraph-properties
+			fo:padding-top="0.20cm"
+			fo:padding-bottom="0.20cm"
+			fo:border-left="0.002cm solid #000000"/>
+		<style:text-properties/>
+	</style:style>
+	
 <!-- <docbook:synopsis> -->
 	<style:style
 		style:name="para-synopsis"

@@ -64,6 +64,14 @@
 </xsl:template>
 
 
+<xsl:template match="literallayout">
+	<text:p>
+		<xsl:attribute name="text:style-name">para-literallayout</xsl:attribute>
+		<xsl:apply-templates/>
+	</text:p>
+</xsl:template>
+
+
 <xsl:template match="command">
 	
 	<xsl:choose>

@@ -57,7 +57,7 @@
 <xsl:template match="formalpara/title"/>
 
 
-<xsl:template match="para|simpara">
+<xsl:template match="para|simpara|titleabbrev">
 	<xsl:choose>
 		<!-- all docbook elements that would be transformed as a odf:paragraph -->
 		<!-- opendocument can't cointain text:p in text:p                      -->
