@@ -67,6 +67,35 @@
 	"/></text:title>
 </xsl:template>
 
+<xsl:template name="document.author">
+	<text:author-name text:fixed="true"><xsl:value-of select="
+		/article/articleinfo/author/firstname |
+		/book/bookinfo/author/firstname
+	"/><xsl:text> </xsl:text><xsl:value-of select="
+		/article/articleinfo/author/surname |
+		/book/bookinfo/author/surname
+	"/></text:author-name>
+</xsl:template>
+
+<xsl:template name="document.email">
+	<xsl:value-of select="
+		/article/articleinfo/author/affiliation/address/email |
+		/book/bookinfo/author/affiliation/address/email
+	"/>
+</xsl:template>
+
+<xsl:template name="document.author-email">
+	<text:author-name text:fixed="true"><xsl:value-of select="
+		/article/articleinfo/author/firstname |
+		/book/bookinfo/author/firstname
+	"/><xsl:text> </xsl:text><xsl:value-of select="
+		/article/articleinfo/author/surname |
+		/book/bookinfo/author/surname
+	"/></text:author-name> &lt;<xsl:value-of select="
+		/article/articleinfo/author/affiliation/address/email |
+		/book/bookinfo/author/affiliation/address/email
+	"/>&gt;
+</xsl:template>
 
 <xsl:template name="section.level">
 	<!-- compute level of section -->

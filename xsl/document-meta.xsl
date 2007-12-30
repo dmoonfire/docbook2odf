@@ -58,12 +58,30 @@
 			<xsl:value-of select="/article/articleinfo/description"/>
 		</xsl:element>
 		
-		<xsl:element name="dc:date">
+		<xsl:element name="text:date">
 			<xsl:value-of select="article/articleinfo/pubdate"/>
+		</xsl:element>
+		
+		<xsl:element name="dc:date">
+			<xsl:value-of select="article/articleinfo/revhistory/revision/date"/>
 		</xsl:element>
 		
 		<xsl:element name="dc:language">
 			<xsl:value-of select="article/@lang"/>
+		</xsl:element>
+		
+		<xsl:element name="meta:editing-cycles">
+			<xsl:value-of select="article/articleinfo/revhistory/revision/revnumber"/>
+		</xsl:element>
+		
+		<xsl:element name="meta:initial-creator">
+			<xsl:value-of select="
+				/article/articleinfo/author/firstname |
+				/book/bookinfo/author/firstname
+			"/><xsl:text> </xsl:text><xsl:value-of select="
+				/article/articleinfo/author/surname |
+				/book/bookinfo/author/surname
+			"/>
 		</xsl:element>
 		
 		<xsl:element name="meta:generator">
