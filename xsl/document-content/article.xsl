@@ -64,14 +64,13 @@
 	<!-- when article is only part of document, render article as only one chapter of document -->
 	<xsl:choose>
 		<xsl:when test="/article">
-			<text:p
-				text:style-name="title-article">
-				<xsl:value-of select="title|articleinfo/title"/>
+			<text:p text:style-name="title-article">
+				<xsl:call-template name="document.title"/>
 			</text:p>
 		</xsl:when>
 		<xsl:otherwise>
 			<text:p text:style-name="title-chapter">
-				<xsl:text>Article</xsl:text>
+				<xsl:call-template name="document.title"/>
 			</text:p>
 			<text:h
 				text:outline-level="1"

@@ -50,9 +50,8 @@
 		
 		<xsl:call-template name="CI.office-text"/>
 		
-		<text:p
-			text:style-name="title-book">
-			<xsl:value-of select="title|bookinfo/title"/>
+		<text:p text:style-name="title-book">
+			<xsl:call-template name="document.title"/>
 		</text:p>
 		
 		<xsl:apply-templates/>
