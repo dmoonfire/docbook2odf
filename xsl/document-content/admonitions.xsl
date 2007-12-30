@@ -42,32 +42,51 @@
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
 	office:version="1.0">
-	
-<!-- document types -->
-<xsl:include href="document-content/book.xsl"/>
-<xsl:include href="document-content/article.xsl"/>
-<xsl:include href="document-content/chapter.xsl"/>
-<xsl:include href="document-content/bibliography.xsl"/>
-<xsl:include href="document-content/slides.xsl"/>
 
-<!-- automatic styles in content.xsl -->
-<xsl:include href="document-content/automatic-styles.xsl"/>
+<!-- FIXME: Iconified adminitions would be very welcome -->
 
-<!-- info blocks bookinfo, articleinfo, blockinfo,... -->
-<xsl:include href="document-content/info.xsl"/>
+<xsl:template match="tip">
+    <text:p text:style-name="para-admonition">
+        <text:span text:style-name="text-strong">TIP:</text:span>
+        <xsl:apply-templates mode="admonition-text"/>
+    </text:p>
+</xsl:template>
 
-<!-- other tags -->
-<xsl:include href="document-content/paragraph.xsl"/>
-<xsl:include href="document-content/block.xsl"/>
-<xsl:include href="document-content/admonitions.xsl"/>
-<xsl:include href="document-content/formal.xsl"/>
-<xsl:include href="document-content/inline.xsl"/>
-<xsl:include href="document-content/lists.xsl"/>
-<xsl:include href="document-content/section.xsl"/>
-<xsl:include href="document-content/synop.xsl"/>
-<xsl:include href="document-content/verbatim.xsl"/>
-<xsl:include href="document-content/media.xsl"/>
-<xsl:include href="document-content/notes.xsl"/>
-<xsl:include href="document-content/tables.xsl"/>
+
+<xsl:template match="note">
+    <text:p text:style-name="para-admonition">
+        <text:span text:style-name="text-strong">NOTE:</text:span>
+        <xsl:apply-templates mode="admonition-text"/>
+    </text:p>
+</xsl:template>
+
+
+<xsl:template match="warning">
+    <text:p text:style-name="para-admonition">
+        <text:span text:style-name="text-strong">WARNING:</text:span>
+        <xsl:apply-templates mode="admonition-text"/>
+    </text:p>
+</xsl:template>
+
+
+<xsl:template match="caution">
+    <text:p text:style-name="para-admonition">
+        <text:span text:style-name="text-strong">CAUTION:</text:span>
+        <xsl:apply-templates mode="admonition-text"/>
+    </text:p>
+</xsl:template>
+
+
+<xsl:template match="important">
+    <text:p text:style-name="para-admonition">
+        <text:span text:style-name="text-strong">IMPORTANT:</text:span>
+        <xsl:apply-templates mode="admonition-text"/>
+    </text:p>
+</xsl:template>
+
+<xsl:template match="simpara" mode="admonition-text">
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates/>
+</xsl:template>
 
 </xsl:stylesheet>

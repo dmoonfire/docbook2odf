@@ -490,7 +490,32 @@
 		<style:text-properties
 			fo:font-style="italic"/>
 	</style:style>
-	
+
+<!-- param-admonition -->
+<!-- FIXME: a different definition for tip, note, caution, warning and important may be necessary -->
+	<style:style
+		style:name="para-admonition"
+		style:display-name="Paragraph Admonition"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties
+			fo:margin-left="0.4cm"
+			fo:margin-right="0cm"
+			fo:margin-top="0.3cm"
+			fo:margin-bottom="0.4cm"
+			fo:padding-left="0.7cm"
+			fo:padding-right="0.049cm"
+			fo:padding-top="0.2cm"
+			fo:padding-bottom="0.2cm"
+			fo:text-indent="0cm"
+			style:auto-text-indent="false"
+			fo:border-top="0.01cm double #000000"
+			fo:border-bottom="0.01cm double #000000"
+			style:shadow="none"/>
+		<!--style:text-properties
+			fo:font-style="italic"/-->
+	</style:style>
+
 <!-- para-term -->
 	<style:style
 		style:name="para-term"
