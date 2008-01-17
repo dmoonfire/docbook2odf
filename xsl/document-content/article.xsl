@@ -70,7 +70,7 @@
 		</xsl:when>
 		<xsl:otherwise>
 			<text:p text:style-name="title-chapter">
-				<xsl:call-template name="document.title"/>
+				<xsl:text>Article</xsl:text>
 			</text:p>
 			<text:h
 				text:outline-level="1"

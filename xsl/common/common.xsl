@@ -45,8 +45,8 @@
 
 
 <xsl:template name="document.title">
-	<!-- get title of document -->
-	<text:title><xsl:value-of select="
+	<!-- get title of document - only text -->
+	<xsl:value-of select="
 		/book/title |
 		/book/bookinfo/title |
 		/article/title |
@@ -64,7 +64,7 @@
 		/refentry/refentryinfo/title |
 		/section/title |
 		/section/sectioninfo/title
-	"/></text:title>
+	"/>
 </xsl:template>
 
 <xsl:template name="document.author">
