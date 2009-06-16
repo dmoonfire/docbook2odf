@@ -106,7 +106,28 @@
 		</xsl:element>
 	</xsl:element>
 	
-	<xsl:if test="/article|/book|/chapter|/bibliography">
+<!-- para-table-head -->
+		<xsl:element name="style:style">
+			<xsl:attribute name="style:name">para-table-head</xsl:attribute>
+			<xsl:attribute name="style:family">paragraph</xsl:attribute>
+			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+			<!--
+			<xsl:element name="style:paragraph-properties">
+				<xsl:attribute name="fo:margin-top">0.4cm</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			</xsl:element>
+			-->
+			<xsl:element name="style:text-properties">
+				<xsl:attribute name="fo:color">#FFFFFF</xsl:attribute>
+				<!--
+				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
+				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				-->
+				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+			</xsl:element>
+		</xsl:element>
+	
+	<xsl:if test="/article|/book|/chapter|/bibliography|/section">
 	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">
@@ -138,7 +159,10 @@
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color.sub"/></xsl:attribute>
 				<xsl:attribute name="fo:font-size">20pt</xsl:attribute>
 				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+				<xsl:attribute name="fo:font-style">italic</xsl:attribute>
+				<!--
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
+				-->
 			</xsl:element>
 		</xsl:element>
 		
@@ -192,7 +216,6 @@
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
 			</xsl:element>
 		</xsl:element>
-		
 		
 	</xsl:if>
 	<xsl:if test="/slides">
@@ -1249,6 +1272,12 @@
 		<style:table-column-properties
 			style:column-width="3cm"
 			style:rel-column-width="100*"/>
+	</style:style>
+	
+	<style:style style:name="table-info.column-A1" style:family="table-column">
+		<style:table-column-properties
+			style:column-width="6cm"
+			style:rel-column-width="200*"/>
 	</style:style>
 	
 	<style:style style:name="table-info.column-B" style:family="table-column">

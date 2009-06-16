@@ -170,6 +170,8 @@
 				
 				<xsl:when test="parent::blockquote">para-blockquote</xsl:when>
 				
+				<xsl:when test="parent::highlights">para-highlight</xsl:when>
+				
 				<xsl:otherwise>para-padding</xsl:otherwise>
 				
 			</xsl:choose>

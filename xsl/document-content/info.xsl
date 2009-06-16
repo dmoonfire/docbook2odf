@@ -72,6 +72,33 @@
 </xsl:template>
 
 
+<xsl:template match="sectioninfo">
+	
+	<xsl:if test="$generate.meta=1">
+	
+		<table:table
+			table:style-name="table-info">
+			<table:table-column
+				table:style-name="table-info.column-A1"/>
+			<table:table-column
+				table:style-name="table-info.column-B"/>
+			
+			<xsl:apply-templates/>
+			
+			<table:table-row>
+				<table:table-cell
+					office:value-type="string"
+					table:style-name="table-info.cell-H"
+					table:number-columns-spanned="2">
+				</table:table-cell>
+			</table:table-row>
+			
+		</table:table>
+		
+	</xsl:if>
+	
+</xsl:template>
+
 
 <xsl:template match="
 	bookinfo/*|
@@ -80,7 +107,23 @@
 	bibliographyinfo/*
 	">
 	
-	<xsl:variable name="name" select="name()"/>
+	<xsl:variable name="name">
+		<xsl:choose>
+			<!-- offer -->
+			<xsl:when test="/chapter[@role='offer']">
+				<xsl:choose>
+					<xsl:when test="name()='date'">Date</xsl:when>
+					<xsl:when test="name()='author'">Author</xsl:when>
+					<xsl:when test="name()='corpauthor'">Corporation</xsl:when>
+					<xsl:when test="name()='editor'">Requested by</xsl:when>
+					<xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="name()"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 	
 	<table:table-row>
 		<table:table-cell
@@ -89,7 +132,7 @@
 			table:number-columns-spanned="2">
 			<text:p
 				text:style-name="para-title">
-				<xsl:value-of select="name()"/><xsl:text>:</xsl:text>
+				<xsl:value-of select="$name"/><xsl:text>:</xsl:text>
 			</text:p>
 		</table:table-cell>
 	</table:table-row>
@@ -132,6 +175,94 @@
 	</table:table-row>
 </xsl:template>
 
+
+
+<xsl:template match="
+	sectioninfo/*
+	">
+	
+	<xsl:variable name="name">
+		<xsl:choose>
+			<!-- Production Cost Estimate -->
+			<xsl:when test="/section[@role='PCE']">
+				<xsl:choose>
+					<xsl:when test="name()='date'">Date</xsl:when>
+					<xsl:when test="name()='author'">Author</xsl:when>
+					<xsl:when test="name()='corpauthor'">Corporation</xsl:when>
+					<xsl:when test="name()='editor'">Requested by</xsl:when>
+					<xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<!-- Meeting Minutes -->
+			<xsl:when test="/section[@role='MM']">
+				<xsl:choose>
+					<xsl:when test="name()='date'">Date</xsl:when>
+					<xsl:when test="name()='author'">Author</xsl:when>
+					<xsl:when test="name()='corpauthor'">Corporation</xsl:when>
+					<xsl:when test="name()='authorgroup'">Parties concerned</xsl:when>
+					<xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<!-- Protocol of Acceptance -->
+			<xsl:when test="/section[@role='PA']">
+				<xsl:choose>
+					<xsl:when test="name()='date'">Date</xsl:when>
+					<xsl:when test="name()='author'">Author</xsl:when>
+					<xsl:when test="name()='corpauthor'">Corporation</xsl:when>
+					<xsl:when test="name()='editor'">Client</xsl:when>
+					<xsl:when test="name()='authorgroup'">Parties concerned</xsl:when>
+					<xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="name()"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	
+	<table:table-row>
+		<xsl:comment>empty cell (only used for padding content)</xsl:comment>
+		<table:table-cell
+			office:value-type="string"
+			table:style-name="table-info.cell-H">
+			<text:p
+				text:style-name="para">
+				<xsl:value-of select="$name"/><xsl:text>:</xsl:text>
+			</text:p>
+		</table:table-cell>
+		<table:table-cell
+			office:value-type="string"
+			table:style-name="table-info.cell-A">
+			<xsl:choose>
+				<!-- when element has no childs -->
+				<xsl:when test="count(*)=0">
+					<text:p text:style-name="para">
+						<!-- can be continue formatted as inline element -->
+						<xsl:apply-templates/>
+					</text:p>
+				</xsl:when>
+				<!--
+					when element can be formatted by default, because all childs
+					is creating paragraph elements
+				-->
+				<xsl:when test="
+					$name='abstract' or
+					$name='legalnotice' or
+					$name='authorblurb' or
+					$name='printhistory'">
+					<xsl:apply-templates/>
+				</xsl:when>
+				<!-- when element must be formatted special -->
+				<xsl:otherwise>
+					<xsl:apply-templates select="." mode="info"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</table:table-cell>
+	</table:table-row>
+</xsl:template>
+
+
+
 <!-- Don't render -->
 <xsl:template match="
 	biblioentry/title|
@@ -139,7 +270,8 @@
 	bookinfo/title|
 	chapterinfo/title|
 	articleinfo/title|
-	bibliographyinfo/title
+	bibliographyinfo/title|
+	sectioninfo/title
 	"/>
 
 

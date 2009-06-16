@@ -55,7 +55,7 @@
 
 <xsl:template match="note">
     <text:p text:style-name="para-admonition">
-        <text:span text:style-name="text-strong">NOTE:</text:span>
+        <text:span text:style-name="text-strong">Note:</text:span>
         <xsl:apply-templates mode="admonition-text"/>
     </text:p>
 </xsl:template>
@@ -84,7 +84,7 @@
     </text:p>
 </xsl:template>
 
-<xsl:template match="simpara" mode="admonition-text">
+<xsl:template match="simpara|para" mode="admonition-text">
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
 </xsl:template>
