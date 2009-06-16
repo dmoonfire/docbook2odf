@@ -125,10 +125,22 @@ paragraph, with the start element appearing first.
 
 
 <xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
-	<text:p
-		text:style-name="Heading-small">
-		<xsl:value-of select="."/>
-	</text:p>
+	
+	<xsl:choose>
+		<xsl:when test="name(../../..)='entry'">
+			<text:p
+				text:style-name="Heading-tiny">
+				<xsl:value-of select="."/>
+			</text:p>
+		</xsl:when>
+		<xsl:otherwise>
+			<text:p
+				text:style-name="Heading-small">
+				<xsl:value-of select="."/>
+			</text:p>
+		</xsl:otherwise>
+	</xsl:choose>
+	
 </xsl:template>
 
 
