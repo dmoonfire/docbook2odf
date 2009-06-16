@@ -503,19 +503,63 @@
 			fo:margin-right="0cm"
 			fo:margin-top="0.3cm"
 			fo:margin-bottom="0.4cm"
-			fo:padding-left="0.7cm"
+			fo:padding-left="0.5em"
 			fo:padding-right="0.049cm"
 			fo:padding-top="0.2cm"
 			fo:padding-bottom="0.2cm"
 			fo:text-indent="0cm"
 			style:auto-text-indent="false"
-			fo:border-top="0.01cm double #000000"
-			fo:border-bottom="0.01cm double #000000"
+			fo:border-top_="0.01cm dotted #000000"
+			fo:border-bottom_="0.01cm double #000000"
 			style:shadow="none"/>
+		<style:text-properties
+			fo:font-style="italic"
+			fo:font-size="9pt"/>
 		<!--style:text-properties
 			fo:font-style="italic"/-->
 	</style:style>
 
+<!-- para-notes -->
+	<xsl:element name="style:style">
+		<xsl:attribute name="style:name">para-notes</xsl:attribute>
+		<xsl:attribute name="style:display-name">Paragraph Notes</xsl:attribute>
+		<xsl:attribute name="style:family">paragraph</xsl:attribute>
+		<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
+		<xsl:element name="style:paragraph-properties">
+			<xsl:attribute name="fo:margin-top">0.2cm</xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+		</xsl:element>
+		<xsl:element name="style:text-properties">
+			<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<xsl:attribute name="fo:font-size">9pt</xsl:attribute>
+			<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
+			<xsl:attribute name="fo:font-style">italic</xsl:attribute>
+		</xsl:element>
+	</xsl:element>
+	
+<!-- para-highlight -->
+	<style:style
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text"
+		style:name="para-highlight"
+		style:display-name="Paragraph Highlight">
+		<style:paragraph-properties>
+			<xsl:attribute name="fo:margin-top">0.35cm</xsl:attribute>
+			<xsl:attribute name="fo:text-align">right</xsl:attribute>
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:font-weight="bold"
+			fo:font-size="100%">
+			<xsl:attribute name="fo:color">
+				<xsl:value-of select="$CI.style.color"/>
+			</xsl:attribute>
+			<xsl:attribute name="style:font-name">
+				<xsl:value-of select="$style.font-name.bold"/>
+			</xsl:attribute>
+		</style:text-properties>
+	</style:style>
+	
 <!-- para-term -->
 	<style:style
 		style:name="para-term"
@@ -588,6 +632,7 @@
 		<style:text-properties>
 			<xsl:attribute name="fo:font-size">
 				<xsl:choose>
+					<xsl:when test="/section">120%</xsl:when>
 					<xsl:when test="/article">140%</xsl:when>
 					<xsl:when test="/chapter">175%</xsl:when>
 					<xsl:otherwise>200%</xsl:otherwise>
@@ -726,6 +771,20 @@
 		style:family="paragraph"
 		style:parent-style-name="heading"
 		style:class="text"
+		style:name="Heading-tiny"
+		style:display-name="Heading Tiny">
+		<style:text-properties
+			fo:font-size="100%">
+			<xsl:attribute name="fo:color">
+				<xsl:value-of select="$CI.style.color.sub"/>
+			</xsl:attribute>
+		</style:text-properties>
+	</style:style>
+	
+	<style:style
+		style:family="paragraph"
+		style:parent-style-name="heading"
+		style:class="text"
 		style:name="Heading-para"
 		style:display-name="Paragraph Heading">
 		<style:paragraph-properties>
@@ -821,7 +880,7 @@
 			fo:font-size="300%">
 		</style:text-properties>
 	</style:style>
-		
+	
 	<!-- title-article -->
 	<style:style
 		style:name="title-article"
@@ -834,6 +893,21 @@
 		</style:paragraph-properties>
 		<style:text-properties
 			fo:font-size="160%">
+		</style:text-properties>
+	</style:style>
+	
+	<!-- title-section -->
+	<style:style
+		style:name="title-section"
+		style:family="paragraph"
+		style:parent-style-name="title"
+		style:next-style-name="para-padding"
+		style:display-name="Title Section">
+		<style:paragraph-properties
+			fo:padding-top="0.6cm">
+		</style:paragraph-properties>
+		<style:text-properties
+			fo:font-size="150%">
 		</style:text-properties>
 	</style:style>
 	
