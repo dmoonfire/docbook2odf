@@ -123,6 +123,12 @@
 					<xsl:call-template name="document-content.automatic-styles.drawing-page"/>
 					<xsl:call-template name="document-content.automatic-styles.presentation"/>
 				</xsl:if>
+				<xsl:if test="/chapter">
+					<xsl:call-template name="document-content.automatic-styles.section"/>
+				</xsl:if>
+				<xsl:if test="/section">
+					<xsl:call-template name="document-content.automatic-styles.section"/>
+				</xsl:if>
 				<xsl:if test="/article">
 					<xsl:call-template name="document-content.automatic-styles.section"/>
 				</xsl:if>
@@ -134,7 +140,7 @@
 			</xsl:element>
 			
 			<xsl:element name="office:body">
-				<xsl:apply-templates/> <!-- call for article|book|slides -->
+				<xsl:apply-templates/> <!-- call for article|book|section|chapter|slides -->
 			</xsl:element>
 			
 		</xsl:element>
