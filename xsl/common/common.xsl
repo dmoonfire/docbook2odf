@@ -113,6 +113,16 @@
 				count(ancestor-or-self::sect5)+
 				1"/>
 		</xsl:when>
+		<xsl:when test="/section">
+			<xsl:value-of select="
+				count(ancestor-or-self::section)+
+				count(ancestor-or-self::sect1)+
+				count(ancestor-or-self::sect2)+
+				count(ancestor-or-self::sect3)+
+				count(ancestor-or-self::sect4)+
+				count(ancestor-or-self::sect5)-
+				1"/>
+		</xsl:when>
 		<xsl:when test="/chapter">
 			<xsl:value-of select="
 				count(ancestor-or-self::bibliography)+
