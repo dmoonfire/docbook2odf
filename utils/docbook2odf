@@ -30,13 +30,14 @@ use File::Copy;
 use File::Path;
 use Getopt::Long;
 
+
+
 # variable depends
 my $USE_IMAGE_MAGICK = 0;
 if (eval "require Image::Magick")
 {
-	$USE_IMAGE_MAGICK = 1;
+       $USE_IMAGE_MAGICK = 1;
 }
-
 my $USE_SABLOTRON = 0;
 my $USE_LIBXSLT = 0;
 if (eval "require XML::Sablotron;")
@@ -150,7 +151,7 @@ if (!$output)
 	{
 		# output directory is in input file directory
 	}
-	$output_file=~s/\.(docbook|db|xml)$//;
+	$output_file=~s/\.(docbook|db|doc|xml)$//;
 	$output_file.=".od";
 }
 if ($output_dir)
@@ -454,20 +455,20 @@ sub img_dimmensions
 	($imgfile =~ /\.(\w+)$/) and $ext = $1;
 	
 	# Copy to make sure the file name is reasonable.
-	copy($imgfile,"$tmpdir/img-file.$ext");
-	$imgfile = "img-file.$ext";
+	copy($imgfile,"$tmpdir/img-file.$ext") || print "can't copy file\n";
+	$imgfile = "$tmpdir/img-file.$ext";
 	
 	# Convert to PNG.
-	chdir($tmpdir);
+	#chdir($tmpdir);
 	if ($ext eq "gif")
 	{
 		`gif2png -O $imgfile`;
 	}
 	elsif ($ext ne "png")
 	{
-		`anytopnm $imgfile 2> /dev/null| pnmtopng > img-file.png`;
+		`anytopnm $imgfile 2> /dev/null| pnmtopng > $tmpdir/img-file.png`;
 	}
-	$imgfile = "img-file.png";
+	$imgfile = "$tmpdir/img-file.png";
 	
 	# Get the image dimmensions.
 	my $data = `file $imgfile`;
@@ -528,7 +529,11 @@ sub xml_process
 			my $val  = shift;
 			$PARAM .= " --stringparam $name $val ";
 		}
-		return `xsltproc $PARAM $XSL $XML_DOC`;
+		$XML_DOC=~s| |\\ |g;
+#		my $cmd="xsltproc --xinclude $PARAM $XSL $XML_DOC";
+		my $cmd="xsltproc --xinclude $PARAM $XSL $XML_DOC";
+		print "$cmd\n" if $debug;
+		return `$cmd`;
 	}
 }
 
