@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -44,20 +45,20 @@
 	office:version="1.0">
 
 
-<xsl:template match="formalpara">
+<xsl:template match="docbook:formalpara">
 	<text:p
 		text:style-name="Heading-para">
-		<xsl:value-of select="title"/>
+		<xsl:value-of select="docbook:title"/>
 	</text:p>
 	<xsl:apply-templates/>
 </xsl:template>
 
 
 <!-- earlier rendered -->
-<xsl:template match="formalpara/title"/>
+<xsl:template match="docbook:formalpara/docbook:title"/>
 
 
-<xsl:template match="para|simpara|titleabbrev">
+<xsl:template match="docbook:para|docbook:simpara">
 	<xsl:choose>
 		<!-- all docbook elements that would be transformed as a odf:paragraph -->
 		<!-- opendocument can't cointain text:p in text:p                      -->
@@ -65,10 +66,10 @@
 		<!-- http://www.docbook.org/tdg/en/html/para.html                      -->
 		<!-- abbrev, acronym, action, address, anchor, application, author, authorinitials, beginpage, bibliolist, biblioref, blockquote, calloutlist, caution, citation, citebiblioid, citerefentry, citetitle, classname, classsynopsis, cmdsynopsis, code, command, computeroutput, constant, constructorsynopsis, corpauthor, corpcredit, database, destructorsynopsis, email, emphasis, envar, equation, errorcode, errorname, errortext, errortype, example, exceptionname, fieldsynopsis, figure, filename, firstterm, footnote, footnoteref, foreignphrase, funcsynopsis, function, glosslist, glossterm, graphic, graphicco, guibutton, guiicon, guilabel, guimenu, guimenuitem, guisubmenu, hardware, important, indexterm, informalequation, informalexample, informalfigure, informaltable, inlineequation, inlinegraphic, inlinemediaobject, interface, interfacename, itemizedlist, keycap, keycode, keycombo, keysym, link, literal, literallayout, markup, medialabel, mediaobject, mediaobjectco, menuchoice, methodname, methodsynopsis, modespec, mousebutton, nonterminal, note, olink, ooclass, ooexception, oointerface, option, optional, orderedlist, orgname, othercredit, package, parameter, personname, phrase, productname, productnumber, programlisting, programlistingco, prompt, property, quote, remark, replaceable, returnvalue, revhistory, screen, screenco, screenshot, segmentedlist, sgmltag, simplelist, structfield, structname, subscript, superscript, symbol, synopsis, systemitem, table, termdef, tip, token, trademark, type, ulink, uri, userinput, variablelist, varname, warning, wordasword, xref -->
 		<xsl:when test="
-			child::itemizedlist|
-			child::orderedlist|
-			child::abstract|
-			child::screen
+			child::docbook:itemizedlist|
+			child::docbook:orderedlist|
+			child::docbook:abstract|
+			child::docbook:screen
 			">
 			<!-- continue without text:p creation to child element -->
 			
@@ -90,13 +91,13 @@
 </xsl:template>
 
 
-<xsl:template match="para" mode="notes">
+<xsl:template match="docbook:para" mode="notes">
 	<xsl:choose>
 		<xsl:when test="
-			child::itemizedlist|
-			child::orderedlist|
-			child::abstract|
-			child::simpara
+			child::docbook:itemizedlist|
+			child::docbook:orderedlist|
+			child::docbook:abstract|
+			child::docbook:simpara
 			">
 			<!-- continue without text:p creation -->
 			<xsl:apply-templates mode="notes"/>
@@ -126,11 +127,11 @@
 			<xsl:choose>
 				
 				<!-- deep magic part -->
-				<xsl:when test="parent::listitem|parent::step">
+				<xsl:when test="parent::docbook:listitem|parent::docbook:step">
 					
 					<xsl:choose>
 						
-						<xsl:when test="ancestor::varlistentry">para-padding-odd</xsl:when>
+						<xsl:when test="ancestor::docbook:varlistentry">para-padding-odd</xsl:when>
 						
 						<!-- if paragraph is first in listitem                                 -->
 						<!-- this paragraph is as title of listitem                            -->
@@ -148,8 +149,8 @@
 								
 								
 								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
-								<xsl:when test="parent::orderedlist/@spacing='compact'">para-list-compact</xsl:when>
-								<xsl:when test="parent::itemizedlist/@spacing='compact'">para-list-compact</xsl:when>
+								<xsl:when test="parent::docbook:orderedlist/@spacing='compact'">para-list-compact</xsl:when>
+								<xsl:when test="parent::docbook:itemizedlist/@spacing='compact'">para-list-compact</xsl:when>
 								<xsl:otherwise>para-list-padding</xsl:otherwise>
 							</xsl:choose>
 						</xsl:when>
@@ -168,9 +169,7 @@
 				</xsl:when>
 				
 				
-				<xsl:when test="parent::blockquote">para-blockquote</xsl:when>
-				
-				<xsl:when test="parent::highlights">para-highlight</xsl:when>
+				<xsl:when test="parent::docbook:blockquote">para-blockquote</xsl:when>
 				
 				<xsl:otherwise>para-padding</xsl:otherwise>
 				

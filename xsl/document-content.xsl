@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -59,7 +60,6 @@
 <!-- other tags -->
 <xsl:include href="document-content/paragraph.xsl"/>
 <xsl:include href="document-content/block.xsl"/>
-<xsl:include href="document-content/admonitions.xsl"/>
 <xsl:include href="document-content/formal.xsl"/>
 <xsl:include href="document-content/inline.xsl"/>
 <xsl:include href="document-content/lists.xsl"/>

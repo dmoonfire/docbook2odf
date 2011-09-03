@@ -106,28 +106,7 @@
 		</xsl:element>
 	</xsl:element>
 	
-<!-- para-table-head -->
-		<xsl:element name="style:style">
-			<xsl:attribute name="style:name">para-table-head</xsl:attribute>
-			<xsl:attribute name="style:family">paragraph</xsl:attribute>
-			<xsl:attribute name="style:parent-style-name">Standard</xsl:attribute>
-			<!--
-			<xsl:element name="style:paragraph-properties">
-				<xsl:attribute name="fo:margin-top">0.4cm</xsl:attribute>
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-			</xsl:element>
-			-->
-			<xsl:element name="style:text-properties">
-				<xsl:attribute name="fo:color">#FFFFFF</xsl:attribute>
-				<!--
-				<xsl:attribute name="fo:font-size">28pt</xsl:attribute>
-				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				-->
-				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-			</xsl:element>
-		</xsl:element>
-	
-	<xsl:if test="/article|/book|/chapter|/bibliography|/section">
+	<xsl:if test="/article|/book|/chapter|/bibliography">
 	
 	<!-- para-title1 -->
 		<xsl:element name="style:style">
@@ -159,10 +138,7 @@
 				<xsl:attribute name="fo:color"><xsl:value-of select="$CI.style.color.sub"/></xsl:attribute>
 				<xsl:attribute name="fo:font-size">20pt</xsl:attribute>
 				<xsl:attribute name="fo:margin-bottom">0.0cm</xsl:attribute>
-				<xsl:attribute name="fo:font-style">italic</xsl:attribute>
-				<!--
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
-				-->
 			</xsl:element>
 		</xsl:element>
 		
@@ -216,6 +192,7 @@
 				<xsl:attribute name="fo:font-weight">bold</xsl:attribute>
 			</xsl:element>
 		</xsl:element>
+		
 		
 	</xsl:if>
 	<xsl:if test="/slides">
@@ -1170,7 +1147,7 @@
 			fo:border-left="1pt solid #000000"
 			fo:border-top="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
@@ -1182,7 +1159,7 @@
 			fo:border-left="0.5pt solid #000000"
 			fo:border-top="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
@@ -1195,7 +1172,7 @@
 			fo:border-top="1pt solid #000000"
 			fo:border-right="1pt solid #000000"
 			fo:border-bottom="0pt solid #000000">
-			<xsl:attribute name="fo:background-color"><xsl:value-of select="$CI.style.color"/></xsl:attribute>
+			<xsl:attribute name="fo:background-color">#A0A0A0</xsl:attribute>
 			<style:background-image/>
 		</style:table-cell-properties>
 	</style:style>
@@ -1272,12 +1249,6 @@
 		<style:table-column-properties
 			style:column-width="3cm"
 			style:rel-column-width="100*"/>
-	</style:style>
-	
-	<style:style style:name="table-info.column-A1" style:family="table-column">
-		<style:table-column-properties
-			style:column-width="6cm"
-			style:rel-column-width="200*"/>
 	</style:style>
 	
 	<style:style style:name="table-info.column-B" style:family="table-column">

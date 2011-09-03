@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -44,15 +45,14 @@
 	office:version="1.0">
 
 
-<xsl:template match="quote">
+<xsl:template match="docbook:quote">
 	<text:span>
-		<xsl:attribute name="text:style-name">text-italic</xsl:attribute>
 		<xsl:text>"</xsl:text><xsl:apply-templates/><xsl:text>"</xsl:text>
 	</text:span>
 </xsl:template>
 
 
-<xsl:template match="email">
+<xsl:template match="docbook:email">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href">
 			<xsl:text>mailto:</xsl:text><xsl:value-of select="."/>
@@ -62,7 +62,7 @@
 </xsl:template>
 
 
-<xsl:template match="uri">
+<xsl:template match="docbook:uri">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="."/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -70,7 +70,7 @@
 </xsl:template>
 
 
-<xsl:template match="ulink">
+<xsl:template match="docbook:ulink">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="@url"/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -78,7 +78,7 @@
 </xsl:template>
 
 
-<xsl:template match="emphasis">
+<xsl:template match="docbook:emphasis">
 	<text:span>
 		<xsl:attribute name="text:style-name">
 			<xsl:choose>
@@ -94,23 +94,7 @@
 </xsl:template>
 
 
-<xsl:template match="literal">
-	<text:span>
-		<xsl:attribute name="text:style-name">
-			<xsl:choose>
-				<xsl:when test="@role='strong'">text-strong</xsl:when>
-				<xsl:when test="@role='bold'">text-bold</xsl:when>
-				<xsl:when test="@role='underline'">text-underline</xsl:when>
-				<xsl:when test="@role='strikethrough'">text-strikethrough</xsl:when>
-				<xsl:otherwise>text-monospace</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-		<xsl:apply-templates/>
-	</text:span>
-</xsl:template>
-
-
-<xsl:template match="superscript">
+<xsl:template match="docbook:superscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-super</xsl:attribute>
 		<xsl:apply-templates/>
@@ -118,7 +102,7 @@
 </xsl:template>
 
 
-<xsl:template match="subscript">
+<xsl:template match="docbook:subscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-sub</xsl:attribute>
 		<xsl:apply-templates/>
@@ -127,34 +111,34 @@
 
 
 
-<xsl:template name="credit" match="author|editor|othercredit">
+<xsl:template name="credit" match="docbook:author|docbook:editor|docbook:othercredit">
 	<!-- name of author/editor -->
 	
 	<xsl:comment>credit</xsl:comment>
 	
-	<xsl:if test="firstname">
+	<xsl:if test="docbook:firstname">
 		<xsl:comment>firstname</xsl:comment>
 		<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
 	</xsl:if>
-	<xsl:if test="othername">
+	<xsl:if test="docbook:othername">
 		<xsl:comment>othername</xsl:comment>
 		<xsl:value-of select="othername"/><xsl:text> </xsl:text>
 	</xsl:if>
 	<xsl:comment>surname</xsl:comment>
-	<xsl:value-of select="surname"/>
+	<xsl:value-of select="docbook:surname"/>
 	
 	<!-- email contact -->
-	<xsl:if test="email">
+	<xsl:if test="docbook:email">
 		<xsl:text> (</xsl:text>
 			<xsl:comment>email</xsl:comment>
-			<xsl:apply-templates select="email"/>
+			<xsl:apply-templates select="docbook:email"/>
 		<xsl:text>)</xsl:text>
 	</xsl:if>
 </xsl:template>
 
 
 
-<xsl:template name="copyright" match="copyright">
+<xsl:template name="copyright" match="docbook:copyright">
 	<!-- name of author/editor -->
 	<xsl:comment>copyright</xsl:comment>
 		<xsl:text>(C)</xsl:text>
@@ -168,9 +152,9 @@
 
 
 <xsl:template match="
-	year|
-	holder|
-	publishername
+	docbook:year|
+	docbook:holder|
+	docbook:publishername
 	">
 	<xsl:comment><xsl:value-of select="local-name()"/></xsl:comment>
 	<text:span><xsl:apply-templates/></text:span>

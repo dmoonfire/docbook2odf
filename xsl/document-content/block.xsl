@@ -51,11 +51,4 @@
 </xsl:template>
 
 
-<xsl:template match="abstract">
-	<!-- special formatting is defined in paragraph -->
-	<text:p></text:p>
-	<xsl:apply-templates mode="notes"/>
-</xsl:template>
-
-
 </xsl:stylesheet>

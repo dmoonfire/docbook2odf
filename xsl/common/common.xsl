@@ -45,7 +45,7 @@
 
 
 <xsl:template name="document.title">
-	<!-- get title of document - only text -->
+	<!-- get title of document -->
 	<xsl:value-of select="
 		/book/title |
 		/book/bookinfo/title |
@@ -67,35 +67,6 @@
 	"/>
 </xsl:template>
 
-<xsl:template name="document.author">
-	<text:author-name text:fixed="true"><xsl:value-of select="
-		/article/articleinfo/author/firstname |
-		/book/bookinfo/author/firstname
-	"/><xsl:text> </xsl:text><xsl:value-of select="
-		/article/articleinfo/author/surname |
-		/book/bookinfo/author/surname
-	"/></text:author-name>
-</xsl:template>
-
-<xsl:template name="document.email">
-	<xsl:value-of select="
-		/article/articleinfo/author/affiliation/address/email |
-		/book/bookinfo/author/affiliation/address/email
-	"/>
-</xsl:template>
-
-<xsl:template name="document.author-email">
-	<text:author-name text:fixed="true"><xsl:value-of select="
-		/article/articleinfo/author/firstname |
-		/book/bookinfo/author/firstname
-	"/><xsl:text> </xsl:text><xsl:value-of select="
-		/article/articleinfo/author/surname |
-		/book/bookinfo/author/surname
-	"/></text:author-name> &lt;<xsl:value-of select="
-		/article/articleinfo/author/affiliation/address/email |
-		/book/bookinfo/author/affiliation/address/email
-	"/>&gt;
-</xsl:template>
 
 <xsl:template name="section.level">
 	<!-- compute level of section -->
@@ -111,16 +82,6 @@
 				count(ancestor-or-self::sect3)+
 				count(ancestor-or-self::sect4)+
 				count(ancestor-or-self::sect5)+
-				1"/>
-		</xsl:when>
-		<xsl:when test="/section">
-			<xsl:value-of select="
-				count(ancestor-or-self::section)+
-				count(ancestor-or-self::sect1)+
-				count(ancestor-or-self::sect2)+
-				count(ancestor-or-self::sect3)+
-				count(ancestor-or-self::sect4)+
-				count(ancestor-or-self::sect5)-
 				1"/>
 		</xsl:when>
 		<xsl:when test="/chapter">

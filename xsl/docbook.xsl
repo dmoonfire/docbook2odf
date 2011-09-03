@@ -17,6 +17,7 @@
 	
 -->
 <xsl:stylesheet
+                xmlns:docbook="http://docbook.org/ns/docbook"
 		xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -123,12 +124,6 @@
 					<xsl:call-template name="document-content.automatic-styles.drawing-page"/>
 					<xsl:call-template name="document-content.automatic-styles.presentation"/>
 				</xsl:if>
-				<xsl:if test="/chapter">
-					<xsl:call-template name="document-content.automatic-styles.section"/>
-				</xsl:if>
-				<xsl:if test="/section">
-					<xsl:call-template name="document-content.automatic-styles.section"/>
-				</xsl:if>
 				<xsl:if test="/article">
 					<xsl:call-template name="document-content.automatic-styles.section"/>
 				</xsl:if>
@@ -140,7 +135,7 @@
 			</xsl:element>
 			
 			<xsl:element name="office:body">
-				<xsl:apply-templates/> <!-- call for article|book|section|chapter|slides -->
+				<xsl:apply-templates/> <!-- call for article|book|slides -->
 			</xsl:element>
 			
 		</xsl:element>

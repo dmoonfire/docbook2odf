@@ -248,13 +248,6 @@
 					<xsl:apply-templates/>
 				</text:p>
 			</xsl:when>
-			<xsl:when test="name(../..)='thead'">
-				<xsl:comment>child::thead</xsl:comment>
-				<text:p
-					text:style-name="para-table-head">
-					<xsl:value-of select="."/>
-				</text:p>
-			</xsl:when>
 			<xsl:otherwise>
 				<xsl:comment>child::otherwise</xsl:comment>
 				<text:p
