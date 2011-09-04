@@ -67,7 +67,7 @@
 	    </xsl:if>
 	    <xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
 	  </xsl:attribute>
-	  <xsl:value-of select="child::docbook:title"/>
+	  <xsl:value-of select="child::docbook:info/docbook:title"/>
 	</text:h>
 	
 	<xsl:apply-templates/>

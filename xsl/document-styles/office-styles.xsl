@@ -479,7 +479,7 @@
 	
 <!-- para-term -->
 	<style:style
-		style:name="para-term"
+		style:name="Paragraph_20_Term"
 		style:display-name="Paragraph Term"
 		style:family="paragraph"
 		style:parent-style-name="Standard">
@@ -670,7 +670,7 @@
 		style:family="paragraph"
 		style:parent-style-name="heading"
 		style:class="text"
-		style:name="Heading-small"
+		style:name="Heading_20_Small"
 		style:display-name="Heading Small">
 		<style:paragraph-properties>
 			<xsl:attribute name="fo:margin-top">0.5cm</xsl:attribute>

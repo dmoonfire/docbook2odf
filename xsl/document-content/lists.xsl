@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -65,68 +66,79 @@ paragraph, with the start element appearing first.
 
 -->
 
-<xsl:template match="task">
+<xsl:template match="docbook:task">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="task/title">
+<xsl:template match="docbook:task/docbook:title">
 	<text:p
-		text:style-name="Heading-small">
+		text:style-name="Heading_20_Small">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
-<xsl:template match="taskprerequisites">
+<xsl:template match="docbook:taskprerequisites">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="procedure">
-	<!-- apply all, only not step -->
-	<xsl:apply-templates/>
-	<text:list
-		text:style-name="list-arabic">
-		<xsl:apply-templates mode="list"/>
-	</text:list>
+<xsl:template match="docbook:procedure">
+  <!-- Apply everything but the list items. -->
+  <xsl:apply-templates/>
+
+  <!-- Create a list with the list items/ -->
+  <text:list text:style-name="List_20_1">
+    <xsl:apply-templates mode="list"/>
+  </text:list>
 </xsl:template>
 
 
-<xsl:template match="itemizedlist">
-	<!-- apply all, only not listitem -->
-	<xsl:apply-templates/>
-	<text:list
-		text:style-name="list-default">
-		<!-- apply only listitem -->
-		<xsl:apply-templates mode="list"/>
-	</text:list>
+<xsl:template match="docbook:itemizedlist">
+  <!-- apply all, only not listitem -->
+  <xsl:apply-templates/>
+  
+  <text:list text:style-name="List_20_1">
+    <!-- apply only listitem -->
+    <xsl:apply-templates mode="list"/>
+  </text:list>
 </xsl:template>
 
 
-<xsl:template match="orderedlist">
-	<!-- apply all, only not listitem -->
-	<xsl:apply-templates/>
-	<text:list>
-		<xsl:attribute name="text:style-name">
-			<xsl:text>list-</xsl:text>
-			<xsl:choose>
-				<xsl:when test="@numeration"><xsl:value-of select="@numeration"/></xsl:when>
-				<xsl:otherwise>arabic</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-		<xsl:attribute name="text:continue-numbering">
-			<xsl:choose>
-				<xsl:when test="@continuation='continues'">true</xsl:when>
-				<xsl:otherwise>false</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-		<!-- apply only listitem -->
-		<xsl:apply-templates mode="list" />
-	</text:list>
+<xsl:template match="docbook:orderedlist">
+  <!-- Apply the template for everything but the list items themselves. -->
+  <xsl:apply-templates/>
+
+  <!-- Create the list with the items inside it. -->
+  <text:list text:style-name="Numbering_20_1">
+    <!-- Add in the style name, depending on the style. --> 
+    <!--
+	<xsl:attribute name="text:style-name">
+	<xsl:text>Numbering_20_1</xsl:text>
+	<xsl:choose>
+	<xsl:when test="@numeration">
+	<xsl:value-of select="@numeration"/>
+	</xsl:when>
+	<xsl:otherwise>arabic</xsl:otherwise>
+	</xsl:choose>
+	</xsl:attribute>
+    -->
+
+    <!-- Set up if we are resuming the item numbers or not. -->
+    <xsl:attribute name="text:continue-numbering">
+      <xsl:choose>
+	<xsl:when test="@continuation='continues'">true</xsl:when>
+	<xsl:otherwise>false</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+
+    <!-- Add in the individual list items. -->
+    <xsl:apply-templates mode="list" />
+  </text:list>
 </xsl:template>
 
 
-<xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
+<xsl:template match="docbook:itemizedlist/docbook:title|docbook:orderedlist/docbook:title|docbook:variablelist/docbook:title">
 	<text:p
-		text:style-name="Heading-small">
+		text:style-name="Heading_20_Small">
 		<xsl:value-of select="."/>
 	</text:p>
 </xsl:template>
@@ -134,8 +146,8 @@ paragraph, with the start element appearing first.
 
 <!-- listitem | step -->
 
-<xsl:template match="listitem|step"/>
-<xsl:template match="listitem|step" mode="list">
+<xsl:template match="docbook:listitem|docbook:step"/>
+<xsl:template match="docbook:listitem|docbook:step" mode="list">
 	<text:list-item>
 		<xsl:apply-templates/>
 	</text:list-item>
@@ -144,24 +156,24 @@ paragraph, with the start element appearing first.
 <xsl:template match="*" mode="list"/>
 
 
-<xsl:template match="variablelist">
+<xsl:template match="docbook:variablelist">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="varlistentry">
+<xsl:template match="docbook:varlistentry">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="varlistentry/term">
-	<text:p text:style-name="para-term">
+<xsl:template match="docbook:varlistentry/docbook:term">
+	<text:p text:style-name="Paragraph_20_Term">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
 
-<xsl:template match="varlistentry/listitem">
+<xsl:template match="docbook:varlistentry/docbook:listitem">
 	<xsl:apply-templates/>
 </xsl:template>
 
