@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -44,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template name="section" match="section|sect1|sect2|sect3|sect4|sect5">
+<xsl:template name="section" match="docbook:section|docbook:sect1|docbook:sect2|docbook:sect3|docbook:sect4|docbook:sect5">
 	
 	<!-- compute level of section -->
 	<xsl:variable name="level">
@@ -56,16 +57,17 @@
 	</xsl:comment>
 	
 	<text:h>
-		<xsl:attribute name="text:outline-level">
-			<xsl:value-of select="$level"/>
-		</xsl:attribute>
-		<xsl:attribute name="text:style-name"><xsl:text>Heading</xsl:text>
-			<xsl:if test="$level &lt; 5">
-				<xsl:value-of select="$level"/>
-			</xsl:if>
-			<xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
-		</xsl:attribute>
-		<xsl:value-of select="child::title"/>
+	  <xsl:attribute name="text:outline-level">
+	    <xsl:value-of select="$level"/>
+	  </xsl:attribute>
+	  <xsl:attribute name="text:style-name">
+	    <xsl:text>Heading </xsl:text>
+	    <xsl:if test="$level &lt; 5">
+	      <xsl:value-of select="$level + 1"/>
+	    </xsl:if>
+	    <xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
+	  </xsl:attribute>
+	  <xsl:value-of select="child::docbook:title"/>
 	</text:h>
 	
 	<xsl:apply-templates/>
@@ -74,15 +76,15 @@
 
 
 <xsl:template match="
-	section/subtitle |
-	sect1/subtitle |
-	sect2/subtitle |
-	sect3/subtitle |
-	sect4/subtitle |
-	sect5/subtitle">
+	docbook:section/docbook:subtitle |
+	docbook:sect1/docbook:subtitle |
+	docbook:sect2/docbook:subtitle |
+	docbook:sect3/docbook:subtitle |
+	docbook:sect4/docbook:subtitle |
+	docbook:sect5/docbook:subtitle">
 	
 	<text:p
-		text:style-name="Heading-para">
+		text:style-name="Paragraph_20_Heading">
 		<xsl:apply-templates/>
 	</text:p>
 	
@@ -90,12 +92,12 @@
 
 
 <xsl:template match="
-	section/title |
-	sect1/title |
-	sect2/title |
-	sect3/title |
-	sect4/title |
-	sect5/title"/>
+	docbook:section/docbook:title |
+	docbook:sect1/docbook:title |
+	docbook:sect2/docbook:title |
+	docbook:sect3/docbook:title |
+	docbook:sect4/docbook:title |
+	docbook:sect5/docbook:title"/>
 
 
 </xsl:stylesheet>

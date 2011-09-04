@@ -687,7 +687,7 @@
 		style:family="paragraph"
 		style:parent-style-name="heading"
 		style:class="text"
-		style:name="Heading-para"
+		style:name="Paragraph_20_Heading"
 		style:display-name="Paragraph Heading">
 		<style:paragraph-properties>
 			<xsl:attribute name="fo:margin-top">0.35cm</xsl:attribute>
