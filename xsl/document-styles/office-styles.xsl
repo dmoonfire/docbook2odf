@@ -454,7 +454,7 @@
 	</style:style>
 		
 	<style:style
-		style:name="para-blockquote"
+		style:name="Paragraph_20_BlockQuote"
 		style:display-name="Paragraph BlockQuote"
 		style:family="paragraph"
 		style:parent-style-name="Standard">

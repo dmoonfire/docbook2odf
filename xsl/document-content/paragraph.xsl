@@ -169,7 +169,7 @@
 				</xsl:when>
 				
 				
-				<xsl:when test="parent::docbook:blockquote">para-blockquote</xsl:when>
+				<xsl:when test="parent::docbook:blockquote">Paragraph_20_BlockQuote</xsl:when>
 				
 				<xsl:otherwise>Paragraph_20_Padding</xsl:otherwise>
 				
