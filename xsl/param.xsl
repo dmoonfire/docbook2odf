@@ -105,6 +105,9 @@
 	<xsl:param name="layout.A5.footer.border-top">0.002cm solid #000000</xsl:param>
 	<!--screen-->
 	<!--...-->
+
+	<!-- Quotes -->
+	<xsl:param name="quote.fancy">0</xsl:param>
 	
 </xsl:stylesheet>
 

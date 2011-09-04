@@ -823,7 +823,7 @@
 
 <!-- strong -->
 	<style:style
-		style:name="text-strong"
+		style:name="Text_20_Strong"
 		style:display-name="Text Strong"
 		style:family="text">
 		<style:text-properties
@@ -833,7 +833,7 @@
 	
 <!-- bold -->
 	<style:style
-		style:name="text-bold"
+		style:name="Text_20_Bold"
 		style:display-name="Text Bold"
 		style:family="text">
 		<style:text-properties
@@ -842,7 +842,7 @@
 	
 <!-- italic -->
 	<style:style
-		style:name="text-italic"
+		style:name="Text_20_Italic"
 		style:display-name="Text Italic"
 		style:family="text">
 		<style:text-properties
@@ -851,7 +851,7 @@
 	
 <!-- underline -->
 	<style:style
-		style:name="text-underline"
+		style:name="Text_20_Underline"
 		style:display-name="Text Underline"
 		style:family="text">
 		<style:text-properties
@@ -862,7 +862,7 @@
 	
 <!-- strikethrough -->
 	<style:style
-		style:name="text-strikethrough"
+		style:name="Text_20_Strikethrough"
 		style:display-name="Text Strikethrough"
 		style:family="text">
 		<style:text-properties
@@ -871,7 +871,7 @@
 	
 <!-- highlight -->
 	<style:style
-		style:name="text-highlight"
+		style:name="Text_20_Highlight"
 		style:display-name="Text Highlight"
 		style:family="text">
 		<style:text-properties
@@ -880,7 +880,7 @@
 	
 <!-- monospace -->
 	<style:style
-		style:name="text-monospace"
+		style:name="Text_20_Monospace"
 		style:display-name="Text Monospace"
 		style:family="text">
 		<style:text-properties
@@ -889,7 +889,7 @@
 	
 <!-- superscript -->
 	<style:style
-		style:name="text-super"
+		style:name="Text_20_Super"
 		style:display-name="Text Superscript"
 		style:family="text">
 		<style:text-properties style:text-position="super 58%" />
@@ -897,7 +897,7 @@
 	
 <!-- subscript -->
 	<style:style
-		style:name="text-sub"
+		style:name="Text_20_Sub"
 		style:display-name="Text Subscript"
 		style:family="text">
 		<style:text-properties style:text-position="sub 58%" />
@@ -905,7 +905,7 @@
 	
 <!-- command -->
 	<style:style
-		style:name="text-command"
+		style:name="Text_20_Command"
 		style:display-name="Text Command"
 		style:family="text">
 		<style:text-properties

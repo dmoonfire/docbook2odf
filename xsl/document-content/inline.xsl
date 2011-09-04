@@ -46,9 +46,27 @@
 
 
 <xsl:template match="docbook:quote">
-	<text:span>
-		<xsl:text>"</xsl:text><xsl:apply-templates/><xsl:text>"</xsl:text>
-	</text:span>
+  <text:span>
+    <xsl:choose>
+      <xsl:when test="$quote.fancy = 1">
+	<xsl:text>&#x201c;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:text>"</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:apply-templates/>
+
+    <xsl:choose>
+      <xsl:when test="$quote.fancy = 1">
+	<xsl:text>&#x201d;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:text>"</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </text:span>
 </xsl:template>
 
 
@@ -82,11 +100,11 @@
 	<text:span>
 		<xsl:attribute name="text:style-name">
 			<xsl:choose>
-				<xsl:when test="@role='strong'">text-strong</xsl:when>
-				<xsl:when test="@role='bold'">text-bold</xsl:when>
-				<xsl:when test="@role='underline'">text-underline</xsl:when>
-				<xsl:when test="@role='strikethrough'">text-strikethrough</xsl:when>
-				<xsl:otherwise>text-italic</xsl:otherwise>
+				<xsl:when test="@role='strong'">Text_20_Strong</xsl:when>
+				<xsl:when test="@role='bold'">Text_20_Bold</xsl:when>
+				<xsl:when test="@role='underline'">Text_20_Underline</xsl:when>
+				<xsl:when test="@role='strikethrough'">Text_20_Strikethrough</xsl:when>
+				<xsl:otherwise>Text_20_Italic</xsl:otherwise>
 			</xsl:choose>
 		</xsl:attribute>
 		<xsl:apply-templates/>
