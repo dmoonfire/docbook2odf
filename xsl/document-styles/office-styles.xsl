@@ -346,7 +346,7 @@
 <!-- END-USER STYLES -->
 	
 	<style:style
-		style:name="para"
+		style:name="Paragraph"
 		style:display-name="Paragraph"
 		style:family="paragraph"
 		style:parent-style-name="Standard">
@@ -361,7 +361,7 @@
 	
 <!-- para-padding -->
 	<style:style
-		style:name="para-padding"
+		style:name="Paragraph_20_Padding"
 		style:display-name="Paragraph Padding"
 		style:family="paragraph"
 		style:parent-style-name="Standard">
@@ -378,7 +378,7 @@
 	
 <!-- para-padding-odd -->
 	<style:style
-		style:name="para-padding-odd"
+		style:name="Paragraph_20_Padding_20_Odd"
 		style:display-name="Paragraph Padding Odd"
 		style:family="paragraph"
 		style:parent-style-name="Standard">
@@ -769,10 +769,10 @@
 		
 	<!-- title-chapter -->
 	<style:style
-		style:name="title-chapter"
+		style:name="Title_20_Chapter"
 		style:family="paragraph"
 		style:parent-style-name="title"
-		style:next-style-name="para-padding"
+		style:next-style-name="Paragraph_20_Padding"
 		style:display-name="Title Chapter">
 		<style:paragraph-properties
 			fo:padding-top="0.6cm"
@@ -785,7 +785,7 @@
 		
 	<!-- title-article -->
 	<style:style
-		style:name="title-article"
+		style:name="Title_20_Article"
 		style:family="paragraph"
 		style:parent-style-name="title"
 		style:next-style-name="para-padding"

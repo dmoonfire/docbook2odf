@@ -66,7 +66,7 @@
 	<xsl:choose>
 		<xsl:when test="/docbook:article">
 			<text:p
-				text:style-name="title-article">
+				text:style-name="Title_20_Article">
 				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
 			</text:p>
 		</xsl:when>

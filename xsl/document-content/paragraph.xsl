@@ -131,7 +131,7 @@
 					
 					<xsl:choose>
 						
-						<xsl:when test="ancestor::docbook:varlistentry">para-padding-odd</xsl:when>
+						<xsl:when test="ancestor::docbook:varlistentry">Paragraph_20_Padding_20_Odd</xsl:when>
 						
 						<!-- if paragraph is first in listitem                                 -->
 						<!-- this paragraph is as title of listitem                            -->
@@ -160,7 +160,7 @@
 							<!--<xsl:text>para-padding</xsl:text>-->
 							<xsl:choose>
 								<xsl:when test="../../@spacing='compact'">para-list-compact</xsl:when>
-								<xsl:otherwise>para-padding</xsl:otherwise>
+								<xsl:otherwise>Paragraph_20_Padding</xsl:otherwise>
 							</xsl:choose>
 							
 						</xsl:otherwise>
@@ -171,7 +171,7 @@
 				
 				<xsl:when test="parent::docbook:blockquote">para-blockquote</xsl:when>
 				
-				<xsl:otherwise>para-padding</xsl:otherwise>
+				<xsl:otherwise>Paragraph_20_Padding</xsl:otherwise>
 				
 			</xsl:choose>
 		</xsl:attribute>
