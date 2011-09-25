@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -44,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="/chapter">
+<xsl:template match="/docbook:chapter">
 	
 	<xsl:element name="office:text">
 		
@@ -57,37 +58,39 @@
 </xsl:template>
 
 
-<xsl:template name="chapter" match="chapter">
+<xsl:template name="chapter" match="docbook:chapter">
 	
 	
 	<xsl:choose>
 		<!-- chapter as document -->
-		<xsl:when test="/chapter">
+		<xsl:when test="/docbook:chapter">
 			<text:p
-				text:style-name="title-chapter">
-				<xsl:value-of select="title|chapterinfo/title"/>
+				text:style-name="Title_20_Chapter">
+				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
 			</text:p>
 		</xsl:when>
 		<!-- chapter in book -->
 		<xsl:otherwise>
-			<text:p text:style-name="title-chapter">
+		  <!--
+			<text:p text:style-name="Title_20_Chapter">
 				<xsl:text>Chapter</xsl:text>
 			</text:p>
+		  -->
 			<text:h
 				text:outline-level="1"
-				text:style-name="Heading1">
-				<xsl:value-of select="title|chapterinfo/title"/>
+				text:style-name="Heading_20_1">
+				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
 			</text:h>
 		</xsl:otherwise>
 	</xsl:choose>
 	
 	<!--
-	<text:p text:style-name="title-chapter">
+	<text:p text:style-name="Title_20_Chapter">
 		<xsl:text>Chapter</xsl:text>
 	</text:p>
 	<text:h
 		text:outline-level="1"
-		text:style-name="Heading1">
+		text:style-name="Heading_20_1">
 		<xsl:value-of select="title|chapterinfo/title"/>
 	</text:h>
 	-->
@@ -97,10 +100,10 @@
 </xsl:template>
 
 
-<xsl:template match="chapter/title"/>
+<xsl:template match="docbook:chapter/docbook:title"/>
 
 
-<xsl:template name="chapter.subtitle" match="chapter/subtitle">
+<xsl:template name="chapter.subtitle" match="docbook:chapter/docbook:subtitle">
 	<text:p
 		text:style-name="para-title2">
 		<xsl:apply-templates/>

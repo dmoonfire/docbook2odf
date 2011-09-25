@@ -46,14 +46,14 @@
 
 
 <xsl:template match="docbook:book">
-	
+
 	<xsl:element name="office:text">
 		
 		<xsl:call-template name="CI.office-text"/>
 		
 		<text:p
-			text:style-name="title-book">
-			<xsl:value-of select="docbook:title|docbook:bookinfo/docbook:title"/>
+			text:style-name="Title_20_Book">
+			<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
 		</text:p>
 		
 		<xsl:apply-templates/>

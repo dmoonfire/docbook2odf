@@ -510,9 +510,9 @@
 <!-- PARENT STYLES -->
 	
 	<style:style
-		style:name="heading"
-		style:family="paragraph"
-		style:display-name="Heading Default">
+		style:name="Heading"
+		style:parent-style-name="Standard"
+		style:family="paragraph">
 		<style:paragraph-properties
 			style:shadow="none"
 			fo:keep-with-next="always"
@@ -532,9 +532,10 @@
 	
 	<style:style
 		style:family="paragraph"
-		style:parent-style-name="heading"
+		style:parent-style-name="Heading"
 		style:class="text"
-		style:name="Heading1"
+		style:next-style-name="Paragraph"
+		style:name="Heading_20_1"
 		style:display-name="Heading 1"
 		style:list-style-name="listH"
 		style:default-outline-level="1">
@@ -559,11 +560,10 @@
 	
 	<style:style
 		style:family="paragraph"
-		style:parent-style-name="heading"
+		style:parent-style-name="Heading"
 		style:class="text"
-		style:name="Heading2"
+		style:name="Heading_20_2"
 		style:display-name="Heading 2"
-		style:list-style-name="listH"
 		style:default-outline-level="2">
 		<style:paragraph-properties
 			text:line-number="2">
@@ -734,7 +734,7 @@
 <!-- PARENT STYLES -->
 	
 	<style:style
-		style:name="title"
+		style:name="Title_20_Default"
 		style:family="paragraph"
 		style:display-name="Title Default">
 		<style:paragraph-properties
@@ -754,9 +754,9 @@
 	
 	<!-- title-book -->
 	<style:style
-		style:name="title-book"
+		style:name="Title_20_Book"
 		style:family="paragraph"
-		style:parent-style-name="title"
+		style:parent-style-name="Title_20_Default"
 		style:next-style-name="para-padding"
 		style:display-name="Title Book">
 		<style:paragraph-properties

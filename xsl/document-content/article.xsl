@@ -71,12 +71,12 @@
 			</text:p>
 		</xsl:when>
 		<xsl:otherwise>
-			<text:p text:style-name="title-chapter">
+			<text:p text:style-name="Title_20_Chapter">
 				<xsl:text>Article</xsl:text>
 			</text:p>
 			<text:h
 				text:outline-level="1"
-				text:style-name="Heading1">
+				text:style-name="Heading_20_1">
 				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
 			</text:h>
 		</xsl:otherwise>
