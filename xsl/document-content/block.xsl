@@ -43,7 +43,7 @@
     xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
     office:class="text"
     office:version="1.0">
-  <xsl:template match="docbook:blockquote">
+  <xsl:template match="docbook:blockquote|docbook:epigraph">
     <!--
 	The formatting in paragraphs is done in the paragraph
 	formatter.

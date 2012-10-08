@@ -170,9 +170,8 @@
 				
 				
 				<xsl:when test="parent::docbook:blockquote">Paragraph_20_BlockQuote</xsl:when>
-				
-				<xsl:otherwise>Paragraph_20_Padding</xsl:otherwise>
-				
+				<xsl:when test="parent::docbook:epigraph">Paragraph_20_Epigraph</xsl:when>
+				<xsl:otherwise>Paragraph_20_Padding</xsl:otherwise>				
 			</xsl:choose>
 		</xsl:attribute>
 		

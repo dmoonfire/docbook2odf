@@ -478,6 +478,30 @@
 	</style:style>
 	
 	<style:style
+		style:name="Paragraph_20_Epigraph"
+		style:display-name="Paragraph Epigraph"
+		style:family="paragraph"
+		style:parent-style-name="Standard">
+		<style:paragraph-properties
+			fo:margin-left="1.2cm"
+			fo:margin-right="0cm"
+			fo:text-indent="0cm"
+			style:auto-text-indent="false"
+			fo:padding-left="0.15cm"
+			fo:padding-right="0.049cm"
+			fo:padding-top="0.049cm"
+			fo:padding-bottom="0.049cm"
+			fo:border-left="0.176cm solid #999999"
+			fo:border-right="none"
+			fo:border-top="none"
+			fo:border-bottom="none"
+			style:shadow="none"
+			fo:margin-bottom="0.3cm"/>
+		<style:text-properties
+			fo:font-style="italic"/>
+	</style:style>
+	
+	<style:style
 		style:name="Paragraph_20_Attribution"
 		style:display-name="Paragraph Attribution"
 		style:family="paragraph"
