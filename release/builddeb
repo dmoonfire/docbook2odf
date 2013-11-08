@@ -2,7 +2,7 @@
 # Help script to provide simple .deb package building
 
 #VERSION=$1
-VERSION=`svn info | awk '/^Revision:/ {print $2/1000}'`
+VERSION=`git log -n 1 --date=short |awk '/^Date/{print $2}'`
 TEMP="/tmp"
 DIR=${TEMP}/docbook2odf_${VERSION}
 cd ..
