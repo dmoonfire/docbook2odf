@@ -45,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="docbook:quote">
+<xsl:template match="quote">
   <text:span>
     <xsl:choose>
       <xsl:when test="$quote.fancy = 1">
@@ -70,7 +70,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:email">
+<xsl:template match="email">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href">
 			<xsl:text>mailto:</xsl:text><xsl:value-of select="."/>
@@ -80,7 +80,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:uri">
+<xsl:template match="uri">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="."/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -88,7 +88,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:ulink">
+<xsl:template match="ulink">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="@url"/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -96,7 +96,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:emphasis">
+<xsl:template match="emphasis">
 	<text:span>
 		<xsl:attribute name="text:style-name">
 			<xsl:choose>
@@ -112,7 +112,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:superscript">
+<xsl:template match="superscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-super</xsl:attribute>
 		<xsl:apply-templates/>
@@ -120,7 +120,7 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:subscript">
+<xsl:template match="subscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-sub</xsl:attribute>
 		<xsl:apply-templates/>
@@ -129,34 +129,34 @@
 
 
 
-<xsl:template name="credit" match="docbook:author|docbook:editor|docbook:othercredit">
+<xsl:template name="credit" match="author|editor|othercredit">
 	<!-- name of author/editor -->
 	
 	<xsl:comment>credit</xsl:comment>
 	
-	<xsl:if test="docbook:firstname">
+	<xsl:if test="firstname">
 		<xsl:comment>firstname</xsl:comment>
 		<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
 	</xsl:if>
-	<xsl:if test="docbook:othername">
+	<xsl:if test="othername">
 		<xsl:comment>othername</xsl:comment>
 		<xsl:value-of select="othername"/><xsl:text> </xsl:text>
 	</xsl:if>
 	<xsl:comment>surname</xsl:comment>
-	<xsl:value-of select="docbook:surname"/>
+	<xsl:value-of select="surname"/>
 	
 	<!-- email contact -->
-	<xsl:if test="docbook:email">
+	<xsl:if test="email">
 		<xsl:text> (</xsl:text>
 			<xsl:comment>email</xsl:comment>
-			<xsl:apply-templates select="docbook:email"/>
+			<xsl:apply-templates select="email"/>
 		<xsl:text>)</xsl:text>
 	</xsl:if>
 </xsl:template>
 
 
 
-<xsl:template name="copyright" match="docbook:copyright">
+<xsl:template name="copyright" match="copyright">
 	<!-- name of author/editor -->
 	<xsl:comment>copyright</xsl:comment>
 		<xsl:text>(C)</xsl:text>
@@ -170,9 +170,9 @@
 
 
 <xsl:template match="
-	docbook:year|
-	docbook:holder|
-	docbook:publishername
+	year|
+	holder|
+	publishername
 	">
 	<xsl:comment><xsl:value-of select="local-name()"/></xsl:comment>
 	<text:span><xsl:apply-templates/></text:span>

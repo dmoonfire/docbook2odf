@@ -18,7 +18,6 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -45,7 +44,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="/docbook:article">
+<xsl:template match="/article">
 	
 	<xsl:element name="office:text">
 		
@@ -58,16 +57,16 @@
 </xsl:template>
 
 
-<xsl:template name="article" match="docbook:article">
+<xsl:template name="article" match="article">
 	<!-- TODO: support for article class "http://www.docbook.org/tdg/en/html-ng/article.html" -->
 	
 	<!-- when this document is only article, render article title as title of document         -->
 	<!-- when article is only part of document, render article as only one chapter of document -->
 	<xsl:choose>
-		<xsl:when test="/docbook:article">
+		<xsl:when test="/article">
 			<text:p
 				text:style-name="Title_20_Article">
-				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
+				<xsl:value-of select="title|info/title"/>
 			</text:p>
 		</xsl:when>
 		<xsl:otherwise>
@@ -77,7 +76,7 @@
 			<text:h
 				text:outline-level="1"
 				text:style-name="Heading_20_1">
-				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
+				<xsl:value-of select="title|info/title"/>
 			</text:h>
 		</xsl:otherwise>
 	</xsl:choose>
@@ -87,10 +86,10 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:article/docbook:title" />
+<xsl:template match="article/title" />
 
 
-<xsl:template name="article.subtitle" match="docbook:article/docbook:subtitle">
+<xsl:template name="article.subtitle" match="article/subtitle">
 	<text:p
 		text:style-name="para-title">
 		<xsl:apply-templates/>

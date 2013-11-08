@@ -233,7 +233,7 @@
 		
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
-			<!-- find collumn number from <docbook:colspec> -->
+			<!-- find collumn number from <colspec> -->
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
