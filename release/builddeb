@@ -19,7 +19,7 @@ Version: ${VERSION}
 Section: text
 Priority: optional
 Architecture: all
-Depends: perl, perlmagick, libarchive-zip-perl, libxml-sablot-perl
+Depends: perl, perlmagick, libarchive-zip-perl, libxml-libxslt-perl
 Installed-Size: 400
 Maintainer: Roman Fordinal <fordinal@webcom.sk>
 Description: XSLT based conversions from docbook to Oasis Open Document." > ${DIR}/DEBIAN/control
