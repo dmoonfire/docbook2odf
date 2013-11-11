@@ -45,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template name="section" match="docbook:section|docbook:sect1|docbook:sect2|docbook:sect3|docbook:sect4|docbook:sect5">
+<xsl:template name="section" match="section|sect1|sect2|sect3|sect4|sect5">
 	
 	<!-- compute level of section -->
 	<xsl:variable name="level">
@@ -67,7 +67,8 @@
 	    </xsl:if>
 	    <xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
 	  </xsl:attribute>
-	  <xsl:value-of select="child::docbook:info/docbook:title"/>
+	  <xsl:value-of select="child::info/title"/>
+	  <xsl:value-of select="child::title"/>
 	</text:h>
 	
 	<xsl:apply-templates/>
@@ -76,12 +77,12 @@
 
 
 <xsl:template match="
-	docbook:section/docbook:subtitle |
-	docbook:sect1/docbook:subtitle |
-	docbook:sect2/docbook:subtitle |
-	docbook:sect3/docbook:subtitle |
-	docbook:sect4/docbook:subtitle |
-	docbook:sect5/docbook:subtitle">
+	section/subtitle |
+	sect1/subtitle |
+	sect2/subtitle |
+	sect3/subtitle |
+	sect4/subtitle |
+	sect5/subtitle">
 	
 	<text:p
 		text:style-name="Paragraph_20_Heading">
@@ -92,12 +93,12 @@
 
 
 <xsl:template match="
-	docbook:section/docbook:title |
-	docbook:sect1/docbook:title |
-	docbook:sect2/docbook:title |
-	docbook:sect3/docbook:title |
-	docbook:sect4/docbook:title |
-	docbook:sect5/docbook:title"/>
+	section/title |
+	sect1/title |
+	sect2/title |
+	sect3/title |
+	sect4/title |
+	sect5/title"/>
 
 
 </xsl:stylesheet>

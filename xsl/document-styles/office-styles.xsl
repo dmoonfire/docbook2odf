@@ -394,7 +394,7 @@
 		</style:text-properties>
 	</style:style>
 	
-<!-- <docbook:screen> -->
+<!-- <screen> -->
 	<style:style
 		style:name="para-screen"
 		style:display-name="Paragraph Screen"
@@ -410,7 +410,7 @@
 			style:font-name="Lucida Console"/>
 	</style:style>
 	
-<!-- <docbook:programlisting> -->
+<!-- <programlisting> -->
 	<style:style
 		style:name="para-programlisting"
 		style:display-name="Paragraph Programlisting"
@@ -424,7 +424,7 @@
 		<style:text-properties/>
 	</style:style>
 	
-<!-- <docbook:synopsis> -->
+<!-- <synopsis> -->
 	<style:style
 		style:name="para-synopsis"
 		style:display-name="Paragraph Synopsis"

@@ -2,7 +2,7 @@
 # Help script to provide simple .deb package building
 
 #VERSION=$1
-VERSION=`svn info | awk '/^Revision:/ {print $2/1000}'`
+VERSION=`git log -n 1 --date=short |awk '/^Date/{print $2}'`
 TEMP="/tmp"
 DIR=${TEMP}/docbook2odf_${VERSION}
 cd ..
@@ -19,7 +19,7 @@ Version: ${VERSION}
 Section: text
 Priority: optional
 Architecture: all
-Depends: perl, perlmagick, libarchive-zip-perl, libxml-sablot-perl
+Depends: perl, perlmagick, libarchive-zip-perl, libxml-libxslt-perl
 Installed-Size: 400
 Maintainer: Roman Fordinal <fordinal@webcom.sk>
 Description: XSLT based conversions from docbook to Oasis Open Document." > ${DIR}/DEBIAN/control

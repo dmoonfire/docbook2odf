@@ -45,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="docbook:book">
+<xsl:template match="book">
 
 	<xsl:element name="office:text">
 		
@@ -53,7 +53,7 @@
 		
 		<text:p
 			text:style-name="Title_20_Book">
-			<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
+			<xsl:value-of select="title|info/title"/>
 		</text:p>
 		
 		<xsl:apply-templates/>
@@ -63,10 +63,10 @@
 </xsl:template>
 
 
-<xsl:template match="/docbook:book/docbook:title" />
+<xsl:template match="/book/title" />
 
 
-<xsl:template match="/docbook:book/docbook:subtitle">
+<xsl:template match="/book/subtitle">
 	<xsl:element name="text:p">
 		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
 		<xsl:apply-templates/>

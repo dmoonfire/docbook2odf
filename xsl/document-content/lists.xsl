@@ -66,22 +66,22 @@ paragraph, with the start element appearing first.
 
 -->
 
-<xsl:template match="docbook:task">
+<xsl:template match="task">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="docbook:task/docbook:title">
+<xsl:template match="task/title">
 	<text:p
 		text:style-name="Heading_20_Small">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
-<xsl:template match="docbook:taskprerequisites">
+<xsl:template match="taskprerequisites">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="docbook:procedure">
+<xsl:template match="procedure">
   <!-- Apply everything but the list items. -->
   <xsl:apply-templates/>
 
@@ -92,7 +92,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="docbook:itemizedlist">
+<xsl:template match="itemizedlist">
   <!-- apply all, only not listitem -->
   <xsl:apply-templates/>
   
@@ -103,7 +103,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="docbook:orderedlist">
+<xsl:template match="orderedlist">
   <!-- Apply the template for everything but the list items themselves. -->
   <xsl:apply-templates/>
 
@@ -136,7 +136,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="docbook:itemizedlist/docbook:title|docbook:orderedlist/docbook:title|docbook:variablelist/docbook:title">
+<xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
 	<text:p
 		text:style-name="Heading_20_Small">
 		<xsl:value-of select="."/>
@@ -146,8 +146,8 @@ paragraph, with the start element appearing first.
 
 <!-- listitem | step -->
 
-<xsl:template match="docbook:listitem|docbook:step"/>
-<xsl:template match="docbook:listitem|docbook:step" mode="list">
+<xsl:template match="listitem|step"/>
+<xsl:template match="listitem|step" mode="list">
 	<text:list-item>
 		<xsl:apply-templates/>
 	</text:list-item>
@@ -156,24 +156,24 @@ paragraph, with the start element appearing first.
 <xsl:template match="*" mode="list"/>
 
 
-<xsl:template match="docbook:variablelist">
+<xsl:template match="variablelist">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="docbook:varlistentry">
+<xsl:template match="varlistentry">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="docbook:varlistentry/docbook:term">
+<xsl:template match="varlistentry/term">
 	<text:p text:style-name="Paragraph_20_Term">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
 
-<xsl:template match="docbook:varlistentry/docbook:listitem">
+<xsl:template match="varlistentry/listitem">
 	<xsl:apply-templates/>
 </xsl:template>
 

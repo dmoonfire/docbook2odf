@@ -233,7 +233,19 @@
 		
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
-			<!-- find collumn number from <docbook:colspec> -->
+			<xsl:attribute name="table:number-columns-spanned">
+      <xsl:variable name="end">
+        <xsl:for-each select="ancestor::tgroup/colspec[@colname=current()/@nameend]">
+          <xsl:copy-of select="count(preceding::colspec)"/>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:variable name="st">
+        <xsl:for-each select="ancestor::tgroup/colspec[@colname=current()/@namest]">
+          <xsl:copy-of select="count(preceding::colspec)"/>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="string($end)-string($st)+1"/>
+      </xsl:attribute>
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
@@ -266,7 +278,7 @@
 		table:style-name="table-default.cell-B2">
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@colspan>1">
-			
+			<attribute name="table:number-columns-spanned" select="@colspan"/>
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->

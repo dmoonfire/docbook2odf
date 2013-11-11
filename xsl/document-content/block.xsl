@@ -18,7 +18,6 @@
 -->
 <xsl:stylesheet
     version="1.0"
-    xmlns:docbook="http://docbook.org/ns/docbook"
     xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -43,7 +42,7 @@
     xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
     office:class="text"
     office:version="1.0">
-  <xsl:template match="docbook:blockquote|docbook:epigraph">
+  <xsl:template match="blockquote|epigraph">
     <!--
 	The formatting in paragraphs is done in the paragraph
 	formatter.
@@ -53,10 +52,10 @@
     <!--
 	Include the attribute, if it exists.
     -->
-    <xsl:apply-templates select="docbook:attribution" mode="blockquote" />
+    <xsl:apply-templates select="attribution" mode="blockquote" />
   </xsl:template>
 
-  <xsl:template match="docbook:attribution" mode="blockquote">
+  <xsl:template match="attribution" mode="blockquote">
     <text:p
 	text:style-name="Paragraph_20_Attribution">
       <xsl:text>&#x2015; </xsl:text>

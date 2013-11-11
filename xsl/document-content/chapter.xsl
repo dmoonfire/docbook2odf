@@ -45,7 +45,7 @@
 	office:version="1.0">
 
 
-<xsl:template match="/docbook:chapter">
+<xsl:template match="/chapter">
 	
 	<xsl:element name="office:text">
 		
@@ -58,15 +58,15 @@
 </xsl:template>
 
 
-<xsl:template name="chapter" match="docbook:chapter">
+<xsl:template name="chapter" match="chapter">
 	
 	
 	<xsl:choose>
 		<!-- chapter as document -->
-		<xsl:when test="/docbook:chapter">
+		<xsl:when test="/chapter">
 			<text:p
 				text:style-name="Title_20_Chapter">
-				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
+				<xsl:value-of select="title|info/title"/>
 			</text:p>
 		</xsl:when>
 		<!-- chapter in book -->
@@ -79,7 +79,7 @@
 			<text:h
 				text:outline-level="1"
 				text:style-name="Heading_20_1">
-				<xsl:value-of select="docbook:title|docbook:info/docbook:title"/>
+				<xsl:value-of select="title|info/title"/>
 			</text:h>
 		</xsl:otherwise>
 	</xsl:choose>
@@ -100,10 +100,10 @@
 </xsl:template>
 
 
-<xsl:template match="docbook:chapter/docbook:title"/>
+<xsl:template match="chapter/title"/>
 
 
-<xsl:template name="chapter.subtitle" match="docbook:chapter/docbook:subtitle">
+<xsl:template name="chapter.subtitle" match="chapter/subtitle">
 	<text:p
 		text:style-name="para-title2">
 		<xsl:apply-templates/>
