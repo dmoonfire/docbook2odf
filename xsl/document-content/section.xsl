@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,10 +42,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 
-<xsl:template name="section" match="section|sect1|sect2|sect3|sect4|sect5">
+<xsl:template name="section" match="d:section|d:sect1|d:sect2|d:sect3|d:sect4|d:sect5">
 	
 	<!-- compute level of section -->
 	<xsl:variable name="level">
@@ -67,8 +68,7 @@
 	    </xsl:if>
 	    <xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
 	  </xsl:attribute>
-	  <xsl:value-of select="child::info/title"/>
-	  <xsl:value-of select="child::title"/>
+	  <xsl:value-of select="child::d:info/d:title"/>
 	</text:h>
 	
 	<xsl:apply-templates/>
@@ -77,12 +77,12 @@
 
 
 <xsl:template match="
-	section/subtitle |
-	sect1/subtitle |
-	sect2/subtitle |
-	sect3/subtitle |
-	sect4/subtitle |
-	sect5/subtitle">
+	d:section/d:subtitle |
+	d:sect1/d:subtitle |
+	d:sect2/d:subtitle |
+	d:sect3/d:subtitle |
+	d:sect4/d:subtitle |
+	d:sect5/d:subtitle">
 	
 	<text:p
 		text:style-name="Paragraph_20_Heading">
@@ -93,12 +93,12 @@
 
 
 <xsl:template match="
-	section/title |
-	sect1/title |
-	sect2/title |
-	sect3/title |
-	sect4/title |
-	sect5/title"/>
+	d:section/d:title |
+	d:sect1/d:title |
+	d:sect2/d:title |
+	d:sect3/d:title |
+	d:sect4/d:title |
+	d:sect5/d:title"/>
 
 
 </xsl:stylesheet>

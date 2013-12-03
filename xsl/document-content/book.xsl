@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,10 +42,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 
-<xsl:template match="book">
+<xsl:template match="d:book">
 
 	<xsl:element name="office:text">
 		
@@ -53,7 +54,7 @@
 		
 		<text:p
 			text:style-name="Title_20_Book">
-			<xsl:value-of select="title|info/title"/>
+			<xsl:value-of select="d:title|d:info/d:title"/>
 		</text:p>
 		
 		<xsl:apply-templates/>
@@ -63,10 +64,10 @@
 </xsl:template>
 
 
-<xsl:template match="/book/title" />
+<xsl:template match="/d:book/d:title" />
 
 
-<xsl:template match="/book/subtitle">
+<xsl:template match="/d:book/d:subtitle">
 	<xsl:element name="text:p">
 		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
 		<xsl:apply-templates/>

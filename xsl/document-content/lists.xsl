@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,7 +42,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 <!-- ako je to so stylmi a headingmi (sorry for only slovak text)
 
@@ -66,22 +67,22 @@ paragraph, with the start element appearing first.
 
 -->
 
-<xsl:template match="task">
+<xsl:template match="d:task">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="task/title">
+<xsl:template match="d:task/d:title">
 	<text:p
 		text:style-name="Heading_20_Small">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
-<xsl:template match="taskprerequisites">
+<xsl:template match="d:taskprerequisites">
 	<xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="procedure">
+<xsl:template match="d:procedure">
   <!-- Apply everything but the list items. -->
   <xsl:apply-templates/>
 
@@ -92,7 +93,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="itemizedlist">
+<xsl:template match="d:itemizedlist">
   <!-- apply all, only not listitem -->
   <xsl:apply-templates/>
   
@@ -103,7 +104,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="orderedlist">
+<xsl:template match="d:orderedlist">
   <!-- Apply the template for everything but the list items themselves. -->
   <xsl:apply-templates/>
 
@@ -136,7 +137,7 @@ paragraph, with the start element appearing first.
 </xsl:template>
 
 
-<xsl:template match="itemizedlist/title|orderedlist/title|variablelist/title">
+<xsl:template match="d:itemizedlist/d:title|d:orderedlist/d:title|d:variablelist/d:title">
 	<text:p
 		text:style-name="Heading_20_Small">
 		<xsl:value-of select="."/>
@@ -146,8 +147,8 @@ paragraph, with the start element appearing first.
 
 <!-- listitem | step -->
 
-<xsl:template match="listitem|step"/>
-<xsl:template match="listitem|step" mode="list">
+<xsl:template match="d:listitem|d:step"/>
+<xsl:template match="d:listitem|d:step" mode="list">
 	<text:list-item>
 		<xsl:apply-templates/>
 	</text:list-item>
@@ -156,24 +157,24 @@ paragraph, with the start element appearing first.
 <xsl:template match="*" mode="list"/>
 
 
-<xsl:template match="variablelist">
+<xsl:template match="d:variablelist">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="varlistentry">
+<xsl:template match="d:varlistentry">
 	<xsl:apply-templates/>
 </xsl:template>
 
 
-<xsl:template match="varlistentry/term">
+<xsl:template match="d:varlistentry/d:term">
 	<text:p text:style-name="Paragraph_20_Term">
 		<xsl:apply-templates/>
 	</text:p>
 </xsl:template>
 
 
-<xsl:template match="varlistentry/listitem">
+<xsl:template match="d:varlistentry/d:listitem">
 	<xsl:apply-templates/>
 </xsl:template>
 

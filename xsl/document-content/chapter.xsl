@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,10 +42,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 
-<xsl:template match="/chapter">
+<xsl:template match="/d:chapter">
 	
 	<xsl:element name="office:text">
 		
@@ -58,15 +59,15 @@
 </xsl:template>
 
 
-<xsl:template name="chapter" match="chapter">
+<xsl:template name="chapter" match="d:chapter">
 	
 	
 	<xsl:choose>
 		<!-- chapter as document -->
-		<xsl:when test="/chapter">
+		<xsl:when test="/d:chapter">
 			<text:p
 				text:style-name="Title_20_Chapter">
-				<xsl:value-of select="title|info/title"/>
+				<xsl:value-of select="d:title|d:info/d:title"/>
 			</text:p>
 		</xsl:when>
 		<!-- chapter in book -->
@@ -79,7 +80,7 @@
 			<text:h
 				text:outline-level="1"
 				text:style-name="Heading_20_1">
-				<xsl:value-of select="title|info/title"/>
+				<xsl:value-of select="d:title|d:info/d:title"/>
 			</text:h>
 		</xsl:otherwise>
 	</xsl:choose>
@@ -100,10 +101,10 @@
 </xsl:template>
 
 
-<xsl:template match="chapter/title"/>
+<xsl:template match="d:chapter/d:title"/>
 
 
-<xsl:template name="chapter.subtitle" match="chapter/subtitle">
+<xsl:template name="chapter.subtitle" match="d:chapter/d:subtitle">
 	<text:p
 		text:style-name="para-title2">
 		<xsl:apply-templates/>
