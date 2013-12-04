@@ -42,5 +42,31 @@
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
   <xsl:template name="document-styles">
+	<office:document-styles>
+	  <office:font-face-decls>
+<!--
+		<xsl:call-template name="document.font-face-decls"/>
+-->
+	  </office:font-face-decls>
+		
+	  <office:styles>
+<!--
+		<xsl:call-template name="document-styles.office-styles"/>
+-->
+	  </office:styles>
+	  
+	  <office:automatic-styles>
+<!--
+		<xsl:call-template name="document-styles.page-layout"/>
+		<xsl:call-template name="document-styles.automatic-styles"/>
+-->
+	  </office:automatic-styles>
+	  
+	  <office:master-styles>
+<!--
+		<xsl:call-template name="document-styles.master-styles"/>
+-->
+	  </office:master-styles>	
+	</office:document-styles>
   </xsl:template>
 </xsl:stylesheet>

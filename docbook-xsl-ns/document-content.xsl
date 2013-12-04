@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	
-	docbook2odf - DocBook to OpenDocument XSL Transformation
-	Copyright (C) 2006 Roman Fordinal
-	http://open.comsultia.com/docbook2odf/
-	
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
+
+docbook2odf - DocBook to OpenDocument XSL Transformation
+Copyright (C) 2006 Roman Fordinal
+http://open.comsultia.com/docbook2odf/
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
 -->
 <xsl:stylesheet
 	version="1.0"
@@ -42,5 +42,40 @@
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
   <xsl:template name="document-content">
+	<office:document-content>
+	  <!-- same font declarations as in document-styles -->
+	  <office:font-face-decls>
+<!--
+		<xsl:call-template name="document.font-face-decls"/>
+-->
+	  </office:font-face-decls>
+	  
+	  <office:automatic-styles>
+<!--
+		<xsl:call-template name="document-content.automatic-styles.paragraph"/>
+		<xsl:call-template name="document-content.automatic-styles.text"/>
+		<xsl:call-template name="document-content.automatic-styles.list"/>
+		<xsl:call-template name="document-content.automatic-styles.graphic"/>
+		<xsl:call-template name="document-content.automatic-styles.date"/>
+		<xsl:call-template name="document-content.automatic-styles.table"/>
+		<xsl:if test="/slides">
+		  <xsl:call-template name="document-content.automatic-styles.drawing-page"/>
+		  <xsl:call-template name="document-content.automatic-styles.presentation"/>
+		</xsl:if>
+		<xsl:if test="/article">
+		  <xsl:call-template name="document-content.automatic-styles.section"/>
+		</xsl:if>
+		<xsl:if test="/book">
+		  <xsl:call-template name="document-content.automatic-styles.section"/>
+		</xsl:if>
+-->
+	  </office:automatic-styles>
+	  
+	  <office:body>
+<!--
+		<xsl:apply-templates/>
+-->
+	  </office:body>
+	</office:document-content>
   </xsl:template>
 </xsl:stylesheet>
