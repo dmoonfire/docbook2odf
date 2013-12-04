@@ -17,7 +17,7 @@
 	
 -->
 <xsl:stylesheet
-                xmlns:docbook="http://docbook.org/ns/docbook"
+        xmlns:docbook="http://docbook.org/ns/docbook"
 		xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:dc="http://purl.org/dc/elements/1.1/"
