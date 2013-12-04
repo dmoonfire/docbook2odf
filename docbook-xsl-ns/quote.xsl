@@ -40,49 +40,11 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
+	exclude-result-prefixes="d"
 	version="1.0">
-  <!-- Output Settings -->
-  <xsl:decimal-format name="staff" digit="D" />
-  <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
-
-  <!-- Inclues -->
-  <xsl:include href="param.xsl"/>
-
-  <xsl:include href="../common/l10n.xsl"/>
-
-  <xsl:include href="document-manifest.xsl"/>
-  <xsl:include href="document-meta.xsl"/>
-  <xsl:include href="document-content.xsl"/>
-  <xsl:include href="document-styles.xsl"/>
-
-  <xsl:include href="block.xsl"/>
-  <xsl:include href="quote.xsl"/>
-
-  <!--
-	  Generate the entire ODF file in a single XML document. Then,
-	  `odf.xsl` is used to break it into separate output files.
-  -->
-  <xsl:template match="/">
-	<office:document>
-	  <!-- Write out the contents for meta.xml -->
-	  <xsl:call-template name="document-meta" />
-
-	  <!-- Write out the contents for content.xml -->
-	  <xsl:call-template name="document-content" />
-
-	  <!-- Write out the contents for styles.xml -->
-	  <xsl:call-template name="document-styles" />
-
-	  <!-- Write out the contents for manifest.xml -->
-	  <xsl:call-template name="document-manifest" />
-	</office:document>
-  </xsl:template>
-
-  <!-- Common Elements -->
-  <xsl:template match="*">
-  </xsl:template>
-
-  <xsl:template match="text()">
-	<xsl:value-of select="."/>
+  <xsl:template match="d:quote">
+    <xsl:call-template name="gentext.startquote"/>
+    <xsl:apply-templates />
+    <xsl:call-template name="gentext.endquote"/>
   </xsl:template>
 </xsl:stylesheet>
