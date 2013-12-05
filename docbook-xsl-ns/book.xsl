@@ -46,6 +46,12 @@
   <!-- Root Node -->
   <xsl:template match="d:book">
 	<office:text>
+	  <xsl:apply-templates select="." mode="title"/>
+	  <xsl:apply-templates/>
+	</office:text>
+  </xsl:template>
+
+  <xsl:template match="d:book" mode="title">
 	  <xsl:call-template name="p-or-h">
 		<xsl:with-param name="style.name">
 		  <xsl:value-of select="$style.name.book.title"/>
@@ -54,27 +60,8 @@
 		  <xsl:value-of select="$style.level.book.title"/>
 		</xsl:with-param>
 		<xsl:with-param name="text">
-		  <xsl:value-of select="d:title|d:info/d:title"/>
+		  <xsl:apply-templates select="." mode="title.markup"/>
 		</xsl:with-param>
 	  </xsl:call-template>
-
-	  <xsl:apply-templates/>
-	</office:text>
-  </xsl:template>
-
-  <xsl:template match="d:chapter">
-	<xsl:call-template name="p-or-h">
-	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.chapter.title"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.chapter.title"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="text">
-		<xsl:value-of select="d:title|d:info/d:title"/>
-	  </xsl:with-param>
-	</xsl:call-template>
-	
-	<xsl:apply-templates/>
   </xsl:template>
 </xsl:stylesheet>

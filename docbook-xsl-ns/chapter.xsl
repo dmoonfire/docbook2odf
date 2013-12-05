@@ -17,7 +17,7 @@
 
 -->
 <xsl:stylesheet
-	version="1.0"
+    xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -40,41 +40,30 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <!-- Templates -->
-  <xsl:template name="document-content">
-	<office:document-content>
-	  <!-- same font declarations as in document-styles -->
-	  <office:font-face-decls>
-<!--
-		<xsl:call-template name="document.font-face-decls"/>
--->
-	  </office:font-face-decls>
-	  
-	  <office:automatic-styles>
-<!--
-		<xsl:call-template name="document-content.automatic-styles.paragraph"/>
-		<xsl:call-template name="document-content.automatic-styles.text"/>
-		<xsl:call-template name="document-content.automatic-styles.list"/>
-		<xsl:call-template name="document-content.automatic-styles.graphic"/>
-		<xsl:call-template name="document-content.automatic-styles.date"/>
-		<xsl:call-template name="document-content.automatic-styles.table"/>
-		<xsl:if test="/slides">
-		  <xsl:call-template name="document-content.automatic-styles.drawing-page"/>
-		  <xsl:call-template name="document-content.automatic-styles.presentation"/>
-		</xsl:if>
-		<xsl:if test="/article">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
-		<xsl:if test="/book">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
--->
-	  </office:automatic-styles>
-	  
-	  <office:body>
-		<xsl:apply-templates/>
-	  </office:body>
-	</office:document-content>
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	exclude-result-prefixes="d"
+	version="1.0">
+  <!-- Root Node -->
+  <xsl:template match="d:chapter">
+	<xsl:apply-templates select="." mode="title"/>
+	<xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Title -->
+  <xsl:template match="d:chapter" mode="title">
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.name.chapter.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.level.chapter.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:text>Chapter </xsl:text>
+		<xsl:apply-templates select="." mode="label.markup"/>
+		<xsl:text>: </xsl:text>
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

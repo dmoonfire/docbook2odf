@@ -48,12 +48,20 @@
   <!-- Inclues -->
   <xsl:include href="param.xsl"/>
 
+  <xsl:include href="../lib/lib.xsl"/>
+  <xsl:include href="../common/common.xsl"/>
+  <xsl:include href="../common/gentext.xsl"/>
   <xsl:include href="../common/l10n.xsl"/>
+  <xsl:include href="../common/labels.xsl"/>
+  <xsl:include href="../common/titles.xsl"/>
 
   <xsl:include href="document-manifest.xsl"/>
   <xsl:include href="document-meta.xsl"/>
   <xsl:include href="document-content.xsl"/>
   <xsl:include href="document-styles.xsl"/>
+
+  <xsl:include href="book.xsl"/>
+  <xsl:include href="chapter.xsl"/>
 
   <xsl:include href="block.xsl"/>
   <xsl:include href="quote.xsl"/>
@@ -77,6 +85,9 @@
 	  <xsl:call-template name="document-manifest" />
 	</office:document>
   </xsl:template>
+
+  <!-- Common Ignored Elements -->
+  <xsl:template match="d:info"/>
 
   <!-- Common Elements -->
   <xsl:template match="*">
