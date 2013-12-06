@@ -17,7 +17,7 @@
 
 -->
 <xsl:stylesheet
-	version="1.0"
+    xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -40,38 +40,16 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	exclude-result-prefixes="d"
+	version="1.0">
   <!-- Templates -->
-  <xsl:template name="document-content">
-	<office:document-content>
-	  <office:font-face-decls>
-		<xsl:apply-templates select="." mode="font-face-decls"/>
-	  </office:font-face-decls>
-	  
-	  <office:automatic-styles>
-<!--
-		<xsl:call-template name="document-content.automatic-styles.paragraph"/>
-		<xsl:call-template name="document-content.automatic-styles.text"/>
-		<xsl:call-template name="document-content.automatic-styles.list"/>
-		<xsl:call-template name="document-content.automatic-styles.graphic"/>
-		<xsl:call-template name="document-content.automatic-styles.date"/>
-		<xsl:call-template name="document-content.automatic-styles.table"/>
-		<xsl:if test="/slides">
-		  <xsl:call-template name="document-content.automatic-styles.drawing-page"/>
-		  <xsl:call-template name="document-content.automatic-styles.presentation"/>
-		</xsl:if>
-		<xsl:if test="/article">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
-		<xsl:if test="/book">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
--->
-	  </office:automatic-styles>
-	  
-	  <office:body>
-		<xsl:apply-templates/>
-	  </office:body>
-	</office:document-content>
+  <xsl:template match="d:*" mode="font-face-decls">
+    <style:font-face
+		style:name="Courier New" 
+		svg:font-family="&apos;Courier New&apos;"
+		style:font-adornments="Normal"
+		style:font-family-generic="modern"
+		style:font-pitch="fixed"/>
   </xsl:template>
 </xsl:stylesheet>

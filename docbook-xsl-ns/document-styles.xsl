@@ -44,15 +44,12 @@
   <xsl:template name="document-styles">
 	<office:document-styles>
 	  <office:font-face-decls>
-<!--
-		<xsl:call-template name="document.font-face-decls"/>
--->
+		<xsl:apply-templates select="." mode="font-face-decls"/>
 	  </office:font-face-decls>
-		
+	  
 	  <office:styles>
-<!--
-		<xsl:call-template name="document-styles.office-styles"/>
--->
+		<xsl:apply-templates select="." mode="default-styles"/>
+		<xsl:apply-templates select="." mode="styles"/>
 	  </office:styles>
 	  
 	  <office:automatic-styles>

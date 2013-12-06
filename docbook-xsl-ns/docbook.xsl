@@ -40,6 +40,7 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
+	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Output Settings -->
   <xsl:decimal-format name="staff" digit="D" />
@@ -54,6 +55,9 @@
   <xsl:include href="../common/l10n.xsl"/>
   <xsl:include href="../common/labels.xsl"/>
   <xsl:include href="../common/titles.xsl"/>
+
+  <xsl:include href="fonts.xsl"/>
+  <xsl:include href="styles.xsl"/>
 
   <xsl:include href="document-manifest.xsl"/>
   <xsl:include href="document-meta.xsl"/>

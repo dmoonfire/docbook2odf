@@ -40,8 +40,6 @@
 
   <xsl:param name="style.name.para">Paragraph_20_Padding</xsl:param>
   <xsl:param name="style.level.para">0</xsl:param>
-  <xsl:param name="style.name.simpara">Paragraph_20_Padding</xsl:param>
-  <xsl:param name="style.level.simpara">0</xsl:param>
 
   <!-- Common -->
   <xsl:param name="appendix.autolabel">A</xsl:param>

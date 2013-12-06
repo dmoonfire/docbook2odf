@@ -92,10 +92,10 @@
   <xsl:template match="d:simpara">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.simpara"/>
+		<xsl:value-of select="$style.name.para"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.simpara"/>
+		<xsl:value-of select="$style.level.para"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates />
