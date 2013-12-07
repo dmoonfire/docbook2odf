@@ -52,16 +52,16 @@
   </xsl:template>
 
   <xsl:template match="d:book" mode="title">
-	  <xsl:call-template name="p-or-h">
-		<xsl:with-param name="style.name">
-		  <xsl:value-of select="$style.name.book.title"/>
-		</xsl:with-param>
-		<xsl:with-param name="style.level">
-		  <xsl:value-of select="$style.level.book.title"/>
-		</xsl:with-param>
-		<xsl:with-param name="text">
-		  <xsl:apply-templates select="." mode="title.markup"/>
-		</xsl:with-param>
-	  </xsl:call-template>
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.name.book.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.level.book.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

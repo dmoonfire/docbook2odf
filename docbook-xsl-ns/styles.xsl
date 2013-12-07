@@ -63,20 +63,158 @@
 		  style:font-size-asian="12pt"
 		  style:language-asian="en"
 		  style:country-asian="US"
-		  style:font-name-complex="Tahoma" style:font-size-complex="12pt" 
+		  style:font-name-complex="Tahoma"
+		  style:font-size-complex="12pt" 
 		  style:language-complex="en"
 		  style:country-complex="US"/>
     </style:default-style>
+
+    <style:style
+		style:name="Standard"
+		style:family="paragraph"
+		style:class="text"/>
+
+    <style:style
+		style:name="Paragraph_20_Default"
+		style:display-name="Paragraph Default"
+		style:family="paragraph">
+      <style:paragraph-properties
+		  fo:margin="100%"
+		  fo:margin-left="0in"
+		  fo:margin-right="0in"
+		  fo:margin-top="0in"
+		  fo:margin-bottom="0in" />
+	  <style:text-properties
+		  style:font-name="Courier New"
+		  fo:font-size="12pt"/>
+    </style:style>
+
+    <style:style
+		style:name="Heading_20_Default"
+		style:display-name="Heading Default"
+		style:family="paragraph">
+      <style:paragraph-properties
+		  fo:keep-with-next="always"
+		  text:number-lines="true"
+		  text:line-number="0"/>
+	  <style:text-properties
+		  style:font-name="{$style.font.heading}"
+		  fo:font-size="{$style.size.heading}"
+		  fo:font-weight="{$style.weight.heading}"/>
+    </style:style>
+  </xsl:template>
+
+  <xsl:template name="paragraph-style">
+	<xsl:param name="name"/>
+	<xsl:param name="parent.name">Paragraph_20_Default</xsl:param>
+	<xsl:param name="display.name"/>
+
+	<xsl:param name="font"/>
+	<xsl:param name="size"/>
+	<xsl:param name="weight"/>
+	<xsl:param name="lineHeight"/>
+	<xsl:param name="textIndent"/>
+
+	<xsl:param name="marginTop"/>
+	<xsl:param name="marginBottom"/>
+	<xsl:param name="marginLeft"/>
+	<xsl:param name="marginRight"/>
+
+	<style:style
+		style:name="{$name}"
+		style:display-name="{$display.name}"
+		style:family="paragraph"
+		style:parent-style-name="{$parent.name}"
+		style:default-outline-level="1"
+		style:list-style-name="List_20_Headings"
+		style:class="text">
+      <style:paragraph-properties
+		  text:number-lines="true"
+		  text:line-number="1">
+		<xsl:if test="$lineHeight != ''">
+		  <xsl:attribute name="fo:line-height">
+			<xsl:value-of select="$lineHeight"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$textIndent != ''">
+		  <xsl:attribute name="fo:text-indent">
+			<xsl:value-of select="$textIndent"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$marginTop != ''">
+		  <xsl:attribute name="fo:margin-top">
+			<xsl:value-of select="$marginTop"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$marginBottom != ''">
+		  <xsl:attribute name="fo:margin-bottom">
+			<xsl:value-of select="$marginBottom"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$marginLeft != ''">
+		  <xsl:attribute name="fo:margin-left">
+			<xsl:value-of select="$marginLeft"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$marginRight != ''">
+		  <xsl:attribute name="fo:margin-right">
+			<xsl:value-of select="$marginRight"/>
+		  </xsl:attribute>
+		</xsl:if>
+	  </style:paragraph-properties>
+
+	  <style:text-properties>
+		<xsl:if test="$font != ''">
+		  <xsl:attribute name="style:font-name">
+			<xsl:value-of select="$font"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$size != ''">
+		  <xsl:attribute name="fo:font-size">
+			<xsl:value-of select="$size"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$weight != ''">
+		  <xsl:attribute name="fo:font-weight">
+			<xsl:value-of select="$weight"/>
+		  </xsl:attribute>
+		</xsl:if>
+	  </style:text-properties>
+	</style:style>
   </xsl:template>
 
   <xsl:template match="d:*" mode="styles">
-    <style:style style:name="Standard" style:family="paragraph" style:class="text"/>
-    <style:style style:name="Paragraph_20_Default" style:display-name="Paragraph Default" style:family="paragraph">
-      <style:paragraph-properties fo:margin="100%" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0in" fo:margin-bottom="0in" fo:line-height="200%" fo:text-indent="0.25in" style:auto-text-indent="false"/><style:text-properties style:font-name="Courier New" fo:font-size="12pt"/>
-    </style:style>
-    <style:style style:name="Paragraph" style:family="paragraph" style:parent-style-name="Paragraph_20_Default"/>
-    <style:style style:name="Paragraph_20_Padding" style:display-name="Paragraph Padding" style:family="paragraph" style:parent-style-name="Paragraph_20_Default">
-      <style:paragraph-properties fo:margin-top="0in" fo:margin-bottom="0in"/>
-    </style:style>
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Heading_20_1'"/>
+	  <xsl:with-param name="display.name" select="'Heading 1'"/>
+	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
+
+	  <xsl:with-param name="font" select="$style.font.heading1"/>
+	  <xsl:with-param name="size" select="$style.size.heading1"/>
+	  <xsl:with-param name="weight" select="$style.weight.heading1"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.heading1"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.heading1"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.heading1"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.heading1"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.heading1"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.heading1"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Paragraph_20_Padding'"/>
+	  <xsl:with-param name="display.name" select="'Paragraph Padding'"/>
+
+	  <xsl:with-param name="font" select="$style.font.para"/>
+	  <xsl:with-param name="size" select="$style.size.para"/>
+	  <xsl:with-param name="weight" select="$style.weight.para"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.para"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.para"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.para"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.para"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.para"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.para"/>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>
