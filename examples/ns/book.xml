@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <book xmlns="http://docbook.org/ns/docbook">
   <title>Book example</title>
-
   <subtitle>Subtitle of Book example, blah blah blah</subtitle>
 
-  <bookinfo>
-    <date>2006-07-16</date>
+  <info>
+    <date>2013-12-07</date>
 
-    <author>
-      <surname>Fordinal</surname>
-    </author>
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
 
     <abstract>
       <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin
@@ -17,24 +19,26 @@
       accumsan commodo libero. Mauris eget nisi eu magna sodales placerat. Sed
       in orci vel tellus mattis ullamcorper.</para>
     </abstract>
-  </bookinfo>
+  </info>
 
   <chapter>
-    <chapterinfo>
+    <title>First Chapter</title>
+
+    <info>
       <date>2006-07-16</date>
 
       <abstract>
         <para>This chapters is only about test</para>
       </abstract>
 
-      <author>
-        <surname>Fordinal</surname>
-
-        <email>fordinal@webcom.sk</email>
-      </author>
-    </chapterinfo>
-
-    <title>First Chapter</title>
+	  <author>
+		<personname>
+		  <firstname>Dylan</firstname>
+		  <surname>Moonfire</surname>
+		</personname>
+		<email>contact@mfgames.com</email>
+	  </author>
+    </info>
 
     <section>
       <title>Section 1</title>

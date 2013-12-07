@@ -20,3 +20,6 @@ uninstall:
 	rm $(mandir)/man1/docbook2odf.1
 	rm $(datadir)/applications/docbook2odf.desktop
 	rm -rf $(datadir)/docbook2odf/
+
+check:
+	$(MAKE) -C examples/ns check

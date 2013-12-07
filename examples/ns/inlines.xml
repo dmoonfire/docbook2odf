@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	version="5.0">
+  <title>Inlines</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-07</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+
+    <abstract>
+      <para>One of the more common elements of writing are inline documents This article shows how the various inlines render.</para>
+    </abstract>
+  </info>
+
+  <para>This article shows various examples of inline elements.</para>
+</article>
