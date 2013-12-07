@@ -36,64 +36,99 @@
   <xsl:param name="style.name.book.title">Book_20_Title</xsl:param>
   <xsl:param name="style.name.chapter.title">Heading 1</xsl:param>
   <xsl:param name="style.name.para">Paragraph</xsl:param>
+  <xsl:param name="style.name.epigraph">Epigraph</xsl:param>
+  <xsl:param name="style.name.epigraphAttribution">Epigraph_20_Attribution</xsl:param>
 
   <xsl:param name="style.level.book.title">0</xsl:param>
   <xsl:param name="style.level.chapter.title">1</xsl:param>
   <xsl:param name="style.level.para">0</xsl:param>
+  <xsl:param name="style.level.epigraph">0</xsl:param>
+  <xsl:param name="style.level.epigraphAttribution">0</xsl:param>
 
   <xsl:param name="style.font">Courier New</xsl:param>
   <xsl:param name="style.font.heading" select="$style.font"/>
   <xsl:param name="style.font.heading1"/>
   <xsl:param name="style.font.para" select="$style.font"/>
   <xsl:param name="style.font.book" select="$style.font"/>
+  <xsl:param name="style.font.epigraph" select="$style.font.para"/>
+  <xsl:param name="style.font.epigraphAttribution" select="$style.font.epigraph"/>
 
   <xsl:param name="style.page.heading1" select="Chapter_20_Page"/>
   <xsl:param name="style.page.para"/>
   <xsl:param name="style.page.book" select="Book_20_Page"/>
+  <xsl:param name="style.page.epigraph"/>
+  <xsl:param name="style.page.epigraphAttribution"/>
 
   <xsl:param name="style.size">12pt</xsl:param>
   <xsl:param name="style.size.heading" select="$style.size"/>
   <xsl:param name="style.size.heading1">175%</xsl:param>
   <xsl:param name="style.size.para" select="$style.size"/>
   <xsl:param name="style.size.book">200%</xsl:param>
+  <xsl:param name="style.size.epigraph">9pt</xsl:param>
+  <xsl:param name="style.size.epigraphAttribution" select="$style.size.epigraph"/>
   
-  <xsl:param name="style.weight.heading">bold</xsl:param>
-  <xsl:param name="style.weight.heading1"/>
-  <xsl:param name="style.weight.para"/>
-  <xsl:param name="style.weight.book">bold</xsl:param>
+  <xsl:param name="style.fontStyle.heading"></xsl:param>
+  <xsl:param name="style.fontStyle.heading1"/>
+  <xsl:param name="style.fontStyle.para"/>
+  <xsl:param name="style.fontStyle.book"></xsl:param>
+  <xsl:param name="style.fontStyle.epigraph" select="$style.fontStyle.para"/>
+  <xsl:param name="style.fontStyle.epigraphAttribution" select="'italic'"/>
+
+  <xsl:param name="style.fontWeight.heading">bold</xsl:param>
+  <xsl:param name="style.fontWeight.heading1"/>
+  <xsl:param name="style.fontWeight.para"/>
+  <xsl:param name="style.fontWeight.book">bold</xsl:param>
+  <xsl:param name="style.fontWeight.epigraph" select="$style.fontWeight.para"/>
+  <xsl:param name="style.fontWeight.epigraphAttribution" select="$style.fontWeight.epigraph"/>
 
   <xsl:param name="style.lineHeight.heading1"/>
   <xsl:param name="style.lineHeight.para">150%</xsl:param>
   <xsl:param name="style.lineHeight.book"/>
+  <xsl:param name="style.lineHeight.epigraph"/>
+  <xsl:param name="style.lineHeight.epigraphAttribution"/>
 
   <xsl:param name="style.textAlign.heading">left</xsl:param>
   <xsl:param name="style.textAlign.heading1"/>
   <xsl:param name="style.textAlign.para">justified</xsl:param>
   <xsl:param name="style.textAlign.book">center</xsl:param>
+  <xsl:param name="style.textAlign.epigraph">left</xsl:param>
+  <xsl:param name="style.textAlign.epigraphAttribution">right</xsl:param>
 
   <xsl:param name="style.textIndent.heading1"/>
   <xsl:param name="style.textIndent.para">0.25in</xsl:param>
   <xsl:param name="style.textIndent.book">0in</xsl:param>
+  <xsl:param name="style.textIndent.epigraph">0in</xsl:param>
+  <xsl:param name="style.textIndent.epigraphAttribution">0in</xsl:param>
 
   <xsl:param name="style.breakBefore.heading1">page</xsl:param>
   <xsl:param name="style.breakBefore.para"></xsl:param>
   <xsl:param name="style.breakBefore.book">page</xsl:param>
+  <xsl:param name="style.breakBefore.epigraph"></xsl:param>
+  <xsl:param name="style.breakBefore.epigraphAttribution"></xsl:param>
 
   <xsl:param name="style.marginTop.heading1">0.125in</xsl:param>
   <xsl:param name="style.marginTop.para">0in</xsl:param>
   <xsl:param name="style.marginTop.book">1in</xsl:param>
+  <xsl:param name="style.marginTop.epigraph">0in</xsl:param>
+  <xsl:param name="style.marginTop.epigraphAttribution">0in</xsl:param>
 
-  <xsl:param name="style.marginBottom.heading1">0.125in</xsl:param>
+  <xsl:param name="style.marginBottom.heading1">0.5in</xsl:param>
   <xsl:param name="style.marginBottom.para">0in</xsl:param>
   <xsl:param name="style.marginBottom.book">1in</xsl:param>
+  <xsl:param name="style.marginBottom.epigraph">0in</xsl:param>
+  <xsl:param name="style.marginBottom.epigraphAttribution">0.5in</xsl:param>
 
   <xsl:param name="style.marginLeft.heading1">0in</xsl:param>
   <xsl:param name="style.marginLeft.para">0in</xsl:param>
   <xsl:param name="style.marginLeft.book">1in</xsl:param>
+  <xsl:param name="style.marginLeft.epigraph">0.5in</xsl:param>
+  <xsl:param name="style.marginLeft.epigraphAttribution">1.0in</xsl:param>
 
   <xsl:param name="style.marginRight.heading1">0in</xsl:param>
   <xsl:param name="style.marginRight.para">0in</xsl:param>
   <xsl:param name="style.marginRight.book">1in</xsl:param>
+  <xsl:param name="style.marginRight.epigraph">0.5in</xsl:param>
+  <xsl:param name="style.marginRight.epigraphAttribution">0.5in</xsl:param>
 
   <!-- Common -->
   <xsl:param name="appendix.autolabel">A</xsl:param>

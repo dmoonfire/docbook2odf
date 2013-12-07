@@ -100,7 +100,7 @@
 	  <style:text-properties
 		  style:font-name="{$style.font.heading}"
 		  fo:font-size="{$style.size.heading}"
-		  fo:font-weight="{$style.weight.heading}"/>
+		  fo:font-weight="{$style.fontWeight.heading}"/>
     </style:style>
   </xsl:template>
 
@@ -112,7 +112,8 @@
 	<xsl:param name="page"/>
 	<xsl:param name="font"/>
 	<xsl:param name="size"/>
-	<xsl:param name="weight"/>
+	<xsl:param name="fontStyle"/>
+	<xsl:param name="fontWeight"/>
 	<xsl:param name="lineHeight"/>
 	<xsl:param name="textAlign"/>
 	<xsl:param name="textIndent"/>
@@ -192,9 +193,14 @@
 			<xsl:value-of select="$size"/>
 		  </xsl:attribute>
 		</xsl:if>
-		<xsl:if test="$weight != ''">
+		<xsl:if test="$fontStyle != ''">
+		  <xsl:attribute name="fo:font-style">
+			<xsl:value-of select="$fontStyle"/>
+		  </xsl:attribute>
+		</xsl:if>
+		<xsl:if test="$fontWeight != ''">
 		  <xsl:attribute name="fo:font-weight">
-			<xsl:value-of select="$weight"/>
+			<xsl:value-of select="$fontWeight"/>
 		  </xsl:attribute>
 		</xsl:if>
 	  </style:text-properties>
@@ -210,7 +216,8 @@
 	  <xsl:with-param name="page" select="$style.page.heading1"/>
 	  <xsl:with-param name="font" select="$style.font.heading1"/>
 	  <xsl:with-param name="size" select="$style.size.heading1"/>
-	  <xsl:with-param name="weight" select="$style.weight.heading1"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.heading1"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.heading1"/>
 	  <xsl:with-param name="lineHeight" select="$style.lineHeight.heading1"/>
 	  <xsl:with-param name="textAlign" select="$style.textAlign.heading1"/>
 	  <xsl:with-param name="textIndent" select="$style.textIndent.heading1"/>
@@ -229,7 +236,8 @@
 	  <xsl:with-param name="page" select="$style.page.para"/>
 	  <xsl:with-param name="font" select="$style.font.para"/>
 	  <xsl:with-param name="size" select="$style.size.para"/>
-	  <xsl:with-param name="weight" select="$style.weight.para"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.para"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.para"/>
 	  <xsl:with-param name="lineHeight" select="$style.lineHeight.para"/>
 	  <xsl:with-param name="textAlign" select="$style.textAlign.para"/>
 	  <xsl:with-param name="textIndent" select="$style.textIndent.para"/>
@@ -248,7 +256,8 @@
 	  <xsl:with-param name="page" select="$style.page.book"/>
 	  <xsl:with-param name="font" select="$style.font.book"/>
 	  <xsl:with-param name="size" select="$style.size.book"/>
-	  <xsl:with-param name="weight" select="$style.weight.book"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.book"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.book"/>
 	  <xsl:with-param name="lineHeight" select="$style.lineHeight.book"/>
 	  <xsl:with-param name="textAlign" select="$style.textAlign.book"/>
 	  <xsl:with-param name="textIndent" select="$style.textIndent.book"/>
@@ -258,6 +267,46 @@
 	  <xsl:with-param name="marginBottom" select="$style.marginBottom.book"/>
 	  <xsl:with-param name="marginLeft" select="$style.marginLeft.book"/>
 	  <xsl:with-param name="marginRight" select="$style.marginRight.book"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Epigraph'"/>
+	  <xsl:with-param name="display.name" select="'Epigraph'"/>
+	
+	  <xsl:with-param name="page" select="$style.page.epigraph"/>
+	  <xsl:with-param name="font" select="$style.font.epigraph"/>
+	  <xsl:with-param name="size" select="$style.size.epigraph"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.epigraph"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.epigraph"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.epigraph"/>
+	  <xsl:with-param name="textAlign" select="$style.textAlign.epigraph"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.epigraph"/>
+	  <xsl:with-param name="breakBefore" select="$style.breakBefore.epigraph"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.epigraph"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.epigraph"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.epigraph"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.epigraph"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Epigraph_20_Attribution'"/>
+	  <xsl:with-param name="display.name" select="'Epigraph Attribution'"/>
+	
+	  <xsl:with-param name="page" select="$style.page.epigraphAttribution"/>
+	  <xsl:with-param name="font" select="$style.font.epigraphAttribution"/>
+	  <xsl:with-param name="size" select="$style.size.epigraphAttribution"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.epigraphAttribution"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.epigraphAttribution"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.epigraphAttribution"/>
+	  <xsl:with-param name="textAlign" select="$style.textAlign.epigraphAttribution"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.epigraphAttribution"/>
+	  <xsl:with-param name="breakBefore" select="$style.breakBefore.epigraphAttribution"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.epigraphAttribution"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.epigraphAttribution"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.epigraphAttribution"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.epigraphAttribution"/>
 	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>
