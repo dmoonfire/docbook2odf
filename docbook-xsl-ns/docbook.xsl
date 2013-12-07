@@ -58,6 +58,8 @@
 
   <xsl:include href="fonts.xsl"/>
   <xsl:include href="styles.xsl"/>
+  <xsl:include href="master-styles.xsl"/>
+  <xsl:include href="automatic-styles.xsl"/>
 
   <xsl:include href="document-manifest.xsl"/>
   <xsl:include href="document-meta.xsl"/>

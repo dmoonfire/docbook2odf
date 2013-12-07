@@ -33,9 +33,9 @@
       the given type.
   -->
 
-  <xsl:param name="style.name.book.title">Title_20_Book</xsl:param>
+  <xsl:param name="style.name.book.title">Book_20_Title</xsl:param>
   <xsl:param name="style.name.chapter.title">Heading 1</xsl:param>
-  <xsl:param name="style.name.para">Paragraph_20_Padding</xsl:param>
+  <xsl:param name="style.name.para">Paragraph</xsl:param>
 
   <xsl:param name="style.level.book.title">0</xsl:param>
   <xsl:param name="style.level.chapter.title">1</xsl:param>
@@ -45,33 +45,55 @@
   <xsl:param name="style.font.heading" select="$style.font"/>
   <xsl:param name="style.font.heading1"/>
   <xsl:param name="style.font.para" select="$style.font"/>
+  <xsl:param name="style.font.book" select="$style.font"/>
+
+  <xsl:param name="style.page.heading1" select="Chapter_20_Page"/>
+  <xsl:param name="style.page.para"/>
+  <xsl:param name="style.page.book" select="Book_20_Page"/>
 
   <xsl:param name="style.size">12pt</xsl:param>
   <xsl:param name="style.size.heading" select="$style.size"/>
   <xsl:param name="style.size.heading1">175%</xsl:param>
   <xsl:param name="style.size.para" select="$style.size"/>
+  <xsl:param name="style.size.book">200%</xsl:param>
   
   <xsl:param name="style.weight.heading">bold</xsl:param>
   <xsl:param name="style.weight.heading1"/>
-  <xsl:param name="style.weight.para"></xsl:param>
+  <xsl:param name="style.weight.para"/>
+  <xsl:param name="style.weight.book">bold</xsl:param>
 
   <xsl:param name="style.lineHeight.heading1"/>
   <xsl:param name="style.lineHeight.para">150%</xsl:param>
+  <xsl:param name="style.lineHeight.book"/>
+
+  <xsl:param name="style.textAlign.heading">left</xsl:param>
+  <xsl:param name="style.textAlign.heading1"/>
+  <xsl:param name="style.textAlign.para">justified</xsl:param>
+  <xsl:param name="style.textAlign.book">center</xsl:param>
 
   <xsl:param name="style.textIndent.heading1"/>
   <xsl:param name="style.textIndent.para">0.25in</xsl:param>
+  <xsl:param name="style.textIndent.book">0in</xsl:param>
+
+  <xsl:param name="style.breakBefore.heading1">page</xsl:param>
+  <xsl:param name="style.breakBefore.para"></xsl:param>
+  <xsl:param name="style.breakBefore.book">page</xsl:param>
 
   <xsl:param name="style.marginTop.heading1">0.125in</xsl:param>
   <xsl:param name="style.marginTop.para">0in</xsl:param>
+  <xsl:param name="style.marginTop.book">1in</xsl:param>
 
   <xsl:param name="style.marginBottom.heading1">0.125in</xsl:param>
   <xsl:param name="style.marginBottom.para">0in</xsl:param>
+  <xsl:param name="style.marginBottom.book">1in</xsl:param>
 
   <xsl:param name="style.marginLeft.heading1">0in</xsl:param>
   <xsl:param name="style.marginLeft.para">0in</xsl:param>
+  <xsl:param name="style.marginLeft.book">1in</xsl:param>
 
   <xsl:param name="style.marginRight.heading1">0in</xsl:param>
   <xsl:param name="style.marginRight.para">0in</xsl:param>
+  <xsl:param name="style.marginRight.book">1in</xsl:param>
 
   <!-- Common -->
   <xsl:param name="appendix.autolabel">A</xsl:param>
