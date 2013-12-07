@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-	
+
 	docbook2odf - DocBook to OpenDocument XSL Transformation
 	Copyright (C) 2006 Roman Fordinal
 	http://open.comsultia.com/docbook2odf/
@@ -17,7 +17,7 @@
 	
 -->
 <xsl:stylesheet
-	version="1.0"
+    xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -40,26 +40,36 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <xsl:template name="document-styles">
-	<office:document-styles>
-	  <office:font-face-decls>
-		<xsl:apply-templates select="." mode="font-face-decls"/>
-	  </office:font-face-decls>
-	  
-	  <office:styles>
-		<xsl:apply-templates select="." mode="default-styles"/>
-		<xsl:apply-templates select="." mode="styles"/>
-		<xsl:apply-templates select="." mode="text-styles"/>
-	  </office:styles>
-	  
-	  <office:automatic-styles>
-		<xsl:apply-templates select="." mode="automatic-styles"/>
-	  </office:automatic-styles>
-	  
-	  <office:master-styles>
-		<xsl:apply-templates select="." mode="master-styles"/>
-	  </office:master-styles>	
-	</office:document-styles>
+	exclude-result-prefixes="d"
+	version="1.0">
+  <!-- Templates -->
+  <xsl:template match="d:emphasis">
+	<text:span text:style-name="Text_20_Italic">
+      <xsl:apply-templates />
+	</text:span>
+  </xsl:template>
+
+  <xsl:template match="d:emphasis[@role='strong']">
+	<text:span text:style-name="Text_20_Strong">
+      <xsl:apply-templates />
+	</text:span>
+  </xsl:template>
+
+  <xsl:template match="d:emphasis[@role='bold']">
+	<text:span text:style-name="Text_20_Bold">
+      <xsl:apply-templates />
+	</text:span>
+  </xsl:template>
+
+  <xsl:template match="d:emphasis[@role='underline']">
+	<text:span text:style-name="Text_20_Underline">
+      <xsl:apply-templates />
+	</text:span>
+  </xsl:template>
+
+  <xsl:template match="d:emphasis[@role='strikethrough']">
+	<text:span text:style-name="Text_20_Strikethrough">
+      <xsl:apply-templates />
+	</text:span>
   </xsl:template>
 </xsl:stylesheet>

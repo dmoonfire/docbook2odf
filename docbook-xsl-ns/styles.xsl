@@ -454,4 +454,99 @@
 	  <xsl:with-param name="marginRight" select="$style.marginRight.article"/>
 	</xsl:call-template>
   </xsl:template>
+
+  <xsl:template match="d:*" mode="text-styles">
+	<!-- strong -->
+	<style:style
+		style:name="Text_20_Strong"
+		style:display-name="Text Strong"
+		style:family="text">
+	  <style:text-properties
+		  fo:font-weight="bold"
+		  fo:font-style="italic"/>
+	</style:style>
+	
+	<!-- bold -->
+	<style:style
+		style:name="Text_20_Bold"
+		style:display-name="Text Bold"
+		style:family="text">
+	  <style:text-properties
+		  fo:font-weight="bold"/>
+	</style:style>
+	
+	<!-- italic -->
+	<style:style
+		style:name="Text_20_Italic"
+		style:display-name="Text Italic"
+		style:family="text">
+	  <style:text-properties
+		  fo:font-style="italic"/>
+	</style:style>
+	
+	<!-- underline -->
+	<style:style
+		style:name="Text_20_Underline"
+		style:display-name="Text Underline"
+		style:family="text">
+	  <style:text-properties
+		  style:text-underline-color="#000000"
+		  style:text-underline-mode="continuous"
+		  style:text-underline-type="single"/>
+	</style:style>
+	
+	<!-- strikethrough -->
+	<style:style
+		style:name="Text_20_Strikethrough"
+		style:display-name="Text Strikethrough"
+		style:family="text">
+	  <style:text-properties
+		  style:text-line-through-style="solid"/>
+	</style:style>
+	
+	<!-- highlight -->
+	<style:style
+		style:name="Text_20_Highlight"
+		style:display-name="Text Highlight"
+		style:family="text">
+	  <style:text-properties
+		  fo:background-color="#ffff00"/>
+	</style:style>
+	
+	<!-- monospace -->
+	<style:style
+		style:name="Text_20_Monospace"
+		style:display-name="Text Monospace"
+		style:family="text">
+	  <style:text-properties
+		  fo:font-family="Courier"/>
+	</style:style>
+	
+	<!-- superscript -->
+	<style:style
+		style:name="Text_20_Super"
+		style:display-name="Text Superscript"
+		style:family="text">
+	  <style:text-properties style:text-position="super 58%" />
+	</style:style>
+	
+	<!-- subscript -->
+	<style:style
+		style:name="Text_20_Sub"
+		style:display-name="Text Subscript"
+		style:family="text">
+	  <style:text-properties style:text-position="sub 58%" />
+	</style:style>
+	
+	<!-- command -->
+	<style:style
+		style:name="Text_20_Command"
+		style:display-name="Text Command"
+		style:family="text">
+	  <style:text-properties
+		  fo:font-family="Courier"
+		  fo:font-weight="bold"
+		  fo:background-color="#f0f0f0"/>
+	</style:style>
+  </xsl:template>
 </xsl:stylesheet>

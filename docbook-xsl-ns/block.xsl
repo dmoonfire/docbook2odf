@@ -116,17 +116,9 @@
 
   <!-- Paragraphs -->
   <xsl:template match="d:para|d:simpara">
-	<xsl:call-template name="p-or-h">
-	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.para"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.para"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="text">
-		<xsl:apply-templates />
-	  </xsl:with-param>
-	</xsl:call-template>
+	<text:p text:style-name="{$style.name.para}">
+	  <xsl:apply-templates/>
+	</text:p>
   </xsl:template>
 
   <!-- Epigraphs -->
