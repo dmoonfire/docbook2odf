@@ -67,6 +67,7 @@
   <xsl:include href="document-content.xsl"/>
   <xsl:include href="document-styles.xsl"/>
 
+  <xsl:include href="article.xsl"/>
   <xsl:include href="book.xsl"/>
   <xsl:include href="chapter.xsl"/>
 

@@ -328,5 +328,25 @@
 	  <xsl:with-param name="marginLeft" select="$style.marginLeft.contents1"/>
 	  <xsl:with-param name="marginRight" select="$style.marginRight.contents1"/>
 	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Article_20_Title'"/>
+	  <xsl:with-param name="display.name" select="'Article Title'"/>
+	
+	  <xsl:with-param name="page" select="$style.page.article"/>
+	  <xsl:with-param name="font" select="$style.font.article"/>
+	  <xsl:with-param name="size" select="$style.size.article"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.article"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.article"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.article"/>
+	  <xsl:with-param name="textAlign" select="$style.textAlign.article"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.article"/>
+	  <xsl:with-param name="breakBefore" select="$style.breakBefore.article"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.article"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.article"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.article"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.article"/>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

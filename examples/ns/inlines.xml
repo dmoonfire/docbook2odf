@@ -22,4 +22,17 @@
   </info>
 
   <para>This article shows various examples of inline elements.</para>
+
+  <section>
+	<info><title>Quotes</title></info>
+	
+	<para>The most common quote be a <quote>quoted string</quote> and a <quote>quoted <quote>inner</quote> string</quote>.</para>
+  </section>
+
+  <section>
+	<info><title>Emphasis</title></info>
+	
+	<para>While the basic <emphasis>emphasis</emphasis> is typically rendered as italics, the role attribute can change the type of emphasis. For example:
+	<emphasis role='strong'>strong</emphasis>, <emphasis role='bold'>bold</emphasis>, <emphasis role='strikethrough'>strikethrough</emphasis>, <emphasis role='underline'>underline</emphasis>.</para>
+  </section>
 </article>
