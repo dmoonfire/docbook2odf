@@ -43,39 +43,92 @@
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
 	exclude-result-prefixes="d"
 	version="1.0">
-  <!-- Root Node -->
-  <xsl:template match="d:book">
-	<office:text>
-	  <xsl:apply-templates select="." mode="title"/>
+  <!-- Templates -->
+  <xsl:template match="d:*" mode="toc">
+	<xsl:param name="position"/>
 
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'beforeContents'"/>
-	  </xsl:apply-templates>
+	<xsl:if test="$position = $toc.position">
+	  <!-- Insert the title for the TOC-->
+	  <xsl:apply-templates select="." mode="toc.title"/>
 
-	  <xsl:apply-templates/>
-
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'afterContents'"/>
-	  </xsl:apply-templates>
-	</office:text>
+	  <!-- Insert the TOC entries -->
+	  <xsl:apply-templates select="." mode="toc.insert"/>
+	</xsl:if>
   </xsl:template>
 
-  <xsl:template match="d:book" mode="title">
+  <xsl:template match="d:*" mode="toc.title">
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.name.chapter.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.level.chapter.title"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:text>Table of Contents</xsl:text>
+	  </xsl:with-param>
+	</xsl:call-template>
+  </xsl:template>
+
+  <!-- TOC Entries -->
+  <xsl:template name="insert-toc-entry">
+	<xsl:param name="level"/>
+	<xsl:param name="ref"/>
+	<xsl:param name="text"/>
+	
+	<xsl:choose>
+	  <xsl:when test="$level &gt; 0">
+		<xsl:call-template name="p-or-h">
+		  <xsl:with-param name="style.name">
+			<xsl:text>Contents_20_</xsl:text>
+			<xsl:value-of select="$level"/>
+		  </xsl:with-param>
+		  <xsl:with-param name="style.level" select="'0'"/>
+		  <xsl:with-param name="text" select="$text"/>
+		  <xsl:with-param name="referenceRef" select="$ref"/>
+		</xsl:call-template>
+	  </xsl:when>
+	</xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="text()" mode="toc.insert"/>
+
+  <xsl:template match="d:*" mode="toc.insert">
+	<xsl:apply-templates mode="toc.insert"/>
+  </xsl:template>
+
+  <xsl:template match="d:book" mode="toc.insert">
 	<xsl:param name="number">
 	  <xsl:apply-templates select="." mode="label.markup"/>
 	</xsl:param>
 
-	<xsl:call-template name="p-or-h">
-	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.book.title"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.book.title"/>
-	  </xsl:with-param>
+	<xsl:call-template name="insert-toc-entry">
+	  <xsl:with-param name="level" select="$toc.book"/>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>
 	  </xsl:with-param>
-	  <xsl:with-param name="referenceMark" select="concat('Book', $number)"/>
+	  <xsl:with-param name="ref" select="concat('Book', $number)"/>
 	</xsl:call-template>
+
+	<xsl:apply-templates mode="toc.insert"/>
+  </xsl:template>
+	
+  <xsl:template match="d:chapter" mode="toc.insert">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<xsl:call-template name="insert-toc-entry">
+	  <xsl:with-param name="level" select="$toc.chapter"/>
+	  <xsl:with-param name="text">
+		<xsl:text>Chapter </xsl:text>
+		<xsl:apply-templates select="." mode="label.markup"/>
+		<xsl:text>: </xsl:text>
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="ref" select="concat('Chapter', $number)"/>
+	</xsl:call-template>
+
+	<xsl:apply-templates mode="toc.insert"/>
   </xsl:template>
 </xsl:stylesheet>

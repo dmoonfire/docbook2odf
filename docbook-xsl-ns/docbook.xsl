@@ -44,7 +44,7 @@
 	version="1.0">
   <!-- Output Settings -->
   <xsl:decimal-format name="staff" digit="D" />
-  <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+  <xsl:output method="xml" indent="no" omit-xml-declaration="no"/>
 
   <!-- Inclues -->
   <xsl:include href="param.xsl"/>
@@ -60,6 +60,7 @@
   <xsl:include href="styles.xsl"/>
   <xsl:include href="master-styles.xsl"/>
   <xsl:include href="automatic-styles.xsl"/>
+  <xsl:include href="toc.xsl"/>
 
   <xsl:include href="document-manifest.xsl"/>
   <xsl:include href="document-meta.xsl"/>

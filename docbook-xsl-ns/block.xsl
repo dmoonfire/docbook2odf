@@ -50,6 +50,8 @@
 	<xsl:param name="style.name"/>
 	<xsl:param name="style.level"/>
 	<xsl:param name="text"/>
+	<xsl:param name="referenceMark"/>
+	<xsl:param name="referenceRef"/>
 
 	<xsl:if test="$style.level &gt; 0">
 	  <text:h>
@@ -60,7 +62,26 @@
 		  <xsl:value-of select="$style.name" />
 		</xsl:attribute>
 		
-		<xsl:value-of select="$text"/>
+		<xsl:if test="$referenceMark != ''">
+		  <text:reference-mark-start text:name="{$referenceMark}"/>
+		</xsl:if>
+
+		<xsl:choose>
+		  <xsl:when test="$referenceRef != ''">
+			<text:reference-ref
+				text:reference-format="text"
+				text:ref-name="{$referenceRef}">
+			  <xsl:value-of select="normalize-space($text)"/>
+			</text:reference-ref>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<xsl:value-of select="normalize-space($text)"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+
+		<xsl:if test="$referenceMark != ''">
+		  <text:reference-mark-end text:name="{$referenceMark}"/>
+		</xsl:if>
 	  </text:h>
 	</xsl:if>
 	<xsl:if test="not($style.level &gt; 0)">
@@ -69,7 +90,26 @@
 		  <xsl:value-of select="$style.name" />
 		</xsl:attribute>
 		
-		<xsl:value-of select="$text"/>
+		<xsl:if test="$referenceMark != ''">
+		  <text:reference-mark-start text:name="{$referenceMark}"/>
+		</xsl:if>
+
+		<xsl:choose>
+		  <xsl:when test="$referenceRef != ''">
+			<text:reference-ref
+				text:reference-format="text"
+				text:ref-name="{$referenceRef}">
+			  <xsl:value-of select="normalize-space($text)"/>
+			</text:reference-ref>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<xsl:value-of select="normalize-space($text)"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+
+		<xsl:if test="$referenceMark != ''">
+		  <text:reference-mark-end text:name="{$referenceMark}"/>
+		</xsl:if>
 	  </text:p>
 	</xsl:if>
   </xsl:template>

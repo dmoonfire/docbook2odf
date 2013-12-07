@@ -46,11 +46,16 @@
   <!-- Root Node -->
   <xsl:template match="d:chapter">
 	<xsl:apply-templates select="." mode="title"/>
+
 	<xsl:apply-templates/>
   </xsl:template>
 
   <!-- Title -->
   <xsl:template match="d:chapter" mode="title">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
 		<xsl:value-of select="$style.name.chapter.title"/>
@@ -64,6 +69,7 @@
 		<xsl:text>: </xsl:text>
 		<xsl:apply-templates select="." mode="title.markup"/>
 	  </xsl:with-param>
+	  <xsl:with-param name="referenceMark" select="concat('Chapter', $number)"/>
 	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

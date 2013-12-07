@@ -46,24 +46,75 @@
   <!-- Templates -->
   <xsl:template match="d:*" mode="automatic-styles">
     <style:page-layout style:name="Mpm1">
-      <style:page-layout-properties fo:page-width="8.5in" fo:page-height="11in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.7874in" fo:margin-bottom="0.7874in" fo:margin-left="0.7874in" fo:margin-right="0.7874in" style:writing-mode="lr-tb" style:footnote-max-height="0in">
-        <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
+      <style:page-layout-properties
+		  fo:page-width="8.5in"
+		  fo:page-height="11in"
+		  style:num-format="1"
+		  style:print-orientation="portrait"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"
+		  style:writing-mode="lr-tb"
+		  style:footnote-max-height="0in">
+        <style:footnote-sep
+			style:width="0.0071in"
+			style:distance-before-sep="0.0398in"
+			style:distance-after-sep="0.0398in"
+			style:line-style="solid"
+			style:adjustment="left"
+			style:rel-width="25%"
+			style:color="#000000"/>
       </style:page-layout-properties>
       <style:header-style/>
       <style:footer-style/>
     </style:page-layout>
 	
     <style:page-layout style:name="Mpm2">
-      <style:page-layout-properties fo:page-width="8.5in" fo:page-height="11in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="1in" fo:margin-bottom="1in" fo:margin-left="1.25in" fo:margin-right="1.25in" style:shadow="none" style:writing-mode="lr-tb" style:footnote-max-height="0in">
-        <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
+      <style:page-layout-properties
+		  fo:page-width="8.5in"
+		  fo:page-height="11in"
+		  style:num-format="1"
+		  style:print-orientation="portrait"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"
+		  style:writing-mode="lr-tb"
+		  style:footnote-max-height="0in">
+        <style:footnote-sep
+			style:width="0.0071in"
+			style:distance-before-sep="0.0398in"
+			style:distance-after-sep="0.0398in"
+			style:line-style="solid"
+			style:adjustment="left"
+			style:rel-width="25%"
+			style:color="#000000"/>
       </style:page-layout-properties>
       <style:header-style/>
       <style:footer-style/>
     </style:page-layout>
 
     <style:page-layout style:name="Mpm3">
-      <style:page-layout-properties fo:page-width="8.5in" fo:page-height="11in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="1in" fo:margin-bottom="1in" fo:margin-left="1.25in" fo:margin-right="1.25in" style:shadow="none" style:writing-mode="lr-tb" style:footnote-max-height="0in">
-        <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
+      <style:page-layout-properties
+		  fo:page-width="8.5in"
+		  fo:page-height="11in"
+		  style:num-format="1"
+		  style:print-orientation="portrait"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"
+		  style:writing-mode="lr-tb"
+		  style:footnote-max-height="0in">
+        <style:footnote-sep
+			style:width="0.0071in"
+			style:distance-before-sep="0.0398in"
+			style:distance-after-sep="0.0398in"
+			style:line-style="solid"
+			style:adjustment="left"
+			style:rel-width="25%"
+			style:color="#000000"/>
       </style:page-layout-properties>
       <style:header-style/>
       <style:footer-style/>

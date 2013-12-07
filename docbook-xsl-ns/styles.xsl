@@ -308,5 +308,25 @@
 	  <xsl:with-param name="marginLeft" select="$style.marginLeft.epigraphAttribution"/>
 	  <xsl:with-param name="marginRight" select="$style.marginRight.epigraphAttribution"/>
 	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Contents_20_1'"/>
+	  <xsl:with-param name="display.name" select="'Contents 1'"/>
+	
+	  <xsl:with-param name="page" select="$style.page.contents1"/>
+	  <xsl:with-param name="font" select="$style.font.contents1"/>
+	  <xsl:with-param name="size" select="$style.size.contents1"/>
+	  <xsl:with-param name="fontStyle" select="$style.fontStyle.contents1"/>
+	  <xsl:with-param name="fontWeight" select="$style.fontWeight.contents1"/>
+	  <xsl:with-param name="lineHeight" select="$style.lineHeight.contents1"/>
+	  <xsl:with-param name="textAlign" select="$style.textAlign.contents1"/>
+	  <xsl:with-param name="textIndent" select="$style.textIndent.contents1"/>
+	  <xsl:with-param name="breakBefore" select="$style.breakBefore.contents1"/>
+
+	  <xsl:with-param name="marginTop" select="$style.marginTop.contents1"/>
+	  <xsl:with-param name="marginBottom" select="$style.marginBottom.contents1"/>
+	  <xsl:with-param name="marginLeft" select="$style.marginLeft.contents1"/>
+	  <xsl:with-param name="marginRight" select="$style.marginRight.contents1"/>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>
