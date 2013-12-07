@@ -70,6 +70,8 @@
   <xsl:include href="article.xsl"/>
   <xsl:include href="book.xsl"/>
   <xsl:include href="chapter.xsl"/>
+  <xsl:include href="section.xsl"/>
+  <xsl:include href="footnotes.xsl"/>
 
   <xsl:include href="block.xsl"/>
   <xsl:include href="quote.xsl"/>

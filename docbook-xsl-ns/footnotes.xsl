@@ -43,39 +43,6 @@
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
 	exclude-result-prefixes="d"
 	version="1.0">
-  <!-- Root Node -->
-  <xsl:template match="d:article">
-	<office:text>
-	  <xsl:apply-templates select="." mode="title"/>
-
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'beforeContents'"/>
-	  </xsl:apply-templates>
-
-	  <xsl:apply-templates/>
-
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'afterContents'"/>
-	  </xsl:apply-templates>
-	</office:text>
-  </xsl:template>
-
-  <xsl:template match="d:article" mode="title">
-	<xsl:param name="number">
-	  <xsl:apply-templates select="." mode="label.markup"/>
-	</xsl:param>
-
-	<xsl:call-template name="p-or-h">
-	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.article.title"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.article.title"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="text">
-		<xsl:apply-templates select="." mode="title.markup"/>
-	  </xsl:with-param>
-	  <xsl:with-param name="referenceMark" select="concat('Article', $number)"/>
-	</xsl:call-template>
-  </xsl:template>
+  <!-- Templates -->
+  <xsl:template name="process.chunk.footnotes"/>
 </xsl:stylesheet>
