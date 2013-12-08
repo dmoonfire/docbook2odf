@@ -1,6 +1,39 @@
 ---
-Title: Things that need to be done
+Title: Notes
 ---
+
+# Tasks for Writing
+
+* Notes, info, warnings, etc.
+* Nested quotes, both fancy and non-fancy.
+  * ``, `, ", '
+  * ``, `, ``, `
+  * ", ', ", '
+
+# Tasks for Submissions
+
+* Headers and footers
+* Address and word counts on first page
+* List (ordered and unordered) handling
+* Move odf.xsl into a common location
+* Allow for single-file style selection
+
+# Tasks for Smashwords
+
+* Legal section
+* Links (xlinks)
+* Insert cover image
+
+# Tasks to Consider
+
+* Handling TOC generation closer to the other versions
+  * Still allow for trailing TOC (for ebooks)
+  
+# Generic Tasks
+
+* Handling non-namespaced versions of input files
+
+# Previous Version Handled
 
 * verbatim.xsl
   * screen, programlisting, synopsis
@@ -40,7 +73,8 @@ Title: Things that need to be done
 * media.xsl
   * images
 * inline.xsl
-  * d:quote, d:email, d:uri, d:ulink
+  * d:email
+  * d:uri
   * d:credit
 * bibliography.xsl
   * Lots of stuff
