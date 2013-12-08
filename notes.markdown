@@ -21,10 +21,6 @@ Title: Notes
 * Handling TOC generation closer to the other versions
   * Still allow for trailing TOC (for ebooks)
   
-# Generic Tasks
-
-* Handling non-namespaced versions of input files
-
 # Previous Version Handled
 
 * verbatim.xsl
@@ -72,9 +68,3 @@ Title: Notes
   * Lots of stuff
 * article.xsl
   * Top-level and book-level
-* admonitions.xsl
-  * tip
-  * note
-  * warning
-  * caution
-  * important
