@@ -2,10 +2,6 @@
 Title: Notes
 ---
 
-# Tasks for Writing
-
-* Notes, info, warnings, etc.
-
 # Tasks for Submissions
 
 * Headers and footers

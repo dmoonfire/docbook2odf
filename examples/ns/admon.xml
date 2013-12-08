@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	version="5.0">
+  <title>Admonishments</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-07</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+
+    <abstract>
+      <para>Admonishments are notes in the text, such as info, tips,or warnings.</para>
+    </abstract>
+  </info>
+
+  <para>This article shows various examples of admonishments.</para>
+
+  <note>
+	<para>This is a note.</para>
+
+	<para>This is the second line.</para>
+  </note>
+  <important>
+	<para>This is a important.</para>
+
+	<para>This is the second line.</para>
+  </important>
+  <warning>
+	<para>This is a warning.</para>
+
+	<para>This is the second line.</para>
+  </warning>
+  <caution>
+	<para>This is a caution.</para>
+
+	<para>This is the second line.</para>
+  </caution>
+  <tip>
+	<para>This is a tip.</para>
+
+	<para>This is the second line.</para>
+  </tip>
+
+</article>

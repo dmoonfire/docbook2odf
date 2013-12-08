@@ -355,6 +355,111 @@
 	</xsl:call-template>
 
 	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Note'"/>
+	  <xsl:with-param name="display.name" select="'Note'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraNote.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraNote.page"/>
+	  <xsl:with-param name="font" select="$style.paraNote.font"/>
+	  <xsl:with-param name="size" select="$style.paraNote.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraNote.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraNote.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraNote.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraNote.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraNote.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraNote.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraNote.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraNote.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraNote.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraNote.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Important'"/>
+	  <xsl:with-param name="display.name" select="'Important'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraImportant.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraImportant.page"/>
+	  <xsl:with-param name="font" select="$style.paraImportant.font"/>
+	  <xsl:with-param name="size" select="$style.paraImportant.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraImportant.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraImportant.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraImportant.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraImportant.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraImportant.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraImportant.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraImportant.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraImportant.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraImportant.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraImportant.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Warning'"/>
+	  <xsl:with-param name="display.name" select="'Warning'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraWarning.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraWarning.page"/>
+	  <xsl:with-param name="font" select="$style.paraWarning.font"/>
+	  <xsl:with-param name="size" select="$style.paraWarning.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraWarning.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraWarning.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraWarning.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraWarning.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraWarning.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraWarning.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraWarning.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraWarning.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraWarning.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraWarning.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Caution'"/>
+	  <xsl:with-param name="display.name" select="'Caution'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraCaution.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraCaution.page"/>
+	  <xsl:with-param name="font" select="$style.paraCaution.font"/>
+	  <xsl:with-param name="size" select="$style.paraCaution.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraCaution.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraCaution.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraCaution.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraCaution.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraCaution.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraCaution.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraCaution.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraCaution.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraCaution.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraCaution.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Tip'"/>
+	  <xsl:with-param name="display.name" select="'Tip'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraTip.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraTip.page"/>
+	  <xsl:with-param name="font" select="$style.paraTip.font"/>
+	  <xsl:with-param name="size" select="$style.paraTip.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraTip.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraTip.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraTip.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraTip.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraTip.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraTip.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraTip.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraTip.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraTip.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraTip.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
 	  <xsl:with-param name="name" select="'Book_20_Title'"/>
 	  <xsl:with-param name="display.name" select="'Book Title'"/>
 	
