@@ -38,9 +38,9 @@
       the given type.
   -->
 
-  <xsl:param name="style.name.article.title">Article_20_Title</xsl:param>
-  <xsl:param name="style.name.book.title">Book_20_Title</xsl:param>
-  <xsl:param name="style.name.chapter.title">Heading 1</xsl:param>
+  <xsl:param name="style.name.article">Article_20_Title</xsl:param>
+  <xsl:param name="style.name.book">Book_20_Title</xsl:param>
+  <xsl:param name="style.name.chapter">Heading 1</xsl:param>
   <xsl:param name="style.name.epigraph">Epigraph</xsl:param>
   <xsl:param name="style.name.epigraphAttribution">Epigraph_20_Attribution</xsl:param>
   <xsl:param name="style.name.para">Paragraph</xsl:param>
@@ -51,9 +51,9 @@
   <xsl:param name="style.name.sect4">Heading_20_5</xsl:param>
   <xsl:param name="style.name.sect5">Heading_20_6</xsl:param>
 
-  <xsl:param name="style.level.article.title">0</xsl:param>
-  <xsl:param name="style.level.book.title">0</xsl:param>
-  <xsl:param name="style.level.chapter.title">1</xsl:param>
+  <xsl:param name="style.level.article">0</xsl:param>
+  <xsl:param name="style.level.book">0</xsl:param>
+  <xsl:param name="style.level.chapter">1</xsl:param>
   <xsl:param name="style.level.para">0</xsl:param>
   <xsl:param name="style.level.epigraph">0</xsl:param>
   <xsl:param name="style.level.epigraphAttribution">0</xsl:param>
