@@ -5,10 +5,6 @@ Title: Notes
 # Tasks for Writing
 
 * Notes, info, warnings, etc.
-* Nested quotes, both fancy and non-fancy.
-  * ``, `, ", '
-  * ``, `, ``, `
-  * ", ', ", '
 
 # Tasks for Submissions
 

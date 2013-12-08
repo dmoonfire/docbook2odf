@@ -26,7 +26,7 @@
   <section>
 	<info><title>Quotes</title></info>
 	
-	<para>The most common quote be a <quote>quoted string</quote> and a <quote>quoted <quote>inner</quote> string</quote>.</para>
+	<para>The most common quote be a <quote>quoted string</quote> and a <quote>quoted <quote>inner</quote> string</quote>. A more excessive quote would have four nested quotes: <quote>such as <quote>this <quote>and this <quote>right?</quote></quote></quote></quote></para>
   </section>
 
   <section>

@@ -43,8 +43,25 @@
 	exclude-result-prefixes="d"
 	version="1.0">
   <xsl:template match="d:quote">
-    <xsl:call-template name="gentext.startquote"/>
-    <xsl:apply-templates />
-    <xsl:call-template name="gentext.endquote"/>
+	<xsl:variable name="depth">
+      <xsl:call-template name="dot.count">
+		<xsl:with-param name="string">
+          <xsl:number level="multiple"/>
+		</xsl:with-param>
+      </xsl:call-template>
+	</xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="$depth mod 2 = 0">
+        <xsl:call-template name="gentext.startquote"/>
+		<xsl:apply-templates/>
+        <xsl:call-template name="gentext.endquote"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.nestedstartquote"/>
+		<xsl:apply-templates/>
+        <xsl:call-template name="gentext.nestedendquote"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 </xsl:stylesheet>
