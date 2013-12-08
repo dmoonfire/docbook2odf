@@ -67,10 +67,10 @@
 
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.article"/>
+		<xsl:value-of select="$style.article.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.article"/>
+		<xsl:value-of select="$style.article.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>

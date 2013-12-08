@@ -612,10 +612,10 @@
   <xsl:template name="sect1.titlepage">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.sect1"/>
+		<xsl:value-of select="$style.sect1.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.sect1"/>
+		<xsl:value-of select="$style.sect1.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>
@@ -627,10 +627,10 @@
   <xsl:template name="sect2.titlepage">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.sect2"/>
+		<xsl:value-of select="$style.sect2.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.sect2"/>
+		<xsl:value-of select="$style.sect2.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>
@@ -642,10 +642,10 @@
   <xsl:template name="sect3.titlepage">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.sect3"/>
+		<xsl:value-of select="$style.sect3.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.sect3"/>
+		<xsl:value-of select="$style.sect3.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>
@@ -657,10 +657,10 @@
   <xsl:template name="sect4.titlepage">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.sect4"/>
+		<xsl:value-of select="$style.sect4.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.sect4"/>
+		<xsl:value-of select="$style.sect4.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>
@@ -672,10 +672,10 @@
   <xsl:template name="sect5.titlepage">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.sect5"/>
+		<xsl:value-of select="$style.sect5.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.sect5"/>
+		<xsl:value-of select="$style.sect5.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates select="." mode="title.markup"/>

@@ -116,7 +116,7 @@
 
   <!-- Paragraphs -->
   <xsl:template match="d:para|d:simpara">
-	<text:p text:style-name="{$style.name.para}">
+	<text:p text:style-name="{$style.para.name}">
 	  <xsl:apply-templates/>
 	</text:p>
   </xsl:template>
@@ -129,10 +129,10 @@
 	  <!-- We use the em-dash because of Chicago Style. -->
 	  <xsl:call-template name="p-or-h">
 		<xsl:with-param name="style.name">
-		  <xsl:value-of select="$style.name.epigraphAttribution"/>
+		  <xsl:value-of select="$style.epigraphAttribution.name"/>
 		</xsl:with-param>
 		<xsl:with-param name="style.level">
-		  <xsl:value-of select="$style.level.epigraphAttribution"/>
+		  <xsl:value-of select="$style.epigraphAttribution.level"/>
 		</xsl:with-param>
 		<xsl:with-param name="text">
 		  <xsl:text>&#x2014; </xsl:text>
@@ -145,10 +145,10 @@
   <xsl:template match="d:epigraph/d:para|d:epigraph/d:simpara">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
-		<xsl:value-of select="$style.name.epigraph"/>
+		<xsl:value-of select="$style.epigraph.name"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="style.level">
-		<xsl:value-of select="$style.level.epigraph"/>
+		<xsl:value-of select="$style.epigraph.level"/>
 	  </xsl:with-param>
 	  <xsl:with-param name="text">
 		<xsl:apply-templates />
