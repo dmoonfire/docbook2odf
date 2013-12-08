@@ -961,8 +961,6 @@
 			fo:font-family="Courier"
 			fo:font-weight="bold"
 			fo:background-color="#f0f0f0"/>
-	</style:style>
-	
+	</style:style>	
 </xsl:template>
-
 </xsl:stylesheet>

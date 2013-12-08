@@ -524,7 +524,7 @@
 	
 	<!-- superscript -->
 	<style:style
-		style:name="Text_20_Super"
+		style:name="Text_20_Superscript"
 		style:display-name="Text Superscript"
 		style:family="text">
 	  <style:text-properties style:text-position="super 58%" />
@@ -532,7 +532,7 @@
 	
 	<!-- subscript -->
 	<style:style
-		style:name="Text_20_Sub"
+		style:name="Text_20_Subscript"
 		style:display-name="Text Subscript"
 		style:family="text">
 	  <style:text-properties style:text-position="sub 58%" />

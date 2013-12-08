@@ -42,7 +42,7 @@
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	exclude-result-prefixes="d"
 	version="1.0">
-  <!-- Templates -->
+  <!-- Emphasis -->
   <xsl:template match="d:emphasis">
 	<text:span text:style-name="Text_20_Italic">
       <xsl:apply-templates />
@@ -70,6 +70,19 @@
   <xsl:template match="d:emphasis[@role='strikethrough']">
 	<text:span text:style-name="Text_20_Strikethrough">
       <xsl:apply-templates />
+	</text:span>
+  </xsl:template>
+
+  <!-- Super and Subscripts -->
+  <xsl:template match="d:superscript">
+	<text:span text:style-name="Text_20_Superscript">
+	  <xsl:apply-templates/>
+	</text:span>
+  </xsl:template>
+  
+  <xsl:template match="d:subscript">
+	<text:span text:style-name="Text_20_Subscript">
+	  <xsl:apply-templates/>
 	</text:span>
   </xsl:template>
 </xsl:stylesheet>

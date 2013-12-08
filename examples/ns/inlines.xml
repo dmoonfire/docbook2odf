@@ -35,4 +35,10 @@
 	<para>While the basic <emphasis>emphasis</emphasis> is typically rendered as italics, the role attribute can change the type of emphasis. For example:
 	<emphasis role='strong'>strong</emphasis>, <emphasis role='bold'>bold</emphasis>, <emphasis role='strikethrough'>strikethrough</emphasis>, <emphasis role='underline'>underline</emphasis>.</para>
   </section>
+
+  <section>
+	<info><title>Super- and Subscripts</title></info>
+	
+	<para>Another useful formatting is superscripts (such as x<superscript>2</superscript>) and subscripts (such as H<subscript>2</subscript>O). These typically don't show as much in novel or story writing, but they do in other common uses of DocBook.</para>
+  </section>
 </article>

@@ -40,12 +40,7 @@ Title: Things that need to be done
 * media.xsl
   * images
 * inline.xsl
-  * d:quote, d:email, d:uri, d:ulink, d:emphasis, d:emphasis[@role='strong']
-  * d:emphasis[@role='bold']
-  * d:emphasis[@role='underline']
-  * d:emphasis[@role='strikethrough']
-  * d:superscript
-  * d:subscript
+  * d:quote, d:email, d:uri, d:ulink
   * d:credit
 * bibliography.xsl
   * Lots of stuff
