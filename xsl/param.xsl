@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-	
+
 	docbook2odf - DocBook to OpenDocument XSL Transformation
 	Copyright (C) 2006 Roman Fordinal
 	http://open.comsultia.com/docbook2odf/
@@ -17,113 +17,359 @@
 	
 -->
 <xsl:stylesheet
-	version="1.0"
-	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
-	xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
-	xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
-	xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0"
-	xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" 
-	xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0"
-	xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
-	xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0"
-	xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0"
-	xmlns:math="http://www.w3.org/1998/Math/MathML"
-	xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0"
-	xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0"
-	xmlns:dom="http://www.w3.org/2001/xml-events"
-	xmlns:xforms="http://www.w3.org/2002/xforms"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	office:class="text"
-	office:version="1.0">
-	
-	
-	<xsl:param name="style.font-color">#000000</xsl:param>
-	<xsl:param name="style.font-name">Arial</xsl:param>
-	<xsl:param name="style.font-size.default">11pt</xsl:param>
-	<xsl:param name="style.font-size.presentation.para">28pt</xsl:param>
-	<xsl:param name="style.font-name.bold">Arial</xsl:param> <!-- or Arial Black -->
-	
-	<!-- FORMATTING -->
-	<xsl:param name="para.padding">0.20cm</xsl:param>
-	<xsl:param name="para.padding.odd.left">1cm</xsl:param>
-	<xsl:param name="para.text-align">left</xsl:param>
-	
-	<!-- TOC -->
-	<xsl:param name="generate.toc">0</xsl:param> <!-- generating TOC -->
-	
-	<!-- META -->
-	<xsl:param name="generate.meta">1</xsl:param> <!-- generating metadata -->
-	
-	<!-- LAYOUT -->
-	<xsl:param name="page.layout">A4</xsl:param>
-	<xsl:param name="page.text-layout"><xsl:value-of select="$page.layout"/></xsl:param>
-	<xsl:param name="page.presentation-layout">screen</xsl:param>
-	<!--A4-->
-	<xsl:param name="layout.A4.units">cm</xsl:param>
-	<xsl:param name="layout.A4.width">21</xsl:param>
-	<xsl:param name="layout.A4.height">29.7</xsl:param>
-	<xsl:param name="layout.A4.margin-left">1.75</xsl:param>
-	<xsl:param name="layout.A4.margin-right">2.00</xsl:param>
-	<xsl:param name="layout.A4.margin-top">0.97</xsl:param>
-	<xsl:param name="layout.A4.margin-bottom">0.61</xsl:param>
-	<xsl:param name="layout.A4.header.min-height">0.5</xsl:param>
-	<xsl:param name="layout.A4.header.margin-left">0</xsl:param>
-	<xsl:param name="layout.A4.header.margin-right">0</xsl:param>
-	<xsl:param name="layout.A4.header.margin-top">0</xsl:param>
-	<xsl:param name="layout.A4.header.margin-bottom">0</xsl:param>
-	<xsl:param name="layout.A4.footer.min-height">1.2</xsl:param>
-	<xsl:param name="layout.A4.footer.margin-left">0</xsl:param>
-	<xsl:param name="layout.A4.footer.margin-right">0</xsl:param>
-	<xsl:param name="layout.A4.footer.margin-top">0.5</xsl:param>
-	<xsl:param name="layout.A4.footer.margin-bottom">0</xsl:param>
-	<xsl:param name="layout.A4.footer.border-top">0.002cm solid #000000</xsl:param>
-	<!--A5-->
-	<xsl:param name="layout.A5.units">cm</xsl:param>
-	<xsl:param name="layout.A5.width">14.8</xsl:param>
-	<xsl:param name="layout.A5.height">21.0</xsl:param>
-	<xsl:param name="layout.A5.margin-left">1.75</xsl:param>
-	<xsl:param name="layout.A5.margin-right">2.00</xsl:param>
-	<xsl:param name="layout.A5.margin-top">0.97</xsl:param>
-	<xsl:param name="layout.A5.margin-bottom">0.61</xsl:param>
-	<xsl:param name="layout.A5.header.min-height">1.5</xsl:param>
-	<xsl:param name="layout.A5.header.margin-left">0</xsl:param>
-	<xsl:param name="layout.A5.header.margin-right">0</xsl:param>
-	<xsl:param name="layout.A5.header.margin-top">0</xsl:param>
-	<xsl:param name="layout.A5.header.margin-bottom">0.5</xsl:param>
-	<xsl:param name="layout.A5.footer.min-height">1.5</xsl:param>
-	<xsl:param name="layout.A5.footer.margin-left">0</xsl:param>
-	<xsl:param name="layout.A5.footer.margin-right">0</xsl:param>
-	<xsl:param name="layout.A5.footer.margin-top">0.5</xsl:param>
-	<xsl:param name="layout.A5.footer.margin-bottom">0</xsl:param>
-	<xsl:param name="layout.A5.footer.border-top">0.002cm solid #000000</xsl:param>
-	<!--screen-->
-	<!--...-->
+	version="1.0">
 
-	<!-- Quotes -->
-	<xsl:param name="quote.fancy">0</xsl:param>
-	
+  <!-- Table of Contents -->
+  <xsl:param name="toc.article">0</xsl:param>
+  <xsl:param name="toc.book">0</xsl:param>
+  <xsl:param name="toc.chapter">1</xsl:param>
+
+  <!--
+	  Paragraph Styles
+
+      style.name.*: The newest versions of OpenOffice.org/Libreoffice don't
+      allow spaces in the paragraph styles. With these versions, a space ("
+      ") is replaced with "_20_". Headings, on the other hand, retain the
+      space so use "Heading 1".
+
+      style.level.*: Which heading level should this style be. If zero,
+      then the resulting line will be a text block, otherwise a heading of
+      the given type.
+  -->
+
+  <xsl:param name="style.font">Courier New</xsl:param>
+  <xsl:param name="style.size">12pt</xsl:param>
+
+  <xsl:param name="style.article.breakBefore"></xsl:param>
+  <xsl:param name="style.article.font" select="$style.font"/>
+  <xsl:param name="style.article.fontStyle"></xsl:param>
+  <xsl:param name="style.article.fontWeight">bold</xsl:param>
+  <xsl:param name="style.article.level">0</xsl:param>
+  <xsl:param name="style.article.lineHeight"/>
+  <xsl:param name="style.article.marginBottom">0.25in</xsl:param>
+  <xsl:param name="style.article.marginLeft">1in</xsl:param>
+  <xsl:param name="style.article.marginRight">1in</xsl:param>
+  <xsl:param name="style.article.marginTop">0in</xsl:param>
+  <xsl:param name="style.article.name">Article_20_Title</xsl:param>
+  <xsl:param name="style.article.page" select="Article_20_Page"/>
+  <xsl:param name="style.article.size">200%</xsl:param>
+  <xsl:param name="style.article.textAlign">center</xsl:param>
+  <xsl:param name="style.article.textIndent">0in</xsl:param>
+
+  <xsl:param name="style.book.breakBefore">page</xsl:param>
+  <xsl:param name="style.book.font" select="$style.font"/>
+  <xsl:param name="style.book.fontStyle"></xsl:param>
+  <xsl:param name="style.book.fontWeight">bold</xsl:param>
+  <xsl:param name="style.book.level">0</xsl:param>
+  <xsl:param name="style.book.lineHeight"/>
+  <xsl:param name="style.book.marginBottom">1in</xsl:param>
+  <xsl:param name="style.book.marginLeft">1in</xsl:param>
+  <xsl:param name="style.book.marginRight">1in</xsl:param>
+  <xsl:param name="style.book.marginTop">1in</xsl:param>
+  <xsl:param name="style.book.name">Book_20_Title</xsl:param>
+  <xsl:param name="style.book.page" select="Book_20_Page"/>
+  <xsl:param name="style.book.size">200%</xsl:param>
+  <xsl:param name="style.book.textAlign">center</xsl:param>
+  <xsl:param name="style.book.textIndent">0in</xsl:param>
+
+  <xsl:param name="style.chapter.level">1</xsl:param>
+  <xsl:param name="style.chapter.name">Heading 1</xsl:param>
+
+  <xsl:param name="style.contents1.breakBefore"></xsl:param>
+  <xsl:param name="style.contents1.font" select="$style.font"/>
+  <xsl:param name="style.contents1.fontStyle"/>
+  <xsl:param name="style.contents1.fontWeight"/>
+  <xsl:param name="style.contents1.lineHeight"/>
+  <xsl:param name="style.contents1.marginBottom">0in</xsl:param>
+  <xsl:param name="style.contents1.marginLeft">0in</xsl:param>
+  <xsl:param name="style.contents1.marginRight">0in</xsl:param>
+  <xsl:param name="style.contents1.marginTop">0in</xsl:param>
+  <xsl:param name="style.contents1.page"/>
+  <xsl:param name="style.contents1.size" select="$style.size"/>
+  <xsl:param name="style.contents1.textAlign">left</xsl:param>
+  <xsl:param name="style.contents1.textIndent">0in</xsl:param>
+
+  <xsl:param name="style.epigraph.breakBefore"></xsl:param>
+  <xsl:param name="style.epigraph.font" select="$style.para.font"/>
+  <xsl:param name="style.epigraph.fontStyle" select="$style.para.fontStyle"/>
+  <xsl:param name="style.epigraph.fontWeight" select="$style.para.fontWeight"/>
+  <xsl:param name="style.epigraph.level">0</xsl:param>
+  <xsl:param name="style.epigraph.lineHeight"/>
+  <xsl:param name="style.epigraph.marginBottom">0in</xsl:param>
+  <xsl:param name="style.epigraph.marginLeft">0.5in</xsl:param>
+  <xsl:param name="style.epigraph.marginRight">0.5in</xsl:param>
+  <xsl:param name="style.epigraph.marginTop">0in</xsl:param>
+  <xsl:param name="style.epigraph.name">Epigraph</xsl:param>
+  <xsl:param name="style.epigraph.page"/>
+  <xsl:param name="style.epigraph.size">9pt</xsl:param>
+  <xsl:param name="style.epigraph.textAlign">left</xsl:param>
+  <xsl:param name="style.epigraph.textIndent">0in</xsl:param>
+
+  <xsl:param name="style.epigraphAttribution.breakBefore"></xsl:param>
+  <xsl:param name="style.epigraphAttribution.font" select="$style.epigraph.font"/>
+  <xsl:param name="style.epigraphAttribution.fontStyle" select="'italic'"/>
+  <xsl:param name="style.epigraphAttribution.fontWeight" select="$style.epigraph.fontWeight"/>
+  <xsl:param name="style.epigraphAttribution.level">0</xsl:param>
+  <xsl:param name="style.epigraphAttribution.lineHeight"/>
+  <xsl:param name="style.epigraphAttribution.marginBottom">0.5in</xsl:param>
+  <xsl:param name="style.epigraphAttribution.marginLeft">1.0in</xsl:param>
+  <xsl:param name="style.epigraphAttribution.marginRight">0.5in</xsl:param>
+  <xsl:param name="style.epigraphAttribution.marginTop">0in</xsl:param>
+  <xsl:param name="style.epigraphAttribution.name">Epigraph_20_Attribution</xsl:param>
+  <xsl:param name="style.epigraphAttribution.page"/>
+  <xsl:param name="style.epigraphAttribution.size" select="$style.epigraph.size"/>
+  <xsl:param name="style.epigraphAttribution.textAlign">right</xsl:param>
+  <xsl:param name="style.epigraphAttribution.textIndent">0in</xsl:param>
+
+  <xsl:param name="style.heading.font" select="$style.font"/>
+  <xsl:param name="style.heading.fontStyle"></xsl:param>
+  <xsl:param name="style.heading.fontWeight">bold</xsl:param>
+  <xsl:param name="style.heading.size" select="$style.size"/>
+  <xsl:param name="style.heading.textAlign">left</xsl:param>
+
+  <xsl:param name="style.heading1.breakBefore">page</xsl:param>
+  <xsl:param name="style.heading1.font"/>
+  <xsl:param name="style.heading1.fontStyle"/>
+  <xsl:param name="style.heading1.fontWeight"/>
+  <xsl:param name="style.heading1.lineHeight"/>
+  <xsl:param name="style.heading1.marginBottom">0.5in</xsl:param>
+  <xsl:param name="style.heading1.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading1.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading1.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading1.page" select="Chapter_20_Page"/>
+  <xsl:param name="style.heading1.size">200%</xsl:param>
+  <xsl:param name="style.heading1.textAlign"/>
+  <xsl:param name="style.heading1.textIndent"/>
+
+  <xsl:param name="style.heading2.breakBefore"/>
+  <xsl:param name="style.heading2.font"/>
+  <xsl:param name="style.heading2.fontStyle"/>
+  <xsl:param name="style.heading2.fontWeight"/>
+  <xsl:param name="style.heading2.lineHeight"/>
+  <xsl:param name="style.heading2.marginBottom">0.125in</xsl:param>
+  <xsl:param name="style.heading2.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading2.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading2.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading2.page"/>
+  <xsl:param name="style.heading2.size">180%</xsl:param>
+  <xsl:param name="style.heading2.textAlign"/>
+  <xsl:param name="style.heading2.textIndent"/>
+
+  <xsl:param name="style.heading3.breakBefore"/>
+  <xsl:param name="style.heading3.font"/>
+  <xsl:param name="style.heading3.fontStyle"/>
+  <xsl:param name="style.heading3.fontWeight"/>
+  <xsl:param name="style.heading3.lineHeight"/>
+  <xsl:param name="style.heading3.marginBottom">0.125in</xsl:param>
+  <xsl:param name="style.heading3.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading3.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading3.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading3.page"/>
+  <xsl:param name="style.heading3.size">160%</xsl:param>
+  <xsl:param name="style.heading3.textAlign"/>
+  <xsl:param name="style.heading3.textIndent"/>
+
+  <xsl:param name="style.heading4.breakBefore"/>
+  <xsl:param name="style.heading4.font"/>
+  <xsl:param name="style.heading4.fontStyle"/>
+  <xsl:param name="style.heading4.fontWeight"/>
+  <xsl:param name="style.heading4.lineHeight"/>
+  <xsl:param name="style.heading4.marginBottom">0.125in</xsl:param>
+  <xsl:param name="style.heading4.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading4.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading4.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading4.page"/>
+  <xsl:param name="style.heading4.size">140%</xsl:param>
+  <xsl:param name="style.heading4.textAlign"/>
+  <xsl:param name="style.heading4.textIndent"/>
+
+  <xsl:param name="style.heading5.breakBefore"/>
+  <xsl:param name="style.heading5.font"/>
+  <xsl:param name="style.heading5.fontStyle"/>
+  <xsl:param name="style.heading5.fontWeight"/>
+  <xsl:param name="style.heading5.lineHeight"/>
+  <xsl:param name="style.heading5.marginBottom">0.125in</xsl:param>
+  <xsl:param name="style.heading5.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading5.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading5.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading5.page"/>
+  <xsl:param name="style.heading5.size">120%</xsl:param>
+  <xsl:param name="style.heading5.textAlign"/>
+  <xsl:param name="style.heading5.textIndent"/>
+
+  <xsl:param name="style.heading6.breakBefore"/>
+  <xsl:param name="style.heading6.font"/>
+  <xsl:param name="style.heading6.fontStyle"/>
+  <xsl:param name="style.heading6.fontWeight"/>
+  <xsl:param name="style.heading6.lineHeight"/>
+  <xsl:param name="style.heading6.marginBottom">0.125in</xsl:param>
+  <xsl:param name="style.heading6.marginLeft">0in</xsl:param>
+  <xsl:param name="style.heading6.marginRight">0in</xsl:param>
+  <xsl:param name="style.heading6.marginTop">0.125in</xsl:param>
+  <xsl:param name="style.heading6.page"/>
+  <xsl:param name="style.heading6.size">100%</xsl:param>
+  <xsl:param name="style.heading6.textAlign"/>
+  <xsl:param name="style.heading6.textIndent"/>
+
+  <xsl:param name="style.para.breakBefore"></xsl:param>
+  <xsl:param name="style.para.font" select="$style.font"/>
+  <xsl:param name="style.para.fontStyle"/>
+  <xsl:param name="style.para.fontWeight"/>
+  <xsl:param name="style.para.level">0</xsl:param>
+  <xsl:param name="style.para.lineHeight">150%</xsl:param>
+  <xsl:param name="style.para.marginBottom">0in</xsl:param>
+  <xsl:param name="style.para.marginLeft">0in</xsl:param>
+  <xsl:param name="style.para.marginRight">0in</xsl:param>
+  <xsl:param name="style.para.marginTop">0in</xsl:param>
+  <xsl:param name="style.para.name">Paragraph</xsl:param>
+  <xsl:param name="style.para.page"/>
+  <xsl:param name="style.para.size" select="$style.size"/>
+  <xsl:param name="style.para.textAlign">justified</xsl:param>
+  <xsl:param name="style.para.textIndent">0.25in</xsl:param>
+
+  <xsl:param name="style.paraNote.breakBefore"/>
+  <xsl:param name="style.paraNote.font"/>
+  <xsl:param name="style.paraNote.fontStyle"/>
+  <xsl:param name="style.paraNote.fontWeight"/>
+  <xsl:param name="style.paraNote.level"/>
+  <xsl:param name="style.paraNote.lineHeight"/>
+  <xsl:param name="style.paraNote.marginBottom"/>
+  <xsl:param name="style.paraNote.marginLeft"/>
+  <xsl:param name="style.paraNote.marginRight"/>
+  <xsl:param name="style.paraNote.marginTop"/>
+  <xsl:param name="style.paraNote.name" select="'Note'"/>
+  <xsl:param name="style.paraNote.page"/>
+  <xsl:param name="style.paraNote.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraNote.size"/>
+  <xsl:param name="style.paraNote.textAlign"/>
+  <xsl:param name="style.paraNote.textIndent"/>
+
+  <xsl:param name="style.paraImportant.breakBefore"/>
+  <xsl:param name="style.paraImportant.font"/>
+  <xsl:param name="style.paraImportant.fontStyle"/>
+  <xsl:param name="style.paraImportant.fontWeight"/>
+  <xsl:param name="style.paraImportant.level"/>
+  <xsl:param name="style.paraImportant.lineHeight"/>
+  <xsl:param name="style.paraImportant.marginBottom"/>
+  <xsl:param name="style.paraImportant.marginLeft"/>
+  <xsl:param name="style.paraImportant.marginRight"/>
+  <xsl:param name="style.paraImportant.marginTop"/>
+  <xsl:param name="style.paraImportant.name" select="'Important'"/>
+  <xsl:param name="style.paraImportant.page"/>
+  <xsl:param name="style.paraImportant.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraImportant.size"/>
+  <xsl:param name="style.paraImportant.textAlign"/>
+  <xsl:param name="style.paraImportant.textIndent"/>
+
+  <xsl:param name="style.paraWarning.breakBefore"/>
+  <xsl:param name="style.paraWarning.font"/>
+  <xsl:param name="style.paraWarning.fontStyle"/>
+  <xsl:param name="style.paraWarning.fontWeight"/>
+  <xsl:param name="style.paraWarning.level"/>
+  <xsl:param name="style.paraWarning.lineHeight"/>
+  <xsl:param name="style.paraWarning.marginBottom"/>
+  <xsl:param name="style.paraWarning.marginLeft"/>
+  <xsl:param name="style.paraWarning.marginRight"/>
+  <xsl:param name="style.paraWarning.marginTop"/>
+  <xsl:param name="style.paraWarning.name" select="'Warning'"/>
+  <xsl:param name="style.paraWarning.page"/>
+  <xsl:param name="style.paraWarning.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraWarning.size"/>
+  <xsl:param name="style.paraWarning.textAlign"/>
+  <xsl:param name="style.paraWarning.textIndent"/>
+
+  <xsl:param name="style.paraCaution.breakBefore"/>
+  <xsl:param name="style.paraCaution.font"/>
+  <xsl:param name="style.paraCaution.fontStyle"/>
+  <xsl:param name="style.paraCaution.fontWeight"/>
+  <xsl:param name="style.paraCaution.level"/>
+  <xsl:param name="style.paraCaution.lineHeight"/>
+  <xsl:param name="style.paraCaution.marginBottom"/>
+  <xsl:param name="style.paraCaution.marginLeft"/>
+  <xsl:param name="style.paraCaution.marginRight"/>
+  <xsl:param name="style.paraCaution.marginTop"/>
+  <xsl:param name="style.paraCaution.name" select="'Caution'"/>
+  <xsl:param name="style.paraCaution.page"/>
+  <xsl:param name="style.paraCaution.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraCaution.size"/>
+  <xsl:param name="style.paraCaution.textAlign"/>
+  <xsl:param name="style.paraCaution.textIndent"/>
+
+  <xsl:param name="style.paraTip.breakBefore"/>
+  <xsl:param name="style.paraTip.font"/>
+  <xsl:param name="style.paraTip.fontStyle"/>
+  <xsl:param name="style.paraTip.fontWeight"/>
+  <xsl:param name="style.paraTip.level"/>
+  <xsl:param name="style.paraTip.lineHeight"/>
+  <xsl:param name="style.paraTip.marginBottom"/>
+  <xsl:param name="style.paraTip.marginLeft"/>
+  <xsl:param name="style.paraTip.marginRight"/>
+  <xsl:param name="style.paraTip.marginTop"/>
+  <xsl:param name="style.paraTip.name" select="'Tip'"/>
+  <xsl:param name="style.paraTip.page"/>
+  <xsl:param name="style.paraTip.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraTip.size"/>
+  <xsl:param name="style.paraTip.textAlign"/>
+  <xsl:param name="style.paraTip.textIndent"/>
+
+  <xsl:param name="style.sect1.level">2</xsl:param>
+  <xsl:param name="style.sect1.name">Heading_20_2</xsl:param>
+
+  <xsl:param name="style.sect2.level">3</xsl:param>
+  <xsl:param name="style.sect2.name">Heading_20_3</xsl:param>
+
+  <xsl:param name="style.sect3.level">4</xsl:param>
+  <xsl:param name="style.sect3.name">Heading_20_4</xsl:param>
+
+  <xsl:param name="style.sect4.level">5</xsl:param>
+  <xsl:param name="style.sect4.name">Heading_20_5</xsl:param>
+
+  <xsl:param name="style.sect5.level">6</xsl:param>
+  <xsl:param name="style.sect5.name">Heading_20_6</xsl:param>
+
+  <xsl:param name="style.toc1.name">Contents_20_1</xsl:param>
+
+  <!-- ODF Settings -->
+  <xsl:param name="toc.position">afterContents</xsl:param>
+
+  <!-- Common -->
+  <xsl:param name="appendix.autolabel">A</xsl:param>
+  <xsl:param name="author.othername.in.middle" select="1"/>
+  <xsl:param name="chapter.autolabel" select="1"/>
+  <xsl:param name="component.label.includes.part.label" select="0"/>
+  <xsl:param name="generate.section.toc.level">0</xsl:param>
+  <xsl:param name="l10n.gentext.default.language">en</xsl:param>
+  <xsl:param name="l10n.gentext.language">en</xsl:param>
+  <xsl:param name="l10n.gentext.use.xref.language" select="0"/>
+  <xsl:param name="l10n.lang.value.rfc.compliant" select="1"/>
+  <xsl:param name="label.from.part" select="0"/>
+  <xsl:param name="part.autolabel">I</xsl:param>
+  <xsl:param name="preface.autolabel" select="0"/>
+  <xsl:param name="qandadiv.autolabel" select="1"/>
+  <xsl:param name="reference.autolabel">I</xsl:param>
+  <xsl:param name="section.autolabel" select="0"/>
+  <xsl:param name="section.autolabel.max.depth">8</xsl:param>
+  <xsl:param name="section.label.includes.component.label" select="0"/>
+  <xsl:param name="xref.with.number.and.title" select="1"/>
+
+  <xsl:param name="generate.toc">
+appendix  toc,title
+article/appendix  nop
+article   toc,title
+book      toc,title,figure,table,example,equation
+chapter   toc,title
+part      toc,title
+preface   toc,title
+qandadiv  toc
+qandaset  toc
+reference toc,title
+sect1     toc
+sect2     toc
+sect3     toc
+sect4     toc
+sect5     toc
+section   toc
+set       toc,title
+  </xsl:param>
 </xsl:stylesheet>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

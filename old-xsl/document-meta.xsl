@@ -40,32 +40,39 @@ GNU General Public License for more details.
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
+	office:version="1.0">
+  
   <xsl:template name="document-meta">
-	<office:document-meta>
-	  <dc:title>
+	
+	<xsl:element name="office:meta">
+	  
+	  <xsl:element name="dc:title">
 		<xsl:value-of select="/article/articleinfo/title"/>
-	  </dc:title>
+	  </xsl:element>
 	  
-	  <dc:subject>
+	  <xsl:element name="dc:subject">
 		<xsl:value-of select="/article/articleinfo/subtitle"/>
-	  </dc:subject>
+	  </xsl:element>
 	  
-	  <dc:description>
+	  <xsl:element name="dc:description">
 		<xsl:value-of select="/article/articleinfo/description"/>
-	  </dc:description>
+	  </xsl:element>
 	  
-	  <dc:date>
+	  <xsl:element name="dc:date">
 		<xsl:value-of select="article/articleinfo/pubdate"/>
-	  </dc:date>
+	  </xsl:element>
 	  
-	  <dc:language>
+	  <xsl:element name="dc:language">
 		<xsl:value-of select="article/@lang"/>
-	  </dc:language>
+	  </xsl:element>
 	  
-	  <meta:generator>
-		<xsl:text>docbook2odf generator (https://github.com/dmoonfire/docbook2odf/)</xsl:text>
-	  </meta:generator>
-	</office:document-meta>
+	  <xsl:call-template name="meta.generator" />
+	</xsl:element>
+  </xsl:template>
+  
+  <xsl:template name="meta.generator">
+	<meta:generator>
+	  <xsl:text>docbook2odf [$Rev: 153 $] generator (http://open.comsultia.com/docbook2odf/)</xsl:text>
+	</meta:generator>
   </xsl:template>
 </xsl:stylesheet>

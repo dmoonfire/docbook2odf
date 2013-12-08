@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 	
 	docbook2odf - DocBook to OpenDocument XSL Transformation
@@ -17,6 +17,8 @@
 	
 -->
 <xsl:stylesheet
+	version="1.0"
+	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -39,40 +41,33 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
-	version="1.0">
-  <!-- Parameters -->
-  <xsl:param name="part" select="content" />
+	office:class="text"
+	office:version="1.0">
+	
+<!-- document types -->
+<xsl:include href="document-content/book.xsl"/>
+<xsl:include href="document-content/article.xsl"/>
+<xsl:include href="document-content/chapter.xsl"/>
+<xsl:include href="document-content/bibliography.xsl"/>
+<xsl:include href="document-content/slides.xsl"/>
 
-  <!-- Output Settings -->
-  <xsl:decimal-format name="staff" digit="D" />
-  <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+<!-- automatic styles in content.xsl -->
+<xsl:include href="document-content/automatic-styles.xsl"/>
 
-  <!--
-	  Parses the generated document (via `docbook.xsl`) and splits it out
-	  into its component parts.
-  -->
-  <xsl:template match="/">
-	<xsl:apply-templates />
-  </xsl:template>
-  
-  <xsl:template match="office:document">
-	<xsl:choose>
-	  <xsl:when test="$part = 'meta'">
-		<xsl:copy-of select="/office:document/office:document-meta" />
-	  </xsl:when>
-	  <xsl:when test="$part = 'content'">
-		<xsl:copy-of select="/office:document/office:document-content" />
-	  </xsl:when>
-	  <xsl:when test="$part = 'styles'">
-		<xsl:copy-of select="/office:document/office:document-styles" />
-	  </xsl:when>
-	  <xsl:when test="$part = 'manifest'">
-		<xsl:copy-of select="/office:document/manifest:manifest" />
-	  </xsl:when>
-	  <xsl:otherwise>
-		<xsl:copy-of select="/office:document/office:document-content" />
-	  </xsl:otherwise>
-	</xsl:choose>
-  </xsl:template>
+<!-- info blocks bookinfo, articleinfo, blockinfo,... -->
+<xsl:include href="document-content/info.xsl"/>
+
+<!-- other tags -->
+<xsl:include href="document-content/paragraph.xsl"/>
+<xsl:include href="document-content/block.xsl"/>
+<xsl:include href="document-content/formal.xsl"/>
+<xsl:include href="document-content/inline.xsl"/>
+<xsl:include href="document-content/lists.xsl"/>
+<xsl:include href="document-content/section.xsl"/>
+<xsl:include href="document-content/synop.xsl"/>
+<xsl:include href="document-content/verbatim.xsl"/>
+<xsl:include href="document-content/media.xsl"/>
+<xsl:include href="document-content/notes.xsl"/>
+<xsl:include href="document-content/tables.xsl"/>
+
 </xsl:stylesheet>

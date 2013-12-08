@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+#
+# Setup
+#
+
+# Directives
+use strict;
+use warnings;
+
+#
+# Process the file
+#
+
+# Go through the input and remove the references to the namespaces.
+while (<>)
+{
+	# Clean up the line.
+	chomp;
+
+	# Remove the namespace declaration.
+	if (s@\s*xmlns:d="http://docbook.org/ns/docbook"@@)
+	{
+		# Skip the line if it is now blank.
+		next if m@^\s*$@;
+	}
+
+	# Remove the exclude-result-prefixes and then remove the line if
+	# we don't have any left.
+	if (s@(exclude-result-prefixes=.*?\W)d(\W)@$1$2@)
+	{
+		# Skip the line if it is now blank.
+		next if m@=(.)\s*\1\s*$@;
+	}
+
+	# Clean up the "d" references.
+	s@(\W)d:(\*|\w+)@$1$2@sg;
+
+	# Write out the resulting line.
+	print "$_\n";
+}

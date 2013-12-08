@@ -40,26 +40,15 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <xsl:template name="document-styles">
-	<office:document-styles>
-	  <office:font-face-decls>
-		<xsl:apply-templates select="." mode="font-face-decls"/>
-	  </office:font-face-decls>
-	  
-	  <office:styles>
-		<xsl:apply-templates select="." mode="default-styles"/>
-		<xsl:apply-templates select="." mode="styles"/>
-		<xsl:apply-templates select="." mode="text-styles"/>
-	  </office:styles>
-	  
-	  <office:automatic-styles>
-		<xsl:apply-templates select="." mode="automatic-styles"/>
-	  </office:automatic-styles>
-	  
-	  <office:master-styles>
-		<xsl:apply-templates select="." mode="master-styles"/>
-	  </office:master-styles>	
-	</office:document-styles>
-  </xsl:template>
+	office:class="text"
+	office:version="1.0">
+	
+	
+<xsl:include href="document-styles/font-face-decls.xsl"/>
+<xsl:include href="document-styles/automatic-styles.xsl"/>
+	<xsl:include href="document-styles/page-layout.xsl"/>
+	<xsl:include href="document-styles/master-styles.xsl"/>
+<xsl:include href="document-styles/office-styles.xsl"/>
+
+
 </xsl:stylesheet>

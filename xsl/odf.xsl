@@ -41,37 +41,38 @@
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
 	version="1.0">
-		
-		
-<!-- SETTINGS -->
-<xsl:param name="part" select="content" />
-<xsl:decimal-format name="staff" digit="D" />
-<xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+  <!-- Parameters -->
+  <xsl:param name="part" select="content" />
 
-<xsl:template match="/">
+  <!-- Output Settings -->
+  <xsl:decimal-format name="staff" digit="D" />
+  <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+
+  <!--
+	  Parses the generated document (via `docbook.xsl`) and splits it out
+	  into its component parts.
+  -->
+  <xsl:template match="/">
 	<xsl:apply-templates />
-</xsl:template>
-
-
-<xsl:template match="office:document">
+  </xsl:template>
+  
+  <xsl:template match="office:document">
 	<xsl:choose>
-		<xsl:when test="$part = 'meta'">
-			<xsl:copy-of select="/office:document/office:document-meta" />
-		</xsl:when>
-		<xsl:when test="$part = 'content'">
-			<xsl:copy-of select="/office:document/office:document-content" />
-		</xsl:when>
-		<xsl:when test="$part = 'styles'">
-			<xsl:copy-of select="/office:document/office:document-styles" />
-		</xsl:when>
-		<xsl:when test="$part = 'manifest'">
-			<xsl:copy-of select="/office:document/manifest:manifest" />
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:copy-of select="/office:document/office:document-content" />
-		</xsl:otherwise>
+	  <xsl:when test="$part = 'meta'">
+		<xsl:copy-of select="/office:document/office:document-meta" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'content'">
+		<xsl:copy-of select="/office:document/office:document-content" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'styles'">
+		<xsl:copy-of select="/office:document/office:document-styles" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'manifest'">
+		<xsl:copy-of select="/office:document/manifest:manifest" />
+	  </xsl:when>
+	  <xsl:otherwise>
+		<xsl:copy-of select="/office:document/office:document-content" />
+	  </xsl:otherwise>
 	</xsl:choose>
-</xsl:template>
-
-
+  </xsl:template>
 </xsl:stylesheet>

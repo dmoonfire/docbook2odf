@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	
 	docbook2odf - DocBook to OpenDocument XSL Transformation
@@ -17,7 +17,6 @@
 	
 -->
 <xsl:stylesheet
-	version="1.0"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -40,26 +39,39 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <xsl:template name="document-styles">
-	<office:document-styles>
-	  <office:font-face-decls>
-		<xsl:apply-templates select="." mode="font-face-decls"/>
-	  </office:font-face-decls>
-	  
-	  <office:styles>
-		<xsl:apply-templates select="." mode="default-styles"/>
-		<xsl:apply-templates select="." mode="styles"/>
-		<xsl:apply-templates select="." mode="text-styles"/>
-	  </office:styles>
-	  
-	  <office:automatic-styles>
-		<xsl:apply-templates select="." mode="automatic-styles"/>
-	  </office:automatic-styles>
-	  
-	  <office:master-styles>
-		<xsl:apply-templates select="." mode="master-styles"/>
-	  </office:master-styles>	
-	</office:document-styles>
-  </xsl:template>
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	version="1.0">
+		
+		
+<!-- SETTINGS -->
+<xsl:param name="part" select="content" />
+<xsl:decimal-format name="staff" digit="D" />
+<xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+
+<xsl:template match="/">
+	<xsl:apply-templates />
+</xsl:template>
+
+
+<xsl:template match="office:document">
+	<xsl:choose>
+		<xsl:when test="$part = 'meta'">
+			<xsl:copy-of select="/office:document/office:document-meta" />
+		</xsl:when>
+		<xsl:when test="$part = 'content'">
+			<xsl:copy-of select="/office:document/office:document-content" />
+		</xsl:when>
+		<xsl:when test="$part = 'styles'">
+			<xsl:copy-of select="/office:document/office:document-styles" />
+		</xsl:when>
+		<xsl:when test="$part = 'manifest'">
+			<xsl:copy-of select="/office:document/manifest:manifest" />
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:copy-of select="/office:document/office:document-content" />
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+
 </xsl:stylesheet>
