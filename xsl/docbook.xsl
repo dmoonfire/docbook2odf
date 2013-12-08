@@ -72,6 +72,7 @@
   <xsl:include href="chapter.xsl"/>
   <xsl:include href="section.xsl"/>
   <xsl:include href="footnotes.xsl"/>
+  <xsl:include href="legalnotice.xsl"/>
 
   <xsl:include href="block.xsl"/>
   <xsl:include href="quote.xsl"/>

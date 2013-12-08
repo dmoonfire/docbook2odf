@@ -49,24 +49,7 @@
 	  </office:font-face-decls>
 	  
 	  <office:automatic-styles>
-<!--
-		<xsl:call-template name="document-content.automatic-styles.paragraph"/>
-		<xsl:call-template name="document-content.automatic-styles.text"/>
-		<xsl:call-template name="document-content.automatic-styles.list"/>
-		<xsl:call-template name="document-content.automatic-styles.graphic"/>
-		<xsl:call-template name="document-content.automatic-styles.date"/>
-		<xsl:call-template name="document-content.automatic-styles.table"/>
-		<xsl:if test="/slides">
-		  <xsl:call-template name="document-content.automatic-styles.drawing-page"/>
-		  <xsl:call-template name="document-content.automatic-styles.presentation"/>
-		</xsl:if>
-		<xsl:if test="/article">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
-		<xsl:if test="/book">
-		  <xsl:call-template name="document-content.automatic-styles.section"/>
-		</xsl:if>
--->
+		<xsl:apply-templates select="." mode="automatic-styles"/>
 	  </office:automatic-styles>
 	  
 	  <office:body>

@@ -228,6 +228,23 @@
   <xsl:param name="style.para.textAlign">justified</xsl:param>
   <xsl:param name="style.para.textIndent">0.25in</xsl:param>
 
+  <xsl:param name="style.paraLegal.breakBefore"/>
+  <xsl:param name="style.paraLegal.font"/>
+  <xsl:param name="style.paraLegal.fontStyle"/>
+  <xsl:param name="style.paraLegal.fontWeight"/>
+  <xsl:param name="style.paraLegal.level"/>
+  <xsl:param name="style.paraLegal.lineHeight"/>
+  <xsl:param name="style.paraLegal.marginBottom" select="$style.size"/>
+  <xsl:param name="style.paraLegal.marginLeft"/>
+  <xsl:param name="style.paraLegal.marginRight"/>
+  <xsl:param name="style.paraLegal.marginTop"/>
+  <xsl:param name="style.paraLegal.name" select="'Legal_20_Notice'"/>
+  <xsl:param name="style.paraLegal.page"/>
+  <xsl:param name="style.paraLegal.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.paraLegal.size"/>
+  <xsl:param name="style.paraLegal.textAlign"/>
+  <xsl:param name="style.paraLegal.textIndent" select="'0in'"/>
+
   <xsl:param name="style.paraNote.breakBefore"/>
   <xsl:param name="style.paraNote.font"/>
   <xsl:param name="style.paraNote.fontStyle"/>

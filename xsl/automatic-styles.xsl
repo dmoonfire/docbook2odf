@@ -45,6 +45,13 @@
 	version="1.0">
   <!-- Templates -->
   <xsl:template match="d:*" mode="automatic-styles">
+	<style:style
+		style:name="Legal_20_Notice_20_Break"
+		style:family="paragraph"
+		style:parent-style-name="Legal_20_Notice">
+	  <style:paragraph-properties fo:break-before="page"/>
+	</style:style>
+
     <style:page-layout style:name="Mpm1">
       <style:page-layout-properties
 		  fo:page-width="8.5in"

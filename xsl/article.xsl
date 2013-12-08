@@ -47,6 +47,7 @@
   <xsl:template match="d:article">
 	<office:text>
 	  <xsl:apply-templates select="." mode="title"/>
+	  <xsl:apply-templates select="d:info/d:legalnotice"/>
 
 	  <xsl:apply-templates select="." mode="toc">
 		<xsl:with-param name="position" select="'beforeContents'"/>
