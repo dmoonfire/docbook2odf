@@ -32,6 +32,7 @@ use Getopt::Long;
 
 # Constants
 my $PIXELS_TO_CM = 0.02644;
+my $PIXELS_TO_IN = 0.02644 * 0.393701;
 
 # variable depends
 my $USE_IMAGE_MAGICK = 0;
@@ -368,11 +369,14 @@ do # post processing of content
 
 				print "  ratio h=$raw_height, w=$raw_width, gh=$given_height\n" if $debug;
 
-				my $width = $given_height / $raw_height * $raw_width;
-				$width = ($width * $PIXELS_TO_CM) . "cm";
-				print "  width='$width'\n" if $debug;
-				$content=~s|<!TMP!>|$width|;
-				next;
+				if ($raw_height > 0 || $raw_width > 0)
+				{
+					my $width = $given_height / $raw_height * $raw_width;
+					$width = ($width * $PIXELS_TO_CM) . "cm";
+					print "  width='$width'\n" if $debug;
+					$content=~s|<!TMP!>|$width|;
+					next;
+				}
 			}
 
 			if ($function eq "getimage-height-ratio")
@@ -388,11 +392,14 @@ do # post processing of content
 
 				print "  ratio h=$raw_height, w=$raw_width, gw=$given_width\n" if $debug;
 
-				my $height = $given_width / $raw_width * $raw_height;
-				$height = ($height * $PIXELS_TO_CM) . "cm";
-				print "  height='$height'\n" if $debug;
-				$content=~s|<!TMP!>|$height|;
-				next;
+				if ($raw_height > 0 && $raw_width > 0)
+				{
+					my $height = $given_width / $raw_width * $raw_height;
+					$height = ($height * $PIXELS_TO_CM) . "cm";
+					print "  height='$height'\n" if $debug;
+					$content=~s|<!TMP!>|$height|;
+					next;
+				}
 			}
 		}
 		elsif ($function eq "getimage-width" || $function eq "getimage-height")
@@ -609,6 +616,11 @@ sub to_pixels
 	if ($value =~ s/\s*cm$//i)
 	{
 		$value /= $PIXELS_TO_CM;
+	}
+
+	if ($value =~ s/\s*in$//i)
+	{
+		$value /= $PIXELS_TO_IN;
 	}
 
 	return $value + 0.0;

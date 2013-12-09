@@ -34,29 +34,13 @@
     <imageobject>
       <imagedata
 		  width="1.322cm"
-		  height="1.734464cm"
 		  format="JPG"
     	  fileref="docbook-largecover.jpg"/>
 	</imageobject>
   </mediaobject>) inside a paragraph.</para>
 
-  <para>This is an image (<mediaobject>
-    <imageobject>
-      <imagedata
-		  height="0.4cm"
-		  format="JPG"
-    	  fileref="docbook-largecover.jpg"/>
-	</imageobject>
-  </mediaobject>) only has the height defined while this one (<mediaobject>
-    <imageobject>
-      <imagedata
-		  width="0.4cm"
-		  format="JPG"
-    	  fileref="docbook-largecover.jpg"/>
-	</imageobject>
-  </mediaobject>) only has the width defined.</para>
+  <para>The following media has multiple images, only the first should be used.</para>
 
-<!--
   <mediaobject>
 	<info>
       <othercredit>
@@ -68,16 +52,29 @@
     </info>
 	<alt>The DocBook: TDG Duck</alt>
     <imageobject>
-      <imagedata align="right" width="6in" format="PNG"
-    			 fileref="figs/web/duck-small.png"/>
+      <imagedata
+		  align="right"
+		  width="1in"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
 	</imageobject>
     <imageobject>
-      <imagedata align="right" width="6in" format="GIF"
-    			 fileref="figs/web/duck-small.gif"/>
+      <imagedata
+		  align="right"
+		  width="1in"
+		  format="JPG"
+    	  fileref="invalid.jpg"/>
 	</imageobject>
     <textobject>
       <para>The bird on the cover of <citetitle>DocBook: The Definitive Guide</citetitle> is a wood duck.  Often considered one of the most beautiful ducks in North America, the male wood duck has a metallic purple and green head with white streaks extending from its bill around the eyes and down to its blue and green, gold-flecked wings. It has a white neck, chestnut-colored chest, a white or red bill, and yellow-orange legs and feet. Females have more brown, gray, and subdueed hues.</para>
     </textobject>
   </mediaobject>
--->
+
+  <para>The following media has only the text fallback inside it.</para>
+
+  <mediaobject>
+    <textobject>
+      <para>The bird on the cover of <citetitle>DocBook: The Definitive Guide</citetitle> is a wood duck.  Often considered one of the most beautiful ducks in North America, the male wood duck has a metallic purple and green head with white streaks extending from its bill around the eyes and down to its blue and green, gold-flecked wings. It has a white neck, chestnut-colored chest, a white or red bill, and yellow-orange legs and feet. Females have more brown, gray, and subdueed hues.</para>
+    </textobject>
+  </mediaobject>
 </article>

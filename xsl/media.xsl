@@ -46,14 +46,19 @@
 	<!-- With ODF, we have to have the image inside a paragraph tag. -->
 	<xsl:choose>
 	  <xsl:when test="parent::d:para or parent::node()/parent::d:para">
-		<xsl:apply-templates/>
+		<xsl:apply-templates select="." mode="media.chooser"/>
 	  </xsl:when>
 	  <xsl:otherwise>
 		<text:p text:style-name="Paragraph">
-		  <xsl:apply-templates/>
+		  <xsl:apply-templates select="." mode="media.chooser"/>
 		</text:p>
 	  </xsl:otherwise>
 	</xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="d:mediaobject" mode="media.chooser">
+	<!-- DocBook allows for multiple image, video, and text objects within the object. According to the specification, we have to pick the first one that we can support. That isn't entirely easy. -->
+	<xsl:apply-templates select="d:imageobject|d:textobject"/>
   </xsl:template>
 
   <xsl:template match="d:imageobject">
@@ -68,92 +73,112 @@
 	<!-- @width                                                  -->
 	<!-- @depth                                                  -->
 	
-	<draw:frame>
-	  <xsl:if test="parent::d:inlinemediaobject">
-		<xsl:attribute name="draw:style-name">imageobject-inline</xsl:attribute>
-	  </xsl:if>
-	  <xsl:if test="parent::d:mediaobject">
-		<xsl:attribute name="draw:style-name">imageobject</xsl:attribute>
-	  </xsl:if>
-	  <xsl:attribute name="text:anchor-type">paragraph</xsl:attribute>
-	  <xsl:attribute name="draw:name">
-		<xsl:text>imageobject-</xsl:text>
-		<xsl:value-of select="generate-id()"/>
-	  </xsl:attribute>
-
-	  <xsl:choose>
-		<xsl:when test="parent::d:para or parent::node()/parent::d:para">
-		  <xsl:attribute name="text:anchor-type">as-char</xsl:attribute>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:attribute name="text:anchor-type">char</xsl:attribute>
-		</xsl:otherwise>
-	  </xsl:choose>
-
-	  <!--<xsl:attribute name="style:rel-width">50%</xsl:attribute>-->
-	  <!--<xsl:attribute name="style:rel-height">100%</xsl:attribute>-->
-	  
-	  <!-- The svg:width and svg:height are required, but we don't have the ability to resolve those from inside XSLT. So, we put a placeholder in the variables and then the `docbook2odf` will postprocess them with the correct data. -->
-	  <xsl:choose>
-		<xsl:when test="d:imagedata/@width">
-		  <xsl:attribute name="svg:width">
-			<xsl:value-of select="d:imagedata/@width"/>
-		  </xsl:attribute>
-		</xsl:when>
-		<xsl:when test="d:imagedata/@height">
-		  <xsl:attribute name="svg:width">
-			<xsl:text>function:getimage-width-ratio:(</xsl:text>
-			<xsl:value-of select="d:imagedata/@fileref"/>
-			<xsl:text>,</xsl:text>
-			<xsl:value-of select="d:imagedata/@height"/>
-			<xsl:text>)</xsl:text>
-		  </xsl:attribute>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:attribute name="svg:width">
-			<xsl:text>function:getimage-width:(</xsl:text>
-			<xsl:value-of select="d:imagedata/@fileref"/>
-			<xsl:text>)</xsl:text>
-		  </xsl:attribute>
-		</xsl:otherwise>
-	  </xsl:choose>
-	  <xsl:choose>
-		<xsl:when test="d:imagedata/@height">
-		  <xsl:attribute name="svg:height">
-			<xsl:value-of select="d:imagedata/@height"/>
-		  </xsl:attribute>
-		</xsl:when>
-		<xsl:when test="d:imagedata/@width">
-		  <xsl:attribute name="svg:height">
-			<xsl:text>function:getimage-height-ratio:(</xsl:text>
-			<xsl:value-of select="d:imagedata/@fileref"/>
-			<xsl:text>,</xsl:text>
-			<xsl:value-of select="d:imagedata/@width"/>
-			<xsl:text>)</xsl:text>
-		  </xsl:attribute>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:attribute name="svg:height">
-			<xsl:text>function:getimage-height:(</xsl:text>
-			<xsl:value-of select="d:imagedata/@fileref"/>
-			<xsl:text>)</xsl:text>
-		  </xsl:attribute>
-		</xsl:otherwise>
-	  </xsl:choose>
-	  
-	  <xsl:attribute name="svg:y">
-		<xsl:value-of select="$style.para.marginTop"/>
-	  </xsl:attribute>
-	  
-	  <xsl:attribute name="draw:z-index">1</xsl:attribute>
-	  <draw:image
-		  xlink:type="embed"
-		  xlink:actuate="onLoad">
-		<xsl:attribute name="xlink:href">
-		  <xsl:value-of select="d:imagedata/@fileref"/>
+	<!-- Only handle this if we are the first.-->
+	<xsl:if test="position() = 1">
+	  <draw:frame>
+		<xsl:if test="parent::d:inlinemediaobject">
+		  <xsl:attribute name="draw:style-name">imageobject-inline</xsl:attribute>
+		</xsl:if>
+		<xsl:if test="parent::d:mediaobject">
+		  <xsl:attribute name="draw:style-name">imageobject</xsl:attribute>
+		</xsl:if>
+		<xsl:attribute name="text:anchor-type">paragraph</xsl:attribute>
+		<xsl:attribute name="draw:name">
+		  <xsl:text>imageobject-</xsl:text>
+		  <xsl:value-of select="generate-id()"/>
 		</xsl:attribute>
-	  </draw:image>
-	</draw:frame>
+		
+		<xsl:choose>
+		  <!--
+			  Alignment options:
+			  as-char: As character
+			  char: To character
+		  -->
+		  <xsl:when test="parent::d:para or parent::node()/parent::d:para">
+			<xsl:attribute name="text:anchor-type">as-char</xsl:attribute>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<!-- Alignment should change this -->
+			<xsl:attribute name="text:anchor-type">as-char</xsl:attribute>
+		  </xsl:otherwise>
+		</xsl:choose>
+		
+		<!--<xsl:attribute name="style:rel-width">50%</xsl:attribute>-->
+		<!--<xsl:attribute name="style:rel-height">100%</xsl:attribute>-->
+		
+		<!-- The svg:width and svg:height are required, but we don't have the ability to resolve those from inside XSLT. So, we put a placeholder in the variables and then the `docbook2odf` will postprocess them with the correct data. -->
+		<xsl:choose>
+		  <xsl:when test="d:imagedata/@width">
+			<xsl:attribute name="svg:width">
+			  <xsl:value-of select="d:imagedata/@width"/>
+			</xsl:attribute>
+		  </xsl:when>
+		  <xsl:when test="d:imagedata/@height">
+			<xsl:attribute name="svg:width">
+			  <xsl:text>function:getimage-width-ratio:(</xsl:text>
+			  <xsl:value-of select="d:imagedata/@fileref"/>
+			  <xsl:text>,</xsl:text>
+			  <xsl:value-of select="d:imagedata/@height"/>
+			  <xsl:text>)</xsl:text>
+			</xsl:attribute>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<xsl:attribute name="svg:width">
+			  <xsl:text>function:getimage-width:(</xsl:text>
+			  <xsl:value-of select="d:imagedata/@fileref"/>
+			  <xsl:text>)</xsl:text>
+			</xsl:attribute>
+		  </xsl:otherwise>
+		</xsl:choose>
+		<xsl:choose>
+		  <xsl:when test="d:imagedata/@height">
+			<xsl:attribute name="svg:height">
+			  <xsl:value-of select="d:imagedata/@height"/>
+			</xsl:attribute>
+		  </xsl:when>
+		  <xsl:when test="d:imagedata/@width">
+			<xsl:attribute name="svg:height">
+			  <xsl:text>function:getimage-height-ratio:(</xsl:text>
+			  <xsl:value-of select="d:imagedata/@fileref"/>
+			  <xsl:text>,</xsl:text>
+			  <xsl:value-of select="d:imagedata/@width"/>
+			  <xsl:text>)</xsl:text>
+			</xsl:attribute>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<xsl:attribute name="svg:height">
+			  <xsl:text>function:getimage-height:(</xsl:text>
+			  <xsl:value-of select="d:imagedata/@fileref"/>
+			  <xsl:text>)</xsl:text>
+			</xsl:attribute>
+		  </xsl:otherwise>
+		</xsl:choose>
+		
+		<xsl:attribute name="svg:y">
+		  <xsl:value-of select="$style.para.marginTop"/>
+		</xsl:attribute>
+		
+		<xsl:attribute name="draw:z-index">1</xsl:attribute>
+		<draw:image
+			xlink:type="embed"
+			xlink:actuate="onLoad">
+		  <xsl:attribute name="xlink:href">
+			<xsl:value-of select="d:imagedata/@fileref"/>
+		  </xsl:attribute>
+		</draw:image>
+	  </draw:frame>
+	</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:textobject">
+	<xsl:if test="position() = 1">
+	  <xsl:apply-templates/>
+	</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:textobject/d:para">
+	  <!-- We are already in a paragraph block, so we won't create an inner one. -->
+	<xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="screenshot">
