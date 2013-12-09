@@ -12,7 +12,7 @@ Title: Notes
 
 # Tasks for Smashwords
 
-* Insert cover image
+* Insert covers
 
 # Tasks to Consider
 
@@ -56,8 +56,6 @@ Title: Notes
   * handling slides
 * paragraph.xsl
   * d:formalpara (has d:title)
-* media.xsl
-  * images
 * inline.xsl
   * d:email
   * d:uri

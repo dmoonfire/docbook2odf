@@ -74,6 +74,7 @@
   <xsl:include href="footnotes.xsl"/>
   <xsl:include href="legalnotice.xsl"/>
 
+  <xsl:include href="media.xsl"/>
   <xsl:include href="block.xsl"/>
   <xsl:include href="quote.xsl"/>
   <xsl:include href="inline.xsl"/>

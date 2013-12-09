@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="5.0">
+  <title>Media (Images)</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-09</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+  </info>
+
+  <para>This article shows various examples of inserting images into a document. The first is an image that is placed directly inside the &lt;article/&gt; element.</para>
+
+  <mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>
+
+  <para>This is an image (<mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  width="1.322cm"
+		  height="1.734464cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) inside a paragraph.</para>
+
+  <para>This is an image (<mediaobject>
+    <imageobject>
+      <imagedata
+		  height="0.4cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) only has the height defined while this one (<mediaobject>
+    <imageobject>
+      <imagedata
+		  width="0.4cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) only has the width defined.</para>
+
+<!--
+  <mediaobject>
+	<info>
+      <othercredit>
+		<orgname>O'Reilly Media</orgname>
+      </othercredit>
+	  <othercredit>
+        <orgname>Dover Archives</orgname>
+      </othercredit>
+    </info>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata align="right" width="6in" format="PNG"
+    			 fileref="figs/web/duck-small.png"/>
+	</imageobject>
+    <imageobject>
+      <imagedata align="right" width="6in" format="GIF"
+    			 fileref="figs/web/duck-small.gif"/>
+	</imageobject>
+    <textobject>
+      <para>The bird on the cover of <citetitle>DocBook: The Definitive Guide</citetitle> is a wood duck.  Often considered one of the most beautiful ducks in North America, the male wood duck has a metallic purple and green head with white streaks extending from its bill around the eyes and down to its blue and green, gold-flecked wings. It has a white neck, chestnut-colored chest, a white or red bill, and yellow-orange legs and feet. Females have more brown, gray, and subdueed hues.</para>
+    </textobject>
+  </mediaobject>
+-->
+</article>

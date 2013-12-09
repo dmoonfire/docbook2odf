@@ -30,7 +30,8 @@ use File::Copy;
 use File::Path;
 use Getopt::Long;
 
-
+# Constants
+my $PIXELS_TO_CM = 0.02644;
 
 # variable depends
 my $USE_IMAGE_MAGICK = 0;
@@ -329,25 +330,67 @@ do # post processing of content
 		my $function=$1;
 		my $data=$2;
 		print "function='$function' data='$data'\n" if $debug;
+
 		if ($USE_IMAGE_MAGICK)
 		{
 			if ($function eq "getimage-width")
 			{
-				my $p = new Image::Magick;
-				$data=$input_dir."/".$data unless $data=~/^\//;
-				$p->Read($data);
-				my $width=($p->Get('columns')*0.02644)."cm";
-				print "output='$width'\n" if $debug;
+				$data=$input_dir . "/" . $data unless $data=~/^\//;
+
+				my $raw_width = get_image_width($USE_IMAGE_MAGICK, $data);
+				my $width = ($raw_width * $PIXELS_TO_CM) . "cm";
+				print "width='$width'\n" if $debug;
 				$content=~s|<!TMP!>|$width|;
 				next;
 			}
+
 			if ($function eq "getimage-height")
 			{
-				my $p = new Image::Magick;
-				$data=$input_dir."/".$data unless $data=~/^\//;
-				$p->Read($data);
-				my $height=($p->Get('height')*0.02644)."cm";
+				$data = $input_dir . "/" . $data unless $data=~/^\//;
+
+				my $raw_height = get_image_height($USE_IMAGE_MAGICK, $data);
+				my $height = ($raw_height * $PIXELS_TO_CM) . "cm";
 				print "output='$height'\n" if $debug;
+				$content=~s|<!TMP!>|$height|;
+				next;
+			}
+
+			if ($function eq "getimage-width-ratio")
+			{
+				my ($filename, $given_height) = split(/,/, $data);
+
+				$given_height = to_pixels($given_height);
+				$data = $filename;
+				$data = $input_dir . "/" . $data unless $data=~/^\//;
+
+				my $raw_height = get_image_height($USE_IMAGE_MAGICK, $data);
+				my $raw_width = get_image_width($USE_IMAGE_MAGICK, $data);
+
+				print "  ratio h=$raw_height, w=$raw_width, gh=$given_height\n" if $debug;
+
+				my $width = $given_height / $raw_height * $raw_width;
+				$width = ($width * $PIXELS_TO_CM) . "cm";
+				print "  width='$width'\n" if $debug;
+				$content=~s|<!TMP!>|$width|;
+				next;
+			}
+
+			if ($function eq "getimage-height-ratio")
+			{
+				my ($filename, $given_width) = split(/,/, $data);
+
+				$given_width = to_pixels($given_width);
+				$data = $filename;
+				$data = $input_dir . "/" . $data unless $data=~/^\//;
+
+				my $raw_height = get_image_height($USE_IMAGE_MAGICK, $data);
+				my $raw_width = get_image_width($USE_IMAGE_MAGICK, $data);
+
+				print "  ratio h=$raw_height, w=$raw_width, gw=$given_width\n" if $debug;
+
+				my $height = $given_width / $raw_width * $raw_height;
+				$height = ($height * $PIXELS_TO_CM) . "cm";
+				print "  height='$height'\n" if $debug;
 				$content=~s|<!TMP!>|$height|;
 				next;
 			}
@@ -475,7 +518,7 @@ sub img_dimmensions
 	
 	rmtree($tmpdir);
 	
-	($data =~ /PNG image data, (\d+) x (\d+)/) and return (($1*0.02644)."cm", ($2*0.02644)."cm");
+	($data =~ /PNG image data, (\d+) x (\d+)/) and return (($1*$PIXELS_TO_CM)."cm", ($2*$PIXELS_TO_CM)."cm");
 	return ("3cm","3cm");
 }
 
@@ -537,5 +580,38 @@ sub xml_process
 	}
 }
 
+sub get_image_width
+{
+	my $USE_IMAGE_MAGIC = shift @_;
+	my $data = shift @_;
+	
+	my $p = new Image::Magick;
+	$p->Read($data);
+	my $width=$p->Get('columns');
+	return $width;
+}
+
+sub get_image_height
+{
+	my $USE_IMAGE_MAGIC = shift @_;
+	my $data = shift @_;
+	
+	my $p = new Image::Magick;
+	$p->Read($data);
+	my $height = $p->Get('height');
+	return $height;
+}
+
+sub to_pixels
+{
+	my $value = shift @_;
+
+	if ($value =~ s/\s*cm$//i)
+	{
+		$value /= $PIXELS_TO_CM;
+	}
+
+	return $value + 0.0;
+}
 
 1;
