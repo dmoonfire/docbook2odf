@@ -5,6 +5,35 @@ Title: Notes
 # Tasks for Submissions
 
 * Headers and footers
+
+  <style for paragraphs>
+    <style:tab-stops>
+      <style:tab-stop style:position="3.25in" style:type="center"/>
+  	  <style:tab-stop style:position="6.5in" style:type="right"/>
+    </style:tab-stops>
+  </style>
+  
+  <style:master-page style:name="Standard" style:page-layout-name="Mpm1">
+    <style:header>
+	  <text:p text:style-name="MP1">
+        Header
+  	    <text:tab/>
+ 	    lkjsdf
+	    <text:tab/>
+	    lkjsdf
+	  </text:p>
+	</style:header>
+	<style:footer>
+	  <text:p text:style-name="MP2">
+	    Footer
+	    <text:tab/>
+	    lkjsdf
+	    <text:tab/>
+	    lkjsdfdsf
+	  </text:p>
+    </style:footer>
+  </style:master-page>
+
 * Address and word counts on first page
 * List (ordered and unordered) handling
 * Move odf.xsl into a common location
