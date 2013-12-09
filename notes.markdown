@@ -12,8 +12,6 @@ Title: Notes
 
 # Tasks for Smashwords
 
-* Legal section
-* Links (xlinks)
 * Insert cover image
 
 # Tasks to Consider

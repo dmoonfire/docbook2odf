@@ -85,4 +85,22 @@
 	  <xsl:apply-templates/>
 	</text:span>
   </xsl:template>
+
+  <!-- Links -->
+  <xsl:template match="d:link">
+	<text:a
+		xlink:type="simple"
+		xlink:href="{@xlink:href}"
+		office:target-frame-name="_blank"
+		xlink:show="new">
+	  <text:span>
+		<xsl:if test="node()">
+		  <xsl:apply-templates/>
+		</xsl:if>
+		<xsl:if test="not(node())">
+		  <xsl:value-of select="@xlink:href"/>
+		</xsl:if>
+	  </text:span>
+	</text:a>
+  </xsl:template>
 </xsl:stylesheet>

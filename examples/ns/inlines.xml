@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article
 	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
 	version="5.0">
   <title>Inlines</title>
 
@@ -40,5 +41,11 @@
 	<info><title>Super- and Subscripts</title></info>
 	
 	<para>Another useful formatting is superscripts (such as x<superscript>2</superscript>) and subscripts (such as H<subscript>2</subscript>O). These typically don't show as much in novel or story writing, but they do in other common uses of DocBook.</para>
+  </section>
+
+  <section>
+	<info><title>Links</title></info>
+	
+	<para>In ebooks and some generated books, links are relatively common element. There are two types of these links, though only the xlink link is supported. With xlinks, these links point to another website such as the <link xlink:href="http://docbook.org/tdg5/en/html/link.html">specification of links</link>, though if there is no inner text, the link will show the href, such as <link xlink:href="http://docbook.org/tdg5/en/html/link.html"/>.</para>
   </section>
 </article>
