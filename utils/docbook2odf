@@ -340,7 +340,7 @@ do # post processing of content
 
 				my $raw_width = get_image_width($USE_IMAGE_MAGICK, $data);
 				my $width = ($raw_width * $PIXELS_TO_CM) . "cm";
-				print "width='$width'\n" if $debug;
+				print "  width='$width'\n" if $debug;
 				$content=~s|<!TMP!>|$width|;
 				next;
 			}
@@ -351,7 +351,7 @@ do # post processing of content
 
 				my $raw_height = get_image_height($USE_IMAGE_MAGICK, $data);
 				my $height = ($raw_height * $PIXELS_TO_CM) . "cm";
-				print "output='$height'\n" if $debug;
+				print "  height='$height'\n" if $debug;
 				$content=~s|<!TMP!>|$height|;
 				next;
 			}

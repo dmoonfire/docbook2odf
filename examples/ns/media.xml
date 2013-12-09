@@ -33,11 +33,19 @@
 	<alt>The DocBook: TDG Duck</alt>
     <imageobject>
       <imagedata
-		  width="1.322cm"
+		  width="1cm"
 		  format="JPG"
     	  fileref="docbook-largecover.jpg"/>
 	</imageobject>
-  </mediaobject>) inside a paragraph.</para>
+  </mediaobject>) inside a paragraph with the width defined while this (<mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  depth="1cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) one has the depth (height) defined.</para>
 
   <para>The following media has multiple images, only the first should be used.</para>
 

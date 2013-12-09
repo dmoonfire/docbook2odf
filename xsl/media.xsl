@@ -90,9 +90,16 @@
 		
 		<xsl:choose>
 		  <!--
-			  Alignment options:
+			  ODF Alignment options:
 			  as-char: As character
 			  char: To character
+
+              DocBook Alignment:
+              center
+              char (as-char)
+              justify (fit width)
+			  left
+              right
 		  -->
 		  <xsl:when test="parent::d:para or parent::node()/parent::d:para">
 			<xsl:attribute name="text:anchor-type">as-char</xsl:attribute>
@@ -113,12 +120,12 @@
 			  <xsl:value-of select="d:imagedata/@width"/>
 			</xsl:attribute>
 		  </xsl:when>
-		  <xsl:when test="d:imagedata/@height">
+		  <xsl:when test="d:imagedata/@depth">
 			<xsl:attribute name="svg:width">
 			  <xsl:text>function:getimage-width-ratio:(</xsl:text>
 			  <xsl:value-of select="d:imagedata/@fileref"/>
 			  <xsl:text>,</xsl:text>
-			  <xsl:value-of select="d:imagedata/@height"/>
+			  <xsl:value-of select="d:imagedata/@depth"/>
 			  <xsl:text>)</xsl:text>
 			</xsl:attribute>
 		  </xsl:when>
@@ -131,9 +138,9 @@
 		  </xsl:otherwise>
 		</xsl:choose>
 		<xsl:choose>
-		  <xsl:when test="d:imagedata/@height">
+		  <xsl:when test="d:imagedata/@depth">
 			<xsl:attribute name="svg:height">
-			  <xsl:value-of select="d:imagedata/@height"/>
+			  <xsl:value-of select="d:imagedata/@depth"/>
 			</xsl:attribute>
 		  </xsl:when>
 		  <xsl:when test="d:imagedata/@width">
