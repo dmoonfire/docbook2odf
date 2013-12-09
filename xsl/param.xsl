@@ -228,6 +228,23 @@
   <xsl:param name="style.para.textAlign">justified</xsl:param>
   <xsl:param name="style.para.textIndent">0.25in</xsl:param>
 
+  <xsl:param name="style.paraCover.parentStyle"></xsl:param>
+  <xsl:param name="style.paraCover.breakBefore"></xsl:param>
+  <xsl:param name="style.paraCover.font" select="$style.font"/>
+  <xsl:param name="style.paraCover.fontStyle"/>
+  <xsl:param name="style.paraCover.fontWeight"/>
+  <xsl:param name="style.paraCover.level">0</xsl:param>
+  <xsl:param name="style.paraCover.lineHeight">100%</xsl:param>
+  <xsl:param name="style.paraCover.marginBottom">0in</xsl:param>
+  <xsl:param name="style.paraCover.marginLeft">0in</xsl:param>
+  <xsl:param name="style.paraCover.marginRight">0in</xsl:param>
+  <xsl:param name="style.paraCover.marginTop">0in</xsl:param>
+  <xsl:param name="style.paraCover.name">Paragraph</xsl:param>
+  <xsl:param name="style.paraCover.page"/>
+  <xsl:param name="style.paraCover.size" select="$style.size"/>
+  <xsl:param name="style.paraCover.textAlign">center</xsl:param>
+  <xsl:param name="style.paraCover.textIndent">0in</xsl:param>
+
   <xsl:param name="style.paraLegal.breakBefore"/>
   <xsl:param name="style.paraLegal.font"/>
   <xsl:param name="style.paraLegal.fontStyle"/>
@@ -348,6 +365,7 @@
   <xsl:param name="style.toc1.name">Contents_20_1</xsl:param>
 
   <!-- ODF Settings -->
+  <xsl:param name="generate.title.with.cover">1</xsl:param>
   <xsl:param name="toc.position">afterContents</xsl:param>
 
   <!-- Common -->

@@ -48,6 +48,11 @@
 	  <xsl:when test="parent::d:para or parent::node()/parent::d:para">
 		<xsl:apply-templates select="." mode="media.chooser"/>
 	  </xsl:when>
+	  <xsl:when test="parent::d:cover or parent::node()/parent::d:cover">
+		<text:p text:style-name="Cover Paragraph">
+		  <xsl:apply-templates select="." mode="media.chooser"/>
+		</text:p>
+	  </xsl:when>
 	  <xsl:otherwise>
 		<text:p text:style-name="Paragraph">
 		  <xsl:apply-templates select="." mode="media.chooser"/>

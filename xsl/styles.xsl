@@ -355,6 +355,27 @@
 	</xsl:call-template>
 
 	<xsl:call-template name="paragraph-style">
+	  <xsl:with-param name="name" select="'Cover_20_Paragraph'"/>
+	  <xsl:with-param name="display.name" select="'Cover Paragraph'"/>
+	  <xsl:with-param name="parentStyle" select="$style.paraCover.parentStyle"/>
+
+	  <xsl:with-param name="page" select="$style.paraCover.page"/>
+	  <xsl:with-param name="font" select="$style.paraCover.font"/>
+	  <xsl:with-param name="size" select="$style.paraCover.size"/>
+	  <xsl:with-param name="fontStyle" select="$style.paraCover.fontStyle"/>
+	  <xsl:with-param name="fontWeight" select="$style.paraCover.fontWeight"/>
+	  <xsl:with-param name="lineHeight" select="$style.paraCover.lineHeight"/>
+	  <xsl:with-param name="textAlign" select="$style.paraCover.textAlign"/>
+	  <xsl:with-param name="textIndent" select="$style.paraCover.textIndent"/>
+	  <xsl:with-param name="breakBefore" select="$style.paraCover.breakBefore"/>
+
+	  <xsl:with-param name="marginTop" select="$style.paraCover.marginTop"/>
+	  <xsl:with-param name="marginBottom" select="$style.paraCover.marginBottom"/>
+	  <xsl:with-param name="marginLeft" select="$style.paraCover.marginLeft"/>
+	  <xsl:with-param name="marginRight" select="$style.paraCover.marginRight"/>
+	</xsl:call-template>
+
+	<xsl:call-template name="paragraph-style">
 	  <xsl:with-param name="name" select="'Legal_20_Notice'"/>
 	  <xsl:with-param name="display.name" select="'Legal Notice'"/>
 	  <xsl:with-param name="parentStyle" select="$style.paraLegal.parentStyle"/>

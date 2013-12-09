@@ -62,6 +62,14 @@
   </xsl:template>
 
   <xsl:template match="d:book" mode="title">
+	<xsl:apply-templates select="d:info/d:cover"/>
+
+	<xsl:if test="not(d:info/d:cover) or $generate.title.with.cover">
+	  <xsl:apply-templates select="." mode="title-text"/>
+	</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:book" mode="title-text">
 	<xsl:param name="number">
 	  <xsl:apply-templates select="." mode="label.markup"/>
 	</xsl:param>

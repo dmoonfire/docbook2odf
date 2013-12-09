@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="5.0">
+  <title>Covers</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-09</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+
+	<cover>
+	  <mediaobject>
+		<alt>The DocBook: TDG Duck</alt>
+		<imageobject>
+		  <imagedata
+			  format="JPG"
+    		  fileref="docbook-largecover.jpg"/>
+		</imageobject>
+	  </mediaobject>
+	</cover>
+  </info>
+
+  <chapter>
+	<info><title>Introduction</title></info>
+
+	<para>This book has a cover.</para>
+  </chapter>
+</book>

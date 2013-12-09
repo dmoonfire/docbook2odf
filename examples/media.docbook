@@ -1,44 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
-<article lang="sk">
-  <title>Example media</title>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="5.0">
+  <title>Media (Images)</title>
 
-  <subtitle>DocBook example with media</subtitle>
+  <subtitle>An docbook2odf example</subtitle>
 
-  <section>
-    <title>First section (1)</title>
+  <info>
+    <date>2013-12-09</date>
 
-    <para>Paragraph Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    Proin mauris ante, aliquam ut, pharetra eget, sagittis sed, lectus. In
-    accumsan commodo libero. Mauris eget nisi eu magna sodales placerat. Sed
-    in orci vel tellus mattis ullamcorper. Morbi augue ligula, eleifend non,
-    congue eget, consequat vel, ante. Aenean at odio. Integer fringilla
-    ultrices diam. Quisque est dolor, pharetra id, condimentum aliquet, luctus
-    nec, lectus. Vestibulum cursus bibendum metus. Vestibulum ante ipsum
-    primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent
-    fringilla nunc et sem. Curabitur mattis scelerisque est. Aliquam eu libero
-    eget quam dapibus adipiscing. Nunc aliquet nonummy sem. Suspendisse
-    viverra convallis sapien. Maecenas varius tempor eros. Curabitur mattis
-    sodales nibh. Curabitur a libero. Vestibulum a mauris nec risus viverra
-    condimentum. Nam interdum molestie massa.</para>
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+  </info>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="left" fileref="docbook2odf.png" />
-        </imageobject>
-      </inlinemediaobject>Paragraph Lorem ipsum dolor sit amet, consectetuer
-    adipiscing elit. Proin mauris ante, aliquam ut, pharetra eget, sagittis
-    sed, lectus. In accumsan commodo libero. Mauris eget nisi eu magna sodales
-    placerat. Sed in orci vel tellus mattis ullamcorper. Morbi augue ligula,
-    eleifend non, congue eget, consequat vel, ante. Aenean at odio. Integer
-    fringilla ultrices diam. Quisque est dolor, pharetra id, condimentum
-    aliquet, luctus nec, lectus. Vestibulum cursus bibendum metus. Vestibulum
-    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-    Curae; Praesent fringilla nunc et sem. Curabitur mattis scelerisque est.
-    Aliquam eu libero eget quam dapibus adipiscing. Nunc aliquet nonummy sem.
-    Suspendisse viverra convallis sapien. Maecenas varius tempor eros.
-    Curabitur mattis sodales nibh. Curabitur a libero. Vestibulum a mauris nec
-    risus viverra condimentum. Nam interdum molestie massa.</para>
-  </section>
+  <para>This article shows various examples of inserting images into a document. The first is an image that is placed directly inside the &lt;article/&gt; element.</para>
+
+  <mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>
+
+  <para>This is an image (<mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  width="1cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) inside a paragraph with the width defined while this (<mediaobject>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  depth="1cm"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+  </mediaobject>) one has the depth (height) defined.</para>
+
+  <para>The following media has multiple images, only the first should be used.</para>
+
+  <mediaobject>
+	<info>
+      <othercredit>
+		<orgname>O'Reilly Media</orgname>
+      </othercredit>
+	  <othercredit>
+        <orgname>Dover Archives</orgname>
+      </othercredit>
+    </info>
+	<alt>The DocBook: TDG Duck</alt>
+    <imageobject>
+      <imagedata
+		  align="right"
+		  width="1in"
+		  format="JPG"
+    	  fileref="docbook-largecover.jpg"/>
+	</imageobject>
+    <imageobject>
+      <imagedata
+		  align="right"
+		  width="1in"
+		  format="JPG"
+    	  fileref="invalid.jpg"/>
+	</imageobject>
+    <textobject>
+      <para>The bird on the cover of <citetitle>DocBook: The Definitive Guide</citetitle> is a wood duck.  Often considered one of the most beautiful ducks in North America, the male wood duck has a metallic purple and green head with white streaks extending from its bill around the eyes and down to its blue and green, gold-flecked wings. It has a white neck, chestnut-colored chest, a white or red bill, and yellow-orange legs and feet. Females have more brown, gray, and subdueed hues.</para>
+    </textobject>
+  </mediaobject>
+
+  <para>The following media has only the text fallback inside it.</para>
+
+  <mediaobject>
+    <textobject>
+      <para>The bird on the cover of <citetitle>DocBook: The Definitive Guide</citetitle> is a wood duck.  Often considered one of the most beautiful ducks in North America, the male wood duck has a metallic purple and green head with white streaks extending from its bill around the eyes and down to its blue and green, gold-flecked wings. It has a white neck, chestnut-colored chest, a white or red bill, and yellow-orange legs and feet. Females have more brown, gray, and subdueed hues.</para>
+    </textobject>
+  </mediaobject>
 </article>

@@ -10,10 +10,6 @@ Title: Notes
 * Move odf.xsl into a common location
 * Allow for single-file style selection
 
-# Tasks for Smashwords
-
-* Insert covers
-
 # Tasks to Consider
 
 * Handling TOC generation closer to the other versions
