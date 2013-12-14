@@ -45,15 +45,11 @@
 	version="1.0">
   <!-- Templates -->
   <xsl:template match="d:*" mode="toc">
-	<xsl:param name="position"/>
-
-	<xsl:if test="$position = $toc.position">
-	  <!-- Insert the title for the TOC-->
-	  <xsl:apply-templates select="." mode="toc.title"/>
-
-	  <!-- Insert the TOC entries -->
-	  <xsl:apply-templates select="." mode="toc.insert"/>
-	</xsl:if>
+	<!-- Insert the title for the TOC-->
+	<xsl:apply-templates select="." mode="toc.title"/>
+	
+	<!-- Insert the TOC entries -->
+	<xsl:apply-templates select="." mode="toc.insert"/>
   </xsl:template>
 
   <xsl:template match="d:*" mode="toc.title">

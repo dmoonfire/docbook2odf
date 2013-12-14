@@ -20,11 +20,6 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	version="1.0">
 
-  <!-- Table of Contents -->
-  <xsl:param name="toc.article">0</xsl:param>
-  <xsl:param name="toc.book">0</xsl:param>
-  <xsl:param name="toc.chapter">1</xsl:param>
-
   <!--
 	  Paragraph Styles
 
@@ -262,7 +257,11 @@
 
   <!-- ODF Settings -->
   <xsl:param name="generate.title.with.cover">1</xsl:param>
-  <xsl:param name="toc.position">afterContents</xsl:param>
+
+  <!-- Table of Contents Levels -->
+  <xsl:param name="toc.article">0</xsl:param>
+  <xsl:param name="toc.book">0</xsl:param>
+  <xsl:param name="toc.chapter">1</xsl:param>
 
   <!-- Common -->
   <xsl:param name="appendix.autolabel">A</xsl:param>
@@ -284,11 +283,12 @@
   <xsl:param name="section.label.includes.component.label" select="0"/>
   <xsl:param name="xref.with.number.and.title" select="1"/>
 
+  <!-- This uses the standard generate.toc parameters, but we also add 'after' to indicate that the tables should come after the contents (this lets us format for ebooks. -->
   <xsl:param name="generate.toc">
 appendix  toc,title
 article/appendix  nop
 article   toc,title
-book      toc,title,figure,table,example,equation
+book      toc,title,figure,table,example,equation,after
 chapter   toc,title
 part      toc,title
 preface   toc,title
