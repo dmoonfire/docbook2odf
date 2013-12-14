@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <book xmlns="http://docbook.org/ns/docbook" version="5.0">
-  <title>Book example</title>
-  <subtitle>Subtitle of Book example, blah blah blah</subtitle>
-
   <info>
+	<title>Book example</title>
+	<titleabbrev>Book</titleabbrev>
+	<subtitle>Subtitle of Book example, blah blah blah</subtitle>
+	
     <date>2013-12-07</date>
 
 	<author>

@@ -45,6 +45,7 @@
 	version="1.0">
   <!-- Imports -->
   <xsl:include href="text-styles-page.xsl"/>
+  <xsl:include href="text-styles-heading.xsl"/>
 
   <!-- Templates -->
   <xsl:template match="d:*" mode="default-styles">
@@ -74,8 +75,12 @@
 
     <style:style
 		style:name="Standard"
-		style:family="paragraph"
-		style:class="text"/>
+		style:display-name="Standard"
+		style:family="paragraph">
+	  <style:text-properties
+		  style:font-name="Courier New"
+		  fo:font-size="12pt"/>
+    </style:style>
 
     <style:style
 		style:name="Paragraph_20_Default"
@@ -90,20 +95,6 @@
 	  <style:text-properties
 		  style:font-name="Courier New"
 		  fo:font-size="12pt"/>
-    </style:style>
-
-    <style:style
-		style:name="Heading_20_Default"
-		style:display-name="Heading Default"
-		style:family="paragraph">
-      <style:paragraph-properties
-		  fo:keep-with-next="always"
-		  text:number-lines="true"
-		  text:line-number="0"/>
-	  <style:text-properties
-		  style:font-name="{$style.heading.font}"
-		  fo:font-size="{$style.heading.size}"
-		  fo:font-weight="{$style.heading.fontWeight}"/>
     </style:style>
   </xsl:template>
 
@@ -211,132 +202,6 @@
   </xsl:template>
 
   <xsl:template match="d:*" mode="styles">
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_1'"/>
-	  <xsl:with-param name="display.name" select="'Heading 1'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading1.page"/>
-	  <xsl:with-param name="font" select="$style.heading1.font"/>
-	  <xsl:with-param name="size" select="$style.heading1.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading1.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading1.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading1.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading1.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading1.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading1.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading1.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading1.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading1.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading1.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_2'"/>
-	  <xsl:with-param name="display.name" select="'Heading 2'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading2.page"/>
-	  <xsl:with-param name="font" select="$style.heading2.font"/>
-	  <xsl:with-param name="size" select="$style.heading2.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading2.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading2.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading2.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading2.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading2.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading2.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading2.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading2.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading2.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading2.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_3'"/>
-	  <xsl:with-param name="display.name" select="'Heading 3'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading3.page"/>
-	  <xsl:with-param name="font" select="$style.heading3.font"/>
-	  <xsl:with-param name="size" select="$style.heading3.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading3.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading3.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading3.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading3.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading3.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading3.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading3.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading3.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading3.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading3.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_4'"/>
-	  <xsl:with-param name="display.name" select="'Heading 4'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading4.page"/>
-	  <xsl:with-param name="font" select="$style.heading4.font"/>
-	  <xsl:with-param name="size" select="$style.heading4.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading4.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading4.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading4.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading4.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading4.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading4.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading4.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading4.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading4.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading4.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_5'"/>
-	  <xsl:with-param name="display.name" select="'Heading 5'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading5.page"/>
-	  <xsl:with-param name="font" select="$style.heading5.font"/>
-	  <xsl:with-param name="size" select="$style.heading5.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading5.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading5.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading5.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading5.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading5.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading5.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading5.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading5.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading5.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading5.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Heading_20_6'"/>
-	  <xsl:with-param name="display.name" select="'Heading 6'"/>
-	  <xsl:with-param name="parent.name" select="'Heading_20_Default'"/>
-
-	  <xsl:with-param name="page" select="$style.heading6.page"/>
-	  <xsl:with-param name="font" select="$style.heading6.font"/>
-	  <xsl:with-param name="size" select="$style.heading6.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.heading6.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.heading6.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.heading6.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.heading6.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.heading6.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.heading6.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.heading6.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.heading6.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.heading6.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.heading6.marginRight"/>
-	</xsl:call-template>
-
 	<xsl:call-template name="paragraph-style">
 	  <xsl:with-param name="name" select="'Paragraph'"/>
 	  <xsl:with-param name="display.name" select="'Paragraph'"/>
@@ -505,26 +370,6 @@
 	</xsl:call-template>
 
 	<xsl:call-template name="paragraph-style">
-	  <xsl:with-param name="name" select="'Book_20_Title'"/>
-	  <xsl:with-param name="display.name" select="'Book Title'"/>
-	
-	  <xsl:with-param name="page" select="$style.book.page"/>
-	  <xsl:with-param name="font" select="$style.book.font"/>
-	  <xsl:with-param name="size" select="$style.book.size"/>
-	  <xsl:with-param name="fontStyle" select="$style.book.fontStyle"/>
-	  <xsl:with-param name="fontWeight" select="$style.book.fontWeight"/>
-	  <xsl:with-param name="lineHeight" select="$style.book.lineHeight"/>
-	  <xsl:with-param name="textAlign" select="$style.book.textAlign"/>
-	  <xsl:with-param name="textIndent" select="$style.book.textIndent"/>
-	  <xsl:with-param name="breakBefore" select="$style.book.breakBefore"/>
-
-	  <xsl:with-param name="marginTop" select="$style.book.marginTop"/>
-	  <xsl:with-param name="marginBottom" select="$style.book.marginBottom"/>
-	  <xsl:with-param name="marginLeft" select="$style.book.marginLeft"/>
-	  <xsl:with-param name="marginRight" select="$style.book.marginRight"/>
-	</xsl:call-template>
-
-	<xsl:call-template name="paragraph-style">
 	  <xsl:with-param name="name" select="'Epigraph'"/>
 	  <xsl:with-param name="display.name" select="'Epigraph'"/>
 	
@@ -604,9 +449,21 @@
 	  <xsl:with-param name="marginRight" select="$style.article.marginRight"/>
 	</xsl:call-template>
 
+	<!-- text-styles-heading.xsl -->
+	<xsl:apply-templates select="." mode="text-style-heading"/>
+	<xsl:apply-templates select="." mode="text-style-heading-1"/>
+	<xsl:apply-templates select="." mode="text-style-heading-2"/>
+	<xsl:apply-templates select="." mode="text-style-heading-3"/>
+	<xsl:apply-templates select="." mode="text-style-heading-4"/>
+	<xsl:apply-templates select="." mode="text-style-heading-5"/>
+	<xsl:apply-templates select="." mode="text-style-heading-6"/>
+
 	<!-- text-styles-page.xsl -->
 	<xsl:apply-templates select="." mode="text-style-header"/>
 	<xsl:apply-templates select="." mode="text-style-footer"/>
+
+	<xsl:apply-templates select="." mode="text-style-book"/>
+	<xsl:apply-templates select="." mode="text-style-chapter"/>
   </xsl:template>
 
   <xsl:template match="d:*" mode="text-styles">

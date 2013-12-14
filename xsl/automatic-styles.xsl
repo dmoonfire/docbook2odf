@@ -52,57 +52,81 @@
 	  <style:paragraph-properties fo:break-before="page"/>
 	</style:style>
 
-    <style:page-layout style:name="Mpm1">
-      <style:page-layout-properties
-		  fo:page-width="8.5in"
-		  fo:page-height="11in"
-		  style:num-format="1"
-		  style:print-orientation="portrait"
-		  fo:margin-top="1in"
-		  fo:margin-bottom="1in"
-		  fo:margin-left="1in"
-		  fo:margin-right="1in"
-		  style:writing-mode="lr-tb"
-		  style:footnote-max-height="0in">
-        <style:footnote-sep
-			style:width="0.0071in"
-			style:distance-before-sep="0.0398in"
-			style:distance-after-sep="0.0398in"
-			style:line-style="solid"
-			style:adjustment="left"
-			style:rel-width="25%"
-			style:color="#000000"/>
-      </style:page-layout-properties>
-      <style:header-style/>
-      <style:footer-style/>
-    </style:page-layout>
-	
-    <style:page-layout style:name="Mpm2">
-      <style:page-layout-properties
-		  fo:page-width="8.5in"
-		  fo:page-height="11in"
-		  style:num-format="1"
-		  style:print-orientation="portrait"
-		  fo:margin-top="1in"
-		  fo:margin-bottom="1in"
-		  fo:margin-left="1in"
-		  fo:margin-right="1in"
-		  style:writing-mode="lr-tb"
-		  style:footnote-max-height="0in">
-        <style:footnote-sep
-			style:width="0.0071in"
-			style:distance-before-sep="0.0398in"
-			style:distance-after-sep="0.0398in"
-			style:line-style="solid"
-			style:adjustment="left"
-			style:rel-width="25%"
-			style:color="#000000"/>
-      </style:page-layout-properties>
-      <style:header-style/>
-      <style:footer-style/>
-    </style:page-layout>
+	<xsl:apply-templates select="." mode="page-layout-standard"/>
+	<xsl:apply-templates select="." mode="page-layout-book"/>
+	<xsl:apply-templates select="." mode="page-layout-chapter"/>
+  </xsl:template>
 
-    <style:page-layout style:name="Mpm3">
+  <xsl:template match="d:*" mode="page-layout-standard">
+    <style:page-layout style:name="Standard_20_Layout">
+      <style:page-layout-properties
+		  fo:page-width="8.5in"
+		  fo:page-height="11in"
+		  style:num-format="1"
+		  style:print-orientation="portrait"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"
+		  style:writing-mode="lr-tb"
+		  style:footnote-max-height="0in">
+        <style:footnote-sep
+			style:width="0.0071in"
+			style:distance-before-sep="0.0398in"
+			style:distance-after-sep="0.0398in"
+			style:line-style="solid"
+			style:adjustment="left"
+			style:rel-width="25%"
+			style:color="#000000"/>
+      </style:page-layout-properties>
+      <style:header-style>
+        <style:header-footer-properties
+			fo:min-height="0.5in"
+			fo:margin-left="0in"
+			fo:margin-right="0in"
+			fo:margin-bottom="0in"
+			style:dynamic-spacing="false"/>
+      </style:header-style>
+      <style:footer-style/>
+    </style:page-layout>
+  </xsl:template>
+
+  <xsl:template match="d:*" mode="page-layout-chapter">
+    <style:page-layout style:name="Chapter_20_Layout">
+      <style:page-layout-properties
+		  fo:page-width="8.5in"
+		  fo:page-height="11in"
+		  style:num-format="1"
+		  style:print-orientation="portrait"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"
+		  style:writing-mode="lr-tb"
+		  style:footnote-max-height="0in">
+        <style:footnote-sep
+			style:width="0.0071in"
+			style:distance-before-sep="0.0398in"
+			style:distance-after-sep="0.0398in"
+			style:line-style="solid"
+			style:adjustment="left"
+			style:rel-width="25%"
+			style:color="#000000"/>
+      </style:page-layout-properties>
+      <style:header-style>
+        <style:header-footer-properties
+			fo:min-height="0.5in"
+			fo:margin-left="0in"
+			fo:margin-right="0in"
+			fo:margin-bottom="0in"
+			style:dynamic-spacing="false"/>
+      </style:header-style>
+      <style:footer-style/>
+    </style:page-layout>
+  </xsl:template>
+
+  <xsl:template match="d:*" mode="page-layout-book">
+	<style:page-layout style:name="Book_20_Layout">
       <style:page-layout-properties
 		  fo:page-width="8.5in"
 		  fo:page-height="11in"

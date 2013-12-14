@@ -45,18 +45,71 @@
 	version="1.0">
   <!-- Templates -->
   <xsl:template match="d:*" mode="master-styles">
+	<xsl:apply-templates select="." mode="master-style-standard"/>
+	<xsl:apply-templates select="." mode="master-style-book"/>
+	<xsl:apply-templates select="." mode="master-style-chapter"/>
+  </xsl:template>
+
+  <xsl:template match="d:*" mode="master-style-standard">
     <style:master-page
 		style:name="Standard"
-		style:page-layout-name="Mpm1"/>
-	<style:master-page
-		style:name="Chapter_20_Page"
-		style:display-name="Chapter Page"
-		style:page-layout-name="Mpm2"
-		style:next-style-name="Standard"/>
+		style:page-layout-name="Standard_20_Layout">
+      <style:header>
+        <text:p text:style-name="Header">
+          <text:tab/><text:tab/>
+		  <xsl:apply-templates
+			  select="/d:*/d:author|/d:*/d:info/d:author"
+			  mode="header"/>
+		  <xsl:apply-templates
+			  select="/d:*/d:titleabbrev|/d:*/d:info/d:titleabbrev"
+			  mode="header"/>
+          <text:page-number text:select-page="current">0</text:page-number>
+		</text:p>
+      </style:header>
+	</style:master-page>
+  </xsl:template>
+
+  <xsl:template match="d:*" mode="master-style-book">
     <style:master-page
 		style:name="Book_20_Page"
 		style:display-name="Book Page"
-		style:page-layout-name="Mpm3"
+		style:page-layout-name="Book_20_Layout"
 		style:next-style-name="Standard"/>
+  </xsl:template>
+
+  <xsl:template match="d:*" mode="master-style-chapter">
+	<style:master-page
+		style:name="Chapter_20_Page"
+		style:display-name="Chapter Page"
+		style:page-layout-name="Chapter_20_Layout"
+		style:next-style-name="Standard">
+      <style:header>
+        <text:p text:style-name="Header">
+          <text:tab/><text:tab/>
+		  <xsl:apply-templates
+			  select="/d:*/d:author|/d:*/d:info/d:author"
+			  mode="header"/>
+		  <xsl:apply-templates
+			  select="/d:*/d:titleabbrev|/d:*/d:info/d:titleabbrev"
+			  mode="header"/>
+          <text:page-number text:select-page="current">0</text:page-number>
+		</text:p>
+      </style:header>
+	</style:master-page>
+  </xsl:template>
+
+  <!-- Elements -->
+  <xsl:template match="d:author" mode="header">
+	<xsl:apply-templates select="d:personname/d:surname" mode="header"/>
+  </xsl:template>
+
+  <xsl:template match="d:surname" mode="header">
+	<xsl:apply-templates/>
+	<xsl:text> / </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="d:titleabbrev" mode="header">
+	<xsl:apply-templates/>
+	<xsl:text> / </xsl:text>
   </xsl:template>
 </xsl:stylesheet>
