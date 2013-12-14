@@ -55,6 +55,14 @@
 
 	  <xsl:apply-templates/>
 
+      <xsl:variable name="toc.params">
+		<xsl:call-template name="find.path.params">
+          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+		</xsl:call-template>
+      </xsl:variable>
+
+	  <xsl:message>toc.params <xsl:value-of select="$toc.params"/></xsl:message>
+
 	  <xsl:apply-templates select="." mode="toc">
 		<xsl:with-param name="position" select="'afterContents'"/>
 	  </xsl:apply-templates>
