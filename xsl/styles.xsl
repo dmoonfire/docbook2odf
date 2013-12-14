@@ -43,6 +43,9 @@
 	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
 	exclude-result-prefixes="d"
 	version="1.0">
+  <!-- Imports -->
+  <xsl:include href="text-styles-page.xsl"/>
+
   <!-- Templates -->
   <xsl:template match="d:*" mode="default-styles">
     <style:default-style style:family="paragraph">
@@ -600,6 +603,10 @@
 	  <xsl:with-param name="marginLeft" select="$style.article.marginLeft"/>
 	  <xsl:with-param name="marginRight" select="$style.article.marginRight"/>
 	</xsl:call-template>
+
+	<!-- text-styles-page.xsl -->
+	<xsl:apply-templates select="." mode="text-style-header"/>
+	<xsl:apply-templates select="." mode="text-style-footer"/>
   </xsl:template>
 
   <xsl:template match="d:*" mode="text-styles">
