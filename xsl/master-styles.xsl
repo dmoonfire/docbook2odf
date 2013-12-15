@@ -105,11 +105,11 @@
 
   <xsl:template match="d:surname" mode="header">
 	<xsl:apply-templates/>
-	<xsl:text> / </xsl:text>
+	<xsl:text>/</xsl:text>
   </xsl:template>
 
   <xsl:template match="d:titleabbrev" mode="header">
 	<xsl:apply-templates/>
-	<xsl:text> / </xsl:text>
+	<xsl:text>/</xsl:text>
   </xsl:template>
 </xsl:stylesheet>

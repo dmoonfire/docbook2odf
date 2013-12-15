@@ -71,53 +71,14 @@
   <xsl:param name="style.contents1.textAlign">left</xsl:param>
   <xsl:param name="style.contents1.textIndent">0in</xsl:param>
 
-  <xsl:param name="style.epigraph.breakBefore"></xsl:param>
-  <xsl:param name="style.epigraph.font" select="$style.para.font"/>
-  <xsl:param name="style.epigraph.fontStyle" select="$style.para.fontStyle"/>
-  <xsl:param name="style.epigraph.fontWeight" select="$style.para.fontWeight"/>
   <xsl:param name="style.epigraph.level">0</xsl:param>
-  <xsl:param name="style.epigraph.lineHeight"/>
-  <xsl:param name="style.epigraph.marginBottom">0in</xsl:param>
-  <xsl:param name="style.epigraph.marginLeft">0.5in</xsl:param>
-  <xsl:param name="style.epigraph.marginRight">0.5in</xsl:param>
-  <xsl:param name="style.epigraph.marginTop">0in</xsl:param>
   <xsl:param name="style.epigraph.name">Epigraph</xsl:param>
-  <xsl:param name="style.epigraph.page"/>
-  <xsl:param name="style.epigraph.size">9pt</xsl:param>
-  <xsl:param name="style.epigraph.textAlign">left</xsl:param>
-  <xsl:param name="style.epigraph.textIndent">0in</xsl:param>
 
-  <xsl:param name="style.epigraphAttribution.breakBefore"></xsl:param>
-  <xsl:param name="style.epigraphAttribution.font" select="$style.epigraph.font"/>
-  <xsl:param name="style.epigraphAttribution.fontStyle" select="'italic'"/>
-  <xsl:param name="style.epigraphAttribution.fontWeight" select="$style.epigraph.fontWeight"/>
   <xsl:param name="style.epigraphAttribution.level">0</xsl:param>
-  <xsl:param name="style.epigraphAttribution.lineHeight"/>
-  <xsl:param name="style.epigraphAttribution.marginBottom">0.5in</xsl:param>
-  <xsl:param name="style.epigraphAttribution.marginLeft">1.0in</xsl:param>
-  <xsl:param name="style.epigraphAttribution.marginRight">0.5in</xsl:param>
-  <xsl:param name="style.epigraphAttribution.marginTop">0in</xsl:param>
   <xsl:param name="style.epigraphAttribution.name">Epigraph_20_Attribution</xsl:param>
-  <xsl:param name="style.epigraphAttribution.page"/>
-  <xsl:param name="style.epigraphAttribution.size" select="$style.epigraph.size"/>
-  <xsl:param name="style.epigraphAttribution.textAlign">right</xsl:param>
-  <xsl:param name="style.epigraphAttribution.textIndent">0in</xsl:param>
 
-  <xsl:param name="style.para.breakBefore"></xsl:param>
-  <xsl:param name="style.para.font" select="$style.font"/>
-  <xsl:param name="style.para.fontStyle"/>
-  <xsl:param name="style.para.fontWeight"/>
   <xsl:param name="style.para.level">0</xsl:param>
-  <xsl:param name="style.para.lineHeight">150%</xsl:param>
-  <xsl:param name="style.para.marginBottom">0in</xsl:param>
-  <xsl:param name="style.para.marginLeft">0in</xsl:param>
-  <xsl:param name="style.para.marginRight">0in</xsl:param>
-  <xsl:param name="style.para.marginTop">0in</xsl:param>
   <xsl:param name="style.para.name">Paragraph</xsl:param>
-  <xsl:param name="style.para.page"/>
-  <xsl:param name="style.para.size" select="$style.size"/>
-  <xsl:param name="style.para.textAlign">justified</xsl:param>
-  <xsl:param name="style.para.textIndent">0.25in</xsl:param>
 
   <xsl:param name="style.paraCover.parentStyle"></xsl:param>
   <xsl:param name="style.paraCover.breakBefore"></xsl:param>
