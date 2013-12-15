@@ -390,7 +390,13 @@
 	<!-- text-styles-para.xsl -->
 	<xsl:apply-templates select="." mode="text-style-epigraph"/>
 	<xsl:apply-templates select="." mode="text-style-epigraph-attribution"/>
+
+	<!-- Include any additional styles. -->
+	<xsl:apply-templates select="." mode="text-style-custom"/>
   </xsl:template>
+
+  <!-- By default, we don't have any custom styles. -->
+  <xsl:template match="d:*" mode="text-style-custom"/>
 
   <xsl:template match="d:*" mode="text-styles">
 	<!-- strong -->

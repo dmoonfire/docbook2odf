@@ -82,6 +82,34 @@ set       title
   </xsl:template>
 
   <!-- We need to include a page break with book so we can remove the header from the first page. We also use indenting to move the title down to "near the center" of the page. -->
+  <xsl:template match="d:*" mode="text-style-custom">
+	<style:style
+		style:name="Contact"
+		style:display-name="Contact"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text">
+      <style:paragraph-properties fo:text-align="left">
+		<style:tab-stops>
+  		  <style:tab-stop style:position="6.5in" style:type="right"/>
+		</style:tab-stops>
+	  </style:paragraph-properties>
+	</style:style>
+
+	<style:style
+		style:name="Contact_20_First"
+		style:display-name="Contact First"
+		style:family="paragraph"
+		style:parent-style-name="Contact"
+		style:class="text"
+		style:master-page-name="Book_20_Page"
+		>
+      <style:paragraph-properties
+		  fo:break-before="page"
+		  />
+	</style:style>
+  </xsl:template>
+
   <xsl:template match="d:*" mode="text-style-book">
 	<style:style
 		style:name="Book_20_Title"
@@ -89,14 +117,32 @@ set       title
 		style:family="paragraph"
 		style:parent-style-name="Standard"
 		style:class="text"
-		style:master-page-name="Book_20_Page">
+		>
       <style:paragraph-properties
 		  text:number-lines="true"
 		  text:line-number="1"
-		  fo:break-before="page"
 		  fo:text-align="center"
 		  fo:margin-top="2.5in"
-		  fo:margin-bottom="1in"
+		  fo:margin-bottom="0.25in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"/>
+	  <style:text-properties
+		  fo:font-size="100%"/>
+	</style:style>
+
+	<style:style
+		style:name="Author"
+		style:display-name="Author"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text"
+		>
+      <style:paragraph-properties
+		  text:number-lines="true"
+		  text:line-number="1"
+		  fo:text-align="center"
+		  fo:margin-top="0"
+		  fo:margin-bottom="0.25in"
 		  fo:margin-left="1in"
 		  fo:margin-right="1in"/>
 	  <style:text-properties
@@ -132,6 +178,7 @@ set       title
 		style:class="text">
       <style:paragraph-properties
 		  text:number-lines="true"
+		  fo:margin-top="0.75in"
 		  text:line-number="1"/>
       <style:text-properties
 		  fo:font-size="12pt"/>
@@ -197,6 +244,79 @@ set       title
     </style:style>
   </xsl:template>
 
+  <!-- The covers should have the submitters information. -->
+  <xsl:template match="d:book" mode="title">
+	<xsl:apply-templates select="d:info/d:author" mode="title"/>
+	<xsl:apply-templates select="." mode="title-text"/>
+
+	<xsl:apply-templates select="d:info/d:author" mode="title-text"/>
+  </xsl:template>
+
+  <xsl:template match="d:author" mode="title-text">
+	<text:p text:style-name="Author">
+	  <xsl:text>by </xsl:text>
+	  <xsl:apply-templates select="d:personname" mode="title"/>
+	</text:p>
+  </xsl:template>
+
+  <xsl:template match="d:author" mode="title">
+	<!-- Insert the person/legal name first. -->
+	<text:p text:style-name="Contact_20_First">
+	  <xsl:if test="d:address/d:personname">
+		<xsl:apply-templates
+			select="d:address/d:personname" mode="title"/>
+	  </xsl:if>
+	  <xsl:if test="not(d:address/d:personname)">
+		<xsl:apply-templates select="d:personname" mode="title"/>
+	  </xsl:if>
+	  <text:tab/>
+	  <!-- This will insert the estimated number of words. -->
+	  <xsl:text>function:words:(100)</xsl:text>
+	</text:p>
+
+	<!-- Apply the rest of the templates. -->
+	<xsl:apply-templates select="d:address" mode="title"/>
+	<xsl:apply-templates select="d:email" mode="title"/>
+  </xsl:template>
+
+  <xsl:template match="d:personname" mode="title">
+	<xsl:value-of select="d:firstname"/>
+	<xsl:text> </xsl:text>
+	<xsl:value-of select="d:surname"/>
+  </xsl:template>
+
+  <xsl:template match="d:address" mode="title">
+	<xsl:apply-templates select="d:street" mode="title"/>
+	<xsl:apply-templates select="d:pob" mode="title"/>
+
+	<xsl:if test="d:city|d:state|d:postcode">
+	  <text:p text:style-name="Contact">
+		<xsl:apply-templates select="d:city" mode="title"/>
+		<xsl:apply-templates select="d:state" mode="title"/>
+		<xsl:apply-templates select="d:postcode" mode="title"/>
+	  </text:p>
+	</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:street|d:email|d:pob" mode="title">
+	<text:p text:style-name="Contact">
+	  <xsl:apply-templates/>
+	</text:p>
+  </xsl:template>
+
+  <xsl:template match="d:city" mode="title">
+	<xsl:apply-templates/>
+	<xsl:text>, </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="d:state" mode="title">
+	<xsl:apply-templates/>
+	<xsl:text> </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="d:postcode" mode="title">
+	<xsl:apply-templates/>
+  </xsl:template>
 
   <!-- There are a few elements of DocBook we want to avoid in general. -->
   <xsl:template match="d:legalnotice"/>

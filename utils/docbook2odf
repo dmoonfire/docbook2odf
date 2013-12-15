@@ -476,7 +476,14 @@ do # post processing of content
 			($function=~/height/) and $content=~s|<!TMP!>|$height|;
 			next;
 		}
-		#751mm=284px*2.644 196mm=74px
+
+		# Check for the non-image functions.
+		if ($function eq "words")
+		{
+			# At the moment, we'll just ignore that.
+		}
+		
+		# If the function didn't replace <!TMP!>, then just remove it.
 		$content=~s|<!TMP!>||;
 	}
 
