@@ -6,8 +6,6 @@ Title: Notes
 
 * Address and word counts on first page
 * List (ordered and unordered) handling
-* Move odf.xsl into a common location
-* Allow for single-file style selection
 
 # Previous Version Handled
 

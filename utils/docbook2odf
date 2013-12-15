@@ -170,8 +170,10 @@ else
 	$output_dir=$PATH;
 }
 
+# Normalize the input filename.
 my $input_file=$input;
 my $input_dir;
+
 if ($input_file=~s|^(.*/)||)
 {
 	$input_dir=$1;
@@ -182,6 +184,18 @@ else
 	$input_dir='.';
 }
 
+# Normalize the PATH_XSL.
+if (-d $PATH_XSL)
+{
+	# Add the "docbook.xsl" to the end of it.
+	$PATH_XSL .= "/docbook.xsl";
+}
+
+if (! -f $PATH_XSL)
+{
+	print "Cannot find XSL stylesheet: $PATH_XSL\n";
+	exit 1;
+}
 
 # program information
 if ($verbose)
@@ -234,7 +248,7 @@ foreach my $param(split(',',$params))
 }
 
 my $XML_DOC = $input;
-my $XSL = $PATH_XSL.'/docbook.xsl';
+my $XSL = $PATH_XSL;
 open (HND, '>'.$TEMP.'/process/full.xml');
 print HND xml_process($XSL, $XML_DOC,@params_arr);
 
@@ -249,8 +263,58 @@ close HND;
 # SPLIT
 ##################################################################################
 
+# Figure out the filenames and paths.
 $XML_DOC = $TEMP.'/process/full.xml';
-$XSL = $PATH_XSL.'/odf.xsl';
+$XSL = $TEMP.'/process/odf.xsl';
+
+# Write out an embedded version of the file. This is the same as
+# "opf.xsl" in the xsl/ directory, but embedded so we don't have to
+# figure out the path.
+open ODF, ">$XSL" or die "Cannot write ODF stylesheet ($!)";
+print ODF <<'SPLITTER';
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet
+	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	version="1.0">
+  <!-- Parameters -->
+  <xsl:param name="part" select="content" />
+
+  <!-- Output Settings -->
+  <xsl:decimal-format name="staff" digit="D" />
+  <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
+
+  <!--
+	  Parses the generated document (via `docbook.xsl`) and splits it out
+	  into its component parts.
+  -->
+  <xsl:template match="/">
+	<xsl:apply-templates />
+  </xsl:template>
+  
+  <xsl:template match="office:document">
+	<xsl:choose>
+	  <xsl:when test="$part = 'meta'">
+		<xsl:copy-of select="/office:document/office:document-meta" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'content'">
+		<xsl:copy-of select="/office:document/office:document-content" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'styles'">
+		<xsl:copy-of select="/office:document/office:document-styles" />
+	  </xsl:when>
+	  <xsl:when test="$part = 'manifest'">
+		<xsl:copy-of select="/office:document/manifest:manifest" />
+	  </xsl:when>
+	  <xsl:otherwise>
+		<xsl:copy-of select="/office:document/office:document-content" />
+	  </xsl:otherwise>
+	</xsl:choose>
+  </xsl:template>
+</xsl:stylesheet>
+SPLITTER
+close ODF;
 
 # MANIFEST
 open (HND, '>'.$TEMP.'/META-INF/manifest.xml');
