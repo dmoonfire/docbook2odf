@@ -40,7 +40,9 @@
     <style:style
 		style:name="Paragraph_20_Default"
 		style:display-name="Paragraph Default"
-		style:family="paragraph">
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		>
       <style:paragraph-properties
 		  fo:margin-left="0in"
 		  fo:margin-right="0in"

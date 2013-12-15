@@ -66,12 +66,25 @@ set       title
   <!-- Includes -->
   <xsl:include href="../docbook.xsl"/>
 
-  <!-- SMF uses 12pt Times New Roman, double-spaced, half-inch indent. -->
+  <!-- SMF uses 12pt Courier New, double-spaced, half-inch indent. -->
+  <xsl:template match="d:*" mode="text-style-standard">
+    <style:style
+		style:name="Standard"
+		style:display-name="Standard"
+		style:family="paragraph">
+	  <style:text-properties
+		  style:font-name="Courier New"
+		  fo:font-size="12pt"/>
+    </style:style>
+  </xsl:template>
+
   <xsl:template match="d:*" mode="text-style-para">
     <style:style
 		style:name="Paragraph"
 		style:display-name="Paragraph"
-		style:family="paragraph">
+		style:family="paragraph"
+		style:parent-style-name="Paragraph_20_Default"
+		>
       <style:paragraph-properties
 		  fo:line-height="200%"
 		  fo:text-indent="0.5in"
@@ -106,6 +119,21 @@ set       title
 		>
       <style:paragraph-properties
 		  fo:break-before="page"
+		  />
+	</style:style>
+
+	<style:style
+		style:name="Center"
+		style:display-name="Center"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text"
+		>
+      <style:paragraph-properties
+		  text:number-lines="true"
+		  text:line-number="1"
+		  fo:line-height="200%"
+		  fo:text-align="center"
 		  />
 	</style:style>
   </xsl:template>
@@ -316,6 +344,19 @@ set       title
 
   <xsl:template match="d:postcode" mode="title">
 	<xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Matters -->
+  <xsl:template match="d:book" mode="bodymatter">
+	<xsl:apply-templates
+		select="d:part|d:article|d:chapter"/>
+
+	<text:p text:style-name="Center">END</text:p>
+  </xsl:template>
+
+  <!-- Breaks -->
+  <xsl:template match="d:bridgehead[@otherrenderas='break']">
+	<text:p text:style-name="Center">#</text:p>
   </xsl:template>
 
   <!-- There are a few elements of DocBook we want to avoid in general. -->

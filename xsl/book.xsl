@@ -62,7 +62,9 @@
 	  </xsl:if>
 
 	  <!-- Format the contents of the element. -->
-	  <xsl:apply-templates/>
+	  <xsl:apply-templates select="." mode="frontmatter"/>
+	  <xsl:apply-templates select="." mode="bodymatter"/>
+	  <xsl:apply-templates select="." mode="backmatter"/>
 
 	  <!-- Figure out if we need a table of contents here. -->
 	  <xsl:if test="contains($toc.params, 'table') and contains($toc.params, 'after')">
@@ -96,5 +98,28 @@
 	  </xsl:with-param>
 	  <xsl:with-param name="referenceMark" select="concat('Book', $number)"/>
 	</xsl:call-template>
+  </xsl:template>
+
+  <!-- Matters -->
+  <xsl:template match="d:book" mode="frontmatter">
+	<xsl:apply-templates
+		select="d:acknowledgements
+				|d:dedication
+				|d:preface"/>
+  </xsl:template>
+
+  <xsl:template match="d:book" mode="bodymatter">
+	<xsl:apply-templates
+		select="d:part|d:article|d:chapter"/>
+  </xsl:template>
+
+  <xsl:template match="d:book" mode="backmatter">
+	<xsl:apply-templates
+		select="d:appendix
+				|d:bibliography
+				|d:colophon
+				|d:glossary
+				|d:index
+				|d:reference"/>
   </xsl:template>
 </xsl:stylesheet>
