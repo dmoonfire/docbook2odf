@@ -2,11 +2,6 @@
 Title: Notes
 ---
 
-# Tasks for Submissions
-
-* Address and word counts on first page
-* List (ordered and unordered) handling
-
 # Previous Version Handled
 
 * verbatim.xsl
@@ -19,18 +14,6 @@ Title: Notes
   * above/d:subtitle
   * above/d:title
 * notes.xsl (slides)
-* lists.xsl
-  * d:task
-  * d:task/d:title
-  * d:taskprerequisites
-  * d:procedure
-  * d:itemizedlist
-  * d:orderedlist
-  * above/d:title
-  * d:listitem|d:step
-  * d:variablelist
-  * d:varlistentry (plus d:term)
-  * d:varlistentry/d:listitem
 * info.xsl
   * Formatting of authors, names, copyrights
 * chapter.xsl
