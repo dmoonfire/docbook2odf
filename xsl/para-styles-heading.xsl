@@ -25,7 +25,7 @@
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Templates -->
-  <xsl:template match="d:*" mode="text-style-heading">
+  <xsl:template match="d:*" mode="para-style-heading">
     <style:style
 		style:name="Heading_20_Default"
 		style:display-name="Heading Default"
@@ -39,7 +39,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-1">
+  <xsl:template match="d:*" mode="para-style-heading-1">
     <style:style
 		style:name="Heading_20_1"
 		style:display-name="Heading 1"
@@ -61,7 +61,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-2">
+  <xsl:template match="d:*" mode="para-style-heading-2">
     <style:style
 		style:name="Heading_20_2"
 		style:display-name="Heading 2"
@@ -81,7 +81,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-3">
+  <xsl:template match="d:*" mode="para-style-heading-3">
     <style:style
 		style:name="Heading_20_3"
 		style:display-name="Heading 3"
@@ -101,7 +101,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-4">
+  <xsl:template match="d:*" mode="para-style-heading-4">
     <style:style
 		style:name="Heading_20_4"
 		style:display-name="Heading 4"
@@ -121,7 +121,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-5">
+  <xsl:template match="d:*" mode="para-style-heading-5">
     <style:style
 		style:name="Heading_20_5"
 		style:display-name="Heading 5"
@@ -142,7 +142,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-heading-6">
+  <xsl:template match="d:*" mode="para-style-heading-6">
     <style:style
 		style:name="Heading_20_6"
 		style:display-name="Heading 6"

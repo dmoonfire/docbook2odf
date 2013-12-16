@@ -25,7 +25,7 @@
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Templates -->
-  <xsl:template match="d:*" mode="text-style-standard">
+  <xsl:template match="d:*" mode="para-style-standard">
     <style:style
 		style:name="Standard"
 		style:display-name="Standard"
@@ -36,7 +36,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-para-default">
+  <xsl:template match="d:*" mode="para-style-para-default">
     <style:style
 		style:name="Paragraph_20_Default"
 		style:display-name="Paragraph Default"
@@ -51,7 +51,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-para">
+  <xsl:template match="d:*" mode="para-style-para">
     <style:style
 		style:name="Paragraph"
 		style:display-name="Paragraph"
@@ -67,7 +67,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-epigraph">
+  <xsl:template match="d:*" mode="para-style-epigraph">
     <style:style
 		style:name="Epigraph"
 		style:display-name="Epigraph"
@@ -85,7 +85,7 @@
     </style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-epigraph-attribution">
+  <xsl:template match="d:*" mode="para-style-epigraph-attribution">
     <style:style
 		style:name="Epigraph_20_Attribution"
 		style:display-name="Epigraph Attribution"

@@ -44,9 +44,9 @@
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Imports -->
-  <xsl:include href="text-styles-para.xsl"/>
-  <xsl:include href="text-styles-page.xsl"/>
-  <xsl:include href="text-styles-heading.xsl"/>
+  <xsl:include href="para-styles-block.xsl"/>
+  <xsl:include href="para-styles-page.xsl"/>
+  <xsl:include href="para-styles-heading.xsl"/>
   <xsl:include href="list-styles.xsl"/>
 
   <!-- Templates -->
@@ -75,8 +75,8 @@
 		  style:country-complex="US"/>
     </style:default-style>
 
-	<xsl:apply-templates select="." mode="text-style-standard"/>
-	<xsl:apply-templates select="." mode="text-style-para-default"/>
+	<xsl:apply-templates select="." mode="para-style-standard"/>
+	<xsl:apply-templates select="." mode="para-style-para-default"/>
   </xsl:template>
 
   <xsl:template name="paragraph-style">
@@ -183,7 +183,7 @@
   </xsl:template>
 
   <xsl:template match="d:*" mode="styles">
-	<xsl:apply-templates select="." mode="text-style-para"/>
+	<xsl:apply-templates select="." mode="para-style-para"/>
 
 	<xsl:call-template name="paragraph-style">
 	  <xsl:with-param name="name" select="'Cover_20_Paragraph'"/>
@@ -373,31 +373,31 @@
 	</xsl:call-template>
 
 	<!-- text-styles-heading.xsl -->
-	<xsl:apply-templates select="." mode="text-style-heading"/>
-	<xsl:apply-templates select="." mode="text-style-heading-1"/>
-	<xsl:apply-templates select="." mode="text-style-heading-2"/>
-	<xsl:apply-templates select="." mode="text-style-heading-3"/>
-	<xsl:apply-templates select="." mode="text-style-heading-4"/>
-	<xsl:apply-templates select="." mode="text-style-heading-5"/>
-	<xsl:apply-templates select="." mode="text-style-heading-6"/>
+	<xsl:apply-templates select="." mode="para-style-heading"/>
+	<xsl:apply-templates select="." mode="para-style-heading-1"/>
+	<xsl:apply-templates select="." mode="para-style-heading-2"/>
+	<xsl:apply-templates select="." mode="para-style-heading-3"/>
+	<xsl:apply-templates select="." mode="para-style-heading-4"/>
+	<xsl:apply-templates select="." mode="para-style-heading-5"/>
+	<xsl:apply-templates select="." mode="para-style-heading-6"/>
 
 	<!-- text-styles-page.xsl -->
-	<xsl:apply-templates select="." mode="text-style-header"/>
-	<xsl:apply-templates select="." mode="text-style-footer"/>
+	<xsl:apply-templates select="." mode="para-style-header"/>
+	<xsl:apply-templates select="." mode="para-style-footer"/>
 
-	<xsl:apply-templates select="." mode="text-style-book"/>
-	<xsl:apply-templates select="." mode="text-style-chapter"/>
+	<xsl:apply-templates select="." mode="para-style-book"/>
+	<xsl:apply-templates select="." mode="para-style-chapter"/>
 
-	<!-- text-styles-para.xsl -->
-	<xsl:apply-templates select="." mode="text-style-epigraph"/>
-	<xsl:apply-templates select="." mode="text-style-epigraph-attribution"/>
+	<!-- text-styles-block.xsl -->
+	<xsl:apply-templates select="." mode="para-style-epigraph"/>
+	<xsl:apply-templates select="." mode="para-style-epigraph-attribution"/>
 
 	<!-- Include any additional styles. -->
-	<xsl:apply-templates select="." mode="text-style-custom"/>
+	<xsl:apply-templates select="." mode="para-style-custom"/>
   </xsl:template>
 
   <!-- By default, we don't have any custom styles. -->
-  <xsl:template match="d:*" mode="text-style-custom"/>
+  <xsl:template match="d:*" mode="para-style-custom"/>
 
   <xsl:template match="d:*" mode="text-styles">
 	<!-- strong -->

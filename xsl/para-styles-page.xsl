@@ -25,7 +25,7 @@
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Templates -->
-  <xsl:template match="d:*" mode="text-style-header">
+  <xsl:template match="d:*" mode="para-style-header">
 	<style:style
 		style:name="Header"
 		style:display-name="Header"
@@ -42,7 +42,7 @@
 	</style:style>
   </xsl:template>
   
-  <xsl:template match="d:*" mode="text-style-footer">
+  <xsl:template match="d:*" mode="para-style-footer">
 	<style:style
 		style:name="Footer"
 		style:display-name="Footer"
@@ -59,7 +59,7 @@
 	</style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-book">
+  <xsl:template match="d:*" mode="para-style-book">
 	<style:style
 		style:name="Book_20_Title"
 		style:display-name="Book Title"
@@ -82,7 +82,7 @@
 	</style:style>
   </xsl:template>
 
-  <xsl:template match="d:*" mode="text-style-chapter">
+  <xsl:template match="d:*" mode="para-style-chapter">
 	<!-- Chapters currently use Heading 1 -->
 	<!--
 	<style:style
