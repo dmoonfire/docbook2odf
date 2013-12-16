@@ -45,19 +45,28 @@
 	version="1.0">
   <!-- Root Node -->
   <xsl:template match="d:article">
+	<!-- Figure out the Table of Content parameters -->
+    <xsl:variable name="toc.params">
+	  <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+	  </xsl:call-template>
+    </xsl:variable>
+
 	<office:text>
 	  <xsl:apply-templates select="." mode="title"/>
 	  <xsl:apply-templates select="d:info/d:legalnotice"/>
 
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'beforeContents'"/>
-	  </xsl:apply-templates>
+	  <!-- Figure out if we need a table of contents here. -->
+	  <xsl:if test="contains($toc.params, 'table') and (not(contains($toc.params, 'after')) or contains($toc.params, 'before'))">
+		<xsl:apply-templates select="." mode="toc"/>
+	  </xsl:if>
 
 	  <xsl:apply-templates/>
 
-	  <xsl:apply-templates select="." mode="toc">
-		<xsl:with-param name="position" select="'afterContents'"/>
-	  </xsl:apply-templates>
+	  <!-- Figure out if we need a table of contents here. -->
+	  <xsl:if test="contains($toc.params, 'table') and contains($toc.params, 'after')">
+		<xsl:apply-templates select="." mode="toc"/>
+	  </xsl:if>
 	</office:text>
   </xsl:template>
 

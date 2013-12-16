@@ -80,6 +80,7 @@
   <xsl:include href="quote.xsl"/>
   <xsl:include href="inline.xsl"/>
   <xsl:include href="admon.xsl"/>
+  <xsl:include href="list.xsl"/>
 
   <!--
 	  Generate the entire ODF file in a single XML document. Then,

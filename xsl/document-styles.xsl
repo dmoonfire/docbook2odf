@@ -51,6 +51,7 @@
 		<xsl:apply-templates select="." mode="default-styles"/>
 		<xsl:apply-templates select="." mode="styles"/>
 		<xsl:apply-templates select="." mode="text-styles"/>
+		<xsl:apply-templates select="." mode="list-styles"/>
 	  </office:styles>
 	  
 	  <office:automatic-styles>

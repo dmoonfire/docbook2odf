@@ -47,6 +47,7 @@
   <xsl:include href="text-styles-para.xsl"/>
   <xsl:include href="text-styles-page.xsl"/>
   <xsl:include href="text-styles-heading.xsl"/>
+  <xsl:include href="list-styles.xsl"/>
 
   <!-- Templates -->
   <xsl:template match="d:*" mode="default-styles">
