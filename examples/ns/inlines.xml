@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="5.0">
+  <title>Inlines</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-07</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+
+    <abstract>
+      <para>One of the more common elements of writing are inline documents This article shows how the various inlines render.</para>
+    </abstract>
+  </info>
+
+  <para>This article shows various examples of inline elements.</para>
+
+  <section>
+	<info><title>Quotes</title></info>
+	
+	<para>The most common quote be a <quote>quoted string</quote> and a <quote>quoted <quote>inner</quote> string</quote>. A more excessive quote would have four nested quotes: <quote>such as <quote>this <quote>and this <quote>right?</quote></quote></quote></quote></para>
+  </section>
+
+  <section>
+	<info><title>Emphasis</title></info>
+	
+	<para>While the basic <emphasis>emphasis</emphasis> is typically rendered as italics, the role attribute can change the type of emphasis. For example:
+	<emphasis role='strong'>strong</emphasis>, <emphasis role='bold'>bold</emphasis>, <emphasis role='strikethrough'>strikethrough</emphasis>, <emphasis role='underline'>underline</emphasis>.</para>
+  </section>
+
+  <section>
+	<info><title>Super- and Subscripts</title></info>
+	
+	<para>Another useful formatting is superscripts (such as x<superscript>2</superscript>) and subscripts (such as H<subscript>2</subscript>O). These typically don't show as much in novel or story writing, but they do in other common uses of DocBook.</para>
+  </section>
+
+  <section>
+	<info><title>Links</title></info>
+	
+	<para>In ebooks and some generated books, links are relatively common element. There are two types of these links, though only the xlink link is supported. With xlinks, these links point to another website such as the <link xlink:href="http://docbook.org/tdg5/en/html/link.html">specification of links</link>, though if there is no inner text, the link will show the href, such as <link xlink:href="http://docbook.org/tdg5/en/html/link.html"/>.</para>
+  </section>
+</article>

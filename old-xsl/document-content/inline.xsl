@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,10 +42,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 
-<xsl:template match="quote">
+<xsl:template match="d:quote">
   <text:span>
     <xsl:choose>
       <xsl:when test="$quote.fancy = 1">
@@ -70,7 +71,7 @@
 </xsl:template>
 
 
-<xsl:template match="email">
+<xsl:template match="d:email">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href">
 			<xsl:text>mailto:</xsl:text><xsl:value-of select="."/>
@@ -80,7 +81,7 @@
 </xsl:template>
 
 
-<xsl:template match="uri">
+<xsl:template match="d:uri">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="."/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -88,7 +89,7 @@
 </xsl:template>
 
 
-<xsl:template match="ulink">
+<xsl:template match="d:ulink">
 	<text:a xlink:type="simple">
 		<xsl:attribute name="xlink:href"><xsl:value-of select="@url"/></xsl:attribute>
 		<xsl:apply-templates/>
@@ -96,7 +97,7 @@
 </xsl:template>
 
 
-<xsl:template match="emphasis">
+<xsl:template match="d:emphasis">
 	<text:span>
 		<xsl:attribute name="text:style-name">
 			<xsl:choose>
@@ -112,7 +113,7 @@
 </xsl:template>
 
 
-<xsl:template match="superscript">
+<xsl:template match="d:superscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-super</xsl:attribute>
 		<xsl:apply-templates/>
@@ -120,7 +121,7 @@
 </xsl:template>
 
 
-<xsl:template match="subscript">
+<xsl:template match="d:subscript">
 	<text:span>
 		<xsl:attribute name="text:style-name">text-sub</xsl:attribute>
 		<xsl:apply-templates/>
@@ -129,34 +130,34 @@
 
 
 
-<xsl:template name="credit" match="author|editor|othercredit">
+<xsl:template name="credit" match="d:author|d:editor|d:othercredit">
 	<!-- name of author/editor -->
 	
 	<xsl:comment>credit</xsl:comment>
 	
-	<xsl:if test="firstname">
+	<xsl:if test="d:firstname">
 		<xsl:comment>firstname</xsl:comment>
 		<xsl:value-of select="firstname"/><xsl:text> </xsl:text>
 	</xsl:if>
-	<xsl:if test="othername">
+	<xsl:if test="d:othername">
 		<xsl:comment>othername</xsl:comment>
 		<xsl:value-of select="othername"/><xsl:text> </xsl:text>
 	</xsl:if>
 	<xsl:comment>surname</xsl:comment>
-	<xsl:value-of select="surname"/>
+	<xsl:value-of select="d:surname"/>
 	
 	<!-- email contact -->
-	<xsl:if test="email">
+	<xsl:if test="d:email">
 		<xsl:text> (</xsl:text>
 			<xsl:comment>email</xsl:comment>
-			<xsl:apply-templates select="email"/>
+			<xsl:apply-templates select="d:email"/>
 		<xsl:text>)</xsl:text>
 	</xsl:if>
 </xsl:template>
 
 
 
-<xsl:template name="copyright" match="copyright">
+<xsl:template name="copyright" match="d:copyright">
 	<!-- name of author/editor -->
 	<xsl:comment>copyright</xsl:comment>
 		<xsl:text>(C)</xsl:text>
@@ -170,9 +171,9 @@
 
 
 <xsl:template match="
-	year|
-	holder|
-	publishername
+	d:year|
+	d:holder|
+	d:publishername
 	">
 	<xsl:comment><xsl:value-of select="local-name()"/></xsl:comment>
 	<text:span><xsl:apply-templates/></text:span>

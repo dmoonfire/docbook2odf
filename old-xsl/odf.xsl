@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	
 	docbook2odf - DocBook to OpenDocument XSL Transformation
@@ -17,8 +17,6 @@
 	
 -->
 <xsl:stylesheet
-	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -41,73 +39,38 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	office:class="text"
-	office:version="1.0">
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	version="1.0">
+		
+		
+<!-- SETTINGS -->
+<xsl:param name="part" select="content" />
+<xsl:decimal-format name="staff" digit="D" />
+<xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
 
-
-<xsl:template match="/chapter">
-	
-	<xsl:element name="office:text">
-		
-		<xsl:call-template name="CI.office-text"/>
-		
-		<xsl:call-template name="chapter"/>
-		
-	</xsl:element>
-	
+<xsl:template match="/">
+	<xsl:apply-templates />
 </xsl:template>
 
 
-<xsl:template name="chapter" match="chapter">
-	
-	
+<xsl:template match="office:document">
 	<xsl:choose>
-		<!-- chapter as document -->
-		<xsl:when test="/chapter">
-			<text:p
-				text:style-name="Title_20_Chapter">
-				<xsl:value-of select="title|info/title"/>
-			</text:p>
+		<xsl:when test="$part = 'meta'">
+			<xsl:copy-of select="/office:document/office:document-meta" />
 		</xsl:when>
-		<!-- chapter in book -->
+		<xsl:when test="$part = 'content'">
+			<xsl:copy-of select="/office:document/office:document-content" />
+		</xsl:when>
+		<xsl:when test="$part = 'styles'">
+			<xsl:copy-of select="/office:document/office:document-styles" />
+		</xsl:when>
+		<xsl:when test="$part = 'manifest'">
+			<xsl:copy-of select="/office:document/manifest:manifest" />
+		</xsl:when>
 		<xsl:otherwise>
-		  <!--
-			<text:p text:style-name="Title_20_Chapter">
-				<xsl:text>Chapter</xsl:text>
-			</text:p>
-		  -->
-			<text:h
-				text:outline-level="1"
-				text:style-name="Heading_20_1">
-				<xsl:value-of select="title|info/title"/>
-			</text:h>
+			<xsl:copy-of select="/office:document/office:document-content" />
 		</xsl:otherwise>
 	</xsl:choose>
-	
-	<!--
-	<text:p text:style-name="Title_20_Chapter">
-		<xsl:text>Chapter</xsl:text>
-	</text:p>
-	<text:h
-		text:outline-level="1"
-		text:style-name="Heading_20_1">
-		<xsl:value-of select="title|chapterinfo/title"/>
-	</text:h>
-	-->
-	
-	<xsl:apply-templates/>
-	
-</xsl:template>
-
-
-<xsl:template match="chapter/title"/>
-
-
-<xsl:template name="chapter.subtitle" match="chapter/subtitle">
-	<text:p
-		text:style-name="para-title2">
-		<xsl:apply-templates/>
-	</text:p>
 </xsl:template>
 
 

@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	
-	docbook2odf - DocBook to OpenDocument XSL Transformation
-	Copyright (C) 2006 Roman Fordinal
-	http://open.comsultia.com/docbook2odf/
-	
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
+docbook2odf - DocBook to OpenDocument XSL Transformation
+Copyright (C) 2006 Roman Fordinal
+Copyright (C) 2013 Moonfire Games
+See `license` for the GNU General Public License v2.
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -41,33 +29,21 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	office:class="text"
-	office:version="1.0">
-	
-<!-- document types -->
-<xsl:include href="document-content/book.xsl"/>
-<xsl:include href="document-content/article.xsl"/>
-<xsl:include href="document-content/chapter.xsl"/>
-<xsl:include href="document-content/bibliography.xsl"/>
-<xsl:include href="document-content/slides.xsl"/>
-
-<!-- automatic styles in content.xsl -->
-<xsl:include href="document-content/automatic-styles.xsl"/>
-
-<!-- info blocks bookinfo, articleinfo, blockinfo,... -->
-<xsl:include href="document-content/info.xsl"/>
-
-<!-- other tags -->
-<xsl:include href="document-content/paragraph.xsl"/>
-<xsl:include href="document-content/block.xsl"/>
-<xsl:include href="document-content/formal.xsl"/>
-<xsl:include href="document-content/inline.xsl"/>
-<xsl:include href="document-content/lists.xsl"/>
-<xsl:include href="document-content/section.xsl"/>
-<xsl:include href="document-content/synop.xsl"/>
-<xsl:include href="document-content/verbatim.xsl"/>
-<xsl:include href="document-content/media.xsl"/>
-<xsl:include href="document-content/notes.xsl"/>
-<xsl:include href="document-content/tables.xsl"/>
-
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
+  <!-- Templates -->
+  <xsl:template name="document-content">
+	<office:document-content>
+	  <office:font-face-decls>
+		<xsl:apply-templates select="." mode="font-face-decls"/>
+	  </office:font-face-decls>
+	  
+	  <office:automatic-styles>
+		<xsl:apply-templates select="." mode="automatic-styles"/>
+	  </office:automatic-styles>
+	  
+	  <office:body>
+		<xsl:apply-templates/>
+	  </office:body>
+	</office:document-content>
+  </xsl:template>
 </xsl:stylesheet>

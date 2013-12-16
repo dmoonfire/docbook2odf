@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-docbook2odf - DocBook to OpenDocument XSL Transformation
-Copyright (C) 2006 Roman Fordinal
-Copyright (C) 2013 Moonfire Games
-See `license` for the GNU General Public License v2.
+	
+	docbook2odf - DocBook to OpenDocument XSL Transformation
+	Copyright (C) 2006 Roman Fordinal
+	http://open.comsultia.com/docbook2odf/
+	
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
 -->
 <xsl:stylesheet
 	version="1.0"
@@ -29,32 +40,15 @@ See `license` for the GNU General Public License v2.
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <xsl:template name="document-meta">
-	<office:document-meta>
-	  <dc:title>
-		<xsl:value-of select="/article/articleinfo/title"/>
-	  </dc:title>
-	  
-	  <dc:subject>
-		<xsl:value-of select="/article/articleinfo/subtitle"/>
-	  </dc:subject>
-	  
-	  <dc:description>
-		<xsl:value-of select="/article/articleinfo/description"/>
-	  </dc:description>
-	  
-	  <dc:date>
-		<xsl:value-of select="article/articleinfo/pubdate"/>
-	  </dc:date>
-	  
-	  <dc:language>
-		<xsl:value-of select="article/@lang"/>
-	  </dc:language>
-	  
-	  <meta:generator>
-		<xsl:text>docbook2odf generator (https://github.com/dmoonfire/docbook2odf/)</xsl:text>
-	  </meta:generator>
-	</office:document-meta>
-  </xsl:template>
+	office:class="text"
+	office:version="1.0">
+	
+	
+<xsl:include href="document-styles/font-face-decls.xsl"/>
+<xsl:include href="document-styles/automatic-styles.xsl"/>
+	<xsl:include href="document-styles/page-layout.xsl"/>
+	<xsl:include href="document-styles/master-styles.xsl"/>
+<xsl:include href="document-styles/office-styles.xsl"/>
+
+
 </xsl:stylesheet>

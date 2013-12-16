@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -41,8 +42,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
-
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 <xsl:template match="table">
 	<xsl:choose>
@@ -233,19 +234,7 @@
 		
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@namest">
-			<xsl:attribute name="table:number-columns-spanned">
-      <xsl:variable name="end">
-        <xsl:for-each select="ancestor::tgroup/colspec[@colname=current()/@nameend]">
-          <xsl:copy-of select="count(preceding::colspec)"/>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:variable name="st">
-        <xsl:for-each select="ancestor::tgroup/colspec[@colname=current()/@namest]">
-          <xsl:copy-of select="count(preceding::colspec)"/>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:value-of select="string($end)-string($st)+1"/>
-      </xsl:attribute>
+			<!-- find collumn number from <d:colspec> -->
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->
@@ -278,7 +267,7 @@
 		table:style-name="table-default.cell-B2">
 		<!-- spanning by namest and nameend -->
 		<xsl:if test="@colspan>1">
-			<attribute name="table:number-columns-spanned" select="@colspan"/>
+			
 		</xsl:if>
 		<xsl:choose>
 			<!-- this element containts more sub-elements (paragraphs, eg...) -->

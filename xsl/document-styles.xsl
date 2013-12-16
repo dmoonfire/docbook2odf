@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	
-	docbook2odf - DocBook to OpenDocument XSL Transformation
-	Copyright (C) 2006 Roman Fordinal
-	http://open.comsultia.com/docbook2odf/
-	
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
+docbook2odf - DocBook to OpenDocument XSL Transformation
+Copyright (C) 2006 Roman Fordinal
+Copyright (C) 2013 Moonfire Games
+See `license` for the GNU General Public License v2.
 -->
 <xsl:stylesheet
 	version="1.0"
@@ -40,15 +29,27 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	office:class="text"
-	office:version="1.0">
-	
-	
-<xsl:include href="document-styles/font-face-decls.xsl"/>
-<xsl:include href="document-styles/automatic-styles.xsl"/>
-	<xsl:include href="document-styles/page-layout.xsl"/>
-	<xsl:include href="document-styles/master-styles.xsl"/>
-<xsl:include href="document-styles/office-styles.xsl"/>
-
-
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
+  <xsl:template name="document-styles">
+	<office:document-styles>
+	  <office:font-face-decls>
+		<xsl:apply-templates select="." mode="font-face-decls"/>
+	  </office:font-face-decls>
+	  
+	  <office:styles>
+		<xsl:apply-templates select="." mode="default-styles"/>
+		<xsl:apply-templates select="." mode="styles"/>
+		<xsl:apply-templates select="." mode="text-styles"/>
+		<xsl:apply-templates select="." mode="list-styles"/>
+	  </office:styles>
+	  
+	  <office:automatic-styles>
+		<xsl:apply-templates select="." mode="automatic-styles"/>
+	  </office:automatic-styles>
+	  
+	  <office:master-styles>
+		<xsl:apply-templates select="." mode="master-styles"/>
+	  </office:master-styles>	
+	</office:document-styles>
+  </xsl:template>
 </xsl:stylesheet>

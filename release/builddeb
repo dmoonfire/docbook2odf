@@ -20,9 +20,10 @@ Section: text
 Priority: optional
 Architecture: all
 Depends: perl, perlmagick, libarchive-zip-perl, libxml-libxslt-perl
+Build-Depends: docbook5-xml, jing
 Installed-Size: 400
-Maintainer: Roman Fordinal <fordinal@webcom.sk>
-Description: XSLT based conversions from docbook to Oasis Open Document." > ${DIR}/DEBIAN/control
+Maintainer: Dylan R. E. Moonfire <debian@mfgames.com>
+Description: XSLT based conversions from DocBook 5 XML to Oasis Open Document." > ${DIR}/DEBIAN/control
 chmod -R 755 ${DIR}/DEBIAN
 
 # Manual page

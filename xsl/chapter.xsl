@@ -6,7 +6,7 @@ Copyright (C) 2013 Moonfire Games
 See `license` for the GNU General Public License v2.
 -->
 <xsl:stylesheet
-	version="1.0"
+    xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -29,32 +29,36 @@ See `license` for the GNU General Public License v2.
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
-  <xsl:template name="document-meta">
-	<office:document-meta>
-	  <dc:title>
-		<xsl:value-of select="/article/articleinfo/title"/>
-	  </dc:title>
-	  
-	  <dc:subject>
-		<xsl:value-of select="/article/articleinfo/subtitle"/>
-	  </dc:subject>
-	  
-	  <dc:description>
-		<xsl:value-of select="/article/articleinfo/description"/>
-	  </dc:description>
-	  
-	  <dc:date>
-		<xsl:value-of select="article/articleinfo/pubdate"/>
-	  </dc:date>
-	  
-	  <dc:language>
-		<xsl:value-of select="article/@lang"/>
-	  </dc:language>
-	  
-	  <meta:generator>
-		<xsl:text>docbook2odf generator (https://github.com/dmoonfire/docbook2odf/)</xsl:text>
-	  </meta:generator>
-	</office:document-meta>
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"
+	exclude-result-prefixes="d"
+	version="1.0">
+  <!-- Root Node -->
+  <xsl:template match="d:chapter">
+	<xsl:apply-templates select="." mode="title"/>
+
+	<xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Title -->
+  <xsl:template match="d:chapter" mode="title">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.chapter.name"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.chapter.level"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:text>Chapter </xsl:text>
+		<xsl:apply-templates select="." mode="label.markup"/>
+		<xsl:text>: </xsl:text>
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="referenceMark" select="concat('Chapter', $number)"/>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

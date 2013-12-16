@@ -1,1 +1,5 @@
 *~
+*.odt
+*.docbook
+
+non-ns-xsl/

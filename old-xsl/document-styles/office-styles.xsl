@@ -18,6 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -394,7 +395,7 @@
 		</style:text-properties>
 	</style:style>
 	
-<!-- <screen> -->
+<!-- <d:screen> -->
 	<style:style
 		style:name="para-screen"
 		style:display-name="Paragraph Screen"
@@ -410,7 +411,7 @@
 			style:font-name="Lucida Console"/>
 	</style:style>
 	
-<!-- <programlisting> -->
+<!-- <d:programlisting> -->
 	<style:style
 		style:name="para-programlisting"
 		style:display-name="Paragraph Programlisting"
@@ -424,7 +425,7 @@
 		<style:text-properties/>
 	</style:style>
 	
-<!-- <synopsis> -->
+<!-- <d:synopsis> -->
 	<style:style
 		style:name="para-synopsis"
 		style:display-name="Paragraph Synopsis"
@@ -960,8 +961,6 @@
 			fo:font-family="Courier"
 			fo:font-weight="bold"
 			fo:background-color="#f0f0f0"/>
-	</style:style>
-	
+	</style:style>	
 </xsl:template>
-
 </xsl:stylesheet>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book
+	xmlns="http://docbook.org/ns/docbook"
+	version="5.0">
+  <title>Legal Notices</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-07</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+
+    <abstract>
+      <para>Legal notices are one way of doing the legal page for novels and stories.</para>
+    </abstract>
+
+	<legalnotice>
+	  <para>This is the first line of a legal notice.</para>
+
+	  <para>There are multiple lines in here. Ideally, they would be formatted slightly different than the rest of the lines. In many cases, legal notices don't have indented lines.</para>
+	</legalnotice>
+  </info>
+
+  <chapter>
+	<info><title>Introduction</title></info>
+	<para>This article has a legal notice.</para>
+  </chapter>
+</book>

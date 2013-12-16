@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article
+	xmlns="http://docbook.org/ns/docbook"
+	version="5.0">
+  <title>Lists</title>
+
+  <subtitle>An docbook2odf example</subtitle>
+
+  <info>
+    <date>2013-12-15</date>
+
+	<author>
+      <personname>
+		<firstname>Dylan</firstname>
+		<surname>Moonfire</surname>
+      </personname>
+	</author>
+  </info>
+
+  <para>This article shows various examples of lists.</para>
+
+  <section>
+	<info><title>Itemized Lists</title></info>
+
+	<para>A simple, three element itemized list.</para>
+
+	<itemizedlist mark='opencircle'>
+      <listitem>
+		<para>TeX and LaTeX</para>
+	  </listitem>
+      <listitem override='bullet'>
+		<para>Troff</para>
+	  </listitem>
+      <listitem>
+		<para>Lout</para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>A three element itemized list with a nested list.</para>
+
+	<itemizedlist>
+      <listitem>
+		<para>Item 1</para>
+		<itemizedlist>
+		  <listitem>
+			<para>Item 1.1</para>
+		  </listitem>
+		  <listitem>
+			<para>Item 1.2</para>
+		  </listitem>
+		  <listitem>
+			<para>Item 1.3</para>
+		  </listitem>
+		</itemizedlist>
+	  </listitem>
+      <listitem>
+		<para>Item 2</para>
+		<itemizedlist>
+		  <listitem>
+			<para>Item 2.1</para>
+		  </listitem>
+		  <listitem>
+			<listitem>
+			  <itemizedlist>
+				<listitem>
+				  <para>Item 2.2.1</para>
+				</listitem>
+				<listitem>
+				  <para>Item 2.2.2</para>
+				</listitem>
+				<listitem>
+				  <para>Item 2.2.3</para>
+				</listitem>
+			  </itemizedlist>
+			</listitem>
+		  </listitem>
+		  <listitem>
+			<para>Item 2.3</para>
+		  </listitem>
+		</itemizedlist>
+	  </listitem>
+	</itemizedlist>
+  </section>
+
+  <section>
+	<info><title>Ordered Lists</title></info>
+
+	<para>A simple, three element itemized list.</para>
+
+	<orderedlist>
+      <listitem>
+		<para>TeX and LaTeX</para>
+	  </listitem>
+      <listitem>
+		<para>Troff</para>
+	  </listitem>
+      <listitem>
+		<para>Lout</para>
+	  </listitem>
+	</orderedlist>
+
+	<para>A three element ordered list with a nested list.</para>
+
+	<orderedlist>
+      <listitem>
+		<para>Item 1</para>
+		<orderedlist>
+		  <listitem>
+			<para>Item 1.1</para>
+		  </listitem>
+		  <listitem>
+			<para>Item 1.2</para>
+		  </listitem>
+		  <listitem>
+			<para>Item 1.3</para>
+		  </listitem>
+		</orderedlist>
+	  </listitem>
+      <listitem>
+		<para>Item 2</para>
+		<orderedlist>
+		  <listitem>
+			<para>Item 2.1</para>
+		  </listitem>
+		  <listitem>
+			<listitem>
+			  <orderedlist>
+				<listitem>
+				  <para>Item 2.2.1</para>
+				</listitem>
+				<listitem>
+				  <para>Item 2.2.2</para>
+				</listitem>
+				<listitem>
+				  <para>Item 2.2.3</para>
+				</listitem>
+			  </orderedlist>
+			</listitem>
+		  </listitem>
+		  <listitem>
+			<para>Item 2.3</para>
+		  </listitem>
+		</orderedlist>
+	  </listitem>
+	</orderedlist>
+  </section>
+</article>

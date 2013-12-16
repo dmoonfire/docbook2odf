@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	
-	docbook2odf - DocBook to OpenDocument XSL Transformation
-	Copyright (C) 2006 Roman Fordinal
-	http://open.comsultia.com/docbook2odf/
-	
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
+docbook2odf - DocBook to OpenDocument XSL Transformation
+Copyright (C) 2006 Roman Fordinal
+Copyright (C) 2013 Moonfire Games
+See `license` for the GNU General Public License v2.
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -41,37 +29,27 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
-	office:class="text"
-	office:version="1.0">
-
-
-<xsl:template match="book">
-
-	<xsl:element name="office:text">
-		
-		<xsl:call-template name="CI.office-text"/>
-		
-		<text:p
-			text:style-name="Title_20_Book">
-			<xsl:value-of select="title|info/title"/>
-		</text:p>
-		
-		<xsl:apply-templates/>
-		
-	</xsl:element>
-	
-</xsl:template>
-
-
-<xsl:template match="/book/title" />
-
-
-<xsl:template match="/book/subtitle">
-	<xsl:element name="text:p">
-		<xsl:attribute name="text:style-name">para-title2</xsl:attribute>
-		<xsl:apply-templates/>
-	</xsl:element>
-</xsl:template>
-
-
+	xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">	
+  <xsl:template name="document-manifest">
+	<manifest:manifest>
+	  <manifest:file-entry
+		  manifest:media-type="application/vnd.oasis.opendocument.text"
+		  manifest:full-path="/" />
+	  <manifest:file-entry
+		  manifest:media-type="application/vnd.sun.xml.ui.configuration"
+		  manifest:full-path="Configuration2/" />
+	  <manifest:file-entry
+		  manifest:media-type=""
+		  manifest:full-path="Pictures/" />
+	  <manifest:file-entry
+		  manifest:media-type="text/xml"
+		  manifest:full-path="content.xml" />
+	  <manifest:file-entry
+		  manifest:media-type="text/xml"
+		  manifest:full-path="styles.xml" />
+	  <manifest:file-entry
+		  manifest:media-type="text/xml"
+		  manifest:full-path="meta.xml" />
+	</manifest:manifest>
+  </xsl:template>
 </xsl:stylesheet>

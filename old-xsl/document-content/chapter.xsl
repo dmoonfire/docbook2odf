@@ -18,7 +18,7 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:docbook="http://docbook.org/ns/docbook"
+	xmlns:d="http://docbook.org/ns/docbook"
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -42,63 +42,74 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	office:class="text"
-	office:version="1.0">
+	office:version="1.0"
+	exclude-result-prefixes="d">
 
 
-<xsl:template name="section" match="section|sect1|sect2|sect3|sect4|sect5">
+<xsl:template match="/d:chapter">
 	
-	<!-- compute level of section -->
-	<xsl:variable name="level">
-		<xsl:call-template name="section.level"/>
-	</xsl:variable>
+	<xsl:element name="office:text">
+		
+		<xsl:call-template name="CI.office-text"/>
+		
+		<xsl:call-template name="chapter"/>
+		
+	</xsl:element>
 	
-	<xsl:comment>
-		<xsl:text>section level </xsl:text><xsl:value-of select="$level"/>
-	</xsl:comment>
+</xsl:template>
+
+
+<xsl:template name="chapter" match="d:chapter">
 	
-	<text:h>
-	  <xsl:attribute name="text:outline-level">
-	    <xsl:value-of select="$level"/>
-	  </xsl:attribute>
-	  <xsl:attribute name="text:style-name">
-	    <xsl:text>Heading </xsl:text>
-	    <xsl:if test="$level &lt; 5">
-	      <xsl:value-of select="$level + 1"/>
-	    </xsl:if>
-	    <xsl:if test="$level &gt; 4"><xsl:text>s</xsl:text></xsl:if>
-	  </xsl:attribute>
-	  <xsl:value-of select="child::info/title"/>
-	  <xsl:value-of select="child::title"/>
+	
+	<xsl:choose>
+		<!-- chapter as document -->
+		<xsl:when test="/d:chapter">
+			<text:p
+				text:style-name="Title_20_Chapter">
+				<xsl:value-of select="d:title|d:info/d:title"/>
+			</text:p>
+		</xsl:when>
+		<!-- chapter in book -->
+		<xsl:otherwise>
+		  <!--
+			<text:p text:style-name="Title_20_Chapter">
+				<xsl:text>Chapter</xsl:text>
+			</text:p>
+		  -->
+			<text:h
+				text:outline-level="1"
+				text:style-name="Heading_20_1">
+				<xsl:value-of select="d:title|d:info/d:title"/>
+			</text:h>
+		</xsl:otherwise>
+	</xsl:choose>
+	
+	<!--
+	<text:p text:style-name="Title_20_Chapter">
+		<xsl:text>Chapter</xsl:text>
+	</text:p>
+	<text:h
+		text:outline-level="1"
+		text:style-name="Heading_20_1">
+		<xsl:value-of select="title|chapterinfo/title"/>
 	</text:h>
+	-->
 	
 	<xsl:apply-templates/>
 	
 </xsl:template>
 
 
-<xsl:template match="
-	section/subtitle |
-	sect1/subtitle |
-	sect2/subtitle |
-	sect3/subtitle |
-	sect4/subtitle |
-	sect5/subtitle">
-	
+<xsl:template match="d:chapter/d:title"/>
+
+
+<xsl:template name="chapter.subtitle" match="d:chapter/d:subtitle">
 	<text:p
-		text:style-name="Paragraph_20_Heading">
+		text:style-name="para-title2">
 		<xsl:apply-templates/>
 	</text:p>
-	
 </xsl:template>
-
-
-<xsl:template match="
-	section/title |
-	sect1/title |
-	sect2/title |
-	sect3/title |
-	sect4/title |
-	sect5/title"/>
 
 
 </xsl:stylesheet>
