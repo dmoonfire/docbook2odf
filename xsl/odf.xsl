@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+docbook2odf - DocBook to OpenDocument XSL Transformation
+Copyright (C) 2006 Roman Fordinal
+Copyright (C) 2013 Moonfire Games
+See `license` for the GNU General Public License v2.
+-->
 <xsl:stylesheet
 	xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
