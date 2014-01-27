@@ -55,14 +55,13 @@ set       title
   <!-- Includes -->
   <xsl:include href="../docbook.xsl"/>
 
-  <!-- SMF uses 12pt Courier New, double-spaced, half-inch indent. -->
   <xsl:template match="d:*" mode="text-style-standard">
     <style:style
 		style:name="Standard"
 		style:display-name="Standard"
 		style:family="paragraph">
 	  <style:text-properties
-		  style:font-name="Courier New"
+		  style:font-name="Times New Roman"
 		  fo:font-size="12pt"/>
     </style:style>
   </xsl:template>
@@ -75,7 +74,7 @@ set       title
 		style:parent-style-name="Paragraph_20_Default"
 		>
       <style:paragraph-properties
-		  fo:line-height="200%"
+		  fo:line-height="120%"
 		  fo:text-indent="0.5in"
 		  fo:text-align="left" />
 	  <style:text-properties
@@ -83,7 +82,6 @@ set       title
     </style:style>
   </xsl:template>
 
-  <!-- We need to include a page break with book so we can remove the header from the first page. We also use indenting to move the title down to "near the center" of the page. -->
   <xsl:template match="d:*" mode="para-style-custom">
 	<style:style
 		style:name="Contact"
@@ -261,93 +259,33 @@ set       title
     </style:style>
   </xsl:template>
 
-  <!-- The covers should have the submitters information. -->
-  <xsl:template match="d:book" mode="title">
-	<xsl:apply-templates select="d:info/d:author" mode="title"/>
-	<xsl:apply-templates select="." mode="title-text"/>
-
-	<xsl:apply-templates select="d:info/d:author" mode="title-text"/>
+  <!-- Master Pages -->
+  <xsl:template match="d:*" mode="master-style-standard">
+    <style:master-page
+		style:name="Standard"
+		style:page-layout-name="Standard_20_Layout">
+	</style:master-page>
   </xsl:template>
 
-  <xsl:template match="d:author" mode="title-text">
-	<text:p text:style-name="Author">
-	  <xsl:text>by </xsl:text>
-	  <xsl:apply-templates select="d:personname" mode="title"/>
-	</text:p>
-  </xsl:template>
-
-  <xsl:template match="d:author" mode="title">
-	<!-- Insert the person/legal name first. -->
-	<text:p text:style-name="Contact_20_First">
-	  <xsl:if test="d:address/d:personname">
-		<xsl:apply-templates
-			select="d:address/d:personname" mode="title"/>
-	  </xsl:if>
-	  <xsl:if test="not(d:address/d:personname)">
-		<xsl:apply-templates select="d:personname" mode="title"/>
-	  </xsl:if>
-	  <text:tab/>
-	  <!-- This will insert the estimated number of words. -->
-	  <xsl:text>function:words:(100)</xsl:text>
-	</text:p>
-
-	<!-- Apply the rest of the templates. -->
-	<xsl:apply-templates select="d:address" mode="title"/>
-	<xsl:apply-templates select="d:email" mode="title"/>
-  </xsl:template>
-
-  <xsl:template match="d:personname" mode="title">
-	<xsl:value-of select="d:firstname"/>
-	<xsl:text> </xsl:text>
-	<xsl:value-of select="d:surname"/>
-  </xsl:template>
-
-  <xsl:template match="d:address" mode="title">
-	<xsl:apply-templates select="d:street" mode="title"/>
-	<xsl:apply-templates select="d:pob" mode="title"/>
-
-	<xsl:if test="d:city|d:state|d:postcode">
-	  <text:p text:style-name="Contact">
-		<xsl:apply-templates select="d:city" mode="title"/>
-		<xsl:apply-templates select="d:state" mode="title"/>
-		<xsl:apply-templates select="d:postcode" mode="title"/>
-	  </text:p>
-	</xsl:if>
-  </xsl:template>
-
-  <xsl:template match="d:street|d:email|d:pob" mode="title">
-	<text:p text:style-name="Contact">
-	  <xsl:apply-templates/>
-	</text:p>
-  </xsl:template>
-
-  <xsl:template match="d:city" mode="title">
-	<xsl:apply-templates/>
-	<xsl:text>, </xsl:text>
-  </xsl:template>
-
-  <xsl:template match="d:state" mode="title">
-	<xsl:apply-templates/>
-	<xsl:text> </xsl:text>
-  </xsl:template>
-
-  <xsl:template match="d:postcode" mode="title">
-	<xsl:apply-templates/>
+  <xsl:template match="d:*" mode="master-style-chapter">
+	<style:master-page
+		style:name="Chapter_20_Page"
+		style:display-name="Chapter Page"
+		style:page-layout-name="Chapter_20_Layout"
+		style:next-style-name="Standard">
+	</style:master-page>
   </xsl:template>
 
   <!-- Matters -->
   <xsl:template match="d:book" mode="bodymatter">
 	<xsl:apply-templates
-		select="d:part|d:article|d:chapter"/>
+		select="d:part|d:article|d:chapter|d:appendix"/>
 
 	<text:p text:style-name="Center">END</text:p>
   </xsl:template>
 
   <!-- Breaks -->
   <xsl:template match="d:bridgehead[@otherrenderas='break']">
-	<text:p text:style-name="Center">#</text:p>
+	<text:p text:style-name="Center"># # #</text:p>
   </xsl:template>
-
-  <!-- There are a few elements of DocBook we want to avoid in general. -->
-  <xsl:template match="d:legalnotice"/>
 </xsl:stylesheet>
