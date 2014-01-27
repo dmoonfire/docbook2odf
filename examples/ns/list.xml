@@ -60,19 +60,17 @@
 			<para>Item 2.1</para>
 		  </listitem>
 		  <listitem>
-			<listitem>
-			  <itemizedlist>
-				<listitem>
-				  <para>Item 2.2.1</para>
-				</listitem>
-				<listitem>
-				  <para>Item 2.2.2</para>
-				</listitem>
-				<listitem>
-				  <para>Item 2.2.3</para>
-				</listitem>
-			  </itemizedlist>
-			</listitem>
+			<itemizedlist>
+			  <listitem>
+				<para>Item 2.2.1</para>
+			  </listitem>
+			  <listitem>
+				<para>Item 2.2.2</para>
+			  </listitem>
+			  <listitem>
+				<para>Item 2.2.3</para>
+			  </listitem>
+			</itemizedlist>
 		  </listitem>
 		  <listitem>
 			<para>Item 2.3</para>
@@ -123,19 +121,17 @@
 			<para>Item 2.1</para>
 		  </listitem>
 		  <listitem>
-			<listitem>
-			  <orderedlist>
-				<listitem>
-				  <para>Item 2.2.1</para>
-				</listitem>
-				<listitem>
-				  <para>Item 2.2.2</para>
-				</listitem>
-				<listitem>
-				  <para>Item 2.2.3</para>
-				</listitem>
-			  </orderedlist>
-			</listitem>
+			<orderedlist>
+			  <listitem>
+				<para>Item 2.2.1</para>
+			  </listitem>
+			  <listitem>
+				<para>Item 2.2.2</para>
+			  </listitem>
+			  <listitem>
+				<para>Item 2.2.3</para>
+			  </listitem>
+			</orderedlist>
 		  </listitem>
 		  <listitem>
 			<para>Item 2.3</para>

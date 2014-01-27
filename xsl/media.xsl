@@ -156,7 +156,7 @@ See `license` for the GNU General Public License v2.
 		</xsl:choose>
 		
 		<xsl:attribute name="svg:y">
-		  <xsl:value-of select="$style.para.marginTop"/>
+		  <xsl:text>0</xsl:text>
 		</xsl:attribute>
 		
 		<xsl:attribute name="draw:z-index">1</xsl:attribute>
