@@ -36,6 +36,7 @@ See `license` for the GNU General Public License v2.
   <xsl:include href="para-styles-block.xsl"/>
   <xsl:include href="para-styles-page.xsl"/>
   <xsl:include href="para-styles-heading.xsl"/>
+  <xsl:include href="para-styles-toc.xsl"/>
   <xsl:include href="list-styles.xsl"/>
 
   <!-- Templates -->
@@ -380,6 +381,10 @@ See `license` for the GNU General Public License v2.
 	<!-- text-styles-block.xsl -->
 	<xsl:apply-templates select="." mode="para-style-epigraph"/>
 	<xsl:apply-templates select="." mode="para-style-epigraph-attribution"/>
+
+	<!-- text-styles-toc.xsl -->
+	<xsl:apply-templates select="." mode="para-style-contents-1"/>
+	<xsl:apply-templates select="." mode="para-style-contents-2"/>
 
 	<!-- Include any additional styles. -->
 	<xsl:apply-templates select="." mode="para-style-custom"/>

@@ -31,12 +31,18 @@ See `license` for the GNU General Public License v2.
 	xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0"
 	exclude-result-prefixes="d"
 	version="1.0">
-  <!-- Parameters. These have to be before the imports because otherwise the params will be picked up by the imports instead of our settings. -->
+  <!-- Parameters. These have to be before the imports because otherwise the params will be picked up by the imports instead of our settings. --> 
+  <!-- Table of Contents Levels -->
+  <xsl:param name="toc.article">0</xsl:param>
+  <xsl:param name="toc.book">1</xsl:param>
+  <xsl:param name="toc.chapter">2</xsl:param>
+  <xsl:param name="toc.appendix">1</xsl:param>
+
   <xsl:param name="generate.toc">
 appendix  title
 article/appendix  nop
 article   title
-book      title
+book      toc,title,figure,table,example,equation,after
 chapter   title
 part      title
 preface   title
@@ -279,7 +285,7 @@ set       title
   <!-- Matters -->
   <xsl:template match="d:book" mode="bodymatter">
 	<xsl:apply-templates
-		select="d:part|d:article|d:chapter|d:appendix"/>
+		select="d:part|d:article|d:chapter"/>
 
 	<text:p text:style-name="Center">END</text:p>
   </xsl:template>
@@ -287,5 +293,42 @@ set       title
   <!-- Breaks -->
   <xsl:template match="d:bridgehead[@otherrenderas='break']">
 	<text:p text:style-name="Center"># # #</text:p>
+  </xsl:template>
+
+  <!-- Table of Contents -->
+  <xsl:template match="d:appendix" mode="toc.insert">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<!-- We don't want the word "Appendix:" in the name. -->
+	<xsl:call-template name="insert-toc-entry">
+	  <xsl:with-param name="level" select="$toc.appendix"/>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="ref" select="concat('Appendix', $number)"/>
+	</xsl:call-template>
+
+	<xsl:apply-templates mode="toc.insert"/>
+  </xsl:template>
+
+  <xsl:template match="d:appendix" mode="title">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.appendix.name"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.appendix.level"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="referenceMark" select="concat('Appendix', $number)"/>
+	</xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>
