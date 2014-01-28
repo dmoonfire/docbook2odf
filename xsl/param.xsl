@@ -42,7 +42,9 @@ See `license` for the GNU General Public License v2.
   <xsl:param name="style.article.textIndent">0in</xsl:param>
 
   <xsl:param name="style.chapter.level">1</xsl:param>
-  <xsl:param name="style.chapter.name">Heading 1</xsl:param>
+  <xsl:param name="style.chapter.name">Heading 1</xsl:param> 
+  <xsl:param name="style.appendix.level">1</xsl:param>
+  <xsl:param name="style.appendix.name">Heading 1</xsl:param>
   <xsl:param name="style.book.name">Book_20_Title</xsl:param>
   <xsl:param name="style.book.level">0</xsl:param>
 
@@ -212,6 +214,7 @@ See `license` for the GNU General Public License v2.
   <xsl:param name="toc.article">0</xsl:param>
   <xsl:param name="toc.book">0</xsl:param>
   <xsl:param name="toc.chapter">1</xsl:param>
+  <xsl:param name="toc.appendix">1</xsl:param>
 
   <!-- Common -->
   <xsl:param name="appendix.autolabel">A</xsl:param>

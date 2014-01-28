@@ -60,6 +60,7 @@ See `license` for the GNU General Public License v2.
   <xsl:include href="article.xsl"/>
   <xsl:include href="book.xsl"/>
   <xsl:include href="chapter.xsl"/>
+  <xsl:include href="appendix.xsl"/>
   <xsl:include href="section.xsl"/>
   <xsl:include href="footnotes.xsl"/>
   <xsl:include href="legalnotice.xsl"/>
