@@ -61,6 +61,22 @@ set       title
   <!-- Includes -->
   <xsl:include href="../docbook.xsl"/>
 
+  <xsl:template match="d:*" mode="para-style-para">
+    <style:style
+		style:name="Paragraph"
+		style:display-name="Paragraph"
+		style:family="paragraph">
+      <style:paragraph-properties
+		  fo:line-height="125%"
+		  fo:text-indent="0.5in"
+		  fo:text-align="left"
+		  />
+	  <style:text-properties
+		  fo:font-size="12pt"
+		  />
+    </style:style>
+  </xsl:template>
+
   <xsl:template match="d:*" mode="text-style-standard">
     <style:style
 		style:name="Standard"
@@ -331,4 +347,7 @@ set       title
 	  <xsl:with-param name="referenceMark" select="concat('Appendix', $number)"/>
 	</xsl:call-template>
   </xsl:template>
+
+  <!-- Assuming we aren't including the image for PDF, Smashwords recommends that cover images are not included. -->
+  <xsl:template match="d:cover"/>
 </xsl:stylesheet>
