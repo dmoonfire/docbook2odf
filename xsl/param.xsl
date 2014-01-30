@@ -209,6 +209,7 @@ See `license` for the GNU General Public License v2.
 
   <!-- ODF Settings -->
   <xsl:param name="generate.title.with.cover">1</xsl:param>
+  <xsl:param name="generate.references.as.bookmarks">0</xsl:param>
 
   <!-- Table of Contents Levels -->
   <xsl:param name="toc.article">0</xsl:param>

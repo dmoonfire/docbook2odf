@@ -32,6 +32,10 @@ See `license` for the GNU General Public License v2.
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Parameters. These have to be before the imports because otherwise the params will be picked up by the imports instead of our settings. --> 
+
+  <!-- We need references rendered as hyperlinks so Smashwords can pick them up. -->
+  <xsl:param name="generate.references.as.bookmarks">1</xsl:param>
+
   <!-- Table of Contents Levels -->
   <xsl:param name="toc.article">0</xsl:param>
   <xsl:param name="toc.book">1</xsl:param>

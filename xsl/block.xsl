@@ -35,6 +35,52 @@ See `license` for the GNU General Public License v2.
 	  This is the generic version for inserting a paragraph or a heading,
 	  based on settings.
   -->
+  <xsl:template name="p-or-h-internal">
+	<xsl:param name="text"/>
+	<xsl:param name="referenceMark"/>
+	<xsl:param name="referenceRef"/>
+
+	<xsl:if test="$referenceMark != ''">
+	  <xsl:if test="$generate.references.as.bookmarks = 1">
+		<text:bookmark-start text:name="{$referenceMark}"/>
+	  </xsl:if>
+	  <xsl:if test="not($generate.references.as.bookmarks = 1)">
+		<text:reference-mark-start text:name="{$referenceMark}"/>
+	  </xsl:if>
+	</xsl:if>
+	
+	<xsl:choose>
+	  <xsl:when test="$referenceRef != ''">
+		<xsl:if test="$generate.references.as.bookmarks = 1">
+		  <text:a
+			  xlink:type="simple"
+			  xlink:href="#{$referenceRef}">
+			<xsl:value-of select="normalize-space($text)"/>
+		  </text:a>
+		</xsl:if>
+		<xsl:if test="not($generate.references.as.bookmarks = 1)">
+		  <text:reference-ref
+			  text:reference-format="text"
+				  text:ref-name="{$referenceRef}">
+			<xsl:value-of select="normalize-space($text)"/>
+		  </text:reference-ref>
+		</xsl:if>
+	  </xsl:when>
+	  <xsl:otherwise>
+		<xsl:value-of select="normalize-space($text)"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+	
+	<xsl:if test="$referenceMark != ''">
+	  <xsl:if test="$generate.references.as.bookmarks = 1">
+		<text:bookmark-end text:name="{$referenceMark}"/>
+	  </xsl:if>
+	  <xsl:if test="not($generate.references.as.bookmarks = 1)">
+		<text:reference-mark-end text:name="{$referenceMark}"/>
+	  </xsl:if>
+	</xsl:if>
+  </xsl:template>
+
   <xsl:template name="p-or-h">
 	<xsl:param name="style.name"/>
 	<xsl:param name="style.level"/>
@@ -50,27 +96,12 @@ See `license` for the GNU General Public License v2.
 		<xsl:attribute name="text:style-name">
 		  <xsl:value-of select="$style.name" />
 		</xsl:attribute>
-		
-		<xsl:if test="$referenceMark != ''">
-		  <text:reference-mark-start text:name="{$referenceMark}"/>
-		</xsl:if>
 
-		<xsl:choose>
-		  <xsl:when test="$referenceRef != ''">
-			<text:reference-ref
-				text:reference-format="text"
-				text:ref-name="{$referenceRef}">
-			  <xsl:value-of select="normalize-space($text)"/>
-			</text:reference-ref>
-		  </xsl:when>
-		  <xsl:otherwise>
-			<xsl:value-of select="normalize-space($text)"/>
-		  </xsl:otherwise>
-		</xsl:choose>
-
-		<xsl:if test="$referenceMark != ''">
-		  <text:reference-mark-end text:name="{$referenceMark}"/>
-		</xsl:if>
+		<xsl:call-template name="p-or-h-internal">
+		  <xsl:with-param name="text" select="$text"/>
+		  <xsl:with-param name="referenceMark" select="$referenceMark"/>
+		  <xsl:with-param name="referenceRef" select="$referenceRef"/>
+		</xsl:call-template>
 	  </text:h>
 	</xsl:if>
 	<xsl:if test="not($style.level &gt; 0)">
@@ -78,27 +109,12 @@ See `license` for the GNU General Public License v2.
 		<xsl:attribute name="text:style-name">
 		  <xsl:value-of select="$style.name" />
 		</xsl:attribute>
-		
-		<xsl:if test="$referenceMark != ''">
-		  <text:reference-mark-start text:name="{$referenceMark}"/>
-		</xsl:if>
 
-		<xsl:choose>
-		  <xsl:when test="$referenceRef != ''">
-			<text:reference-ref
-				text:reference-format="text"
-				text:ref-name="{$referenceRef}">
-			  <xsl:value-of select="normalize-space($text)"/>
-			</text:reference-ref>
-		  </xsl:when>
-		  <xsl:otherwise>
-			<xsl:value-of select="normalize-space($text)"/>
-		  </xsl:otherwise>
-		</xsl:choose>
-
-		<xsl:if test="$referenceMark != ''">
-		  <text:reference-mark-end text:name="{$referenceMark}"/>
-		</xsl:if>
+		<xsl:call-template name="p-or-h-internal">
+		  <xsl:with-param name="text" select="$text"/>
+		  <xsl:with-param name="referenceMark" select="$referenceMark"/>
+		  <xsl:with-param name="referenceRef" select="$referenceRef"/>
+		</xsl:call-template>
 	  </text:p>
 	</xsl:if>
   </xsl:template>
