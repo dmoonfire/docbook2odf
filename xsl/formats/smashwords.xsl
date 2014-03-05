@@ -42,6 +42,13 @@ See `license` for the GNU General Public License v2.
   <xsl:param name="toc.chapter">2</xsl:param>
   <xsl:param name="toc.appendix">1</xsl:param>
 
+  <xsl:param name="style.chapter.level">0</xsl:param>
+  <xsl:param name="style.chapter.name">Chapter Title</xsl:param> 
+  <xsl:param name="style.appendix.level">0</xsl:param>
+  <xsl:param name="style.appendix.name">Chapter Title</xsl:param>
+  <xsl:param name="style.sect1.level">0</xsl:param>
+  <xsl:param name="style.sect1.name">Section_20_Title</xsl:param>
+
   <xsl:param name="generate.toc">
 appendix  title
 article/appendix  nop
@@ -109,6 +116,39 @@ set       title
   </xsl:template>
 
   <xsl:template match="d:*" mode="para-style-custom">
+    <style:style
+		style:name="Chapter_20_Title"
+		style:display-name="Chapter Title"
+		style:family="paragraph"
+		style:class="text"
+		style:master-page-name="Chapter_20_Page"
+		style:parent-style-name="Paragraph_20_Default">
+      <style:paragraph-properties
+		  text:number-lines="false"
+		  fo:break-before="page"
+		  fo:margin-top="0.125in"
+		  fo:margin-bottom="0.5in"
+		  fo:margin-left="0in"
+		  fo:margin-right="0in"/>
+      <style:text-properties
+		  fo:font-weight="bold"
+		  fo:font-size="24pt"/>
+    </style:style>
+    <style:style
+		style:name="Section_20_Title"
+		style:display-name="Section Title"
+		style:family="paragraph"
+		style:default-outline-level="2"
+		style:class="text">
+      <style:paragraph-properties
+		  fo:margin-top="0.25in"
+		  fo:margin-bottom="0.25in"
+		  fo:margin-left="0in"
+		  fo:margin-right="0in"/>
+      <style:text-properties
+		  fo:font-size="20pt"/>
+    </style:style>
+
 	<style:style
 		style:name="Contact"
 		style:display-name="Contact"
