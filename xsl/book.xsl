@@ -44,6 +44,8 @@ See `license` for the GNU General Public License v2.
 	<office:text>
 	  <xsl:apply-templates select="." mode="title"/>
 	  <xsl:apply-templates select="d:info/d:legalnotice"/>
+	  <xsl:apply-templates select="d:info/d:copyright"/>
+	  <xsl:apply-templates select="d:info/d:publisher"/>
 
 	  <!-- Figure out if we want to render the abstract. -->
 	  <xsl:if test="contains($toc.params, 'abstract')">
@@ -92,6 +94,32 @@ See `license` for the GNU General Public License v2.
 	  </xsl:with-param>
 	  <xsl:with-param name="referenceMark" select="concat('Book', $number)"/>
 	</xsl:call-template>
+
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.book.subtitle.name"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:value-of select="d:info/d:subtitle"/>
+	  </xsl:with-param>
+	</xsl:call-template>
+
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.book.author.name"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="d:info/d:author" mode='chapter'/>
+	  </xsl:with-param>
+	</xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="d:author" mode="chapter">
+	<xsl:value-of select="d:personname/d:firstname"/>
+	<xsl:text> </xsl:text>
+	<xsl:value-of select="d:personname/d:othername"/>
+	<xsl:text> </xsl:text>
+	<xsl:value-of select="d:personname/d:surname"/>
   </xsl:template>
 
   <!-- Matters -->

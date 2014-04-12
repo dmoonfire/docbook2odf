@@ -126,8 +126,8 @@ set       title
       <style:paragraph-properties
 		  text:number-lines="false"
 		  fo:break-before="page"
-		  fo:margin-top="0.125in"
-		  fo:margin-bottom="0.5in"
+		  fo:margin-top="0.25in"
+		  fo:margin-bottom="0.25in"
 		  fo:margin-left="0in"
 		  fo:margin-right="0in"/>
       <style:text-properties
@@ -210,23 +210,37 @@ set       title
 	  <style:text-properties
 		  fo:font-size="100%"/>
 	</style:style>
-
 	<style:style
-		style:name="Author"
-		style:display-name="Author"
+		style:name="Book_20_Subtitle"
+		style:display-name="Book Subtitle"
 		style:family="paragraph"
 		style:parent-style-name="Standard"
-		style:class="text"
-		>
+		style:class="text">
       <style:paragraph-properties
-		  text:number-lines="true"
-		  text:line-number="1"
+		  text:number-lines="false"
 		  fo:text-align="center"
-		  fo:margin-top="0"
-		  fo:margin-bottom="0.25in"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
 		  fo:margin-left="1in"
 		  fo:margin-right="1in"/>
 	  <style:text-properties
+		  fo:font-weight="bold"
+		  fo:font-size="80%"/>
+	</style:style>
+	<style:style
+		style:name="Book_20_Author"
+		style:display-name="Book Author"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text">
+      <style:paragraph-properties
+		  fo:text-align="center"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"/>
+	  <style:text-properties
+		  fo:font-weight="bold"
 		  fo:font-size="100%"/>
 	</style:style>
   </xsl:template>

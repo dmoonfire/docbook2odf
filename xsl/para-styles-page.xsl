@@ -69,6 +69,39 @@ See `license` for the GNU General Public License v2.
 		  fo:font-weight="bold"
 		  fo:font-size="300%"/>
 	</style:style>
+	<style:style
+		style:name="Book_20_Subtitle"
+		style:display-name="Book Subtitle"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text">
+      <style:paragraph-properties
+		  text:number-lines="false"
+		  fo:text-align="center"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"/>
+	  <style:text-properties
+		  fo:font-weight="bold"
+		  fo:font-size="200%"/>
+	</style:style>
+	<style:style
+		style:name="Book_20_Author"
+		style:display-name="Book Author"
+		style:family="paragraph"
+		style:parent-style-name="Standard"
+		style:class="text">
+      <style:paragraph-properties
+		  fo:text-align="center"
+		  fo:margin-top="1in"
+		  fo:margin-bottom="1in"
+		  fo:margin-left="1in"
+		  fo:margin-right="1in"/>
+	  <style:text-properties
+		  fo:font-weight="bold"
+		  fo:font-size="300%"/>
+	</style:style>
   </xsl:template>
 
   <xsl:template match="d:*" mode="para-style-chapter">

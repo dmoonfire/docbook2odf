@@ -47,6 +47,9 @@ See `license` for the GNU General Public License v2.
   <xsl:param name="style.appendix.name">Heading 1</xsl:param>
   <xsl:param name="style.book.name">Book_20_Title</xsl:param>
   <xsl:param name="style.book.level">0</xsl:param>
+  <xsl:param name="style.book.name">Book_20_Title</xsl:param>
+  <xsl:param name="style.book.subtitle.name">Book_20_Subtitle</xsl:param>
+  <xsl:param name="style.book.author.name">Book_20_Author</xsl:param>
 
   <xsl:param name="style.contents1.breakBefore"></xsl:param>
   <xsl:param name="style.contents1.font" select="$style.font"/>
