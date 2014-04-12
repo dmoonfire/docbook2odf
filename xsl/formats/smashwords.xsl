@@ -53,7 +53,7 @@ See `license` for the GNU General Public License v2.
 appendix  title
 article/appendix  nop
 article   title
-book      toc,title,figure,table,example,equation,after
+book      toc,title,figure,table,example,equation
 chapter   title
 part      title
 preface   title
