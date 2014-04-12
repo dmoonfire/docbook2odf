@@ -50,6 +50,7 @@ See `license` for the GNU General Public License v2.
   <xsl:include href="master-styles.xsl"/>
   <xsl:include href="automatic-styles.xsl"/>
   <xsl:include href="toc.xsl"/>
+  <xsl:include href="abstract.xsl"/>
 
   <xsl:include href="document-manifest.xsl"/>
   <xsl:include href="document-meta.xsl"/>

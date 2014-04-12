@@ -45,6 +45,11 @@ See `license` for the GNU General Public License v2.
 	  <xsl:apply-templates select="." mode="title"/>
 	  <xsl:apply-templates select="d:info/d:legalnotice"/>
 
+	  <!-- Figure out if we want to render the abstract. -->
+	  <xsl:if test="contains($toc.params, 'abstract')">
+		<xsl:apply-templates select="d:info/d:abstract" mode="abstract"/>
+	  </xsl:if>
+
 	  <!-- Figure out if we need a table of contents here. -->
 	  <xsl:if test="contains($toc.params, 'table') and (not(contains($toc.params, 'after')) or contains($toc.params, 'before'))">
 		<xsl:apply-templates select="." mode="toc"/>
