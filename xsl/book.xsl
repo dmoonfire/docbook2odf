@@ -124,10 +124,9 @@ See `license` for the GNU General Public License v2.
 
   <!-- Matters -->
   <xsl:template match="d:book" mode="frontmatter">
-	<xsl:apply-templates
-		select="d:acknowledgements
-				|d:dedication
-				|d:preface"/>
+	<xsl:apply-templates select="d:dedication" mode="dedication"/>
+	<xsl:apply-templates select="d:acknowledgments" mode="acknowledgments"/>
+	<xsl:apply-templates select="d:preface" />
   </xsl:template>
 
   <xsl:template match="d:book" mode="bodymatter">
