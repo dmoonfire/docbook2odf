@@ -32,7 +32,7 @@ See `license` for the GNU General Public License v2.
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Emphasis -->
-  <xsl:template match="d:emphasis">
+  <xsl:template match="d:emphasis|d:citetitle">
 	<text:span text:style-name="Text_20_Italic">
       <xsl:apply-templates />
 	</text:span>

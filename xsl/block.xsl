@@ -129,24 +129,9 @@ See `license` for the GNU General Public License v2.
   <!-- Epigraphs -->
   <xsl:template match="d:epigraph">
 	<xsl:apply-templates select="d:para|d:simpara|d:formalpara|d:literallayout"/>
-
-	<xsl:if test="d:attribution">
-	  <!-- We use the em-dash because of Chicago Style. -->
-	  <xsl:call-template name="p-or-h">
-		<xsl:with-param name="style.name">
-		  <xsl:value-of select="$style.epigraphAttribution.name"/>
-		</xsl:with-param>
-		<xsl:with-param name="style.level">
-		  <xsl:value-of select="$style.epigraphAttribution.level"/>
-		</xsl:with-param>
-		<xsl:with-param name="text">
-		  <xsl:text>&#x2014; </xsl:text>
-		  <xsl:value-of select="d:attribution"/>
-		</xsl:with-param>
-	  </xsl:call-template>
-    </xsl:if>
+	<xsl:apply-templates select="d:attribution"/>
   </xsl:template>
-  
+
   <xsl:template match="d:epigraph/d:para|d:epigraph/d:simpara">
 	<xsl:call-template name="p-or-h">
 	  <xsl:with-param name="style.name">
@@ -159,5 +144,12 @@ See `license` for the GNU General Public License v2.
 		<xsl:apply-templates />
 	  </xsl:with-param>
 	</xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="d:epigraph/d:attribution">
+	<text:p text:style-name="{$style.epigraphAttribution.name}">
+	  <xsl:text>&#x2014;</xsl:text>
+	  <xsl:apply-templates/>
+	</text:p>
   </xsl:template>
 </xsl:stylesheet>

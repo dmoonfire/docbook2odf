@@ -88,9 +88,6 @@ See `license` for the GNU General Public License v2.
 		  fo:margin-top="12pt"
 		  fo:text-align="right"
 		  />
-	  <style:text-properties
-		  fo:font-style="italic"
-		  />
     </style:style>
   </xsl:template>
 </xsl:stylesheet>
