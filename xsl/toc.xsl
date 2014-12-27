@@ -117,6 +117,23 @@ See `license` for the GNU General Public License v2.
 	<xsl:apply-templates mode="toc.insert"/>
   </xsl:template>
 
+  <xsl:template match="d:article" mode="toc.insert">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<xsl:call-template name="insert-toc-entry">
+	  <xsl:with-param name="level" select="$toc.article"/>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="." mode="title.markup"/>
+		<xsl:value-of select="concat('Article', $number)"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="ref" select="concat('Article', $number)"/>
+	</xsl:call-template>
+
+	<xsl:apply-templates mode="toc.insert"/>
+  </xsl:template>
+
   <xsl:template match="d:appendix" mode="toc.insert">
 	<xsl:param name="number">
 	  <xsl:apply-templates select="." mode="label.markup"/>

@@ -33,7 +33,7 @@ See `license` for the GNU General Public License v2.
 	exclude-result-prefixes="d"
 	version="1.0">
   <!-- Root Node -->
-  <xsl:template match="d:article">
+  <xsl:template match="/d:article">
 	<!-- Figure out the Table of Content parameters -->
     <xsl:variable name="toc.params">
 	  <xsl:call-template name="find.path.params">
@@ -59,12 +59,37 @@ See `license` for the GNU General Public License v2.
 	</office:text>
   </xsl:template>
 
-  <xsl:template match="d:article" mode="title">
+  <xsl:template match="d:article">
+	<xsl:apply-templates select="." mode="title"/>
+
+	<xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="/d:article" mode="title">
 	<xsl:apply-templates select="d:info/d:cover"/>
 
 	<xsl:if test="not(d:info/d:cover) or $generate.title.with.cover">
 	  <xsl:apply-templates select="." mode="title-text"/>
 	</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:article" mode="title">
+	<xsl:param name="number">
+	  <xsl:apply-templates select="." mode="label.markup"/>
+	</xsl:param>
+
+	<xsl:call-template name="p-or-h">
+	  <xsl:with-param name="style.name">
+		<xsl:value-of select="$style.article.name"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="style.level">
+		<xsl:value-of select="$style.article.level"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="text">
+		<xsl:apply-templates select="." mode="title.markup"/>
+	  </xsl:with-param>
+	  <xsl:with-param name="referenceMark" select="concat('Article', $number)"/>
+	</xsl:call-template>
   </xsl:template>
 
   <xsl:template match="d:article" mode="title-text">

@@ -37,11 +37,13 @@ See `license` for the GNU General Public License v2.
   <xsl:param name="generate.references.as.bookmarks">1</xsl:param>
 
   <!-- Table of Contents Levels -->
-  <xsl:param name="toc.article">0</xsl:param>
   <xsl:param name="toc.book">1</xsl:param>
   <xsl:param name="toc.chapter">2</xsl:param>
+  <xsl:param name="toc.article">2</xsl:param>
   <xsl:param name="toc.appendix">1</xsl:param>
 
+  <xsl:param name="style.article.level">0</xsl:param>
+  <xsl:param name="style.article.name">Chapter Title</xsl:param> 
   <xsl:param name="style.chapter.level">0</xsl:param>
   <xsl:param name="style.chapter.name">Chapter Title</xsl:param> 
   <xsl:param name="style.appendix.level">0</xsl:param>
