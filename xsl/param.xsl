@@ -210,6 +210,42 @@ See `license` for the GNU General Public License v2.
 
   <xsl:param name="style.toc1.name">Contents_20_1</xsl:param>
 
+  <xsl:param name="style.poetry.line.breakBefore"/>
+  <xsl:param name="style.poetry.line.font"/>
+  <xsl:param name="style.poetry.line.fontStyle"/>
+  <xsl:param name="style.poetry.line.fontWeight"/>
+  <xsl:param name="style.poetry.line.level"/>
+  <xsl:param name="style.poetry.line.lineHeight"/>
+  <xsl:param name="style.poetry.line.marginBottom"/>
+  <xsl:param name="style.poetry.line.marginLeft"/>
+  <xsl:param name="style.poetry.line.marginRight"/>
+  <xsl:param name="style.poetry.line.marginTop"/>
+  <xsl:param name="style.poetry.line.name" select="'Poetry_20_Line'"/>
+  <xsl:param name="style.poetry.line.displayName" select="'Poetry Line'"/>
+  <xsl:param name="style.poetry.line.page"/>
+  <xsl:param name="style.poetry.line.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.poetry.line.size"/>
+  <xsl:param name="style.poetry.line.textAlign"/>
+  <xsl:param name="style.poetry.line.textIndent"/>
+
+  <xsl:param name="style.poetry.linegroup.breakBefore"/>
+  <xsl:param name="style.poetry.linegroup.font"/>
+  <xsl:param name="style.poetry.linegroup.fontStyle"/>
+  <xsl:param name="style.poetry.linegroup.fontWeight"/>
+  <xsl:param name="style.poetry.linegroup.level"/>
+  <xsl:param name="style.poetry.linegroup.lineHeight"/>
+  <xsl:param name="style.poetry.linegroup.marginBottom"/>
+  <xsl:param name="style.poetry.linegroup.marginLeft"/>
+  <xsl:param name="style.poetry.linegroup.marginRight"/>
+  <xsl:param name="style.poetry.linegroup.marginTop"/>
+  <xsl:param name="style.poetry.linegroup.name" select="'Poetry_20_Line_20_Group'"/>
+  <xsl:param name="style.poetry.linegroup.displayName" select="'Poetry Line Group'"/>
+  <xsl:param name="style.poetry.linegroup.page"/>
+  <xsl:param name="style.poetry.linegroup.parentStyle">Paragraph</xsl:param>
+  <xsl:param name="style.poetry.linegroup.size"/>
+  <xsl:param name="style.poetry.linegroup.textAlign"/>
+  <xsl:param name="style.poetry.linegroup.textIndent"/>
+
   <!-- ODF Settings -->
   <xsl:param name="generate.title.with.cover">1</xsl:param>
   <xsl:param name="generate.references.as.bookmarks">0</xsl:param>

@@ -74,6 +74,7 @@ See `license` for the GNU General Public License v2.
   <xsl:include href="inline.xsl"/>
   <xsl:include href="admon.xsl"/>
   <xsl:include href="list.xsl"/>
+  <xsl:include href="poetry.xsl"/>
 
   <!--
 	  Generate the entire ODF file in a single XML document. Then,

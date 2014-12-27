@@ -37,6 +37,7 @@ See `license` for the GNU General Public License v2.
   <xsl:include href="para-styles-page.xsl"/>
   <xsl:include href="para-styles-heading.xsl"/>
   <xsl:include href="para-styles-toc.xsl"/>
+  <xsl:include href="para-styles-poetry.xsl"/>
   <xsl:include href="list-styles.xsl"/>
 
   <!-- Templates -->
@@ -385,6 +386,9 @@ See `license` for the GNU General Public License v2.
 	<!-- text-styles-toc.xsl -->
 	<xsl:apply-templates select="." mode="para-style-contents-1"/>
 	<xsl:apply-templates select="." mode="para-style-contents-2"/>
+
+	<!-- text-styles-poetry.xsl -->
+	<xsl:apply-templates select="." mode="para-style-poetry"/>
 
 	<!-- Include any additional styles. -->
 	<xsl:apply-templates select="." mode="para-style-custom"/>
